@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Hi Student',
+                      Text('Halo Admin!',
                           style: Theme.of(context).textTheme.subtitle1),
                       Text('Sign in to continue',
                           style: Theme.of(context).textTheme.subtitle2),
@@ -51,12 +51,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   Image.asset(
-                    'assets/images/splash.png',
+                    'assets/images/Vector-1.png',
                     height: 20.h,
                     width: 40.w,
                   ),
                   SizedBox(
                     height: kDefaultPadding / 2,
+                    child:
+                     Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: <Color>[Color(0xff9587ff),
+                        Color(0xff38acff)],
+                        stops: <double>[0,1],
+                      ),
+                     )
+                    )
                   ),
                 ],
               ),
