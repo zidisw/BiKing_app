@@ -34,7 +34,7 @@ class DefaultButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(),
-            Text(title, style: Theme.of(context).textTheme.subtitle2),
+            Text(title, style: Theme.of(context).textTheme.titleSmall),
             Spacer(),
             Icon(
               iconData,

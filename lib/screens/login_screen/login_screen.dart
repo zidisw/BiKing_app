@@ -27,104 +27,123 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double baseWidth = 360;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+
     return GestureDetector(
-      //when user taps anywhere on the screen, keyboard hides
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              width: 100.w,
-              height: 35.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Halo Admin!',
-                          style: Theme.of(context).textTheme.subtitle1),
-                      Text('Sign in to continue',
-                          style: Theme.of(context).textTheme.subtitle2),
-                      sizedBox,
-                    ],
-                  ),
-                  Image.asset(
-                    'assets/images/Vector-1.png',
-                    height: 20.h,
-                    width: 40.w,
-                  ),
-                  SizedBox(
-                    height: kDefaultPadding / 2,
-                    child:
-                     Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[Color(0xff9587ff),
-                        Color(0xff38acff)],
-                        stops: <double>[0,1],
-                      ),
-                     )
-                    )
-                  ),
+        //when user taps anywhere on the screen, keyboard hides
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xff38acff),
+                  Color(0xff9587ff),
                 ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
             ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                decoration: BoxDecoration(
-                  color: kOtherColor,
-                  //reusable radius,
-                  borderRadius: kTopBorderRadius,
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        sizedBox,
-                        buildEmailField(),
-                        sizedBox,
-                        buildPasswordField(),
-                        sizedBox,
-                        DefaultButton(
-                          onPress: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  HomeScreen.routeName, (route) => false);
-                            }
-                          },
-                          title: 'SIGN IN',
-                          iconData: Icons.arrow_forward_outlined,
-                        ),
-                        sizedBox,
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            'Forgot Password',
-                            textAlign: TextAlign.end,
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2!
-                                .copyWith(
-                                    color: kPrimaryColor,
-                                    fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ],
+            
+            child: Column(
+              children: [
+                
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  child: SizedBox(
+                    width: 391 * fem,
+                    height: 150.76 * fem,
+                    child: Image.asset(
+                      'assets/images/atas.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-              ),
+                Container(
+                  width: 100.w,
+                  height: 10.h,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Halo Admin!',
+                              style: Theme.of(context).textTheme.subtitle1),
+                          Text('Sign in to continue',
+                              style: Theme.of(context).textTheme.subtitle2),
+                          sizedBox,
+                        ],
+                      ),
+                      Image.asset(
+                        'assets/images/Vector-1.png',
+                        height: 20.h,
+                        width: 40.w,
+                      ),
+                      SizedBox(
+                        height: kDefaultPadding / 2,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                    decoration: BoxDecoration(
+                      color: kOtherColor,
+                      //reusable radius,
+                      borderRadius: kTopBorderRadius,
+                    ),
+                    child: Form(
+                      key: _formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            sizedBox,
+                            buildEmailField(),
+                            sizedBox,
+                            buildPasswordField(),
+                            sizedBox,
+                            DefaultButton(
+                              onPress: () {
+                                if (_formKey.currentState!.validate()) {
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      HomeScreen.routeName, (route) => false);
+                                }
+                              },
+                              title: 'SIGN IN',
+                              iconData: Icons.arrow_forward_outlined,
+                            ),
+                            sizedBox,
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: Text(
+                                'Forgot Password',
+                                textAlign: TextAlign.end,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(
+                                        color: kContainerColor,
+                                        fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+            
+          ),
+        ));
   }
 
   TextFormField buildEmailField() {

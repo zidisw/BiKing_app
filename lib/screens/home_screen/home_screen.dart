@@ -19,64 +19,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           //we will divide the screen into two parts
           //fixed height for first half
-          Container(
-            width: 100.w,
-            height: 40.h,
-            padding: EdgeInsets.all(kDefaultPadding),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        StudentName(
-                          studentName: 'Aisha',
-                        ),
-                        kHalfSizedBox,
-                        StudentClass(
-                            studentClass: 'Class X-II A | Roll no: 12'),
-                        kHalfSizedBox,
-                        StudentYear(studentYear: '2020-2021'),
-                      ],
-                    ),
-                    kHalfSizedBox,
-                    StudentPicture(
-                        picAddress: 'assets/images/student_profile.jpeg',
-                        onPress: () {
-                          // go to profile detail screen here
-                          Navigator.pushNamed(
-                              context, MyProfileScreen.routeName);
-                        }),
-                  ],
-                ),
-                sizedBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    StudentDataCard(
-                      onPress: () {
-                        //go to attendance screen
-                      },
-                      title: 'Attendance',
-                      value: '90.02%',
-                    ),
-                    StudentDataCard(
-                      onPress: () {
-                        //go to fee due screen
-                        Navigator.pushNamed(context, FeeScreen.routeName);
-                      },
-                      title: 'Fees Due',
-                      value: '600\$',
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-
+          
           //other will use all the remaining height of screen
           Expanded(
             child: Container(
