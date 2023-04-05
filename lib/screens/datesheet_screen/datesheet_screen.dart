@@ -1,5 +1,5 @@
-import 'package:brain_school/constants.dart';
-import 'package:brain_school/screens/datesheet_screen/data/datesheet_data.dart';
+import 'package:biking_app/constants.dart';
+import 'package:biking_app/screens/datesheet_screen/data/datesheet_data.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

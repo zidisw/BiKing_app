@@ -1,6 +1,6 @@
-import 'package:brain_school/screens/login_screen/login_screen.dart';
-import 'package:brain_school/screens/splash_screen/splash_screen.dart';
-import 'package:brain_school/screens/splash_screen/splash_screen2.dart';
+import 'package:biking_app/screens/login_screen/login_screen.dart';
+import 'package:biking_app/screens/splash_screen/splash_screen.dart';
+import 'package:biking_app/screens/splash_screen/splash_screen2.dart';
 import 'package:flutter/cupertino.dart';
 import 'screens/assignment_screen/assignment_screen.dart';
 import 'screens/datesheet_screen/datesheet_screen.dart';

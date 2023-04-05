@@ -1,4 +1,4 @@
-import 'package:brain_school/screens/splash_screen/splash_screen2.dart';
+import 'package:biking_app/screens/splash_screen/splash_screen2.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

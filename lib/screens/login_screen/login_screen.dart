@@ -1,6 +1,6 @@
-import 'package:brain_school/components/custom_buttons.dart';
-import 'package:brain_school/constants.dart';
-import 'package:brain_school/screens/home_screen/home_screen.dart';
+import 'package:biking_app/components/custom_buttons.dart';
+import 'package:biking_app/constants.dart';
+import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

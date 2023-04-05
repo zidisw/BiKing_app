@@ -1,6 +1,6 @@
-import 'package:brain_school/routes.dart';
-import 'package:brain_school/screens/splash_screen/splash_screen.dart';
-import 'package:brain_school/theme.dart';
+import 'package:biking_app/routes.dart';
+import 'package:biking_app/screens/splash_screen/splash_screen.dart';
+import 'package:biking_app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
