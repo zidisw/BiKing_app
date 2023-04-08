@@ -67,18 +67,18 @@ class SplashScreen2 extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  left: 70 * fem,
+                  left: 57 * fem,
                   top: 230 * fem,
                   
                   child: SizedBox(
-                    width: 220 * fem,
+                    width: 250 * fem,
                     height: 50 * fem,
                     child: Text(
                       'SELAMAT DATANG',
                       style: GoogleFonts.poppins(
                           fontSize: 25 * ffem,
                           color: Color(0xff38acff),
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w700,
                           height: 1.5 * ffem / fem,
                           letterSpacing: 0.6 * fem,
                           decoration: TextDecoration.none
