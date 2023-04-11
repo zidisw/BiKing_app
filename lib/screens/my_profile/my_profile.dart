@@ -11,7 +11,12 @@ class MyProfileScreen extends StatelessWidget {
     return Scaffold(
       //app bar theme for tablet
       appBar: AppBar(
-        title: Text('My Profile'),
+        title: 
+        Text(
+              'Profil',
+          style: TextStyle(fontFamily: 'Poppins',
+          fontSize: 20,
+          fontWeight: FontWeight.w800)),
         actions: [
           InkWell(
             onTap: () {
@@ -25,7 +30,9 @@ class MyProfileScreen extends StatelessWidget {
                   kHalfWidthSizedBox,
                   Text(
                     'Report',
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: TextStyle(fontFamily: 'Poppins',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300),
                   ),
                 ],
               ),
@@ -52,7 +59,7 @@ class MyProfileScreen extends StatelessWidget {
                         SizerUtil.deviceType == DeviceType.tablet ? 12.w : 13.w,
                     backgroundColor: kSecondaryColor,
                     backgroundImage:
-                        AssetImage('assets/images/student_profile.jpeg'),
+                        AssetImage('assets/images/jid1.png'),
                   ),
                   kWidthSizedBox,
                   Column(
@@ -60,11 +67,11 @@ class MyProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Aisha Mirza',
-                        style: Theme.of(context).textTheme.subtitle1,
+                        'Zid I. S. Wijaogy',
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      Text('Class X-II A | Roll no: 12',
-                          style: Theme.of(context).textTheme.subtitle2),
+                      Text('Guru BK | Ilegal',
+                          style: Theme.of(context).textTheme.titleSmall),
                     ],
                   )
                 ],

@@ -1,13 +1,38 @@
 import 'package:biking_app/constants.dart';
-import 'package:biking_app/screens/fee_screen/fee_screen.dart';
+import 'package:biking_app/screens/my_profile/my_profile.dart';
+import 'package:biking_app/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import '../../components/custom_buttons2.dart';
-import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import '../navigation_bar/nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static String routeName = 'HomeScreen';
+  
+  void _onItemTapped(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyProfileScreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SplashScreen()),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +54,9 @@ class HomeScreen extends StatelessWidget {
                 child: 
                 Container(
                   padding: EdgeInsets.fromLTRB(
-                      0 * fem, 0 * fem, 0 * fem, 35.79 * fem),
+                      0 * fem, 0 * fem, 0 * fem, 70 * fem),
                   width: 360 * fem,
-                  height: 800 * fem,
+                  height: 700 * fem,
                   child: 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,16 +65,13 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             Positioned(
-                              left: 0*fem,
-                              top: 0*fem,
                               child: SizedBox(
-                                width: 391 * fem,
-                                height: 168 * fem,
+                                width: 368 * fem,
+                                height: 100 * fem,
                                 child: Image.asset(
                                   'assets/images/atas_trans.png',
-                                  width: 391 * fem,
-                                  height: 168 * fem,
-                                  fit: BoxFit.cover,
+   
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),
@@ -124,8 +146,6 @@ class HomeScreen extends StatelessWidget {
                                   child: 
                                   Image.asset(
                                     'assets/images/ele1.png',
-                                    width: 300*fem,
-                                    height: 300*fem,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -149,7 +169,10 @@ class HomeScreen extends StatelessWidget {
                               MyCustomButton(
                                 width: 500,
                                 height: 80,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, 'MyProfileScreen');
+                                },
+                                
                                 text: 'Informasi Seputar BK',
                                 image: AssetImage('assets/images/ele2.png'),
                               ),
@@ -158,13 +181,46 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    Expanded(
+                      child: 
+                      Container(
+                        
+                        padding: EdgeInsets.only(left: 8.5.w, right: 8.5.w),
+                        decoration: BoxDecoration(
+                          color: kOtherColor,
+                          //reusable radius,
+                          borderRadius: kTopBorderRadius),
+                            child: Column(
+                              children: [
+                                
+                              MyCustomButton(
+                                width: 500,
+                                height: 80,
+                                onPressed: () {
+                                  Navigator.pushNamed(context, 'SplashScreen2');
+                                },
+                                text: 'Tentang Kami',
+                                image: AssetImage('assets/images/ele3.png'),
+                              ),
+
+                            ],
+                        ),
+                      ),
+                    ),
+
                     ],
                   ),
                 ),
+                
               )
             ],
           )
         ),
+        bottomNavigationBar: MyBottomNavigationBar(
+        currentIndex: 0,
+        onItemTapped: (index) => _onItemTapped(index, context),
+      ),
     );
   }
 }
