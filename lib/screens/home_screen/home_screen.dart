@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../components/custom_buttons2.dart';
 import 'package:sizer/sizer.dart';
 
+import '../reports_screen/reports_screen.dart';
 import '../navigation_bar/nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SplashScreen()),
+          MaterialPageRoute(builder: (context) => ReportsScreen()),
         );
         break;
     }

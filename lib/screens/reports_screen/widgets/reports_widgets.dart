@@ -2,8 +2,8 @@ import 'package:biking_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class AssignmentDetailRow extends StatelessWidget {
-  const AssignmentDetailRow(
+class ReportsRow extends StatelessWidget {
+  const ReportsRow(
       {Key? key, required this.title, required this.statusValue})
       : super(key: key);
   final String title;
@@ -17,20 +17,20 @@ class AssignmentDetailRow extends StatelessWidget {
           title,
           style: Theme.of(context)
               .textTheme
-              .caption!
+              .bodySmall!
               .copyWith(color: kTextBlackColor, fontWeight: FontWeight.w900),
         ),
         Text(
           statusValue,
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
     );
   }
 }
 
-class AssignmentButton extends StatelessWidget {
-  const AssignmentButton({Key? key, required this.title, required this.onPress})
+class ReportButton extends StatelessWidget {
+  const ReportButton({Key? key, required this.title, required this.onPress})
       : super(key: key);
   final String title;
   final VoidCallback onPress;
@@ -41,7 +41,7 @@ class AssignmentButton extends StatelessWidget {
       onTap: onPress,
       child: Container(
         width: 100.w,
-        height: 7.h,
+        height: 5.h,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [kSecondaryColor, kPrimaryColor],
@@ -55,7 +55,10 @@ class AssignmentButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.subtitle2
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: kTextWhiteColor,
+                  fontWeight: FontWeight.w900,
+                ),
           ),
         ),
       ),
