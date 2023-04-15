@@ -56,7 +56,12 @@ class ReportsScreen extends StatelessWidget {
                   padding: EdgeInsets.all(kDefaultPadding),
                   itemCount: reports.length,
                   itemBuilder: (context, int index) {
-                    return Container(
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                                          context, 'SiswaReportsScreen');
+                      },
+                    child: Container(
                       margin: EdgeInsets.only(bottom: kDefaultPadding),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -114,22 +119,13 @@ class ReportsScreen extends StatelessWidget {
                                   title: 'Status',
                                   statusValue: reports[index].status,
                                 ),
-                                kHalfSizedBox,
-                                //use condition here to display button
-                                if (reports[index].status == 'Laporan baru')
-                                  //then show button
-                                  ReportButton(
-                                    onPress: () {
-                                      Navigator.pushNamed(
-                                          context, 'SiswaReportsScreen');
-                                    },
-                                    title: 'Ayoo cek segera!',
-                                  ),
+                                
                               ],
                             ),
                           ),
                         ],
                       ),
+                    ),
                     );
                   }),
             ),
