@@ -8,9 +8,9 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'username',
+  user: 'Renka',
   password: 'password',
-  database: 'mydatabase'
+  database: 'biking'
 });
 
 connection.connect((err) => {
@@ -35,11 +35,11 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   
   connection.query(
-    'SELECT * FROM users WHERE username = ? AND password = ?',
-    [username, password],
+    'SELECT * FROM users WHERE email = ? AND password = ?',
+    [email, password],
     (err, results, fields) => {
       if (err) {
         return res.status(500).send('Error querying database');
