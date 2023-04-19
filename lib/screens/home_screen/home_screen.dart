@@ -1,37 +1,35 @@
 import 'package:biking_app/constants.dart';
-import 'package:biking_app/screens/my_profile/my_profile.dart';
-import 'package:biking_app/screens/splash_screen/splash_screen.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../../components/custom_buttons2.dart';
 import 'package:sizer/sizer.dart';
 
-import '../reports_screen/reports_screen.dart';
+import '../my_profile/my_profile.dart';
 import '../navigation_bar/nav_bar.dart';
+import '../reports_screen/reports_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static String routeName = 'HomeScreen';
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentPage = 1;
+
+  void _onNavigationItemSelected(int index) {
+    setState(() {
+      _currentPage = index;
+    });
   
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyProfileScreen()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
-        break;
-      case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ReportsScreen()),
-        );
-        break;
+  if (index == 0) {
+      Navigator.pushReplacementNamed(context, MyProfileScreen.routeName);
+    } else if (index == 1) {
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    } else if (index == 2) {
+      Navigator.pushReplacementNamed(context, ReportsScreen.routeName);
     }
   }
 
@@ -52,149 +50,122 @@ class HomeScreen extends StatelessWidget {
               Positioned(
                 left: 0 * fem,
                 top: 0 * fem,
-                child: 
-                Container(
-                  padding: EdgeInsets.fromLTRB(
-                      0 * fem, 0 * fem, 0 * fem, 70 * fem),
+                child: Container(
+                  padding:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 70 * fem),
                   width: 360 * fem,
                   height: 700 * fem,
-                  child: 
-                  Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        child: Column(
-                          children: [
-                            Positioned(
-                              child: SizedBox(
-                                width: 368 * fem,
-                                height: 100 * fem,
-                                child: Image.asset(
-                                  'assets/images/atas_trans.png',
-   
-                                  fit: BoxFit.fill,
-                                ),
+                          child: Column(
+                        children: [
+                          Positioned(
+                            child: SizedBox(
+                              width: 368 * fem,
+                              height: 100 * fem,
+                              child: Image.asset(
+                                'assets/images/atas_trans.png',
+                                fit: BoxFit.fill,
                               ),
                             ),
-                          ],
-                        )
-                      ),
+                          ),
+                        ],
+                      )),
                       Container(
-                        margin: EdgeInsets.fromLTRB(30*fem, 0*fem, 30*fem, 0*fem),
-                        width: double.infinity,
-                        height: 350*fem,
-                        child:
-                        Stack(
-                          children: [
-
-                            Positioned(
-                              left: 0*fem,
-                              top: 10*fem,
-                              child: 
-                              Align( 
-                                child: 
-                                SizedBox(
-                                  width: 200*fem,
-                                  height: 30*fem,
-                                  child: 
-                                  Text(
-                                    'Haii, Semangat Pagi!',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 20*fem,
-                                      color: kPrimaryColor,
-                                      fontWeight: FontWeight.w600,
+                          margin: EdgeInsets.fromLTRB(
+                              30 * fem, 0 * fem, 30 * fem, 0 * fem),
+                          width: double.infinity,
+                          height: 350 * fem,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                  left: 0 * fem,
+                                  top: 10 * fem,
+                                  child: Align(
+                                    child: SizedBox(
+                                      width: 200 * fem,
+                                      height: 30 * fem,
+                                      child: Text(
+                                        'Haii, Semangat Pagi!',
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20 * fem,
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                ) 
-                              ),
-
-                            Positioned(
-                              left: 12*fem,
-                              top: 290*fem,
-                              child: 
-                              Align( 
-                                child: 
-                                SizedBox(
-                                  width: 276*fem,
-                                  height: 40*fem,
-                                  child: 
-                                  Text(
-                                    'Lakukan konsultasi dengan Guru BK kapan saja dan dimana saja melalui aplikasi ini.',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12*ffem,
-                                      color: kTextBlackColor,
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.5*ffem/fem,
+                                  )),
+                              Positioned(
+                                  left: 12 * fem,
+                                  top: 290 * fem,
+                                  child: Align(
+                                    child: SizedBox(
+                                      width: 276 * fem,
+                                      height: 40 * fem,
+                                      child: Text(
+                                        'Lakukan konsultasi dengan Guru BK kapan saja dan dimana saja melalui aplikasi ini.',
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 12 * ffem,
+                                          color: kTextBlackColor,
+                                          fontWeight: FontWeight.w500,
+                                          height: 1.5 * ffem / fem,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                ) 
-                              ),
-                            Positioned(
-                              left: 0*fem,
-                              top: 9*fem,
-                              child:
-                              Align(
-                                child: 
-                                SizedBox(
-                                  width: 300*fem,
-                                  height: 300*fem,
-                                  child: 
-                                  Image.asset(
-                                    'assets/images/ele1.png',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ) 
-                            ),
-
-                          ],
-                        )
-                      ),
-                      
-                    Expanded(
-                      child: 
-                      Container(
-                        padding: EdgeInsets.only(left: 8.5.w, right: 8.5.w),
-                        decoration: BoxDecoration(
-                          color: kOtherColor,
-                          //reusable radius,
-                          borderRadius: kTopBorderRadius),
-                            child: Column(
-                              children: [
+                                  )),
+                              Positioned(
+                                  left: 0 * fem,
+                                  top: 9 * fem,
+                                  child: Align(
+                                    child: SizedBox(
+                                      width: 300 * fem,
+                                      height: 300 * fem,
+                                      child: Image.asset(
+                                        'assets/images/ele1.png',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )),
+                            ],
+                          )),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 8.5.w, right: 8.5.w),
+                          decoration: BoxDecoration(
+                              color: kOtherColor,
+                              //reusable radius,
+                              borderRadius: kTopBorderRadius),
+                          child: Column(
+                            children: [
                               MyCustomButton(
                                 width: 500,
                                 height: 80,
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'MyProfileScreen');
+                                  Navigator.pushNamed(
+                                      context, 'MyProfileScreen');
                                 },
-                                
                                 text: 'Informasi Seputar BK',
                                 image: AssetImage('assets/images/ele2.png'),
                               ),
-
                             ],
+                          ),
                         ),
                       ),
-                    ),
-
-                    Expanded(
-                      child: 
-                      Container(
-                        
-                        padding: EdgeInsets.only(left: 8.5.w, right: 8.5.w),
-                        decoration: BoxDecoration(
-                          color: kOtherColor,
-                          //reusable radius,
-                          borderRadius: kTopBorderRadius),
-                            child: Column(
-                              children: [
-                                
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 8.5.w, right: 8.5.w),
+                          decoration: BoxDecoration(
+                              color: kOtherColor,
+                              //reusable radius,
+                              borderRadius: kTopBorderRadius),
+                          child: Column(
+                            children: [
                               MyCustomButton(
                                 width: 500,
                                 height: 80,
@@ -204,23 +175,19 @@ class HomeScreen extends StatelessWidget {
                                 text: 'Tentang Kami',
                                 image: AssetImage('assets/images/ele3.png'),
                               ),
-
                             ],
+                          ),
                         ),
                       ),
-                    ),
-
                     ],
                   ),
                 ),
-                
               )
             ],
-          )
-        ),
-        bottomNavigationBar: MyBottomNavigationBar(
-        currentIndex: 0,
-        onItemTapped: (index) => _onItemTapped(index, context),
+          )),
+      bottomNavigationBar: Navbar(
+        currentPage: _currentPage,
+        onNavigationItemSelected: _onNavigationItemSelected,
       ),
     );
   }

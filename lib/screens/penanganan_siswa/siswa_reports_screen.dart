@@ -1,48 +1,33 @@
 import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/penanganan_siswa/data/siswa_reports_data.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../home_screen/home_screen.dart';
 import '../my_profile/my_profile.dart';
 import '../navigation_bar/nav_bar.dart';
+import '../reports_screen/reports_screen.dart';
 import 'widgets/siswa_reports_widgets.dart';
 
-class SiswaReportsScreen extends StatelessWidget {
+class SiswaReportsScreen extends StatefulWidget {
   const SiswaReportsScreen({Key? key}) : super(key: key);
   static String routeName = 'SiswaReportsScreen';
-
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyProfileScreen()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
-        break;
-      case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SiswaReportsScreen()),
-        );
-        break;
-    }
-  }
-
+  
+  @override
+  _SiswaReportsScreenState createState() => _SiswaReportsScreenState();
+}
+  class _SiswaReportsScreenState extends State<SiswaReportsScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Pelaporan',
+        title: Text('Laporan Masalah Siswa',
             style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 20,
-                fontWeight: FontWeight.w700)),
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5)),
       ),
       body: Column(
         children: [
@@ -58,7 +43,7 @@ class SiswaReportsScreen extends StatelessWidget {
                   itemBuilder: (context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, 'SiswaReportsScreen');
+                        Navigator.pushNamed(context, 'FeeScreen');
                       },
                       child: Container(
                         margin: EdgeInsets.only(bottom: kDefaultPadding),
@@ -135,10 +120,8 @@ class SiswaReportsScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: MyBottomNavigationBar(
-        currentIndex: 0,
-        onItemTapped: (index) => _onItemTapped(index, context),
-      ),
+      backgroundColor: kSecondaryColor,
+      
     );
   }
 }

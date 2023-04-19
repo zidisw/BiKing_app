@@ -4,6 +4,8 @@ import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../main.dart';
+
 late bool _passwordVisible;
 
 class LoginScreen extends StatefulWidget {

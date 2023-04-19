@@ -1,7 +1,9 @@
 import 'package:biking_app/screens/login_screen/login_screen.dart';
+import 'package:biking_app/screens/my_profile/my_profile_long.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen2.dart';
 import 'package:flutter/cupertino.dart';
+import 'main.dart';
 import 'screens/penanganan_siswa/siswa_reports_screen.dart';
 import 'screens/reports_screen/reports_screen.dart';
 import 'screens/datesheet_screen/datesheet_screen.dart';

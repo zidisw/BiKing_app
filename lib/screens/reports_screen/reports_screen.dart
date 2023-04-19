@@ -1,4 +1,5 @@
 import 'package:biking_app/constants.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../home_screen/home_screen.dart';
@@ -7,33 +8,30 @@ import '../navigation_bar/nav_bar.dart';
 import 'data/reports_data.dart';
 import 'widgets/reports_widgets.dart';
 
-class ReportsScreen extends StatelessWidget {
+class ReportsScreen extends StatefulWidget {
   const ReportsScreen({Key? key}) : super(key: key);
   static String routeName = 'ReportsScreen';
 
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyProfileScreen()),
-        );
-        break;
-      case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
-        break;
-      case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ReportsScreen()),
-        );
-        break;
+  @override
+  _ReportsScreenState createState() => _ReportsScreenState();
+}
+
+class _ReportsScreenState extends State<ReportsScreen> {
+  int _currentPage = 2;
+
+  void _onNavigationItemSelected(int index) {
+    setState(() {
+      _currentPage = index;
+    });
+  
+  if (index == 0) {
+      Navigator.pushReplacementNamed(context, MyProfileScreen.routeName);
+    } else if (index == 1) {
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    } else if (index == 2) {
+      Navigator.pushReplacementNamed(context, ReportsScreen.routeName);
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,83 +56,81 @@ class ReportsScreen extends StatelessWidget {
                   itemBuilder: (context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(
-                                          context, 'SiswaReportsScreen');
+                        Navigator.pushNamed(context, 'SiswaReportsScreen');
                       },
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: kDefaultPadding),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(kDefaultPadding),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(kDefaultPadding),
-                              color: kOtherColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: kTextLightColor,
-                                  blurRadius: 2.0,
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 40.w,
-                                  height: 3.h,
-                                  decoration: BoxDecoration(
-                                    color: kSecondaryColor,
-                                    borderRadius:
-                                        BorderRadius.circular(kDefaultPadding),
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: kDefaultPadding),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(kDefaultPadding),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(kDefaultPadding),
+                                color: kOtherColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: kTextLightColor,
+                                    blurRadius: 2.0,
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      reports[index].subjectName,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelSmall!
-                                          .copyWith(
-                                            color: kTextWhiteColor,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 40.w,
+                                    height: 3.h,
+                                    decoration: BoxDecoration(
+                                      color: kSecondaryColor,
+                                      borderRadius: BorderRadius.circular(
+                                          kDefaultPadding),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        reports[index].subjectName,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelSmall!
+                                            .copyWith(
+                                              color: kTextWhiteColor,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                kHalfSizedBox,
-                                Text(
-                                  reports[index].topicName,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .copyWith(
-                                        color: kTextBlackColor,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                ),
-                                kHalfSizedBox,
-                                ReportsRow(
-                                  title: 'Status',
-                                  statusValue: reports[index].status,
-                                ),
-                                
-                              ],
+                                  kHalfSizedBox,
+                                  Text(
+                                    reports[index].topicName,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                          color: kTextBlackColor,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                  ),
+                                  kHalfSizedBox,
+                                  ReportsRow(
+                                    title: 'Status',
+                                    statusValue: reports[index].status,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
                     );
                   }),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: MyBottomNavigationBar(
-        currentIndex: 0,
-        onItemTapped: (index) => _onItemTapped(index, context),
+     bottomNavigationBar: Navbar(
+        currentPage: _currentPage,
+        onNavigationItemSelected: _onNavigationItemSelected,
       ),
     );
   }
