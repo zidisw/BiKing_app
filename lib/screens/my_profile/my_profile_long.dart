@@ -49,7 +49,7 @@ class _ProfileLongState extends State<ProfileLong> {
                                       child: 
                                       Row(
                                         children: [
-                                          Image.asset('assets/jid1.png',
+                                          Image.asset('assets/images/jid1.png',
                                           width: 80,
                                           height: 80,
                                           ),
@@ -62,7 +62,7 @@ class _ProfileLongState extends State<ProfileLong> {
                                               Padding(
                                               padding: const EdgeInsets.only(left: 20.0),
                                               child: Text(
-                                                "Ahmad",
+                                                "Zid Ni Boss",
                                                 style: TextStyle(
                                                   color: Color(0xFF0579CC),
                                                   fontSize: 16,
@@ -74,7 +74,7 @@ class _ProfileLongState extends State<ProfileLong> {
                                           Padding(
                                               padding: const EdgeInsets.only(left: 20.0),
                                               child: Text(
-                                                "Siswa XII MIPA 1",
+                                                "Guru BK Ilegal",
                                                 style: TextStyle(
                                                   color: Color(0xFF584D99),
                                                   fontSize: 16,

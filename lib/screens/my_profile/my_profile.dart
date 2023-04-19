@@ -57,7 +57,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ],
       ),
       backgroundColor: Color(0xFFFFFFFF),
-      body: SafeArea(
+      body: SingleChildScrollView(
         
         child: Stack(
           children: [
@@ -76,9 +76,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 130,
                         height: 150,
                         decoration: BoxDecoration(
+                          shape: BoxShape.circle,
                           image: DecorationImage(
+                            fit: BoxFit.cover,
                             image: AssetImage(
-                              "assets/siswa.png",
+                              "assets/images/jid1.png",
                             ),
                           ),
                         ),
@@ -87,7 +89,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         bottom: 0,
                         right: 0,
                         child: Image.asset(
-                          "assets/addphoto.png",
+                          "assets/images/addphoto.png",
                           width: 30,
                           height: 30,
                         ),
