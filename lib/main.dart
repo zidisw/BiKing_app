@@ -1,12 +1,10 @@
 import 'package:biking_app/routes.dart';
-import 'package:biking_app/screens/home_screen/home_screen.dart';
-import 'package:biking_app/screens/my_profile/my_profile.dart';
-import 'package:biking_app/screens/navigation_bar/nav_widget.dart';
-import 'package:biking_app/screens/reports_screen/reports_screen.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen.dart';
 import 'package:biking_app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import 'screens/main_screen.dart';
 
 
 void main() {
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: CustomTheme().baseTheme,
         initialRoute: SplashScreen.routeName,
         routes: routes,
-        
+        home: MainScreen(),
       );
     });
   }

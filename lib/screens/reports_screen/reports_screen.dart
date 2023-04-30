@@ -1,10 +1,6 @@
 import 'package:biking_app/constants.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../home_screen/home_screen.dart';
-import '../my_profile/my_profile.dart';
-import '../navigation_bar/nav_bar.dart';
 import 'data/reports_data.dart';
 import 'widgets/reports_widgets.dart';
 
@@ -17,21 +13,7 @@ class ReportsScreen extends StatefulWidget {
 }
 
 class _ReportsScreenState extends State<ReportsScreen> {
-  int _currentPage = 2;
-
-  void _onNavigationItemSelected(int index) {
-    setState(() {
-      _currentPage = index;
-    });
   
-  if (index == 0) {
-      Navigator.pushReplacementNamed(context, MyProfileScreen.routeName);
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-    } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, ReportsScreen.routeName);
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,10 +109,6 @@ class _ReportsScreenState extends State<ReportsScreen> {
             ),
           ),
         ],
-      ),
-     bottomNavigationBar: Navbar(
-        currentPage: _currentPage,
-        onNavigationItemSelected: _onNavigationItemSelected,
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../main.dart';
+import '../main_screen.dart';
 
 late bool _passwordVisible;
 
@@ -116,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPress: () {
                                 if (_formKey.currentState!.validate()) {
                                   Navigator.pushNamedAndRemoveUntil(context,
-                                      HomeScreen.routeName, (route) => false);
+                                      MainScreen.routeName, (route) => false);
                                 }
                               },
                               title: 'SIGN IN',

@@ -1,4 +1,3 @@
-import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileLong extends StatefulWidget {

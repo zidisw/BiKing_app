@@ -1,11 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../main.dart';
-import '../home_screen/home_screen.dart';
-import '../my_profile/my_profile.dart';
-import '../reports_screen/reports_screen.dart';
 
 class Navbar extends StatefulWidget {
 
@@ -25,7 +19,7 @@ class _NavbarState extends State<Navbar> {
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
         items: <Widget> [
-          Icon(Icons.person, color: Colors.white),
+          Icon(Icons.person, color: Colors.white, ),
           Icon(Icons.home, color: Colors.white),
           Icon(Icons.report, color: Colors.white),
         ],

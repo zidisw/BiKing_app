@@ -1,12 +1,8 @@
 import 'package:biking_app/constants.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../../components/custom_buttons2.dart';
 import 'package:sizer/sizer.dart';
 
-import '../my_profile/my_profile.dart';
-import '../navigation_bar/nav_bar.dart';
-import '../reports_screen/reports_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,22 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentPage = 1;
-
-  void _onNavigationItemSelected(int index) {
-    setState(() {
-      _currentPage = index;
-    });
   
-  if (index == 0) {
-      Navigator.pushReplacementNamed(context, MyProfileScreen.routeName);
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-    } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, ReportsScreen.routeName);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double baseWidth = 360;
@@ -186,11 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           )),
-      bottomNavigationBar: Navbar(
-        currentPage: _currentPage,
-        onNavigationItemSelected: _onNavigationItemSelected,
-      ),
-      
+
     );
   }
 }
