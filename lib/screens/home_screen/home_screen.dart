@@ -11,6 +11,7 @@ import '../reports_screen/reports_screen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static String routeName = 'HomeScreen';
+  
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -189,6 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentPage: _currentPage,
         onNavigationItemSelected: _onNavigationItemSelected,
       ),
+      
     );
   }
 }

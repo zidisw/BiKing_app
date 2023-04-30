@@ -61,7 +61,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         
         child: Stack(
           children: [
-          
+            
             Align(
               alignment: Alignment.topCenter,
               child: Column(
@@ -475,6 +475,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ],
                       ),
                     ),
+                    
                   ),
                 ],
               ),
