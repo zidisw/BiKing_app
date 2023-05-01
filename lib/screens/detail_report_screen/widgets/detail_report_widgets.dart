@@ -2,8 +2,8 @@ import 'package:biking_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class FeeButton extends StatelessWidget {
-  const FeeButton(
+class DetailButton extends StatelessWidget {
+  const DetailButton(
       {Key? key,
       required this.title,
       required this.iconData,

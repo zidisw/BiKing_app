@@ -11,6 +11,18 @@ class _ProfileLongState extends State<ProfileLong> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+        ),
+      ),
         title: Text('Profil'),
       ),
       backgroundColor: Color(0xFFFFFFFF),

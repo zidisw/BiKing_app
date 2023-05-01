@@ -1,3 +1,4 @@
+import 'package:biking_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'my_profile_long.dart';
 
@@ -15,24 +16,33 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text('Profil'),
-        actions: [
-          PopupMenuButton(
-            onSelected: (result) {
-              if (result == 'Halaman Selanjutnya') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfileLong()),
-                );
-              }
-            },
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem(
-                value: 'Halaman Selanjutnya',
-                child: Text('Profil Siswa'),
-              ),
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
             ],
           ),
+        ),
+      ),
+        title: Text('Profil',
+        style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileLong()),
+            );
+            },
+          )
         ],
       ),
       backgroundColor: Color(0xFFFFFFFF),
@@ -87,10 +97,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       SizedBox(
                         height: 180,
                       ),
-                      const Text(
+                      Text(
                         "Info Profil",
                         style: TextStyle(
-                          color: Color(0xFF0579CC),
+                          color: kSecondaryColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -114,10 +124,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -129,23 +139,23 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 7,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Ahmad",
+                                  "Zid Ni Boss",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kPrimaryColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -174,10 +184,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -189,23 +199,23 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "Nomor HP",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "082123456789",
+                                  "085349313355",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kPrimaryColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -234,10 +244,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -249,23 +259,23 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "Tanggal Lahir",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "13 02 2005",
+                                  "7 Agustus 2001",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kPrimaryColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -294,10 +304,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -307,25 +317,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Kelas",
+                                  "Jabatan",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "XII MIPA 1",
+                                  "Guru BK Ilegal",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kPrimaryColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -354,10 +364,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -367,25 +377,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "NIS",
+                                  "NIM",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "6656",
+                                  "D121201016",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kPrimaryColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -394,67 +404,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 560,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 335,
-                    height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "NISN",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 13,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "1234567890",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    
                   ),
                 ],
               ),

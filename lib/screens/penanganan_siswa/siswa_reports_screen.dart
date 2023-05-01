@@ -1,12 +1,7 @@
 import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/penanganan_siswa/data/siswa_reports_data.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../home_screen/home_screen.dart';
-import '../my_profile/my_profile.dart';
-import '../navigation_bar/nav_bar.dart';
-import '../reports_screen/reports_screen.dart';
 import 'widgets/siswa_reports_widgets.dart';
 
 class SiswaReportsScreen extends StatefulWidget {
@@ -22,6 +17,18 @@ class SiswaReportsScreen extends StatefulWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+        ),
+      ),
         title: Text('Laporan Masalah Siswa',
             style: TextStyle(
                 fontFamily: 'Poppins',
@@ -35,7 +42,7 @@ class SiswaReportsScreen extends StatefulWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: kOtherColor,
-                borderRadius: kTopBorderRadius,
+                
               ),
               child: ListView.builder(
                   padding: EdgeInsets.all(kDefaultPadding),
@@ -43,7 +50,7 @@ class SiswaReportsScreen extends StatefulWidget {
                   itemBuilder: (context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, 'FeeScreen');
+                        Navigator.pushNamed(context, 'DetailReportScreen');
                       },
                       child: Container(
                         margin: EdgeInsets.only(bottom: kDefaultPadding),

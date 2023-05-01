@@ -37,14 +37,14 @@ class _MainScreenState extends State<MainScreen> {
             children: <Widget>[
               Icon(Icons.person, color: Colors.white),
               Text('Profile',
-                  style: TextStyle(color: Colors.white, fontSize: 10)),
+                  style: TextStyle(color: Colors.white, fontSize: 9)),
             ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(Icons.home, color: Colors.white),
-              Text('Home', style: TextStyle(color: Colors.white, fontSize: 10)),
+              Text('Home', style: TextStyle(color: Colors.white, fontSize: 9)),
             ],
           ),
           Column(
@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
               Icon(Icons.report, color: Colors.white),
               Text(
                 'Report',
-                style: TextStyle(color: Colors.white, fontSize: 10),
+                style: TextStyle(color: Colors.white, fontSize: 9),
               ),
             ],
           ),

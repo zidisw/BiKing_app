@@ -8,7 +8,7 @@ import 'screens/main_screen.dart';
 import 'screens/penanganan_siswa/siswa_reports_screen.dart';
 import 'screens/reports_screen/reports_screen.dart';
 import 'screens/datesheet_screen/datesheet_screen.dart';
-import 'screens/fee_screen/fee_screen.dart';
+import 'screens/detail_report_screen/detail_report_screen.dart';
 import 'screens/home_screen/home_screen.dart';
 import 'screens/my_profile/my_profile.dart';
 

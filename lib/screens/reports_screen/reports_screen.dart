@@ -18,6 +18,18 @@ class _ReportsScreenState extends State<ReportsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+        ),
+      ),
         title: Text('Pelaporan',
             style: TextStyle(
                 fontFamily: 'Poppins',
@@ -30,7 +42,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
             child: Container(
               decoration: BoxDecoration(
                 color: kOtherColor,
-                borderRadius: kTopBorderRadius,
+                
               ),
               child: ListView.builder(
                   padding: EdgeInsets.all(kDefaultPadding),
@@ -49,49 +61,29 @@ class _ReportsScreenState extends State<ReportsScreen> {
                               padding: EdgeInsets.all(kDefaultPadding),
                               decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.circular(kDefaultPadding),
+                                    BorderRadius.circular(12),
                                 color: kOtherColor,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: kTextLightColor,
-                                    blurRadius: 2.0,
+                                    color: Color(0x19000000),
+                                    offset: Offset(0, 1),
+                                    blurRadius: 3,
+                                    spreadRadius: 2,
                                   ),
                                 ],
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    width: 40.w,
-                                    height: 3.h,
-                                    decoration: BoxDecoration(
-                                      color: kSecondaryColor,
-                                      borderRadius: BorderRadius.circular(
-                                          kDefaultPadding),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        reports[index].subjectName,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall!
-                                            .copyWith(
-                                              color: kTextWhiteColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
                                   kHalfSizedBox,
                                   Text(
                                     reports[index].topicName,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .copyWith(
-                                          color: kTextBlackColor,
-                                          fontWeight: FontWeight.w900,
-                                        ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xff38acff),
+                                    ),
                                   ),
                                   kHalfSizedBox,
                                   ReportsRow(

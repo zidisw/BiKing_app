@@ -1,25 +1,40 @@
 import 'package:biking_app/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'data/fee_data.dart';
-import 'widgets/fee_widgets.dart';
+import 'data/detail_report_data.dart';
+import 'widgets/detail_report_widgets.dart';
 
 class FeeScreen extends StatelessWidget {
   const FeeScreen({Key? key}) : super(key: key);
-  static String routeName = 'FeeScreen';
+  static String routeName = 'DetailReportScreen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fee'),
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+        ),
+      ),
+        title: Text('Detail Report', 
+        style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
       ),
       body: Column(
         children: [
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: kTopBorderRadius,
                 color: kOtherColor,
               ),
               child: ListView.builder(
@@ -85,7 +100,7 @@ class FeeScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          FeeButton(
+                          DetailButton(
                               title: fee[index].btnStatus,
                               iconData: fee[index].btnStatus == 'Paid'
                                   ? Icons.download_outlined
