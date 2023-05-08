@@ -23,7 +23,11 @@ class _ProfileLongState extends State<ProfileLong> {
           ),
         ),
       ),
-        title: Text('Profil'),
+        title: Text('Pengaturan',
+        style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
       ),
       backgroundColor: Color(0xFFFFFFFF),
       body: SafeArea(
@@ -48,21 +52,29 @@ class _ProfileLongState extends State<ProfileLong> {
                           width: 330,
                           height: 582,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                            padding: const EdgeInsets.only(top: 5.0, left: 3.0),
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 6.0),
+                                      padding: const EdgeInsets.only(left: 15, top: 10),
                                       child: 
                                       Row(
                                         children: [
-                                          Image.asset('assets/images/jid1.png',
-                                          width: 80,
-                                          height: 80,
+                                          Container(
+                                            alignment: Alignment.topCenter,
+                                            width: 80,
+                                            height: 80,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                  "assets/images/jid1.png",
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                           SizedBox(
                                             height: 30,

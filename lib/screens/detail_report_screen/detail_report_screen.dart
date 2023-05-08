@@ -40,7 +40,7 @@ class FeeScreen extends StatelessWidget {
               child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.all(kDefaultPadding),
-                  itemCount: fee.length,
+                  itemCount: detail.length,
                   itemBuilder: (context, int index) {
                     return Container(
                       margin: EdgeInsets.only(bottom: kDefaultPadding),
@@ -62,9 +62,9 @@ class FeeScreen extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
-                                FeeDetailRow(
+                                DetailRow(
                                   title: 'Receipt No',
-                                  statusValue: fee[index].receiptNo,
+                                  statusValue: detail[index].receiptNo,
                                 ),
                                 SizedBox(
                                   height: kDefaultPadding,
@@ -72,19 +72,19 @@ class FeeScreen extends StatelessWidget {
                                     thickness: 1.0,
                                   ),
                                 ),
-                                FeeDetailRow(
+                                DetailRow(
                                   title: 'Month',
-                                  statusValue: fee[index].month,
+                                  statusValue: detail[index].month,
                                 ),
                                 sizedBox,
-                                FeeDetailRow(
+                                DetailRow(
                                   title: 'Payment Date',
-                                  statusValue: fee[index].date,
+                                  statusValue: detail[index].date,
                                 ),
                                 sizedBox,
-                                FeeDetailRow(
+                                DetailRow(
                                   title: 'Status',
-                                  statusValue: fee[index].paymentStatus,
+                                  statusValue: detail[index].paymentStatus,
                                 ),
                                 sizedBox,
                                 SizedBox(
@@ -93,16 +93,16 @@ class FeeScreen extends StatelessWidget {
                                     thickness: 1.0,
                                   ),
                                 ),
-                                FeeDetailRow(
+                                DetailRow(
                                   title: 'Total Amount',
-                                  statusValue: fee[index].totalAmount,
+                                  statusValue: detail[index].totalAmount,
                                 ),
                               ],
                             ),
                           ),
                           DetailButton(
-                              title: fee[index].btnStatus,
-                              iconData: fee[index].btnStatus == 'Paid'
+                              title: detail[index].btnStatus,
+                              iconData: detail[index].btnStatus == 'Paid'
                                   ? Icons.download_outlined
                                   : Icons.arrow_forward_outlined,
                               onPress: () {})

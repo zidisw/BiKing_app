@@ -1,16 +1,16 @@
 import 'package:biking_app/screens/login_screen/login_screen.dart';
-import 'package:biking_app/screens/my_profile/my_profile_long.dart';
+import 'package:biking_app/screens/home_screen/widgets/Informationbk_screen.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen2.dart';
 import 'package:flutter/cupertino.dart';
-import 'main.dart';
-import 'screens/main_screen.dart';
-import 'screens/penanganan_siswa/siswa_reports_screen.dart';
-import 'screens/reports_screen/reports_screen.dart';
-import 'screens/datesheet_screen/datesheet_screen.dart';
-import 'screens/detail_report_screen/detail_report_screen.dart';
-import 'screens/home_screen/home_screen.dart';
-import 'screens/my_profile/my_profile.dart';
+import 'package:biking_app/screens/main_screen.dart';
+import 'package:biking_app/screens/penanganan_siswa/siswa_reports_screen.dart';
+import 'package:biking_app/screens/reports_screen/reports_screen.dart';
+import 'package:biking_app/screens/datesheet_screen/datesheet_screen.dart';
+import 'package:biking_app/screens/detail_report_screen/detail_report_screen.dart';
+import 'package:biking_app/screens/home_screen/home_screen.dart';
+import 'package:biking_app/screens/my_profile/my_profile.dart';
+import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
 
 Map<String, WidgetBuilder> routes = {
   //all screens will be registered here like manifest in android
@@ -19,6 +19,8 @@ Map<String, WidgetBuilder> routes = {
   LoginScreen.routeName: (context) => LoginScreen(),
   MainScreen.routeName: (context) => MainScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
+  AboutUsScreen.routeName: (context) => AboutUsScreen(),
+  InformasibkScreen.routeName: (context) => InformasibkScreen(),
   MyProfileScreen.routeName: (context) => MyProfileScreen(),
   FeeScreen.routeName: (context) => FeeScreen(),
   ReportsScreen.routeName: (context) => ReportsScreen(),

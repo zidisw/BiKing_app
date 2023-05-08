@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 80,
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, 'MyProfileScreen');
+                                      context, 'InformasibkScreen');
                                 },
                                 text: 'Informasi Seputar BK',
                                 image: AssetImage('assets/images/ele2.png'),
@@ -152,7 +152,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 500,
                                 height: 80,
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'SplashScreen2');
+                                  Navigator.pushNamed(
+                                    context, 'AboutUsScreen');
                                 },
                                 text: 'Tentang Kami',
                                 image: AssetImage('assets/images/ele3.png'),

@@ -45,8 +45,8 @@ class DetailButton extends StatelessWidget {
   }
 }
 
-class FeeDetailRow extends StatelessWidget {
-  const FeeDetailRow({Key? key, required this.title, required this.statusValue})
+class DetailRow extends StatelessWidget {
+  const DetailRow({Key? key, required this.title, required this.statusValue})
       : super(key: key);
   final String title;
   final String statusValue;
