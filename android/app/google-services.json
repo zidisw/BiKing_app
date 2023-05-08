@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778018145231",
+    "project_id": "chat-app-170c2",
+    "storage_bucket": "chat-app-170c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778018145231:android:583306acaab8ce622208ba",
+        "android_client_info": {
+          "package_name": "com.timkoe.schoolapp.biking_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778018145231-66ha26atvcocn9p5fgqhmejgc14fd0i5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7g81fSXUE1To8UvP9emHuo4-xUvVh5Og"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778018145231-56053kpiatst9ipqee0eivel62v962n4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

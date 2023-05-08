@@ -153,7 +153,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "Zid Ni Boss",
                                   style: TextStyle(
-                                    color: kPrimaryColor,
+                                    color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -213,7 +213,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "085349313355",
                                   style: TextStyle(
-                                    color: kPrimaryColor,
+                                    color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -273,7 +273,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "7 Agustus 2001",
                                   style: TextStyle(
-                                    color: kPrimaryColor,
+                                    color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -333,7 +333,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "Guru BK Ilegal",
                                   style: TextStyle(
-                                    color: kPrimaryColor,
+                                    color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -393,7 +393,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 child: Text(
                                   "D121201016",
                                   style: TextStyle(
-                                    color: kPrimaryColor,
+                                    color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
                                   ),
