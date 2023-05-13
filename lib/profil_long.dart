@@ -181,7 +181,7 @@ class _ProfileLongState extends State<ProfileLong> {
                                         fontFamily: 'Poppins',
                                         color:
                                             Color.fromARGB(255, 135, 131, 155),
-                                        fontSize: 16,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),

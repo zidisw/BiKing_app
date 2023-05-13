@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class IsiLaporan extends StatefulWidget {
+class IsiKehadiran extends StatefulWidget {
   @override
-  _IsiLaporanState createState() => _IsiLaporanState();
+  _IsiKehadiranState createState() => _IsiKehadiranState();
 }
 
-class _IsiLaporanState extends State<IsiLaporan> {
+class _IsiKehadiranState extends State<IsiKehadiran> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   int _selectedIndex = 0;
   String? _kelas;
@@ -51,7 +51,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                         ),
                       ),
                       width: 355,
-                      height: 465,
+                      height: 735,
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 15.0, left: 10.0, right: 10.0),
@@ -102,10 +102,10 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "XII MIPA 5",
+                                              "XII MIPA 1",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
-                                                color: Colors.grey,
+                                                color: Colors.black,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -164,10 +164,10 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Andini Syakira",
+                                              "Zid Irsyadin Sartono Wijaogy",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
-                                                color: Colors.grey,
+                                                color: Colors.black,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -187,7 +187,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Masalah yang dialami/dirasakan",
+                                  "NISN",
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     color: Colors.black,
@@ -217,7 +217,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                         ),
                                       ),
                                       width: 330,
-                                      height: 100,
+                                      height: 50,
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             left: 11.0, top: 12.0),
@@ -226,10 +226,10 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Konflik dengan teman sekelas",
+                                              "2345678261",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
-                                                color: Colors.grey,
+                                                color: Colors.black,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -249,7 +249,131 @@ class _IsiLaporanState extends State<IsiLaporan> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Tanggal",
+                                  "Jenis Kelamin",
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 7.0, right: 8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFFFFFFF),
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: Colors.grey,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      width: 330,
+                                      height: 50,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 11.0, top: 12.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Laki-laki",
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign
+                                                  .center, // atur posisi teks menjadi pinggir tengah
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 6.0),
+                                child: Text(
+                                  "Agama",
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 7.0, right: 8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFFFFFFF),
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: Colors.grey,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      width: 330,
+                                      height: 50,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 11.0, top: 12.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Islam",
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign
+                                                  .center, // atur posisi teks menjadi pinggir tengah
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 6.0),
+                                child: Text(
+                                  "Jumlah",
                                   style: TextStyle(
                                     fontFamily: 'Poppins',
                                     color: Colors.black,
@@ -283,7 +407,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                                 vertical: 16.0,
                                                 horizontal: 10.0,
                                               ),
-                                              hintText: '7',
+                                              hintText: '0',
                                             ),
                                           ),
                                         ),
@@ -302,7 +426,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                                 vertical: 16.0,
                                                 horizontal: 10.0,
                                               ),
-                                              hintText: 'Mei',
+                                              hintText: '1',
                                             ),
                                           ),
                                         ),
@@ -321,11 +445,73 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                                 vertical: 16.0,
                                                 horizontal: 10.0,
                                               ),
-                                              hintText: '2023',
+                                              hintText: '0',
                                             ),
                                           ),
                                         ),
                                       ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 6.0),
+                                child: Text(
+                                  "Keterangan",
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 7.0, right: 8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFFFFFFF),
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: Colors.grey,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      width: 330,
+                                      height: 50,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 11.0, top: 12.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Perhatikan kehadirannya",
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign
+                                                  .center, // atur posisi teks menjadi pinggir tengah
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -335,114 +521,60 @@ class _IsiLaporanState extends State<IsiLaporan> {
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 500,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
-                          width: 1.0,
-                        ),
-                      ),
-                      width: 355,
-                      height: 210,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 11.0, left: 3.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
+                    Padding(
+                      padding: EdgeInsets.all(25),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // kode untuk tombol Batal
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
                               child: Text(
-                                "1 Tanggapan",
+                                'Batal',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 15),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(width: 10),
-                                Image.asset(
-                                  'assets/orang.png',
-                                  width: 40,
-                                  height: 40,
+                          ),
+                          SizedBox(width: 40),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // kode untuk tombol Simpan
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 6.0),
-                                        child: Text(
-                                          "Guru BK 1",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 6.0),
-                                        child: Text(
-                                          "Laporan telah ditangani oleh saya, untuk siswa bernama Andhini tolong untuk bersabar dalam menghadapi masalah yang ada.",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.black,  
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 6.0),
-                                        child: Text(
-                                          "2 Maret 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.black,  
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                              ),
+                              child: Text(
+                                'Simpan',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ],
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

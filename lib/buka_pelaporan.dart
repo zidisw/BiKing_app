@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_biking/buat_laporan.dart';
 import 'package:flutter_biking/edit_laporan.dart';
 import 'package:flutter_biking/isi_laporan.dart';
+import 'package:flutter_biking/laporan_bulanan_wakel.dart';
 import 'package:flutter_biking/pelaporan.dart';
 
 class BukaPelaporan extends StatefulWidget {
@@ -422,7 +423,7 @@ class _BukaPelaporanState extends State<BukaPelaporan> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => BuatLaporan()),
+            MaterialPageRoute(builder: (context) => LaporanBulanan()),
           );
         },
         child: Icon(Icons.add),
