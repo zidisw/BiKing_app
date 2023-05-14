@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "701543990960",
+    "project_id": "biking-cd5c5",
+    "storage_bucket": "biking-cd5c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701543990960:android:f81c62e44df4b87d121d75",
+        "android_client_info": {
+          "package_name": "com.timkoe.schoolapp.biking_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701543990960-b3nhf29g3qmosh4s81t2a1phaspjjg0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-zyeibuWXnjyhbd_9FCulcSktP13wPxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701543990960-b3nhf29g3qmosh4s81t2a1phaspjjg0g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "701543990960-vfo4e17qlvfq0cuon529lfek9l0sn4oe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
