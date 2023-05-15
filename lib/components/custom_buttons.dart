@@ -5,22 +5,20 @@ import 'package:sizer/sizer.dart';
 class DefaultButton extends StatelessWidget {
   final VoidCallback onPress;
   final String title;
-  final IconData iconData;
 
   const DefaultButton(
       {Key? key,
       required this.onPress,
-      required this.title,
-      required this.iconData})
+      required this.title})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPress,
       child: Container(
-        padding: const EdgeInsets.only(right: kDefaultPadding),
+        
         width: 100.w,
-        height: SizerUtil.deviceType == DeviceType.tablet ? 9.h : 7.h,
+        height: SizerUtil.deviceType == DeviceType.tablet ? 9.h : 5.h,
         decoration: BoxDecoration(
             gradient: const LinearGradient(
               colors: [kSecondaryColor, kPrimaryColor],
@@ -33,14 +31,7 @@ class DefaultButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
-            Text(title, style: Theme.of(context).textTheme.titleSmall),
-            const Spacer(),
-            Icon(
-              iconData,
-              size: 26.sp,
-              color: kOtherColor,
-            )
+            Text(title, style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kTextWhiteColor, fontWeight: FontWeight.w900)),
           ],
         ),
       ),
