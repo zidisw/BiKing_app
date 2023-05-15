@@ -1,6 +1,7 @@
 import 'package:biking_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DetailButton extends StatelessWidget {
   const DetailButton(
