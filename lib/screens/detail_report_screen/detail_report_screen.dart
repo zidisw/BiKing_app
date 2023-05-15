@@ -13,18 +13,18 @@ class FeeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      //   flexibleSpace: Container(
-      //   decoration: BoxDecoration(
-      //     gradient: LinearGradient(
-      //       begin: Alignment.topLeft,
-      //       end: Alignment.bottomRight,
-      //       colors: [
-      //         Colors.blue,
-      //         Colors.purple,
-      //       ],
-      //     ),
-      //   ),
-      // ),
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+        ),
+      ),
         title: Text('Detail Report'),
         // style: TextStyle(
         //         fontFamily: 'Poppins',
@@ -44,9 +44,10 @@ class FeeScreen extends StatelessWidget {
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot)
 
           {
-            if (!snapshot.hasError) {
-              return Text('Error: ${snapshot.error ?? 'Unknown error occurred'}');
-            }
+            if (snapshot.hasError) {
+              print('Error: ${snapshot.error}');
+              return Text('Error occurred while retrieving data');
+            } //HOW THE FUCK THIS FIXES THE FUCKING ERROR
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();
@@ -62,16 +63,27 @@ class FeeScreen extends StatelessWidget {
                   final Masalah = document['Masalah'];
                   final Nama = document['Nama'];
 
-                  return ListTile(
-                    title: Text(Nama),
-                    subtitle: Column(
+                  return Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.indigoAccent,
+                        borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(Masalah),
-                        Text('Detail Masalah: $Detail')
-                      ],
+                        Text('Masalah: $Masalah',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700
                     ),
-
+                  ),
+                  SizedBox(height: 5),
+                  Text(Detail),
+                  ],
+                  ),
                   );
 
                         // return Container(
