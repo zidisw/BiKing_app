@@ -9,6 +9,7 @@ class SiswaReportsScreen extends StatefulWidget {
   static String routeName = 'SiswaReportsScreen';
   
   @override
+  // ignore: library_private_types_in_public_api
   _SiswaReportsScreenState createState() => _SiswaReportsScreenState();
 }
   class _SiswaReportsScreenState extends State<SiswaReportsScreen> {

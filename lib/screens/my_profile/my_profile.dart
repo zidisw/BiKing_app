@@ -7,6 +7,7 @@ class MyProfileScreen extends StatefulWidget {
   static String routeName = 'MyProfileScreen';
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyProfileScreenState createState() => _MyProfileScreenState();
 }
 
@@ -88,25 +89,23 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 ],
               ),
             ),
-            Align(
+            const Align(
               alignment: Alignment.topCenter,
-              child: Container(
-                child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 180,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 180,
+                    ),
+                    Text(
+                      "Info Profil",
+                      style: TextStyle(
+                        color: kSecondaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        "Info Profil",
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ]),
-              ),
+                    ),
+                  ]),
             ),
             Align(
               alignment: Alignment.topCenter,

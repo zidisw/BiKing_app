@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -13,12 +15,10 @@ class NavigationWidget extends StatefulWidget {
 }
 
 class _NavigationWidgetState extends State<NavigationWidget> {
-  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.initialIndex;
   }
 
   @override
@@ -28,7 +28,6 @@ class _NavigationWidgetState extends State<NavigationWidget> {
         children: widget.pages,
         onPageChanged: (index) {
           setState(() {
-            _selectedIndex = index;
           });
           widget.onItemSelected(index);
         },
@@ -47,7 +46,6 @@ class _NavigationWidgetState extends State<NavigationWidget> {
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {
-            _selectedIndex = index;
           });
           widget.onItemSelected(index);
         },

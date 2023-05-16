@@ -84,163 +84,159 @@ class _IndormasibkScreenState extends State<InformasibkScreen> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 35,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      const Text(
+                        "Koordinator BK",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFF0579CC),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const Text(
-                          "Koordinator BK",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color(0xFF0579CC),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: 100,
-                            height: 100,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  "assets/images/gurubk.png",
-                                ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 100,
+                          height: 100,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/images/gurubk.png",
                               ),
                             ),
                           ),
                         ),
-                        const Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 7),
-                            child: Text(
-                              "Nama Koordninator BK",
-                              style: TextStyle(
-                                color: Color(0xFF000000),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
+                      ),
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 7),
+                          child: Text(
+                            "Nama Koordninator BK",
+                            style: TextStyle(
+                              color: Color(0xFF000000),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
-                        const Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 5),
-                            child: Text(
-                              "“Sebagai koordinator BK, tugas saya adalah memastikan bahwa program bimbingan dan konseling di sekolah berjalan dengan baik dan sesuai dengan tujuan kita untuk membantu siswa tumbuh dan berkembang.”",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF000000),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                      ),
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            "“Sebagai koordinator BK, tugas saya adalah memastikan bahwa program bimbingan dan konseling di sekolah berjalan dengan baik dan sesuai dengan tujuan kita untuk membantu siswa tumbuh dan berkembang.”",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF000000),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 35,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      const Text(
+                        "Guru-guru BK",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFF0579CC),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const Text(
-                          "Guru-guru BK",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color(0xFF0579CC),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 100,
-                                    height: 100,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/gurubk.png",
-                                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 100,
+                                  height: 100,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/gurubk.png",
                                       ),
                                     ),
                                   ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(top: 7),
-                                    child: Text(
-                                      "Guru BK 1",
-                                      style: TextStyle(
-                                        color: Color(0xFF000000),
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 7),
+                                  child: Text(
+                                    "Guru BK 1",
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 100,
+                                  height: 100,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/gurubk.png",
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 100,
-                                    height: 100,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/gurubk.png",
-                                        ),
-                                      ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 7),
+                                  child: Text(
+                                    "Guru BK 2",
+                                    style: TextStyle(
+                                      color: Color(0xFF000000),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(top: 7),
-                                    child: Text(
-                                      "Guru BK 2",
-                                      style: TextStyle(
-                                        color: Color(0xFF000000),
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -264,272 +260,268 @@ class _IndormasibkScreenState extends State<InformasibkScreen> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 35,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      const Text(
+                        "Visi Misi BK",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFF0579CC),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const Text(
-                          "Visi Misi BK",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color(0xFF0579CC),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 5,
-                                    height: 100,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/verticalbar2.png",
-                                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 5,
+                                  height: 100,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/verticalbar2.png",
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const Expanded(
-                                child: Padding(
-                            padding: EdgeInsets.only(top: 5),
-                            child: Text(
-                              "Memberikan bimbingan dan konseling maksimal kepada peserta didik",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color(0xFF000000),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Expanded(
+                              child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            "Memberikan bimbingan dan konseling maksimal kepada peserta didik",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Color(0xFF000000),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
-                              ),
-                            ],
-                          ),
                         ),
-                      ],
-                    ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 35,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      const Text(
+                        "Dokumentasi Kegiatan BK",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xFF0579CC),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const Text(
-                          "Dokumentasi Kegiatan BK",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color(0xFF0579CC),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk1.png",
-                                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk1.png",
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk2.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk3.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk4.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk5.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk6.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk7.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 80,
-                                    height: 80,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/bk8.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Lihat Selengkapnya >>",
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Color(0xFF9180FF),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
+                                ),
+                              ],
                             ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk2.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk3.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk4.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk5.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk6.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk7.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: 80,
+                                  height: 80,
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/bk8.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          "Lihat Selengkapnya >>",
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Color(0xFF9180FF),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -100,7 +100,7 @@ class SplashScreen2 extends StatelessWidget {
                       'BiKing adalah aplikasi Bimbingan Konseling yang membantu siswa untuk menemukan solusi atas masalah yang dihadapi. Kamu dapat melakukan interaksi dengan Guru BK kamu tanpa harus datang ke sekolah.',
                       style: GoogleFonts.poppins(
                           fontSize: 13 * ffem,
-                          color: const Color(0xff3444871),
+                          color: const Color.fromARGB(243, 68, 72, 113),
                           fontWeight: FontWeight.w400,
                           height: 1.15 * ffem / fem,
                           letterSpacing: 0.39 * fem,

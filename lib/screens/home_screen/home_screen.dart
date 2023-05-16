@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
   
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -40,21 +41,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                          child: Column(
+                      Column(
                         children: [
-                          Positioned(
-                            child: SizedBox(
-                              width: 368 * fem,
-                              height: 100 * fem,
-                              child: Image.asset(
-                                'assets/images/atas_trans.png',
-                                fit: BoxFit.fill,
-                              ),
-                            ),
+                      Positioned(
+                        child: SizedBox(
+                          width: 368 * fem,
+                          height: 100 * fem,
+                          child: Image.asset(
+                            'assets/images/atas_trans.png',
+                            fit: BoxFit.fill,
                           ),
+                        ),
+                      ),
                         ],
-                      )),
+                      ),
                       Container(
                           margin: EdgeInsets.fromLTRB(
                               30 * fem, 0 * fem, 30 * fem, 0 * fem),

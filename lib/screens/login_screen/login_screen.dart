@@ -10,9 +10,10 @@ late bool _passwordVisible;
 class LoginScreen extends StatefulWidget {
   static String routeName = 'LoginScreen';
 
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 

@@ -4,6 +4,7 @@ class ProfileLong extends StatefulWidget {
   const ProfileLong({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProfileLongState createState() => _ProfileLongState();
   static String routeName = "ProfileLong";
 }
