@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/tentang_kami.dart';
-import 'package:flutter_biking/long_page.dart';
+import 'package:flutter_biking/screens/beranda/tentang_kami.dart';
+import 'package:flutter_biking/screens/beranda/home_page.dart';
 
 class Beranda extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class Beranda extends StatefulWidget {
 class _BerandaState extends State<Beranda> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[    LongPage(),    Text('Profil'),    Text('Pelaporan'),  ];
+  static List<Widget> _widgetOptions = <Widget>[    HomePage(),    Text('Profil'),    Text('Pelaporan'),  ];
 
   void _onItemTapped(int index) {
     setState(() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/long_page.dart';
-import 'package:flutter_biking/pelaporan.dart';
-import 'package:flutter_biking/profil_page.dart';
+import 'package:flutter_biking/screens/beranda/home_page.dart';
+import 'package:flutter_biking/screens/pelaporan/siswa/pelaporan.dart';
+import 'package:flutter_biking/screens/profil/siswa/profil_siswa.dart';
 
 
 
@@ -13,7 +13,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
   List<Widget> _pages = [
-    LongPage(),
+    HomePage(),
     ProfilePage(),
     Pelaporan(),
   ];

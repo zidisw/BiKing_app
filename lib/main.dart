@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/halaman_pembuka.dart';
-import 'biking_app.dart';
-import 'halaman_login.dart';
+import 'package:flutter_biking/screens/log_in/welcome_screen.dart';
+import 'screens/log_in/splash_screen.dart';
+import 'screens/log_in/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => BikingApp(),
-        '/login': (context) => HalamanPembuka()
+        '/': (context) => SplashScreen(),
+        '/login': (context) => WelcomeScreen()
       },
     );
   }
