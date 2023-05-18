@@ -1,0 +1,21 @@
+com.timkoe.biking_app-jetified-window-1.0.0-beta04-0 C:\Users\zidir\.gradle\caches\transforms-3\003a22a5515e1f77f89701a46efbc2ec\transformed\jetified-window-1.0.0-beta04\res
+com.timkoe.biking_app-jetified-firebase-common-20.3.2-1 C:\Users\zidir\.gradle\caches\transforms-3\284fd5eeca4a29a0814ba444369e2acf\transformed\jetified-firebase-common-20.3.2\res
+com.timkoe.biking_app-jetified-window-java-1.0.0-beta04-2 C:\Users\zidir\.gradle\caches\transforms-3\3c0e35d493ccd3f2bb8b07f96b013b9c\transformed\jetified-window-java-1.0.0-beta04\res
+com.timkoe.biking_app-browser-1.4.0-3 C:\Users\zidir\.gradle\caches\transforms-3\3df77d3f0e42ee5d73cdfadb8bcdc01c\transformed\browser-1.4.0\res
+com.timkoe.biking_app-jetified-play-services-basement-18.1.0-4 C:\Users\zidir\.gradle\caches\transforms-3\5eaba1f028ac62aaabee71faac8d9308\transformed\jetified-play-services-basement-18.1.0\res
+com.timkoe.biking_app-jetified-annotation-experimental-1.1.0-5 C:\Users\zidir\.gradle\caches\transforms-3\717758e51a3aff0b90b2556f8994e808\transformed\jetified-annotation-experimental-1.1.0\res
+com.timkoe.biking_app-core-1.6.0-6 C:\Users\zidir\.gradle\caches\transforms-3\cf72013d765e0f69e97cd3b9cbb09800\transformed\core-1.6.0\res
+com.timkoe.biking_app-jetified-play-services-base-18.0.1-7 C:\Users\zidir\.gradle\caches\transforms-3\f253648b0be692c533908993735bbd2e\transformed\jetified-play-services-base-18.0.1\res
+com.timkoe.biking_app-packaged_res-8 C:\Users\zidir\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-4.7.1\android\build\intermediates\packaged_res\debug
+com.timkoe.biking_app-packaged_res-9 C:\Users\zidir\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-4.6.1\android\build\intermediates\packaged_res\debug
+com.timkoe.biking_app-packaged_res-10 C:\Users\zidir\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-2.13.0\android\build\intermediates\packaged_res\debug
+com.timkoe.biking_app-packaged_res-11 C:\Users\zidir\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.0.27\android\build\intermediates\packaged_res\debug
+com.timkoe.biking_app-google-services-12 E:\All About Programs\Flutter\biking_app\android\app\build\generated\res\google-services\debug
+com.timkoe.biking_app-pngs-13 E:\All About Programs\Flutter\biking_app\android\app\build\generated\res\pngs\debug
+com.timkoe.biking_app-resValues-14 E:\All About Programs\Flutter\biking_app\android\app\build\generated\res\resValues\debug
+com.timkoe.biking_app-rs-15 E:\All About Programs\Flutter\biking_app\android\app\build\generated\res\rs\debug
+com.timkoe.biking_app-mergeDebugResources-16 E:\All About Programs\Flutter\biking_app\android\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.timkoe.biking_app-mergeDebugResources-17 E:\All About Programs\Flutter\biking_app\android\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.timkoe.biking_app-merged_res-18 E:\All About Programs\Flutter\biking_app\android\app\build\intermediates\merged_res\debug
+com.timkoe.biking_app-debug-19 E:\All About Programs\Flutter\biking_app\android\app\src\debug\res
+com.timkoe.biking_app-main-20 E:\All About Programs\Flutter\biking_app\android\app\src\main\res
