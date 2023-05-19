@@ -1,9 +1,7 @@
 import 'package:biking_app/components/custom_buttons.dart';
 import 'package:biking_app/constants.dart';
-import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:biking_app/screens/login_screen/regist_screen.dart';
 import 'package:biking_app/screens/main_screen.dart';
-import 'package:biking_app/screens/my_profile/my_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -68,15 +66,31 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 10.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    
                     children: [
-                      Column(
+                      const Column(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        
                         children: [
-                          Text('Halo Admin!',
-                              style: Theme.of(context).textTheme.titleMedium),
-                          Text('Sign in to continue',
-                              style: Theme.of(context).textTheme.titleSmall),
+                          Text(
+                            "Hai Pengguna",
+                            style: TextStyle(
+                              color: kOtherColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5,
+                            ),
+                          ),  
+                              
+                          Text(
+                            "Yukk Login!",
+                            style: TextStyle(
+                              color: kOtherColor,
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5,
+                            ),                         
+                          ), 
                           sizedBox,
                         ],
                       ),
@@ -85,9 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20.h,
                         width: 40.w,
                       ),
-                      const SizedBox(
-                        height: kDefaultPadding / 2,
-                      ),
+                      sizedBox,
                     ],
                   ),
                 ),
@@ -109,25 +121,43 @@ class _LoginScreenState extends State<LoginScreen> {
                             sizedBox,
                             buildPasswordField(),
                             sizedBox,
-                            DefaultButton(
-                                title: 'Sign Up',
-                                onPress: () {
+                            Row(children: [
+                              Expanded(child: 
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                  foregroundColor: MaterialStateProperty.all<Color>(kSecondaryColor),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: const BorderSide(color: kSecondaryColor),
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  // Aksi ketika tombol "Sign Up" ditekan
                                   Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Register()));
-                                }),
-                            DefaultButton(
-                              title: 'Sign In',
-                              onPress: () {
-                                setState(() {
-                                  visible = true;
-                                });
-                                signIn(emailController.text,
-                                    passwordController.text);
-                              },
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const Register()),
+                                  );
+                                },
+                                child: const Text('Sign Up'),
+                              ),
+
                             ),
+                            const SizedBox(width: 10),
+                              Expanded(child: 
+                              DefaultButton(
+                                title: 'Sign In',
+                                onPress: () {
+                                  setState(() {
+                                    visible = true;
+                                  });
+                                  signIn(emailController.text,
+                                      passwordController.text);
+                                },
+                              )),
+                            ]),
                             sizedBox,
                             Align(
                               alignment: Alignment.bottomRight,
@@ -167,9 +197,13 @@ class _LoginScreenState extends State<LoginScreen> {
       controller: emailController,
       textAlign: TextAlign.start,
       style: kInputTextStyle,
-      decoration: const InputDecoration(
-        labelText: 'Mobile Number/Email',
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.account_circle),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Email",
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
       validator: (value) {
         //for validation
@@ -197,8 +231,8 @@ class _LoginScreenState extends State<LoginScreen> {
       textAlign: TextAlign.start,
       style: kInputTextStyle,
       decoration: InputDecoration(
-        labelText: 'Password',
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        prefixIcon: const Icon(Icons.lock),
         suffixIcon: IconButton(
           onPressed: () {
             setState(() {
@@ -212,6 +246,14 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           iconSize: kDefaultPadding,
         ),
+        filled: true,
+        fillColor: Colors.white,
+        hintText: 'Password',
+        enabled: true,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+                          ),
       ),
       validator: (value) {
         if (value!.length < 5) {
@@ -241,16 +283,14 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyProfileScreen(),
-            ),
-          );
-        } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
               builder: (context) => const MainScreen(),
             ),
           );
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            MainScreen.routeName, (route) => false
+            );
         }
       } else {
         print('Document does not exist on the database');

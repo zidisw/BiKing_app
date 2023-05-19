@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:biking_app/components/custom_buttons.dart';
+import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,8 +24,7 @@ class _RegisterState extends State<Register> {
   final _auth = FirebaseAuth.instance;
 
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpassController =
-      TextEditingController();
+  final TextEditingController confirmpassController = TextEditingController();
   final TextEditingController name = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController mobile = TextEditingController();
@@ -39,37 +40,56 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    double baseWidth = 360;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
     return Scaffold(
-      backgroundColor: Colors.orange[900],
+
+      backgroundColor: Colors.white,
+      
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              color: Colors.orangeAccent[700],
+            Positioned(
+              left: 0,
+              top: 0,
+              child: SizedBox(
+                width: 391 * fem,
+                height: 150.76 * fem,
+                child: Image.asset(
+                  'assets/images/headertrans.png',
+                  fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
                 child: Container(
-                  margin: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.all(30),
                   child: Form(
                     key: _formkey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(
+                        
+                        SizedBox(
                           height: 80,
-                        ),
-                        const Text(
-                          "Register Now",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 40,
-                          ),
+                          child: Image.asset(
+                            "assets/images/Vector-2.png",
+                            fit: BoxFit.contain,
+
+                          )
                         ),
                         const SizedBox(
-                          height: 10,
+                          
+                          child: Text('Registration',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal,
+                                  color: kPrimaryColor)),
                         ),
                         const SizedBox(
                           height: 50,
@@ -77,19 +97,11 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           controller: emailController,
                           decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: 'Email',
-                            enabled: true,
-                            contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 8.0),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
+                            prefixIcon: const Icon(Icons.account_circle),
+                            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            hintText: "Email",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                           validator: (value) {
@@ -114,6 +126,7 @@ class _RegisterState extends State<Register> {
                           obscureText: _isObscure,
                           controller: passwordController,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock),
                             suffixIcon: IconButton(
                                 icon: Icon(_isObscure
                                     ? Icons.visibility_off
@@ -127,16 +140,11 @@ class _RegisterState extends State<Register> {
                             fillColor: Colors.white,
                             hintText: 'Password',
                             enabled: true,
-                            contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 15.0),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                          ),
+                          
                           ),
                           validator: (value) {
                             RegExp regex = RegExp(r'^.{6,}$');
@@ -158,6 +166,7 @@ class _RegisterState extends State<Register> {
                           obscureText: _isObscure2,
                           controller: confirmpassController,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock),
                             suffixIcon: IconButton(
                                 icon: Icon(_isObscure2
                                     ? Icons.visibility_off
@@ -171,16 +180,10 @@ class _RegisterState extends State<Register> {
                             fillColor: Colors.white,
                             hintText: 'Confirm Password',
                             enabled: true,
-                            contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 15.0),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           ),
                           validator: (value) {
                             if (confirmpassController.text !=
@@ -199,30 +202,25 @@ class _RegisterState extends State<Register> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              "Rool : ",
+                              "Role: ",
                               style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                fontSize: 15,
+                                
+                                color: kContainerColor,
                               ),
                             ),
+                            const SizedBox(width: 10),
                             DropdownButton<String>(
-                              dropdownColor: Colors.blue[900],
-                              isDense: true,
-                              isExpanded: false,
-                              iconEnabledColor: Colors.white,
-                              focusColor: Colors.white,
+                              dropdownColor: Colors.white,
+                              iconEnabledColor: kSecondaryColor,
+                              style: const TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: 15,
+                              ),
                               items: options.map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
-                                  child: Text(
-                                    dropDownStringItem,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
+                                  child: Text(dropDownStringItem),
                                 );
                               }).toList(),
                               onChanged: (newValueSelected) {
@@ -239,52 +237,44 @@ class _RegisterState extends State<Register> {
                           height: 20,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            MaterialButton(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              elevation: 5.0,
-                              height: 40,
-                              onPressed: () {
-                                const CircularProgressIndicator();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginScreen(),
+                            
+                            Expanded(child: 
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                  foregroundColor: MaterialStateProperty.all<Color>(kSecondaryColor),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: const BorderSide(color: kSecondaryColor),
+                                    ),
                                   ),
-                                );
-                              },
-                              color: Colors.white,
-                              child: const Text(
-                                "Login",
-                                style: TextStyle(
-                                  fontSize: 20,
                                 ),
+                                onPressed: () {
+                                  // Aksi ketika tombol "Sign Up" ditekan
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                                  );
+                                },
+                                child: const Text('Sign In'),
                               ),
+
                             ),
-                            MaterialButton(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              elevation: 5.0,
-                              height: 40,
-                              onPressed: () {
+                            const SizedBox(width: 10),
+                            Expanded(child:
+                            DefaultButton(
+                              title: "Register",
+                              onPress: () {
                                 setState(() {
                                   showProgress = true;
                                 });
                                 signUp(emailController.text,
                                     passwordController.text, rool);
                               },
-                              color: Colors.white,
-                              child: const Text(
-                                "Register",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
+                            ),
                             ),
                           ],
                         ),

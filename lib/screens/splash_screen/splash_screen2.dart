@@ -12,6 +12,7 @@ class SplashScreen2 extends StatelessWidget {
     double baseWidth = 360;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    
     return SizedBox(
         width: double.infinity,
         child: Container(

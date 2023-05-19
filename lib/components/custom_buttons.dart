@@ -17,8 +17,8 @@ class DefaultButton extends StatelessWidget {
       onTap: onPress,
       child: Container(
         
-        width: 100.w,
-        height: SizerUtil.deviceType == DeviceType.tablet ? 9.h : 5.h,
+        width: 30.w,
+        height: SizerUtil.deviceType == DeviceType.tablet ? 9.h : 4.7.h,
         decoration: BoxDecoration(
             gradient: const LinearGradient(
               colors: [kSecondaryColor, kPrimaryColor],
@@ -27,11 +27,19 @@ class DefaultButton extends StatelessWidget {
               stops: [0.0, 1.0],
               tileMode: TileMode.clamp,
             ),
-            borderRadius: BorderRadius.circular(kDefaultPadding)),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+                blurStyle: BlurStyle.solid
+              ),
+            ],
+            borderRadius: BorderRadius.circular(10)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title, style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kTextWhiteColor, fontWeight: FontWeight.w900)),
+            Text(title, style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kTextWhiteColor, fontWeight: FontWeight.w500)),
           ],
         ),
       ),
