@@ -5,7 +5,7 @@ import 'widgets/detail_report_widgets.dart';
 
 class FeeScreen extends StatelessWidget {
   // const FeeScreen({Key? key}) : super(key: key);
-  static String routeName = 'DetailReportScreen';
+  // static String routeName = 'DetailReportScreen';
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final CollectionReference reportCollection = FirebaseFirestore.instance.collection('report');
 
@@ -73,15 +73,17 @@ class FeeScreen extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Masalah: $Masalah',
+                        Text('Pengirim: $Nama',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 20,
                         fontWeight: FontWeight.w700
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Text(Detail),
+                        SizedBox(height: 5),
+                        Text(Masalah),
+                        SizedBox(height: 5),
+                        Text('Detail Masalah: $Detail'),
                   ],
                   ),
                   );
