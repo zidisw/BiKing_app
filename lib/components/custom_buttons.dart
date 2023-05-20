@@ -17,8 +17,8 @@ class DefaultButton extends StatelessWidget {
       onTap: onPress,
       child: Container(
         
-        width: 30.w,
-        height: SizerUtil.deviceType == DeviceType.tablet ? 9.h : 4.7.h,
+        width: 100.w,
+        height: SizerUtil.deviceType == DeviceType.tablet ? 9.h : 6.h,
         decoration: BoxDecoration(
             gradient: const LinearGradient(
               colors: [kSecondaryColor, kPrimaryColor],

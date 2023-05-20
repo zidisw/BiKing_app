@@ -5,6 +5,7 @@ import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 // import 'model.dart';
 
 class Register extends StatefulWidget {
@@ -36,251 +37,245 @@ class _RegisterState extends State<Register> {
     'Teacher',
   ];
   var _currentItemSelected = "Student";
-  var rool = "Student";
+  var role = "Student";
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 360;
     double fem = MediaQuery.of(context).size.width / baseWidth;
+    //email field
+    final emailField = TextFormField(
+        autofocus: false,
+        controller: emailController,
+        keyboardType: TextInputType.emailAddress,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return ("Please Enter Your Email");
+          }
+          // reg expression for email validation
+          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+              .hasMatch(value)) {
+            return ("Please Enter a valid email");
+          }
+          return null;
+        },
+        onSaved: (value) {
+          emailController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.mail),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
+
+    //password field
+    final passwordField = TextFormField(
+        autofocus: false,
+        controller: passwordController,
+        obscureText: _isObscure,
+        validator: (value) {
+          RegExp regex = new RegExp(r'^.{6,}$');
+          if (value!.isEmpty) {
+            return ("Password is required for login");
+          }
+          if (!regex.hasMatch(value)) {
+            return ("Enter Valid Password(Min. 6 Character)");
+          }
+        },
+        onSaved: (value) {
+          passwordController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.vpn_key),
+          suffixIcon: IconButton(
+              icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  _isObscure = !_isObscure;
+                });
+              }),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Password",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
+
+    //confirm password field
+    final confirmPasswordField = TextFormField(
+        autofocus: false,
+        controller: confirmpassController,
+        obscureText: _isObscure2,
+        validator: (value) {
+          if (confirmpassController.text !=
+              passwordController.text) {
+            return "Password don't match";
+          }
+          return null;
+        },
+        onSaved: (value) {
+          confirmpassController.text = value!;
+        },
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.vpn_key),
+          suffixIcon: IconButton(
+              icon: Icon(_isObscure2 ? Icons.visibility_off : Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  _isObscure2 = !_isObscure2;
+                });
+              }),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Confirm Password",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
+
+    //signup button
+    final signUpButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.redAccent,
+      child: DefaultButton(
+          title: "Sign Up",
+          onPress: () {
+            signUp(emailController.text, passwordController.text, role);
+          },
+          ),
+    );
     return Scaffold(
 
-      backgroundColor: Colors.white,
-      
-      body: SingleChildScrollView(
+      body: Container(
         child: Column(
-          children: <Widget>[
+          children: [
             Positioned(
               left: 0,
               top: 0,
               child: SizedBox(
                 width: 391 * fem,
-                height: 150.76 * fem,
+                height: 100 * fem,
                 child: Image.asset(
                   'assets/images/headertrans.png',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                     ),
                   ),
                 ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.all(30),
-                  child: Form(
-                    key: _formkey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        
-                        SizedBox(
-                          height: 80,
-                          child: Image.asset(
-                            "assets/images/Vector-2.png",
-                            fit: BoxFit.contain,
-
-                          )
-                        ),
-                        const SizedBox(
-                          
-                          child: Text('Registration',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                  color: kPrimaryColor)),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        TextFormField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.account_circle),
-                            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Email",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Email cannot be empty";
-                            }
-                            if (!RegExp(
-                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                .hasMatch(value)) {
-                              return ("Please enter a valid email");
-                            } else {
-                              return null;
-                            }
-                          },
-                          onChanged: (value) {},
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          obscureText: _isObscure,
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            suffixIcon: IconButton(
-                                icon: Icon(_isObscure
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                                onPressed: () {
-                                  setState(() {
-                                    _isObscure = !_isObscure;
-                                  });
-                                }),
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: 'Password',
-                            enabled: true,
-                            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                          ),
-                          
-                          ),
-                          validator: (value) {
-                            RegExp regex = RegExp(r'^.{6,}$');
-                            if (value!.isEmpty) {
-                              return "Password cannot be empty";
-                            }
-                            if (!regex.hasMatch(value)) {
-                              return ("please enter valid password min. 6 character");
-                            } else {
-                              return null;
-                            }
-                          },
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          obscureText: _isObscure2,
-                          controller: confirmpassController,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            suffixIcon: IconButton(
-                                icon: Icon(_isObscure2
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                                onPressed: () {
-                                  setState(() {
-                                    _isObscure2 = !_isObscure2;
-                                  });
-                                }),
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: 'Confirm Password',
-                            enabled: true,
-                            contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          ),
-                          validator: (value) {
-                            if (confirmpassController.text !=
-                                passwordController.text) {
-                              return "Password did not match";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Role: ",
-                              style: TextStyle(
-                                fontSize: 15,
-                                
-                                color: kContainerColor,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            DropdownButton<String>(
-                              dropdownColor: Colors.white,
-                              iconEnabledColor: kSecondaryColor,
-                              style: const TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: 15,
-                              ),
-                              items: options.map((String dropDownStringItem) {
-                                return DropdownMenuItem<String>(
-                                  value: dropDownStringItem,
-                                  child: Text(dropDownStringItem),
-                                );
-                              }).toList(),
-                              onChanged: (newValueSelected) {
-                                setState(() {
-                                  _currentItemSelected = newValueSelected!;
-                                  rool = newValueSelected;
-                                });
-                              },
-                              value: _currentItemSelected,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            
-                            Expanded(child: 
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                  foregroundColor: MaterialStateProperty.all<Color>(kSecondaryColor),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      side: const BorderSide(color: kSecondaryColor),
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  // Aksi ketika tombol "Sign Up" ditekan
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const LoginScreen()),
-                                  );
-                                },
-                                child: const Text('Sign In'),
-                              ),
-
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(child:
-                            DefaultButton(
-                              title: "Register",
-                              onPress: () {
-                                setState(() {
-                                  showProgress = true;
-                                });
-                                signUp(emailController.text,
-                                    passwordController.text, rool);
-                              },
-                            ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+          SizedBox(
+              width: 100.w,
+              height: 10.h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                   ),
+                  Image.asset(
+                    'assets/images/Vector-2.png',
+                    height: 20.h,
+                    width: 40.w,
+                  ),
+                  sizedBox,
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                child: Form(
+                  key: _formkey,
+                  child: SingleChildScrollView(
+                  child: 
+                  Column(
+
+                    children: [
+                      const SizedBox(height: 20),
+                      emailField,
+                      const SizedBox(height: 20),
+                      passwordField,
+                      const SizedBox(height: 20),
+                      confirmPasswordField,
+                      const SizedBox(height: 15),
+                      Align(
+                          alignment: Alignment.center,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              const Text(
+                                "Role: ",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: kContainerColor,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              DropdownButton<String>(
+                                dropdownColor: Colors.white,
+                                iconEnabledColor: kSecondaryColor,
+                                style: const TextStyle(
+                                  color: kPrimaryColor,
+                                  fontSize: 15,
+                                ),
+                                items: options.map((String dropDownStringItem) {
+                                  return DropdownMenuItem<String>(
+                                    value: dropDownStringItem,
+                                    child: Text(dropDownStringItem),
+                                  );
+                                }).toList(),
+                                onChanged: (newValueSelected) {
+                                  setState(() {
+                                    _currentItemSelected = newValueSelected!;
+                                    role = newValueSelected;
+                                  });
+                                },
+                                value: _currentItemSelected,
+                              ),
+                            ],
+                          ),
+                        ),
+                      signUpButton,
+                    ],
+                  ),
+                  ),
+                ),
+                ),
+              ),
+
+            Container(
+              color: Colors.white,
+              width: double.infinity,
+              padding: const EdgeInsets.only(bottom: 15.0, top: 15.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text("Have an account? "),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Sign In",
+                        style: TextStyle(
+                          color: kSecondaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -290,21 +285,21 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void signUp(String email, String password, String rool) async {
+  void signUp(String email, String password, String role) async {
     const CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, rool)})
+          .then((value) => {postDetailsToFirestore(email, role)})
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String rool) async {
+  postDetailsToFirestore(String email, String role) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'rool': rool});
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
