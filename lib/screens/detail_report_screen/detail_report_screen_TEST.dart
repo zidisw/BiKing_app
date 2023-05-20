@@ -8,44 +8,144 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _namaController = TextEditingController();
+  final TextEditingController _masalahController = TextEditingController();
+  final TextEditingController _detailController = TextEditingController();
+  final TextEditingController _namaController = TextEditingController();
 
-  void _addReport() {
-    String Masalah = _titleController.text.trim();
-    String Detail = _descriptionController.text.trim();
-    String Nama = _namaController.text.trim();
+  String? selectedDocumentId; // Store the selected document ID
 
-    // Perform the logic to add the report to Firestore
-    FirebaseFirestore.instance.collection('report').add({
-      'title': Masalah,
-      'description': Detail,
-      'nama': Nama,
-    });
-
-    // Clear the text fields after adding the report
-    _titleController.clear();
-    _descriptionController.clear();
-    _namaController.clear();
+  @override
+  void dispose() {
+    _masalahController.dispose();
+    _detailController.dispose();
+    _namaController.dispose();
+    super.dispose();
   }
 
-  void _editReport(String documentId) {
-    String Masalah = _titleController.text.trim();
-    String Detail = _descriptionController.text.trim();
-    String Nama = _namaController.text.trim();
+  Future<void> _addReport() async {
+    String masalah = _masalahController.text.trim();
+    String detail = _detailController.text.trim();
+    String nama = _namaController.text.trim();
 
-    // Perform the logic to update the report in Firestore
-    FirebaseFirestore.instance.collection('report').doc(documentId).update({
-      'title': Masalah,
-      'description': Detail,
-      'nama': Nama,
-    });
+    if (masalah.isEmpty || detail.isEmpty || nama.isEmpty) {
+      // Show an error message to the user if any field is empty
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Please fill in all the fields.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
 
-    // Clear the text fields after editing the report
-    _titleController.clear();
-    _descriptionController.clear();
-    _namaController.clear();
+    try {
+      await FirebaseFirestore.instance.collection('report').add({
+        'Masalah': masalah,
+        'Detail': detail,
+        'Nama': nama,
+      });
+
+      // Clear the input fields after adding the report
+      _masalahController.clear();
+      _detailController.clear();
+      _namaController.clear();
+    } catch (error) {
+      // Show an error message if the report couldn't be added
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to add the report. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  Future<void> _editReport() async {
+    String masalah = _masalahController.text.trim();
+    String detail = _detailController.text.trim();
+    String nama = _namaController.text.trim();
+
+    if (masalah.isEmpty || detail.isEmpty || nama.isEmpty) {
+      // Show an error message to the user if any field is empty
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Please fill in all the fields.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('report')
+          .doc(selectedDocumentId)
+          .update({
+        'Masalah': masalah,
+        'Detail': detail,
+        'Nama': nama,
+      });
+
+      // Clear the input fields after editing the report
+      _masalahController.clear();
+      _detailController.clear();
+      _namaController.clear();
+      setState(() {
+        selectedDocumentId = null; // Clear the selected document ID
+      });
+    } catch (error) {
+      // Show an error message if the report couldn't be edited
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to edit the report. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -54,173 +154,103 @@ class _ReportScreenState extends State<ReportScreen> {
       appBar: AppBar(
         title: Text('Reports'),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('report').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            // Log the error to the console
-            print('Error: ${snapshot.error}');
-
-            // Display an error message to the user
-            return Text('Error occurred while retrieving data');
-          }
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (snapshot.hasData) {
-            final documents = snapshot.data!.docs;
-
-            return Column(
-              children: [
-                ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Add Report'),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextField(
-                                    controller: _titleController,
-                                    decoration: InputDecoration(labelText: 'Masalah'),
-                                  ),
-                                  TextField(
-                                    controller: _descriptionController,
-                                    decoration: InputDecoration(labelText: 'Detail/Deskripsi'),
-                                  ),
-                                  TextField(
-                                    controller: _namaController,
-                                    decoration: InputDecoration(labelText: 'Nama'),
-                                  ),
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Cancel'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    _addReport();
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Add'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      child: Text('Add Report'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Edit Report'),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextField(
-                                    controller: _titleController,
-                                    decoration: InputDecoration(labelText: 'Masalah'),
-                                  ),
-                                  TextField(
-                                    controller: _descriptionController,
-                                    decoration: InputDecoration(labelText: 'Detail/Deskripsi'),
-                                  ),
-                                  TextField(
-                                    controller: _namaController,
-                                    decoration: InputDecoration(labelText: 'Nama'),
-                                  ),
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Cancel'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    String documentId = ''; // Replace with the document ID of the report to be edited
-                                    _editReport(documentId);
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Edit'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      child: Text('Edit Report'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: documents.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final document = documents[index];
-                    final Masalah = document['Masalah'];
-                    final Detail = document['Detail'];
-                    final Nama = document['Nama'];
-
-                    return Container(
-                      margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(10),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _masalahController,
+                    decoration: InputDecoration(labelText: 'Masalah'),
+                  ),
+                  TextField(
+                    controller: _detailController,
+                    decoration: InputDecoration(labelText: 'Detail'),
+                  ),
+                  TextField(
+                    controller: _namaController,
+                    decoration: InputDecoration(labelText: 'Nama'),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: _addReport,
+                        child: Text('Add Report'),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Nama: $Nama',
+                      ElevatedButton(
+                        onPressed: selectedDocumentId != null ? _editReport : null,
+                        child: Text('Edit Report'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance.collection('report').snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  // Log the error to the console
+                  print('Error: ${snapshot.error}');
+
+                  // Display an error message to the user
+                  return Text('Error occurred while retrieving data');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (snapshot.hasData) {
+                  final documents = snapshot.data!.docs;
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: documents.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final document = documents[index];
+                      final masalah = document['Masalah'];
+                      final detail = document['Detail'];
+                      final nama = document['Nama'];
+
+                      return Card(
+                        margin: EdgeInsets.all(10),
+                        child: ListTile(
+                          title: Text(
+                            masalah,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 5),
-                          Text(Masalah),
-                          SizedBox(height: 5),
-                          Text(Detail),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            );
-          }
+                          subtitle: Text('Nama: $nama'),
+                          trailing: Icon(Icons.edit),
+                          onTap: () {
+                            setState(() {
+                              selectedDocumentId = document.id; // Store the selected document ID
+                              _masalahController.text = masalah; // Populate the input fields with existing data for editing
+                              _detailController.text = detail;
+                              _namaController.text = nama;
+                            });
+                          },
+                        ),
+                      );
+                    },
+                  );
+                }
 
-          return Text('No data available');
-        },
+                return Text('No data available');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ReportScreen(),
-  ));
 }
