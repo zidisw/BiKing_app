@@ -8,143 +8,96 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  final TextEditingController _masalahController = TextEditingController();
-  final TextEditingController _detailController = TextEditingController();
-  final TextEditingController _namaController = TextEditingController();
+  String? selectedDocumentId;
 
-  String? selectedDocumentId; // Store the selected document ID
+  void _showAddEditDialog({bool isEditing = false}) {
+    final dialogTitle = isEditing ? 'Edit Report' : 'Add Report';
+    final masalahLabel = isEditing ? 'Masalah (Edit)' : 'Masalah';
+    final detailLabel = isEditing ? 'Detail (Edit)' : 'Detail';
+    final namaLabel = isEditing ? 'Nama (Edit)' : 'Nama';
 
-  @override
-  void dispose() {
-    _masalahController.dispose();
-    _detailController.dispose();
-    _namaController.dispose();
-    super.dispose();
-  }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController _masalahController = TextEditingController();
+        final TextEditingController _detailController = TextEditingController();
+        final TextEditingController _namaController = TextEditingController();
 
-  Future<void> _addReport() async {
-    String masalah = _masalahController.text.trim();
-    String detail = _detailController.text.trim();
-    String nama = _namaController.text.trim();
-
-    if (masalah.isEmpty || detail.isEmpty || nama.isEmpty) {
-      // Show an error message to the user if any field is empty
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Please fill in all the fields.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('OK'),
+        return AlertDialog(
+          title: Text(dialogTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: _masalahController,
+                decoration: InputDecoration(labelText: namaLabel),
+              ),
+              TextField(
+                controller: _detailController,
+                decoration: InputDecoration(labelText: masalahLabel),
+              ),
+              TextField(
+                controller: _namaController,
+                decoration: InputDecoration(labelText: detailLabel),
               ),
             ],
-          );
-        },
-      );
-      return;
-    }
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                if (isEditing) {
+                  _editReport(
+                    selectedDocumentId!,
+                    _masalahController.text,
+                    _detailController.text,
+                    _namaController.text,
+                  );
+                } else {
+                  _addReport(
+                    _masalahController.text,
+                    _detailController.text,
+                    _namaController.text,
+                  );
+                }
+                Navigator.pop(context);
+              },
+              child: Text(isEditing ? 'Save Changes' : 'Add Report'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
+  Future<void> _addReport(String masalah, String detail, String nama) async {
     try {
       await FirebaseFirestore.instance.collection('report').add({
         'Masalah': masalah,
         'Detail': detail,
         'Nama': nama,
       });
-
-      // Clear the input fields after adding the report
-      _masalahController.clear();
-      _detailController.clear();
-      _namaController.clear();
+      // Success message or further processing
     } catch (error) {
-      // Show an error message if the report couldn't be added
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Failed to add the report. Please try again.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      // Error handling
     }
   }
 
-  Future<void> _editReport() async {
-    String masalah = _masalahController.text.trim();
-    String detail = _detailController.text.trim();
-    String nama = _namaController.text.trim();
-
-    if (masalah.isEmpty || detail.isEmpty || nama.isEmpty) {
-      // Show an error message to the user if any field is empty
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Please fill in all the fields.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-      return;
-    }
-
+  Future<void> _editReport(String documentId, String masalah, String detail, String nama) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('report')
-          .doc(selectedDocumentId)
-          .update({
+      await FirebaseFirestore.instance.collection('report').doc(documentId).update({
         'Masalah': masalah,
         'Detail': detail,
         'Nama': nama,
       });
-
-      // Clear the input fields after editing the report
-      _masalahController.clear();
-      _detailController.clear();
-      _namaController.clear();
-      setState(() {
-        selectedDocumentId = null; // Clear the selected document ID
-      });
+      // Success message or further processing
     } catch (error) {
-      // Show an error message if the report couldn't be edited
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Failed to edit the report. Please try again.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      // Error handling
     }
   }
 
@@ -154,102 +107,46 @@ class _ReportScreenState extends State<ReportScreen> {
       appBar: AppBar(
         title: Text('Reports'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  TextField(
-                    controller: _masalahController,
-                    decoration: InputDecoration(labelText: 'Masalah'),
-                  ),
-                  TextField(
-                    controller: _detailController,
-                    decoration: InputDecoration(labelText: 'Detail'),
-                  ),
-                  TextField(
-                    controller: _namaController,
-                    decoration: InputDecoration(labelText: 'Nama'),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: _addReport,
-                        child: Text('Add Report'),
-                      ),
-                      ElevatedButton(
-                        onPressed: selectedDocumentId != null ? _editReport : null,
-                        child: Text('Edit Report'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('report').snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  // Log the error to the console
-                  print('Error: ${snapshot.error}');
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('report').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
 
-                  // Display an error message to the user
-                  return Text('Error occurred while retrieving data');
-                }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
 
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+          final reports = snapshot.data?.docs ?? [];
 
-                if (snapshot.hasData) {
-                  final documents = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: reports.length,
+            itemBuilder: (BuildContext context, int index) {
+              final report = reports[index];
+              final data = report.data() as Map<String, dynamic>;
 
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: documents.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final document = documents[index];
-                      final masalah = document['Masalah'];
-                      final detail = document['Detail'];
-                      final nama = document['Nama'];
-
-                      return Card(
-                        margin: EdgeInsets.all(10),
-                        child: ListTile(
-                          title: Text(
-                            masalah,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          subtitle: Text('Nama: $nama'),
-                          trailing: Icon(Icons.edit),
-                          onTap: () {
-                            setState(() {
-                              selectedDocumentId = document.id; // Store the selected document ID
-                              _masalahController.text = masalah; // Populate the input fields with existing data for editing
-                              _detailController.text = detail;
-                              _namaController.text = nama;
-                            });
-                          },
-                        ),
-                      );
-                    },
-                  );
-                }
-
-                return Text('No data available');
-              },
-            ),
-          ],
-        ),
+              return ListTile(
+                title: Text(data['Nama']),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(data['Masalah']),
+                    Text(data['Detail']),
+                  ],
+                ),
+                onTap: () {
+                  selectedDocumentId = report.id;
+                  _showAddEditDialog(isEditing: true);
+                },
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showAddEditDialog(),
+        child: Icon(Icons.add),
       ),
     );
   }
