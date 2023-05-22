@@ -31,14 +31,17 @@ class _ReportScreenState extends State<ReportScreen> {
               TextField(
                 controller: _masalahController,
                 decoration: InputDecoration(labelText: namaLabel),
+                style: TextStyle(color: Colors.black),
               ),
               TextField(
                 controller: _detailController,
                 decoration: InputDecoration(labelText: masalahLabel),
+                style: TextStyle(color: Colors.black),
               ),
               TextField(
                 controller: _namaController,
                 decoration: InputDecoration(labelText: detailLabel),
+                style: TextStyle(color: Colors.black),
               ),
             ],
           ),
@@ -104,9 +107,28 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Reports'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text('Reports',
+          style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.5)),
       ),
+
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('report').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -126,19 +148,36 @@ class _ReportScreenState extends State<ReportScreen> {
               final report = reports[index];
               final data = report.data() as Map<String, dynamic>;
 
-              return ListTile(
-                title: Text(data['Nama']),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(data['Masalah']),
-                    Text(data['Detail']),
-                  ],
+              return Container(
+                margin: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: Colors.black),
                 ),
-                onTap: () {
-                  selectedDocumentId = report.id;
-                  _showAddEditDialog(isEditing: true);
-                },
+                child: ListTile(
+                  title: Text(
+                    data['Nama'],
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        data['Masalah'],
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      Text(
+                        data['Detail'],
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    selectedDocumentId = report.id;
+                    _showAddEditDialog(isEditing: true);
+                  },
+                ),
               );
             },
           );
