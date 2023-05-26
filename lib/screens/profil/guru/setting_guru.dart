@@ -1,9 +1,11 @@
 import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
+import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
 import 'package:biking_app/screens/profil/bantuan.dart';
 import 'package:biking_app/screens/profil/edit_password.dart';
 import 'package:biking_app/screens/profil/hubungi_kami.dart';
 import 'package:biking_app/screens/profil/privacy_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -14,8 +16,17 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              const LoginScreen()), // Ganti dengan halaman log in Anda
+    );
+  }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -84,8 +95,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 20.0),
+                                              padding:
+                                                  EdgeInsets.only(left: 20.0),
                                               child: Text(
                                                 "Zid Irsyadin S. W.",
                                                 style: TextStyle(
@@ -97,8 +108,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                               )),
                                           SizedBox(height: 10),
                                           Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 20.0),
+                                              padding:
+                                                  EdgeInsets.only(left: 20.0),
                                               child: Text(
                                                 "Guru Agama Islam",
                                                 style: TextStyle(
@@ -561,8 +572,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                     child: const Text("Keluar"),
                                                     onPressed: () {
                                                       // Lakukan proses keluar dari aplikasi di sini
-                                                      Navigator.of(context)
-                                                          .pop();
+                                                      logOut();
                                                     },
                                                   ),
                                                 ],
@@ -592,7 +602,6 @@ class _SettingScreenState extends State<SettingScreen> {
           ],
         ),
       ),
-      
     );
   }
 }

@@ -117,7 +117,7 @@ class SplashScreen2 extends StatelessWidget {
                   top: 526 * fem,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, 'LoginScreen');
+                      Navigator.pushNamedAndRemoveUntil(context, 'LoginScreen', (route) => false);
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xff38acff),

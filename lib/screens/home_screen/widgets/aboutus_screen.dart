@@ -35,7 +35,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-          child: Column(
+        child: 
+        Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 30, left: 30),
@@ -74,21 +75,17 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Transform.scale(
-                scale: 1.3,
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  width: double.infinity,
-                  height: 79,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "assets/images/footerberanda.png",
-                      ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Transform.scale(
+              scale: 1.3,
+              child: Container(
+                width: double.infinity,
+                height: 79,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/footerberanda.png",
                     ),
                   ),
                 ),
