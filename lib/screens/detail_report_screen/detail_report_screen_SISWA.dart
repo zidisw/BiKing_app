@@ -29,22 +29,23 @@ class _ReportScreenState extends State<ReportScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
-                controller: _masalahController,
+                controller: _namaController,
                 decoration: InputDecoration(labelText: namaLabel),
                 style: TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: _detailController,
+                controller: _masalahController,
                 decoration: InputDecoration(labelText: masalahLabel),
                 style: TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: _namaController,
+                controller: _detailController,
                 decoration: InputDecoration(labelText: detailLabel),
                 style: TextStyle(color: Colors.black),
               ),
             ],
           ),
+
           actions: [
             TextButton(
               onPressed: () {
@@ -72,6 +73,16 @@ class _ReportScreenState extends State<ReportScreen> {
               },
               child: Text(isEditing ? 'Save Changes' : 'Add Report'),
             ),
+            if (isEditing)
+              ElevatedButton(
+                onPressed: () {
+                  _showDeleteConfirmationDialog(context, selectedDocumentId!);
+                },
+                child: Text('Delete'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                ),
+              ),
           ],
         );
       },
@@ -102,6 +113,43 @@ class _ReportScreenState extends State<ReportScreen> {
     } catch (error) {
       // Error handling
     }
+  }
+
+  Future<void> _deleteReport(String documentId) async {
+    try {
+      await FirebaseFirestore.instance.collection('report').doc(documentId).delete();
+    } catch (e) {
+      // Handle any errors that occur during deletion
+      print('Error deleting report: $e');
+    }
+  }
+
+  Future<void> _showDeleteConfirmationDialog(BuildContext context, String documentId) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmation'),
+          content: Text('Are you sure you want to delete this report?'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the confirmation dialog
+                _deleteReport(documentId); // Delete the report
+                Navigator.of(context).pop(); // Close the edit dialog
+              },
+              child: Text('Yes'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the confirmation dialog
+              },
+              child: Text('No'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

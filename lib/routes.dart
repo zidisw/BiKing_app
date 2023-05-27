@@ -1,4 +1,4 @@
-import 'package:biking_app/screens/detail_report_screen/detail_report_screen_TEST.dart';
+import 'package:biking_app/screens/detail_report_screen/detail_report_screen_SISWA.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/home_screen/widgets/Informationbk_screen.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen.dart';
