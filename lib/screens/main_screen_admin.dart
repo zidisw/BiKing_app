@@ -5,15 +5,15 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-  static String routeName = 'MainScreen';
+class MainScreenAdmin extends StatefulWidget {
+  const MainScreenAdmin({super.key});
+  static String routeName = 'MainScreenAdmin';
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainScreenAdmin> createState() => _MainScreenAdminState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenAdminState extends State<MainScreenAdmin> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [

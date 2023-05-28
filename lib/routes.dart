@@ -1,5 +1,9 @@
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/home_screen/widgets/Informationbk_screen.dart';
+import 'package:biking_app/screens/main_screen_admin.dart';
+import 'package:biking_app/screens/main_screen_guru.dart';
+import 'package:biking_app/screens/main_screen_siswa.dart';
+import 'package:biking_app/screens/main_screen_wali.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen.dart';
 import 'package:biking_app/screens/splash_screen/splash_screen2.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +22,10 @@ Map<String, WidgetBuilder> routes = {
   SplashScreen2.routeName: (context) => const SplashScreen2(),
   LoginScreen.routeName: (context) => const LoginScreen(),
   MainScreen.routeName: (context) => const MainScreen(),
+  MainScreenAdmin.routeName: (context) => const MainScreenAdmin(),
+  MainScreenGuru.routeName: (context) => const MainScreenGuru(),
+  MainScreenWali.routeName: (context) => const MainScreenWali(),
+  MainScreenSiswa.routeName: (context) => const MainScreenSiswa(),
   HomeScreen.routeName: (context) => const HomeScreen(),
   AboutUsScreen.routeName: (context) => const AboutUsScreen(),
   InformasibkScreen.routeName: (context) => const InformasibkScreen(),

@@ -2,6 +2,10 @@ import 'package:biking_app/components/custom_buttons.dart';
 import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/login_screen/regist_screen.dart';
 import 'package:biking_app/screens/main_screen.dart';
+import 'package:biking_app/screens/main_screen_admin.dart';
+import 'package:biking_app/screens/main_screen_guru.dart';
+import 'package:biking_app/screens/main_screen_siswa.dart';
+import 'package:biking_app/screens/main_screen_wali.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -77,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (!regex.hasMatch(value)) {
             return ("Enter Valid Password(Min. 6 Character)");
           }
+          return null;
         },
         onSaved: (value) {
           passwordController.text = value!;
@@ -98,7 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-        ));
+        )
+      );
+
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
@@ -235,19 +242,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void route() {
     User? user = FirebaseAuth.instance.currentUser;
-    var kk = FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('users')
         .doc(user!.uid)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        if (documentSnapshot.get('role') == "Student") {
+        if (documentSnapshot.get('role') == "Siswa") {
           Navigator.pushNamedAndRemoveUntil(
-              context, MainScreen.routeName, (route) => false);
-        } else {
+              context, MainScreenSiswa.routeName, (route) => false);
+        } if (documentSnapshot.get('role') == "Guru") {
           Navigator.pushNamedAndRemoveUntil(
-              context, MainScreen.routeName, (route) => false);
-        }
+              context, MainScreenGuru.routeName, (route) => false);
+        } if (documentSnapshot.get('role') == "Wali Kelas") {
+          Navigator.pushNamedAndRemoveUntil(
+              context, MainScreenWali.routeName, (route) => false);
+        } if (documentSnapshot.get('role') == "Admin") {
+          Navigator.pushNamedAndRemoveUntil(
+              context, MainScreenAdmin.routeName, (route) => false);
+        } 
+        
       } 
     });
   }
@@ -255,13 +269,12 @@ class _LoginScreenState extends State<LoginScreen> {
   void signIn(String email, String password) async {
     if (_formkey.currentState!.validate()) {
       try {
-        await _auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
-                  Navigator.pushNamedAndRemoveUntil(
-                    context, MainScreen.routeName, (route) => false),
-                });
+        await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        Fluttertoast.showToast(msg: "Login Successful");
+        route();
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":

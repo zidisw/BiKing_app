@@ -1,25 +1,25 @@
 import 'package:biking_app/screens/home_screen/home_screen.dart';
-import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
-import 'package:biking_app/screens/profil/guru/profil_guru.dart';
+import 'package:biking_app/screens/pelaporan/siswa/pelaporan.dart';
+import 'package:biking_app/screens/profil/siswa/profil_siswa.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-  static String routeName = 'MainScreen';
+class MainScreenSiswa extends StatefulWidget {
+  const MainScreenSiswa({super.key});
+  static String routeName = 'MainScreenSiswa';
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainScreenSiswa> createState() => _MainScreenSiswaState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenSiswaState extends State<MainScreenSiswa> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfilguruScreen(),
+    const ProfilePage(),
     const HomeScreen(),
-    const DaftarPelaporanScreen(),
+    const Pelaporan(),
   ];
   @override
   Widget build(BuildContext context) {

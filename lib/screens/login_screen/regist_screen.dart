@@ -5,6 +5,7 @@ import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sizer/sizer.dart';
 // import 'model.dart';
 
@@ -33,11 +34,13 @@ class _RegisterState extends State<Register> {
   bool _isObscure2 = true;
   File? file;
   var options = [
-    'Student',
-    'Teacher',
+    'Siswa',
+    'Guru',
+    'Admin',
+    'Wali Kelas'
   ];
-  var _currentItemSelected = "Student";
-  var role = "Student";
+  var _currentItemSelected = "Siswa";
+  var role = "Siswa";
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +81,14 @@ class _RegisterState extends State<Register> {
         controller: passwordController,
         obscureText: _isObscure,
         validator: (value) {
-          RegExp regex = new RegExp(r'^.{6,}$');
+          RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
             return ("Password is required for login");
           }
           if (!regex.hasMatch(value)) {
             return ("Enter Valid Password(Min. 6 Character)");
           }
+          return null;
         },
         onSaved: (value) {
           passwordController.text = value!;
@@ -291,7 +295,9 @@ class _RegisterState extends State<Register> {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {postDetailsToFirestore(email, role)})
-          .catchError((e) {});
+          .catchError((e) {
+        Fluttertoast.showToast(msg: "Email already exists");
+          });
     }
   }
 
