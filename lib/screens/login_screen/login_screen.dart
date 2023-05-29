@@ -1,7 +1,6 @@
 import 'package:biking_app/components/custom_buttons.dart';
 import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/login_screen/regist_screen.dart';
-import 'package:biking_app/screens/main_screen.dart';
 import 'package:biking_app/screens/main_screen_admin.dart';
 import 'package:biking_app/screens/main_screen_guru.dart';
 import 'package:biking_app/screens/main_screen_siswa.dart';
