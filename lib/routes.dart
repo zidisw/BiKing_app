@@ -1,3 +1,4 @@
+import 'package:biking_app/screens/detail_report_screen/detail_report_screen_ABSEN.dart';
 import 'package:biking_app/screens/detail_report_screen/detail_report_screen_SISWA.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/home_screen/widgets/Informationbk_screen.dart';
@@ -25,5 +26,6 @@ Map<String, WidgetBuilder> routes = {
   ReportsScreen.routeName: (context) => ReportsScreen(),
   DateSheetScreen.routeName: (context) => DateSheetScreen(),
   SiswaReportsScreen.routeName: (context) => SiswaReportsScreen(),
-  ReportScreen.routeName: (context) => ReportScreen()
+  ReportScreen.routeName: (context) => ReportScreen(),
+  AttendanceScreen.routeName: (context) => AttendanceScreen()
 };
