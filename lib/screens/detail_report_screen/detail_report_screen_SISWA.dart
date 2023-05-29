@@ -204,10 +204,7 @@ class _ReportScreenState extends State<ReportScreen> {
                   border: Border.all(color: Colors.black),
                 ),
                 child: ListTile(
-                  title: Text(
-                    data['Nama'],
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  title: Text('Nama: ${data['Nama']}', style: TextStyle(color: Colors.black),),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
