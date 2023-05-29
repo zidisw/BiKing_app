@@ -91,7 +91,7 @@ class _ReportScreenState extends State<ReportScreen> {
 
   Future<void> _addReport(String masalah, String detail, String nama) async {
     try {
-      await FirebaseFirestore.instance.collection('report').add({
+      await FirebaseFirestore.instance.collection('report_siswa').add({
         'Masalah': masalah,
         'Detail': detail,
         'Nama': nama,
@@ -104,7 +104,7 @@ class _ReportScreenState extends State<ReportScreen> {
 
   Future<void> _editReport(String documentId, String masalah, String detail, String nama) async {
     try {
-      await FirebaseFirestore.instance.collection('report').doc(documentId).update({
+      await FirebaseFirestore.instance.collection('report_siswa').doc(documentId).update({
         'Masalah': masalah,
         'Detail': detail,
         'Nama': nama,
@@ -117,7 +117,7 @@ class _ReportScreenState extends State<ReportScreen> {
 
   Future<void> _deleteReport(String documentId) async {
     try {
-      await FirebaseFirestore.instance.collection('report').doc(documentId).delete();
+      await FirebaseFirestore.instance.collection('report_siswa').doc(documentId).delete();
     } catch (e) {
       // Handle any errors that occur during deletion
       print('Error deleting report: $e');
@@ -178,7 +178,7 @@ class _ReportScreenState extends State<ReportScreen> {
       ),
 
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('report').snapshots(),
+        stream: FirebaseFirestore.instance.collection('report_siswa').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');

@@ -1,4 +1,4 @@
-package com.timkoe.schoolapp.biking_app;
+package com.timkoe.biking_app;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -1,41 +1,42 @@
 {
   "project_info": {
-    "project_number": "701543990960",
-    "project_id": "biking-cd5c5",
-    "storage_bucket": "biking-cd5c5.appspot.com"
+    "project_number": "13714409270",
+    "project_id": "rolebased-81b96",
+    "storage_bucket": "rolebased-81b96.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:701543990960:android:f81c62e44df4b87d121d75",
+        "mobilesdk_app_id": "1:13714409270:android:28d91186ea495dc0721597",
         "android_client_info": {
-          "package_name": "com.timkoe.schoolapp.biking_app"
+          "package_name": "com.timkoe.biking_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "701543990960-b3nhf29g3qmosh4s81t2a1phaspjjg0g.apps.googleusercontent.com",
+          "client_id": "13714409270-1u95l2gpqpnoac8asrnt5pptv4gpnjko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.timkoe.biking_app",
+            "certificate_hash": "5e9dcc04f8ca303b706cd5155b4317cd142f1fb6"
+          }
+        },
+        {
+          "client_id": "13714409270-hrn9or3fpg40ia93v095qpfchvcdqrhc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC-zyeibuWXnjyhbd_9FCulcSktP13wPxc"
+          "current_key": "AIzaSyCaD6RO6Y5aCJBMV98-_yYzXXTJ8D4K6tw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "701543990960-b3nhf29g3qmosh4s81t2a1phaspjjg0g.apps.googleusercontent.com",
+              "client_id": "13714409270-hrn9or3fpg40ia93v095qpfchvcdqrhc.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "701543990960-vfo4e17qlvfq0cuon529lfek9l0sn4oe.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example"
-              }
             }
           ]
         }

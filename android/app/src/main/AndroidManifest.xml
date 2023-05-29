@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.timkoe.schoolapp.biking_app">
+    package="com.timkoe.biking_app">
    <application
         android:label="biking_app"
         android:icon="@mipmap/ic_launcher">
