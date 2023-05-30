@@ -47,80 +47,84 @@ class _SettingSiswaState extends State<SettingSiswa> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFFFFF),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFF000000).withOpacity(0.16),
+                          width: 1.0,
+                        ),
                       ),
-                    ),
-                    width: 330,
-                    height: 582,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 5.0, left: 3.0),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 15, top: 10),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.topCenter,
-                                        width: 80,
-                                        height: 80,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: AssetImage(
-                                              "assets/images/jid1.png",
+                      width: 330,
+                      height: 582,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 10, top: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.topCenter,
+                                          width: 80,
+                                          height: 80,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(
+                                                "assets/images/jid1.png",
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 30,
-                                      ),
-                                      const Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 20.0),
-                                              child: Text(
-                                                "Zid Ni Boss",
-                                                style: TextStyle(
-                                                  color: Color(0xFF0579CC),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              )),
-                                          SizedBox(height: 10),
-                                          Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 20.0),
-                                              child: Text(
-                                                "XII MIPA 1",
-                                                style: TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  color: Colors.black,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                              )),
-                                        ],
-                                      )
-                                    ],
-                                  )),
-                            ],
-                          ),
-                        ],
+                                        const SizedBox(
+                                          height: 30,
+                                        ),
+                                        const Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20.0),
+                                                child: Text(
+                                                  "Zid Ni Boss",
+                                                  style: TextStyle(
+                                                    color: Color(0xFF0579CC),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )),
+                                            SizedBox(height: 10),
+                                            Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20.0),
+                                                child: Text(
+                                                  "XII MIPA 1",
+                                                  style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                                )),
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -146,7 +150,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                     width: 300,
                     height: 80,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 11.0, left: 5.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -154,7 +158,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 10.0),
                                 child: Text(
                                   "Pengaturan Akun",
                                   style: TextStyle(
@@ -169,7 +173,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                 height: 14,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 10.0),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -183,31 +187,34 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                       ),
                                     ),
                                     GestureDetector(
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => UbahPassword(),
-      ),
-    );
-  },
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: [
-      Icon(
-        Icons.keyboard_double_arrow_right,
-        color: Color.fromARGB(255, 135, 131, 155),
-      ),
-    ],
-  ),
-),
-
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                UbahPassword(),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                      
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Icon(
+                                              Icons.keyboard_double_arrow_right,
+                                              color: Color.fromARGB(        
+                                                  255, 135, 131, 155),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                          
                         ],
                       ),
                     ),
@@ -238,7 +245,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                         Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Padding(
@@ -262,7 +269,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                     Text(
+                                    Text(
                                       'Jumlah Interaksi Saya',
                                       style: GoogleFonts.poppins(
                                         color: Colors.black,
@@ -352,7 +359,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                     Text(
+                                    Text(
                                       'Tentang Kami',
                                       style: GoogleFonts.poppins(
                                         color: Colors.black,
@@ -395,7 +402,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                     Text(
+                                    Text(
                                       'Privasi',
                                       style: GoogleFonts.poppins(
                                         color: Colors.black,
@@ -438,7 +445,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                     Text(
+                                    Text(
                                       'Bantuan',
                                       style: GoogleFonts.poppins(
                                         color: Colors.black,
@@ -481,7 +488,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                     Text(
+                                    Text(
                                       'Hubungi Kami',
                                       style: GoogleFonts.poppins(
                                         color: Colors.black,

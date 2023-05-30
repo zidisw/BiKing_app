@@ -12,7 +12,6 @@ class DaftarLaporan extends StatefulWidget {
 }
 
 class _DaftarLaporanState extends State<DaftarLaporan> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,47 +28,14 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
             ),
           ),
         ),
-        title: Text(
-          'Laporan Masalah',
-          style: GoogleFonts.poppins(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        title: Text('Laporan Masalah',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 41),
-              decoration: BoxDecoration(
-                color: Color(0xFF38ACFF),
-              ),
-              width: double.infinity,
-              height: 75,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/Back.png',
-                    width: 20,
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  const Text(
-                    "Laporan Masalah",
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Align(
               alignment: Alignment.topLeft,
               child: Container(
@@ -105,7 +71,8 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const IsiLaporan()),
+                        MaterialPageRoute(
+                            builder: (context) => const IsiLaporan()),
                       );
                     },
                     child: Container(
@@ -144,8 +111,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 3.0),
+                                            padding: EdgeInsets.only(left: 3.0),
                                             child: Text(
                                               "7 Maret 2023",
                                               style: TextStyle(
@@ -157,8 +123,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           ),
                                           SizedBox(height: 7),
                                           Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 3.0),
+                                            padding: EdgeInsets.only(left: 3.0),
                                             child: Text(
                                               "Diproses",
                                               style: TextStyle(
@@ -246,7 +211,6 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                 ],
               ),
             ),
-
             Align(
               alignment: Alignment.topCenter,
               child: Column(
@@ -258,7 +222,8 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const IsiLaporan()),
+                        MaterialPageRoute(
+                            builder: (context) => const IsiLaporan()),
                       );
                     },
                     child: Container(
@@ -297,8 +262,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 3.0),
+                                            padding: EdgeInsets.only(left: 3.0),
                                             child: Text(
                                               "2 Maret 2023",
                                               style: TextStyle(
@@ -310,8 +274,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           ),
                                           SizedBox(height: 7),
                                           Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 3.0),
+                                            padding: EdgeInsets.only(left: 3.0),
                                             child: Text(
                                               "Diproses",
                                               style: TextStyle(
@@ -402,7 +365,6 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
           ],
         ),
       ),
-      
     );
   }
 }
