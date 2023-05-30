@@ -1,37 +1,43 @@
+import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/isi_laporan_kehadiran.dart';
-import 'package:flutter_biking/screens/beranda/home_page.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/tambah_laporan_kehadiran.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/isi_laporan_kehadiran.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/tambah_laporan_kehadiran.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class LaporanBulanan extends StatefulWidget {
+  const LaporanBulanan({Key? key}) : super(key: key);
+  static String routeName = 'LaporanBulanan';
+
   @override
   _LaporanBulananState createState() => _LaporanBulananState();
 }
 
 class _LaporanBulananState extends State<LaporanBulanan> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pengaturan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Pelaporan'),
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
-        backgroundColor: Color(0xFFFFFFFF),
+      ),
+        title:  Text('Pelaporan',
+        style:  GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+      ),
+        backgroundColor: const Color(0xFFFFFFFF),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Stack(
@@ -39,7 +45,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
-                    child: Column(
+                    child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
@@ -64,15 +70,15 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 60,
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.16),
+                            color: const Color(0xFF000000).withOpacity(0.16),
                             width: 1.0,
                           ),
                         ),
@@ -83,19 +89,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                           child: Wrap(
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: 3),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
+                                    padding: EdgeInsets.only(left: 10.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Container(
+                                          child: SizedBox(
                                             width: 130,
                                             child: Text(
                                               'Nabila',
@@ -124,7 +130,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Column(
@@ -132,18 +138,18 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -174,30 +180,30 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                     ),
                                   ),
 
-                                  SizedBox(
+                                  const SizedBox(
                                       height:
                                           5), // tambahkan SizedBox dengan height 4
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -229,25 +235,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -282,7 +288,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Column(
@@ -291,19 +297,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFFFFFFF),
+                                            color: const Color(0xFFFFFFFF),
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             border: Border.all(
-                                              color: Color(0xFF000000)
+                                              color: const Color(0xFF000000)
                                                   .withOpacity(0.16),
                                               width: 1.0,
                                             ),
                                           ),
                                           width: 327,
                                           height: 30,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(
                                                 top: 5, left: 10),
                                             child: Column(
                                               crossAxisAlignment:
@@ -323,7 +329,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                           ),
                                         ),
 
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 7,
                                         ),
                                         // Tambahkan tombol di sini
@@ -334,25 +340,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      AddbulanScreen(),
+                                                      const AddbulanScreen(),
                                                 ),
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 20, vertical: 3),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
-                                              fixedSize: Size(
+                                              fixedSize: const Size(
                                                 80,
                                                 2,
                                               ), // menentukan tinggi dan lebar
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               "Edit",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
@@ -379,15 +385,15 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 250,
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.16),
+                            color: const Color(0xFF000000).withOpacity(0.16),
                             width: 1.0,
                           ),
                         ),
@@ -398,19 +404,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                           child: Wrap(
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: 3),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
+                                    padding: EdgeInsets.only(left: 10.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Container(
+                                          child: SizedBox(
                                             width: 130,
                                             child: Text(
                                               'Rayhan Aryathama Putra',
@@ -439,7 +445,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Column(
@@ -447,18 +453,18 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -489,30 +495,30 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                     ),
                                   ),
 
-                                  SizedBox(
+                                  const SizedBox(
                                       height:
                                           5), // tambahkan SizedBox dengan height 4
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -544,25 +550,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -597,7 +603,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 6),
+                                  const SizedBox(height: 6),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Column(
@@ -606,19 +612,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFFFFFFF),
+                                            color: const Color(0xFFFFFFFF),
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             border: Border.all(
-                                              color: Color(0xFF000000)
+                                              color: const Color(0xFF000000)
                                                   .withOpacity(0.16),
                                               width: 1.0,
                                             ),
                                           ),
                                           width: 327,
                                           height: 30,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(
                                                 top: 5, left: 10),
                                             child: Column(
                                               crossAxisAlignment:
@@ -638,7 +644,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                           ),
                                         ),
 
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 2,
                                         ),
                                         // Tambahkan tombol di sini
@@ -649,25 +655,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomePage(),
+                                                      const HomeScreen(),
                                                 ),
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 20, vertical: 3),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
-                                              fixedSize: Size(
+                                              fixedSize: const Size(
                                                 80,
                                                 2,
                                               ), // menentukan tinggi dan lebar
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               "Edit",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
@@ -694,15 +700,15 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 440,
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.16),
+                            color: const Color(0xFF000000).withOpacity(0.16),
                             width: 1.0,
                           ),
                         ),
@@ -713,19 +719,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                           child: Wrap(
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: 3),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
+                                    padding: EdgeInsets.only(left: 10.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Container(
+                                          child: SizedBox(
                                             width: 130,
                                             child: Text(
                                               'Mutia Rahman Jay',
@@ -754,7 +760,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Column(
@@ -762,18 +768,18 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -804,30 +810,30 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                     ),
                                   ),
 
-                                  SizedBox(
+                                  const SizedBox(
                                       height:
                                           5), // tambahkan SizedBox dengan height 4
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -859,25 +865,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -912,7 +918,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 6),
+                                  const SizedBox(height: 6),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Column(
@@ -921,19 +927,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFFFFFFF),
+                                            color: const Color(0xFFFFFFFF),
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             border: Border.all(
-                                              color: Color(0xFF000000)
+                                              color: const Color(0xFF000000)
                                                   .withOpacity(0.16),
                                               width: 1.0,
                                             ),
                                           ),
                                           width: 327,
                                           height: 30,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(
                                                 top: 5, left: 10),
                                             child: Column(
                                               crossAxisAlignment:
@@ -953,7 +959,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                           ),
                                         ),
 
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 2,
                                         ),
                                         // Tambahkan tombol di sini
@@ -964,25 +970,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      BuatKehadiran(),
+                                                      const BuatKehadiran(),
                                                 ),
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 20, vertical: 3),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
-                                              fixedSize: Size(
+                                              fixedSize: const Size(
                                                 80,
                                                 2,
                                               ), // menentukan tinggi dan lebar
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               "Edit",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
@@ -1009,15 +1015,15 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 630,
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.16),
+                            color: const Color(0xFF000000).withOpacity(0.16),
                             width: 1.0,
                           ),
                         ),
@@ -1028,19 +1034,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                           child: Wrap(
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: 3),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
+                                    padding: EdgeInsets.only(left: 10.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Container(
+                                          child: SizedBox(
                                             width: 130,
                                             child: Text(
                                               'Zid Irsyadin Sartono Wijaogy',
@@ -1069,7 +1075,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Column(
@@ -1077,18 +1083,18 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -1119,30 +1125,30 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                     ),
                                   ),
 
-                                  SizedBox(
+                                  const SizedBox(
                                       height:
                                           5), // tambahkan SizedBox dengan height 4
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -1174,25 +1180,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFFFFFFF),
+                                      color: const Color(0xFFFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color:
-                                            Color(0xFF000000).withOpacity(0.16),
+                                            const Color(0xFF000000).withOpacity(0.16),
                                         width: 1.0,
                                       ),
                                     ),
                                     width: 55,
                                     height: 55,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(top: 5.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
@@ -1227,7 +1233,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 6),
+                                  const SizedBox(height: 6),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Column(
@@ -1236,19 +1242,19 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFFFFFFF),
+                                            color: const Color(0xFFFFFFFF),
                                             borderRadius:
                                                 BorderRadius.circular(15),
                                             border: Border.all(
-                                              color: Color(0xFF000000)
+                                              color: const Color(0xFF000000)
                                                   .withOpacity(0.16),
                                               width: 1.0,
                                             ),
                                           ),
                                           width: 327,
                                           height: 30,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
+                                          child: const Padding(
+                                            padding: EdgeInsets.only(
                                                 top: 5, left: 10),
                                             child: Column(
                                               crossAxisAlignment:
@@ -1268,7 +1274,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                           ),
                                         ),
 
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 2,
                                         ),
                                         // Tambahkan tombol di sini
@@ -1279,25 +1285,25 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                     IsiKehadiran(),
+                                                     const IsiKehadiran(),
                                                 ),
                                               );
                                             },
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 20, vertical: 3),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                               ),
-                                              fixedSize: Size(
+                                              fixedSize: const Size(
                                                 80,
                                                 2,
                                               ), // menentukan tinggi dan lebar
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               "Edit",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
@@ -1324,24 +1330,6 @@ class _LaporanBulananState extends State<LaporanBulanan> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Beranda',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profil',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.note_alt_outlined),
-              label: 'Pelaporan',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue,
-          onTap: _onItemTapped,
-        ));
+    );
   }
 }

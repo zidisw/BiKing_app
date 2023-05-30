@@ -1,35 +1,46 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditLaporan extends StatefulWidget {
+  const EditLaporan({Key? key}) : super(key: key);
+  static String routeName = 'Edit Laporan';
+
   @override
   _EditLaporanState createState() => _EditLaporanState();
 }
 
 class _EditLaporanState extends State<EditLaporan> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+  
   String? _kelas;
   String? _nama;
   String? _masalah;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -39,15 +50,15 @@ class _EditLaporanState extends State<EditLaporan> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -60,8 +71,8 @@ class _EditLaporanState extends State<EditLaporan> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas",
                                   style: TextStyle(
@@ -72,14 +83,14 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   TextFormField(
@@ -87,7 +98,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0)),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -105,11 +116,11 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ),
                                 ]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -120,7 +131,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -128,7 +139,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -136,7 +147,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -155,11 +166,11 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Masalah yang sedang dialami/dirasakan",
                                   style: TextStyle(
@@ -170,7 +181,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -178,7 +189,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -186,7 +197,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 60.0, // ubah nilai vertical
                                           horizontal: 10.0,
                                         ),
@@ -205,11 +216,11 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Laporan",
                                   style: TextStyle(
@@ -220,28 +231,43 @@ class _EditLaporanState extends State<EditLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      DatePicker.showDatePicker(
-                                        context,
-                                        showTitleActions: true,
-                                        minTime: DateTime(2022, 1, 1),
-                                        maxTime: DateTime(2023, 12, 31),
-                                        onConfirm: (date) {
-                                          // tangkap tanggal yang dipilih
+                                      DateTimePicker(
+                                        type:
+                                            DateTimePickerType.dateTimeSeparate,
+                                        dateMask: 'd MMM, yyyy',
+                                        initialValue: DateTime.now().toString(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2100),
+                                        icon: const Icon(Icons.event),
+                                        dateLabelText: 'Date',
+                                        timeLabelText: "Hour",
+                                        selectableDayPredicate: (date) {
+                                          // Disable weekend days to select from the calendar
+                                          if (date.weekday == 6 ||
+                                              date.weekday == 7) {
+                                            return false;
+                                          }
+
+                                          return true;
                                         },
-                                        currentTime: DateTime.now(),
-                                        locale: LocaleType.id,
+                                        onChanged: (val) => print(val),
+                                        validator: (val) {
+                                          print(val);
+                                          return null;
+                                        },
+                                        onSaved: (val) => print(val),
                                       );
                                     },
                                     child: AbsorbPointer(
@@ -250,7 +276,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: EdgeInsets.symmetric(
+                                          contentPadding: const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -269,11 +295,11 @@ class _EditLaporanState extends State<EditLaporan> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Padding(
-                      padding: EdgeInsets.all(25),
+                      padding: const EdgeInsets.all(25),
                       child: Row(
                         children: [
                           Expanded(
@@ -283,13 +309,13 @@ class _EditLaporanState extends State<EditLaporan> {
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Batal',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -299,7 +325,7 @@ class _EditLaporanState extends State<EditLaporan> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 40),
+                          const SizedBox(width: 40),
                           Expanded(
                             child: ElevatedButton(
                               onPressed: () {
@@ -307,13 +333,13 @@ class _EditLaporanState extends State<EditLaporan> {
                               },
                               style: ElevatedButton.styleFrom(
                                backgroundColor: Colors.blue,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Simpan',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -332,25 +358,6 @@ class _EditLaporanState extends State<EditLaporan> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

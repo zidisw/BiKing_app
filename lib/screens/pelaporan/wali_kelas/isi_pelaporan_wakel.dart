@@ -1,62 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/guru/edit_kartu_laporan.dart';
-import 'package:flutter_biking/screens/pelaporan/guru/tambah_laporan_guru.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
+import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class WaliIsiPelaporan extends StatefulWidget {
-  const WaliIsiPelaporan({super.key});
+  const WaliIsiPelaporan({Key? key}) : super(key: key);
+  static String routeName = 'WaliIsiPelaporan';
 
   @override
   State<WaliIsiPelaporan> createState() => _WaliIsiPelaporanState();
 }
 
 class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => WaliIsiPelaporan()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan Penanganan Wali Kelas'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
+      ),
+        title:  Text('Laporan Penanganan Wali Kelas',
+        style:  GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
           child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 13, left: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 13, left: 20),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Column(
@@ -110,7 +94,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
-                                          "assets/icon/kartuu.png",
+                                          "assets/icons/kartuu.png",
                                         ),
                                       ),
                                     ),
@@ -161,23 +145,23 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    EditkartuScreen()),
+                                                    const EditkartuScreen()),
                                           );
                                         },
                                         child: Container(
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/edit.png",
+                                                "assets/icons/edit.png",
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 23,
                                       ),
                                       GestureDetector(
@@ -186,19 +170,19 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -213,10 +197,10 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/delete.png",
+                                                "assets/icons/delete.png",
                                               ),
                                             ),
                                           ),
@@ -271,7 +255,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
-                                          "assets/icon/kartuu.png",
+                                          "assets/icons/kartuu.png",
                                         ),
                                       ),
                                     ),
@@ -322,23 +306,23 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    EditkartuScreen()),
+                                                    const EditkartuScreen()),
                                           );
                                         },
                                         child: Container(
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/edit.png",
+                                                "assets/icons/edit.png",
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 23,
                                       ),
                                       GestureDetector(
@@ -347,19 +331,19 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -374,10 +358,10 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/delete.png",
+                                                "assets/icons/delete.png",
                                               ),
                                             ),
                                           ),
@@ -432,7 +416,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
-                                          "assets/icon/kartuu.png",
+                                          "assets/icons/kartuu.png",
                                         ),
                                       ),
                                     ),
@@ -483,23 +467,23 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    EditkartuScreen()),
+                                                    const EditkartuScreen()),
                                           );
                                         },
                                         child: Container(
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/edit.png",
+                                                "assets/icons/edit.png",
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 23,
                                       ),
                                       GestureDetector(
@@ -508,19 +492,19 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -535,10 +519,10 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/delete.png",
+                                                "assets/icons/delete.png",
                                               ),
                                             ),
                                           ),
@@ -593,7 +577,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
-                                          "assets/icon/kartuu.png",
+                                          "assets/icons/kartuu.png",
                                         ),
                                       ),
                                     ),
@@ -644,23 +628,23 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    EditkartuScreen()),
+                                                    const EditkartuScreen()),
                                           );
                                         },
                                         child: Container(
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/edit.png",
+                                                "assets/icons/edit.png",
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 23,
                                       ),
                                       GestureDetector(
@@ -669,19 +653,19 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -696,10 +680,10 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                           alignment: Alignment.centerRight,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/icon/delete.png",
+                                                "assets/icons/delete.png",
                                               ),
                                             ),
                                           ),
@@ -728,7 +712,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BuatKehadiran()),
+                        builder: (context) => const BuatKehadiran()),
                   );
                 },
                 child: Column(
@@ -738,10 +722,10 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                       alignment: Alignment.centerLeft,
                       width: 70,
                       height: 70,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(
-                            "asset/image/add.png",
+                            "assets/images/add.png",
                           ),
                         ),
                       ),
@@ -753,25 +737,6 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
           )
         ],
       )),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
     );
   }
 }

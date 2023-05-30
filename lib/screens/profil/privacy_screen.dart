@@ -2,52 +2,39 @@ import 'package:flutter/material.dart';
 
 class PrivacyScreens extends StatefulWidget {
   const PrivacyScreens({super.key});
+   static String routeName = 'PrivacyScreen';
 
   @override
   State<PrivacyScreens> createState() => _PrivacyScreensState();
 }
 
 class _PrivacyScreensState extends State<PrivacyScreens> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => PrivacyScreens()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kebijakan Privasi'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: const Text('Kebijakan Privasi'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -68,9 +55,9 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: const Text(
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                        child: Text(
                           "Kebijakan Privasi kami bertujuan untuk menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi yang diberikan oleh pengguna aplikasi Biking kami.",
                           textAlign: TextAlign.justify,
                           style: TextStyle(
@@ -87,10 +74,10 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                           alignment: Alignment.topCenter,
                           width: 250,
                           height: 250,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                "assets/image/datasecurity.png",
+                                "assets/images/datasecurity.png",
                               ),
                             ),
                           ),
@@ -121,20 +108,20 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                                           alignment: Alignment.centerLeft,
                                           width: 40,
                                           height: 40,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                "assets/image/pp1.png",
+                                                "assets/images/pp1.png",
                                               ),
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
-                                    Expanded(
+                                    const Expanded(
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -186,20 +173,20 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                                             alignment: Alignment.centerLeft,
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  "assets/image/pp2.png",
+                                                  "assets/images/pp2.png",
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Expanded(
+                                      const Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -252,20 +239,20 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                                             alignment: Alignment.centerLeft,
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  "assets/image/pp3.png",
+                                                  "assets/images/pp3.png",
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Expanded(
+                                      const Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -318,20 +305,20 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                                             alignment: Alignment.centerLeft,
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  "assets/image/pp4.png",
+                                                  "assets/images/pp4.png",
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Expanded(
+                                      const Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -384,20 +371,20 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                                             alignment: Alignment.centerLeft,
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  "assets/image/pp5.png",
+                                                  "assets/images/pp5.png",
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Expanded(
+                                      const Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -450,20 +437,20 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
                                             alignment: Alignment.centerLeft,
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  "assets/image/pp6.png",
+                                                  "assets/images/pp6.png",
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Expanded(
+                                      const Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -508,25 +495,7 @@ class _PrivacyScreensState extends State<PrivacyScreens> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

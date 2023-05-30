@@ -1,59 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/daftar_laporan_kehadiran.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/isi_pelaporan_wakel.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/tambah_laporan_wakel.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/daftar_laporan_kehadiran.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/isi_pelaporan_wakel.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/tambah_laporan_wakel.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class PelaporanWali extends StatefulWidget {
-  const PelaporanWali({super.key});
+  const PelaporanWali({Key? key}) : super(key: key);
+  static String routeName = 'PelaporanWali';
 
   @override
   State<PelaporanWali> createState() => _PelaporanWaliState();
 }
 
 class _PelaporanWaliState extends State<PelaporanWali> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => PelaporanWali()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+        title:  Text('Pelaporan',
+        style:  GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+      ),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
           child: SingleChildScrollView(
               child: Column(
@@ -69,10 +53,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                     width: 350,
                     height: 170,
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.20),
+                        color: const Color(0xFF000000).withOpacity(0.20),
                         width: 1.0,
                       ),
                     ),
@@ -81,7 +65,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Laporan Penanganan Wali Kelas",
                             style: TextStyle(
                               fontFamily: 'Poppins',
@@ -101,10 +85,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                       alignment: Alignment.centerLeft,
                                       width: 80,
                                       height: 80,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(
-                                            "assets/image/lapor.png",
+                                            "assets/images/lapor.png",
                                           ),
                                         ),
                                       ),
@@ -123,19 +107,19 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      WaliIsiPelaporan()),
+                                                      const WaliIsiPelaporan()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 80, vertical: 5),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               )),
-                                          child: Text(
+                                          child: const Text(
                                             "Buka",
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -154,19 +138,19 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      WaliTambahlaporan()),
+                                                      const WaliTambahlaporan()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF9180FF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF9180FF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 36, vertical: 8),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               )),
-                                          child: Text(
+                                          child: const Text(
                                             "Buat Laporan Baru",
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -200,10 +184,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                     width: 350,
                     height: 170,
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.20),
+                        color: const Color(0xFF000000).withOpacity(0.20),
                         width: 1.0,
                       ),
                     ),
@@ -212,7 +196,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Laporan Kehadiran Bulanan",
                             style: TextStyle(
                               fontFamily: 'Poppins',
@@ -232,10 +216,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                       alignment: Alignment.centerLeft,
                                       width: 80,
                                       height: 80,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(
-                                            "assets/image/bulanan.png",
+                                            "assets/images/bulanan.png",
                                           ),
                                         ),
                                       ),
@@ -254,19 +238,19 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      DaftarlaporankehadiranScreen()),
+                                                      const DaftarlaporankehadiranScreen()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 80, vertical: 5),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               )),
-                                          child: Text(
+                                          child: const Text(
                                             "Buka",
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -285,19 +269,19 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      BuatKehadiran()),
+                                                      const BuatKehadiran()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF9180FF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF9180FF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 36, vertical: 8),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               )),
-                                          child: Text(
+                                          child: const Text(
                                             "Buat Laporan Baru",
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -331,11 +315,11 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                       width: 350,
                       height: 30,
                       decoration: BoxDecoration(
-                        color: Color(0xFF38ACFF),
+                        color: const Color(0xFF38ACFF),
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 5.5, left: 10.0),
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 5.5, left: 10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -373,7 +357,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                               alignment: Alignment.centerLeft,
                               width: 5,
                               height: 40,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
                                     "assets/icon/dot.png",
@@ -383,10 +367,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Column(
                             children: [
                               Text.rich(
@@ -418,7 +402,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                               alignment: Alignment.centerLeft,
                               width: 5,
                               height: 60,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
                                     "assets/icon/dot.png",
@@ -428,10 +412,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Column(
                             children: [
                               Text.rich(
@@ -463,7 +447,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                               alignment: Alignment.centerLeft,
                               width: 5,
                               height: 40,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
                                     "assets/icon/dot.png",
@@ -473,10 +457,10 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Column(
                             children: [
                               Text.rich(
@@ -514,7 +498,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                        "assets/image/bawah.png",
+                        "assets/images/bawah.png",
                       ),
                     ),
                   ),
@@ -524,25 +508,6 @@ class _PelaporanWaliState extends State<PelaporanWali> {
           ),
         ],
       ))),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
     );
   }
 }

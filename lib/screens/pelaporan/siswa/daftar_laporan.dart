@@ -1,76 +1,79 @@
+import 'package:biking_app/screens/pelaporan/siswa/edit_laporan.dart';
+import 'package:biking_app/screens/pelaporan/siswa/isi_laporan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/buat_laporan.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/edit_laporan.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/isi_laporan.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/laporan_bulanan_wakel.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/pelaporan.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DaftarLaporan extends StatefulWidget {
+  const DaftarLaporan({Key? key}) : super(key: key);
+  static String routeName = 'DaftarLaporan';
+
   @override
   _DaftarLaporanState createState() => _DaftarLaporanState();
 }
 
 class _DaftarLaporanState extends State<DaftarLaporan> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pengaturan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Prelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Laporan Masalah',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
-            // Align(
-            //         alignment: Alignment.topCenter,
-            //         child: Container(
-            //           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 41),
-            //           decoration: BoxDecoration(
-            //             color: Color(0xFF38ACFF),
-            //           ),
-            //           width: double.infinity,
-            //           height: 75,
-            //           child: Row(
-            //             crossAxisAlignment: CrossAxisAlignment.center,
-            //             children: [
-            //               Image.asset(
-            //                 'assets/Back.png',
-            //                 width: 20,
-            //                 height: 20,
-            //               ),
-            //               SizedBox(
-            //                 width: 10,
-            //               ),
-            //               const Text(
-            //                 "Laporan Masalah",
-            //                 style: TextStyle(
-            //                   color: Color(0xFFFFFFFF),
-            //                   fontSize: 20,
-            //                   fontWeight: FontWeight.w600,
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 41),
+              decoration: BoxDecoration(
+                color: Color(0xFF38ACFF),
+              ),
+              width: double.infinity,
+              height: 75,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/Back.png',
+                    width: 20,
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    "Laporan Masalah",
+                    style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                child: Column(
+                child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
@@ -95,22 +98,22 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => IsiLaporan()),
+                        MaterialPageRoute(builder: (context) => const IsiLaporan()),
                       );
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -129,19 +132,19 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                   child: Row(
                                     children: [
                                       Image.asset(
-                                        'assets/icon/laporan.png',
+                                        'assets/icons/laporan.png',
                                         width: 90,
                                         height: 90,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 3,
                                       ),
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(
+                                            padding: EdgeInsets.only(
                                                 left: 3.0),
                                             child: Text(
                                               "7 Maret 2023",
@@ -154,7 +157,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           ),
                                           SizedBox(height: 7),
                                           Padding(
-                                            padding: const EdgeInsets.only(
+                                            padding: EdgeInsets.only(
                                                 left: 3.0),
                                             child: Text(
                                               "Diproses",
@@ -184,16 +187,16 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  EditLaporan()),
+                                                  const EditLaporan()),
                                         );
                                       },
                                       child: Image.asset(
-                                        'assets/icon/edit.png',
+                                        'assets/icons/edit.png',
                                         width: 45,
                                         height: 45,
                                       ),
                                     ),
-                                    SizedBox(height: 2),
+                                    const SizedBox(height: 2),
                                     GestureDetector(
                                       onTap: () {
                                         // fungsi yang dijalankan ketika gambar delete ditekan
@@ -201,12 +204,12 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                              title: Text("Konfirmasi"),
-                                              content: Text(
+                                              title: const Text("Konfirmasi"),
+                                              content: const Text(
                                                   "Apakah Anda yakin ingin menghapus laporan ini?"),
                                               actions: [
                                                 TextButton(
-                                                  child: Text("Ya"),
+                                                  child: const Text("Ya"),
                                                   onPressed: () {
                                                     // fungsi yang dijalankan ketika tombol "Ya" pada dialog diklik
                                                     Navigator.pop(context);
@@ -214,7 +217,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                                   },
                                                 ),
                                                 TextButton(
-                                                  child: Text("Tidak"),
+                                                  child: const Text("Tidak"),
                                                   onPressed: () {
                                                     // fungsi yang dijalankan ketika tombol "Tidak" pada dialog diklik
                                                     Navigator.pop(context);
@@ -226,7 +229,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                         );
                                       },
                                       child: Image.asset(
-                                        'assets/icon/delete.png',
+                                        'assets/icons/delete.png',
                                         width: 45,
                                         height: 45,
                                       ),
@@ -248,22 +251,22 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 175,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => IsiLaporan()),
+                        MaterialPageRoute(builder: (context) => const IsiLaporan()),
                       );
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -282,19 +285,19 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                   child: Row(
                                     children: [
                                       Image.asset(
-                                        'assets/icon/laporan.png',
+                                        'assets/icons/laporan.png',
                                         width: 90,
                                         height: 90,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 3,
                                       ),
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(
+                                            padding: EdgeInsets.only(
                                                 left: 3.0),
                                             child: Text(
                                               "2 Maret 2023",
@@ -307,7 +310,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           ),
                                           SizedBox(height: 7),
                                           Padding(
-                                            padding: const EdgeInsets.only(
+                                            padding: EdgeInsets.only(
                                                 left: 3.0),
                                             child: Text(
                                               "Diproses",
@@ -337,16 +340,16 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  EditLaporan()),
+                                                  const EditLaporan()),
                                         );
                                       },
                                       child: Image.asset(
-                                        'assets/icon/edit.png',
+                                        'assets/icons/edit.png',
                                         width: 45,
                                         height: 45,
                                       ),
                                     ),
-                                    SizedBox(height: 2),
+                                    const SizedBox(height: 2),
                                     GestureDetector(
                                       onTap: () {
                                         // fungsi yang dijalankan ketika gambar delete ditekan
@@ -354,12 +357,12 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                              title: Text("Konfirmasi"),
-                                              content: Text(
+                                              title: const Text("Konfirmasi"),
+                                              content: const Text(
                                                   "Apakah Anda yakin ingin menghapus laporan ini?"),
                                               actions: [
                                                 TextButton(
-                                                  child: Text("Ya"),
+                                                  child: const Text("Ya"),
                                                   onPressed: () {
                                                     // fungsi yang dijalankan ketika tombol "Ya" pada dialog diklik
                                                     Navigator.pop(context);
@@ -367,7 +370,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                                   },
                                                 ),
                                                 TextButton(
-                                                  child: Text("Tidak"),
+                                                  child: const Text("Tidak"),
                                                   onPressed: () {
                                                     // fungsi yang dijalankan ketika tombol "Tidak" pada dialog diklik
                                                     Navigator.pop(context);
@@ -379,7 +382,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                                         );
                                       },
                                       child: Image.asset(
-                                        'assets/icon/delete.png',
+                                        'assets/icons/delete.png',
                                         width: 45,
                                         height: 45,
                                       ),
@@ -399,25 +402,7 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddbulanScreen extends StatefulWidget {
-  const AddbulanScreen({super.key});
+  const AddbulanScreen({Key? key}) : super(key: key);
+  static String routeName = 'AddbulanScreen';
 
   @override
   State<AddbulanScreen> createState() => _AddbulanScreenState();
@@ -9,50 +11,36 @@ class AddbulanScreen extends StatefulWidget {
 
 class _AddbulanScreenState extends State<AddbulanScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+
   String? _kelas;
   String? _bulan;
   String? _tahun;
-  List<String> _tahunList = ['2020', '2021', '2022', '2023', '2024', '2025'];
+  final List<String> _tahunList = ['2020', '2021', '2022', '2023', '2024', '2025'];
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => AddbulanScreen()),
-    );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan Kehadiran Bulanan'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+        title:  Text('Laporan Kehadiran Bulanan',
+        style:  GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+      ),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -68,10 +56,10 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                         width: 360,
                         height: 330,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.1),
+                            color: const Color(0xFF000000).withOpacity(0.1),
                             width: 1.0,
                           ),
                         ),
@@ -80,7 +68,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Kelas",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -98,7 +86,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -136,10 +124,10 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Bulan",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -157,7 +145,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -197,10 +185,10 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Tahun",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -218,7 +206,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -257,7 +245,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Row(
+                            title: const Row(
                               children: [
                                 Icon(
                                   Icons.check_circle,
@@ -269,13 +257,13 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                 Text('Sukses'),
                               ],
                             ),
-                            content: Text('Laporan anda berhasil disimpan'),
+                            content: const Text('Laporan anda berhasil disimpan'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                               ),
                             ],
                           );
@@ -284,12 +272,12 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Simpan",
                       style: TextStyle(
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -313,7 +301,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(
-                            "assets/image/footerprofil.png",
+                            "assets/images/footerprofil.png",
                           ),
                         ),
                       ),
@@ -325,25 +313,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

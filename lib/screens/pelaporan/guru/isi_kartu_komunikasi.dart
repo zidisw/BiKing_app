@@ -1,41 +1,40 @@
 import 'package:flutter/material.dart';
 
 class IsikartuScreen extends StatefulWidget {
+  const IsikartuScreen({super.key});
+
   @override
   _IsikartuScreenState createState() => _IsikartuScreenState();
 }
 
 class _IsikartuScreenState extends State<IsikartuScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+ 
   String? _kelas;
   String? _nama;
   String? _masalah;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState?.validate() == true) {
-      _formKey.currentState?.save();
-      // Proses pengiriman data ke API atau database
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: const Text('Pelaporan',
+        style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -45,15 +44,15 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -65,8 +64,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kepada",
                                   style: TextStyle(
@@ -77,7 +76,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -85,12 +84,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -99,8 +98,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 50,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -124,11 +123,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -139,7 +138,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -147,12 +146,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -161,8 +160,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 50,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -186,11 +185,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Siswa di bawah ini perlu ditangani masalahnya",
                                   style: TextStyle(
@@ -201,11 +200,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -216,7 +215,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -224,12 +223,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -238,8 +237,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 50,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -263,11 +262,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas",
                                   style: TextStyle(
@@ -278,7 +277,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -286,12 +285,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -300,8 +299,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 50,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -325,11 +324,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Deskripsi Masalah / Penanganan yang Telah dilakukan",
                                   style: TextStyle(
@@ -340,7 +339,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -348,12 +347,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -362,8 +361,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 150,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0, right: 11.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -387,11 +386,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Saran / Tindak Lanjut",
                                   style: TextStyle(
@@ -402,7 +401,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -410,12 +409,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -424,8 +423,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 150,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -449,11 +448,11 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Laporan",
                                   style: TextStyle(
@@ -464,7 +463,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -472,12 +471,12 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
+                                        color: const Color(0xFFFFFFFF),
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                           color: Colors.grey,
@@ -486,8 +485,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       width: 330,
                                       height: 50,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -516,7 +515,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -524,15 +523,15 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 1000,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -543,8 +542,8 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 10.0),
                               child: Text(
                                 "1 Tanggapan",
                                 style: TextStyle(
@@ -555,25 +554,25 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Image.asset(
-                                  'assets/image/orang.png',
+                                  'assets/images/orang.png',
                                   width: 40,
                                   height: 40,
                                 ),
-                                SizedBox(width: 10),
-                                Expanded(
+                                const SizedBox(width: 10),
+                                const Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 6.0),
+                                            EdgeInsets.only(left: 6.0),
                                         child: Text(
                                           "Guru BK 1",
                                           style: TextStyle(
@@ -589,7 +588,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 6.0),
+                                            EdgeInsets.only(left: 6.0),
                                         child: Text(
                                           "Laporan telah ditangani oleh saya, untuk siswa bernama Rayhan tolong untuk bersabar dalam menghadapi masalah yang ada.",
                                           style: TextStyle(
@@ -605,7 +604,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                                       ),
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 6.0),
+                                            EdgeInsets.only(left: 6.0),
                                         child: Text(
                                           "2 Maret 2023",
                                           style: TextStyle(
@@ -625,7 +624,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -633,25 +632,7 @@ class _IsikartuScreenState extends State<IsikartuScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

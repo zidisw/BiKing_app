@@ -1,55 +1,30 @@
+import 'package:biking_app/screens/home_screen/widgets/Informationbk_screen.dart';
+import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/laporan_bulanan_wakel.dart';
+import 'package:biking_app/screens/profil/bantuan.dart';
+import 'package:biking_app/screens/profil/edit_password.dart';
+import 'package:biking_app/screens/profil/hubungi_kami.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/daftar_laporan.dart';
-import 'package:flutter_biking/screens/beranda/tentang_kami.dart';
-import 'package:flutter_biking/screens/profil/bantuan..dart';
-import 'package:flutter_biking/screens/profil/edit_password.dart';
-import 'package:flutter_biking/screens/log_in/welcome_screen.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/laporan_bulanan_wakel.dart';
-import 'package:flutter_biking/screens/beranda/info_bk.dart';
-import 'package:flutter_biking/screens/profil/hubungi_kami.dart';
-import 'package:flutter_biking/screens/profil/privacy_screen.dart';
-import 'package:line_icons/line_icons.dart';
+
 
 class SettingWakel extends StatefulWidget {
+  const SettingWakel({Key? key}) : super(key: key);
+  static String routeName = 'SettingWakel';
+
   @override
   _SettingWakelState createState() => _SettingWakelState();
 }
 
 class _SettingWakelState extends State<SettingWakel> {
-  int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 2) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => LaporanBulanan()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
+        title: const Text('Profil'),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
@@ -57,15 +32,15 @@ class _SettingWakelState extends State<SettingWakel> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -84,19 +59,19 @@ class _SettingWakelState extends State<SettingWakel> {
                                   child: Row(
                                     children: [
                                       Image.asset(
-                                        'assets/image/wakel.png',
+                                        'assets/images/wakel.png',
                                         width: 80,
                                         height: 80,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 30,
                                       ),
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                              padding: const EdgeInsets.only(
+                                              padding: EdgeInsets.only(
                                                   left: 20.0),
                                               child: Text(
                                                 "Siti Rahma",
@@ -109,7 +84,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                               )),
                                           SizedBox(height: 10),
                                           Padding(
-                                              padding: const EdgeInsets.only(
+                                              padding: EdgeInsets.only(
                                                   left: 20.0),
                                               child: Text(
                                                 "Wali Kelas XII MIPA 1",
@@ -137,15 +112,15 @@ class _SettingWakelState extends State<SettingWakel> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 140,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -159,8 +134,8 @@ class _SettingWakelState extends State<SettingWakel> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Pengaturan Akun",
                                   style: TextStyle(
@@ -171,7 +146,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 14,
                               ),
                               Padding(
@@ -179,7 +154,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Ubah kata sandi',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -198,10 +173,10 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    UbahPassword()),
+                                                    const UbahPassword()),
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.keyboard_double_arrow_right,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -224,15 +199,15 @@ class _SettingWakelState extends State<SettingWakel> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 230,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -246,8 +221,8 @@ class _SettingWakelState extends State<SettingWakel> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Interaksi Saya",
                                   style: TextStyle(
@@ -258,7 +233,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 14,
                               ),
                               Padding(
@@ -266,7 +241,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Jumlah Interaksi Saya',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -285,10 +260,10 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                   LaporanBulanan()),
+                                                   const LaporanBulanan()),
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.keyboard_double_arrow_right,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -311,15 +286,15 @@ class _SettingWakelState extends State<SettingWakel> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 320,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -333,8 +308,8 @@ class _SettingWakelState extends State<SettingWakel> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Aplikasi BiKing",
                                   style: TextStyle(
@@ -345,7 +320,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Padding(
@@ -353,7 +328,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Tentang Kami',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -372,10 +347,10 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    TentangKami()),
+                                                    const AboutUsScreen()),
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.keyboard_double_arrow_right,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -385,7 +360,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 11,
                               ),
                               Padding(
@@ -393,7 +368,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Privasi',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -412,10 +387,10 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                   InfoBk()),
+                                                   const InformasibkScreen()),
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.keyboard_double_arrow_right,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -425,7 +400,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 11,
                               ),
                               Padding(
@@ -433,7 +408,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Bantuan',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -452,10 +427,10 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                   Bantuan()),
+                                                   const Bantuan()),
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.keyboard_double_arrow_right,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -465,7 +440,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 11,
                               ),
                               Padding(
@@ -473,7 +448,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Hubungi Kami',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -492,10 +467,10 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    HubungiKami()),
+                                                    const HubungiKami()),
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.keyboard_double_arrow_right,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -518,15 +493,15 @@ class _SettingWakelState extends State<SettingWakel> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 518,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -545,7 +520,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Log Out',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -564,20 +539,20 @@ class _SettingWakelState extends State<SettingWakel> {
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text(
+                                                title: const Text(
                                                     "Keluar dari aplikasi"),
-                                                content: Text(
+                                                content: const Text(
                                                     "Kamu Yakin Ingin Keluar dari BiKing?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Keluar"),
+                                                    child: const Text("Keluar"),
                                                     onPressed: () {
                                                       // Lakukan proses keluar dari aplikasi di sini
                                                       Navigator.of(context)
@@ -589,7 +564,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                             },
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.arrow_circle_right_outlined,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -610,25 +585,6 @@ class _SettingWakelState extends State<SettingWakel> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

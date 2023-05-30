@@ -1,8 +1,10 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditlaporanpenangananScreen extends StatefulWidget {
-  const EditlaporanpenangananScreen({super.key});
+  const EditlaporanpenangananScreen({Key? key}) : super(key: key);
+  static String routeName = 'EditlaporanpenangananScreen';
 
   @override
   State<EditlaporanpenangananScreen> createState() =>
@@ -10,52 +12,36 @@ class EditlaporanpenangananScreen extends StatefulWidget {
 }
 
 class _EditlaporanpenangananScreenState
-    extends State<EditlaporanpenangananScreen> {
+  extends State<EditlaporanpenangananScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+
   String? _kelas;
   String? _nama;
   String? _masalah;
   String? _penanganan;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => EditlaporanpenangananScreen()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan Penanganan Wali Kelas'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+        title:  Text('Laporan Penanganan Wali Kelas',
+        style:  GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+      ),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -71,10 +57,10 @@ class _EditlaporanpenangananScreenState
                         width: 360,
                         height: 720,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.1),
+                            color: const Color(0xFF000000).withOpacity(0.1),
                             width: 1.0,
                           ),
                         ),
@@ -83,7 +69,7 @@ class _EditlaporanpenangananScreenState
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Nama Siswa",
                                 style: TextStyle(
                                   color: Color(0xFF000000),
@@ -91,7 +77,7 @@ class _EditlaporanpenangananScreenState
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                   height:
                                       10), // add some spacing between the text and the TextFormField
                               SizedBox(
@@ -102,7 +88,7 @@ class _EditlaporanpenangananScreenState
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                       vertical: 16.0,
                                       horizontal: 10.0,
                                     ),
@@ -119,10 +105,10 @@ class _EditlaporanpenangananScreenState
                                   },
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Kelas",
                                 style: TextStyle(
                                   color: Color(0xFF000000),
@@ -141,7 +127,7 @@ class _EditlaporanpenangananScreenState
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -159,10 +145,10 @@ class _EditlaporanpenangananScreenState
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Masalah",
                                 style: TextStyle(
                                   color: Color(0xFF000000),
@@ -181,7 +167,7 @@ class _EditlaporanpenangananScreenState
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 70.0,
                                         horizontal: 10.0,
                                       ),
@@ -199,10 +185,10 @@ class _EditlaporanpenangananScreenState
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Penanganan yang Sudah Dilakukan",
                                 style: TextStyle(
                                   color: Color(0xFF000000),
@@ -221,7 +207,7 @@ class _EditlaporanpenangananScreenState
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 70.0,
                                         horizontal: 10.0,
                                       ),
@@ -240,10 +226,10 @@ class _EditlaporanpenangananScreenState
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Tanggal",
                                 style: TextStyle(
                                   color: Color(0xFF000000),
@@ -254,23 +240,39 @@ class _EditlaporanpenangananScreenState
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   SizedBox(
                                     width: 330,
                                     child: GestureDetector(
                                       onTap: () {
-                                        DatePicker.showDatePicker(
-                                          context,
-                                          showTitleActions: true,
-                                          minTime: DateTime(2022, 1, 1),
-                                          maxTime: DateTime(2023, 12, 31),
-                                          onConfirm: (date) {
-                                            // tangkap tanggal yang dipilih
+                                        DateTimePicker(
+                                          type: DateTimePickerType
+                                              .dateTimeSeparate,
+                                          dateMask: 'd MMM, yyyy',
+                                          initialValue:
+                                              DateTime.now().toString(),
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2100),
+                                          icon: const Icon(Icons.event),
+                                          dateLabelText: 'Date',
+                                          timeLabelText: "Hour",
+                                          selectableDayPredicate: (date) {
+                                            // Disable weekend days to select from the calendar
+                                            if (date.weekday == 6 ||
+                                                date.weekday == 7) {
+                                              return false;
+                                            }
+
+                                            return true;
                                           },
-                                          currentTime: DateTime.now(),
-                                          locale: LocaleType.id,
+                                          onChanged: (val) => print(val),
+                                          validator: (val) {
+                                            print(val);
+                                            return null;
+                                          },
+                                          onSaved: (val) => print(val),
                                         );
                                       },
                                       child: AbsorbPointer(
@@ -281,7 +283,7 @@ class _EditlaporanpenangananScreenState
                                                     BorderRadius.circular(
                                                         12.0)),
                                             contentPadding:
-                                                EdgeInsets.symmetric(
+                                                const EdgeInsets.symmetric(
                                               vertical: 16.0,
                                               horizontal: 10.0,
                                             ),
@@ -305,7 +307,7 @@ class _EditlaporanpenangananScreenState
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(25),
+                padding: const EdgeInsets.all(25),
                 child: Row(
                   children: [
                     Expanded(
@@ -315,13 +317,13 @@ class _EditlaporanpenangananScreenState
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.grey,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Batal',
                           style: TextStyle(
                             fontSize: 14,
@@ -330,7 +332,7 @@ class _EditlaporanpenangananScreenState
                         ),
                       ),
                     ),
-                    SizedBox(width: 40),
+                    const SizedBox(width: 40),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
@@ -338,13 +340,13 @@ class _EditlaporanpenangananScreenState
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Simpan',
                           style: TextStyle(
                             fontSize: 14,
@@ -359,25 +361,6 @@ class _EditlaporanpenangananScreenState
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

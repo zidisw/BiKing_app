@@ -1,60 +1,65 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BuatLaporan extends StatefulWidget {
+  const BuatLaporan({Key? key}) : super(key: key);
+  static String routeName = 'BuatLaporan';
+
+
   @override
   _BuatLaporanState createState() => _BuatLaporanState();
 }
 
 class _BuatLaporanState extends State<BuatLaporan> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+
   String? _kelas;
   String? _nama;
   String? _masalah;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState?.validate() == true) {
-      _formKey.currentState?.save();
-      // Proses pengiriman data ke API atau database
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Stack(
             children: [
               Align(
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -67,8 +72,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas",
                                   style: TextStyle(
@@ -79,14 +84,14 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   TextFormField(
@@ -94,7 +99,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0)),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -112,11 +117,11 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                 ]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -127,7 +132,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -135,7 +140,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -143,7 +148,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -162,11 +167,11 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Masalah yang sedang dialami/dirasakan",
                                   style: TextStyle(
@@ -177,7 +182,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -185,7 +190,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -193,7 +198,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 60.0, // ubah nilai vertical
                                           horizontal: 10.0,
                                         ),
@@ -212,11 +217,11 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Laporan",
                                   style: TextStyle(
@@ -227,28 +232,43 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      DatePicker.showDatePicker(
-                                        context,
-                                        showTitleActions: true,
-                                        minTime: DateTime(2022, 1, 1),
-                                        maxTime: DateTime(2023, 12, 31),
-                                        onConfirm: (date) {
-                                          // tangkap tanggal yang dipilih
+                                      DateTimePicker(
+                                        type:
+                                            DateTimePickerType.dateTimeSeparate,
+                                        dateMask: 'd MMM, yyyy',
+                                        initialValue: DateTime.now().toString(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2100),
+                                        icon: const Icon(Icons.event),
+                                        dateLabelText: 'Date',
+                                        timeLabelText: "Hour",
+                                        selectableDayPredicate: (date) {
+                                          // Disable weekend days to select from the calendar
+                                          if (date.weekday == 6 ||
+                                              date.weekday == 7) {
+                                            return false;
+                                          }
+
+                                          return true;
                                         },
-                                        currentTime: DateTime.now(),
-                                        locale: LocaleType.id,
+                                        onChanged: (val) => print(val),
+                                        validator: (val) {
+                                          print(val);
+                                          return null;
+                                        },
+                                        onSaved: (val) => print(val),
                                       );
                                     },
                                     child: AbsorbPointer(
@@ -257,7 +277,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: EdgeInsets.symmetric(
+                                          contentPadding: const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -276,7 +296,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
@@ -285,7 +305,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Row(
+                                title: const Row(
                                   children: [
                                     Icon(
                                       Icons.check_circle,
@@ -297,13 +317,13 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                     Text('Sukses'),
                                   ],
                                 ),
-                                content: Text('Laporan anda berhasil dikirim'),
+                                content: const Text('Laporan anda berhasil dikirim'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('OK'),
+                                    child: const Text('OK'),
                                   ),
                                 ],
                               );
@@ -312,13 +332,13 @@ class _BuatLaporanState extends State<BuatLaporan> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Kirim",
                           style: TextStyle(
                             fontFamily: 'Poppins',
@@ -335,25 +355,6 @@ class _BuatLaporanState extends State<BuatLaporan> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

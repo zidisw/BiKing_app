@@ -1,96 +1,61 @@
+import 'package:biking_app/constants.dart';
+import 'package:biking_app/screens/profil/guru/setting_guru.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/pelaporan_wakel.dart';
-import 'package:flutter_biking/screens/profil/guru/setting_guru.dart';
 
 class ProfilguruScreen extends StatefulWidget {
-  const ProfilguruScreen({super.key});
+  const ProfilguruScreen({Key? key}) : super(key: key);
+  static String routeName = 'ProfilguruScreen';
 
   @override
   State<ProfilguruScreen> createState() => _ProfilguruScreenState();
 }
 
 class _ProfilguruScreenState extends State<ProfilguruScreen> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 2) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => PelaporanWali()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
-        actions: [
-          PopupMenuButton(
-            onSelected: (result) {
-              if (result == 'Halaman Selanjutnya') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SettingScreen()),
-                );
-              }
-            },
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem(
-                value: 'Halaman Selanjutnya',
-                child: Text('Profil Guru'),
-              ),
-            ],
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
           ),
+        ),
+        title: const Text('Profil',
+            style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+        
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingScreen()),
+              );
+            },
+          )
         ],
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 200.0),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Transform.scale(
-                  scale: 1.1,
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    width: double.infinity,
-                    height: 79,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "asset/image/footerprofil.png",
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            
             Align(
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Stack(
@@ -99,10 +64,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                         alignment: Alignment.topCenter,
                         width: 130,
                         height: 150,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              "asset/image/profilguru.png",
+                              "assets/images/profilguru.png",
                             ),
                           ),
                         ),
@@ -111,7 +76,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                         bottom: 0,
                         right: 0,
                         child: Image.asset(
-                          "asset/image/addphoto.png",
+                          "assets/images/addphoto.png",
                           width: 30,
                           height: 30,
                         ),
@@ -121,46 +86,44 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                 ],
               ),
             ),
-            Align(
+            const Align(
               alignment: Alignment.topCenter,
-              child: Container(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 175,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 180,
+                    ),
+                    Text(
+                      "Info Profil",
+                      style: TextStyle(
+                        color: Color(0xFF0579CC),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const Text(
-                        "Info Profil",
-                        style: TextStyle(
-                          color: Color(0xFF0579CC),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ]),
-              ),
+                    ),
+                  ]),
             ),
             Align(
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 210,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
-                    height: 70,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                    width: 360,
+                    height: 60,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -168,27 +131,27 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Mawar",
+                                  "Zid Ni Boss",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -205,22 +168,22 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 290,
+                  const SizedBox(
+                    height: 280,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
-                    height: 70,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                    width: 360,
+                    height: 60,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -228,27 +191,27 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nomor HP",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "082123456789",
+                                  "085349313355",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -265,22 +228,22 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 370,
+                  const SizedBox(
+                    height: 350,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
-                    height: 70,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                    width: 360,
+                    height: 60,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -288,27 +251,27 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Lahir",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "13 02 1997",
+                                  "7 Agustus 2001",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -325,22 +288,22 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 450,
+                  const SizedBox(
+                    height: 420,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
-                    height: 70,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                    width: 360,
+                    height: 60,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -348,27 +311,27 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Mata Pelajaran",
+                                  "Jabatan",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Fisika",
+                                  "Guru BK Ilegal",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -385,22 +348,22 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 530,
+                  const SizedBox(
+                    height: 490,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
-                    height: 70,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                    width: 360,
+                    height: 60,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -408,27 +371,27 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "NIP",
+                                  "NIM",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 13,
+                                height: 7,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "1234567890",
+                                  "D121201016",
                                   style: TextStyle(
-                                    color: Color(0xFF584D99),
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -444,25 +407,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

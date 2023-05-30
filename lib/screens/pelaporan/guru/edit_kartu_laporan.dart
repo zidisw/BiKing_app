@@ -1,42 +1,41 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class EditkartuScreen extends StatefulWidget {
+  const EditkartuScreen({super.key});
+
   @override
   _EditkartuScreenState createState() => _EditkartuScreenState();
 }
 
 class _EditkartuScreenState extends State<EditkartuScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+  
   String? _kelas;
   String? _nama;
   String? _masalah;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState?.validate() == true) {
-      _formKey.currentState?.save();
-      // Proses pengiriman data ke API atau database
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: const Text('Pelaporan',
+        style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -46,15 +45,15 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -67,8 +66,8 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kepada",
                                   style: TextStyle(
@@ -79,14 +78,14 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   TextFormField(
@@ -94,7 +93,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0)),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -112,11 +111,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -127,7 +126,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -135,7 +134,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -143,7 +142,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -163,11 +162,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Siswa di bawah ini perlu ditangani masalahnya",
                                   style: TextStyle(
@@ -178,11 +177,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -193,7 +192,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -201,7 +200,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -209,7 +208,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -228,11 +227,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas",
                                   style: TextStyle(
@@ -243,7 +242,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -251,7 +250,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -259,7 +258,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -278,11 +277,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Deskripsi Masalah / Penanganan yang Telah dilakukan",
                                   style: TextStyle(
@@ -293,7 +292,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -301,7 +300,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -309,7 +308,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 60.0, // ubah nilai vertical
                                           horizontal: 10.0,
                                         ),
@@ -328,11 +327,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Saran / Tindak Lanjut",
                                   style: TextStyle(
@@ -343,7 +342,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -351,7 +350,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -359,7 +358,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 60.0, // ubah nilai vertical
                                           horizontal: 10.0,
                                         ),
@@ -378,11 +377,11 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Laporan",
                                   style: TextStyle(
@@ -393,28 +392,43 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      DatePicker.showDatePicker(
-                                        context,
-                                        showTitleActions: true,
-                                        minTime: DateTime(2022, 1, 1),
-                                        maxTime: DateTime(2023, 12, 31),
-                                        onConfirm: (date) {
-                                          // tangkap tanggal yang dipilih
+                                     DateTimePicker(
+                                        type:
+                                            DateTimePickerType.dateTimeSeparate,
+                                        dateMask: 'd MMM, yyyy',
+                                        initialValue: DateTime.now().toString(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2100),
+                                        icon: const Icon(Icons.event),
+                                        dateLabelText: 'Date',
+                                        timeLabelText: "Hour",
+                                        selectableDayPredicate: (date) {
+                                          // Disable weekend days to select from the calendar
+                                          if (date.weekday == 6 ||
+                                              date.weekday == 7) {
+                                            return false;
+                                          }
+
+                                          return true;
                                         },
-                                        currentTime: DateTime.now(),
-                                        locale: LocaleType.id,
+                                        onChanged: (val) => print(val),
+                                        validator: (val) {
+                                          print(val);
+                                          return null;
+                                        },
+                                        onSaved: (val) => print(val),
                                       );
                                     },
                                     child: AbsorbPointer(
@@ -423,7 +437,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: EdgeInsets.symmetric(
+                                          contentPadding: const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -442,9 +456,9 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Padding(
-                      padding: EdgeInsets.all(25),
+                      padding: const EdgeInsets.all(25),
                       child: Row(
                         children: [
                           Expanded(
@@ -454,13 +468,13 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Batal',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -470,7 +484,7 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 40),
+                          const SizedBox(width: 40),
                           Expanded(
                             child: ElevatedButton(
                               onPressed: () {
@@ -478,13 +492,13 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Simpan',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -503,25 +517,6 @@ class _EditkartuScreenState extends State<EditkartuScreen> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

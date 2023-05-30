@@ -1,41 +1,43 @@
+import 'package:biking_app/screens/pelaporan/guru/tambah_laporan_guru.dart';
+import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/buat_laporan.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/daftar_laporan.dart';
-import 'package:flutter_biking/navigation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Pelaporan extends StatefulWidget {
+  const Pelaporan({Key? key}) : super(key: key);
+  static String routeName = 'Pelaporan';
+  
   @override
   _PelaporanState createState() => _PelaporanState();
 }
 
 class _PelaporanState extends State<Pelaporan> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-  void _navigateToNavigation() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Navigation()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: 
         
@@ -45,15 +47,15 @@ class _PelaporanState extends State<Pelaporan> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -67,9 +69,9 @@ class _PelaporanState extends State<Pelaporan> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 3),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15.0),
+                              const SizedBox(height: 3),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 15.0),
                                 child: Text(
                                   'Laporan Masalah',
                                   style: TextStyle(
@@ -80,17 +82,17 @@ class _PelaporanState extends State<Pelaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Padding(
                                   padding: const EdgeInsets.only(left: 10.0),
                                   child: Row(
                                     children: [
                                       Image.asset(
-                                        'assets/image/lapor.png',
+                                        'assets/images/lapor.png',
                                         width: 90,
                                         height: 90,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 30,
                                       ),
                                       Column(
@@ -106,14 +108,14 @@ class _PelaporanState extends State<Pelaporan> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            DaftarLaporan()),
+                                                            const DaftarLaporan()),
                                                   );
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                     backgroundColor:
-                                                        Color(0xFF38ACFF),
+                                                        const Color(0xFF38ACFF),
                                                     padding:
-                                                        EdgeInsets.symmetric(
+                                                        const EdgeInsets.symmetric(
                                                             horizontal: 84,
                                                             vertical: 8),
                                                     shape:
@@ -122,7 +124,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                           BorderRadius.circular(
                                                               15),
                                                     )),
-                                                child: Text(
+                                                child: const Text(
                                                   "Buka",
                                                   style: TextStyle(
                                                   fontFamily: 'Poppins',
@@ -133,7 +135,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                   ),
                                                 )),
                                           ),
-                                          SizedBox(height: 5),
+                                          const SizedBox(height: 5),
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 20.0),
@@ -143,14 +145,14 @@ class _PelaporanState extends State<Pelaporan> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            BuatLaporan()),
+                                                            const BuatLaporan()),
                                                   );
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                     backgroundColor:
-                                                        Color(0xFF9180FF),
+                                                        const Color(0xFF9180FF),
                                                     padding:
-                                                        EdgeInsets.symmetric(
+                                                        const EdgeInsets.symmetric(
                                                             horizontal: 37,
                                                             vertical: 8),
                                                     shape:
@@ -159,7 +161,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                           BorderRadius.circular(
                                                               15),
                                                     )),
-                                                child: Text(
+                                                child: const Text(
                                                   "Buat Laporan Baru",
                                                   style: TextStyle(
                                                     fontFamily: 'Poppins',
@@ -185,25 +187,6 @@ class _PelaporanState extends State<Pelaporan> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

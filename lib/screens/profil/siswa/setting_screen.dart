@@ -1,54 +1,42 @@
+import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
+import 'package:biking_app/screens/profil/bantuan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/daftar_laporan.dart';
-import 'package:flutter_biking/screens/profil/bantuan..dart';
-import 'package:flutter_biking/screens/profil/edit_password.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/pelaporan.dart';
-import 'package:flutter_biking/screens/beranda/info_bk.dart';
-import 'package:flutter_biking/screens/beranda/tentang_kami.dart';
-import 'package:flutter_biking/screens/log_in/welcome_screen.dart';
-import 'package:flutter_biking/screens/profil/hubungi_kami.dart';
-import 'package:flutter_biking/screens/profil/privacy_screen.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
+import 'package:biking_app/screens/profil/edit_password.dart';
+import 'package:biking_app/screens/profil/hubungi_kami.dart';
+import 'package:biking_app/screens/profil/privacy_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingSiswa extends StatefulWidget {
+  const SettingSiswa({super.key});
+
   @override
   _SettingSiswaState createState() => _SettingSiswaState();
+  static String routeName = "SettingSiswa";
 }
 
 class _SettingSiswaState extends State<SettingSiswa> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 2) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => Pelaporan()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text('Pengaturan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700)),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
@@ -56,51 +44,58 @@ class _SettingSiswaState extends State<SettingSiswa> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
                     width: 330,
                     height: 582,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 11.0, left: 3.0),
+                      padding: const EdgeInsets.only(top: 5.0, left: 3.0),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                  padding: const EdgeInsets.only(left: 11.0),
+                                  padding:
+                                      const EdgeInsets.only(left: 15, top: 10),
                                   child: Row(
                                     children: [
-                                      Image.asset(
-                                        'assets/image/siswa.png',
+                                      Container(
+                                        alignment: Alignment.topCenter,
                                         width: 80,
                                         height: 80,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: AssetImage(
+                                              "assets/images/jid1.png",
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 30,
                                       ),
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20.0),
+                                              padding:
+                                                  EdgeInsets.only(left: 20.0),
                                               child: Text(
-                                                "Ahmad Rohimin",
+                                                "Zid Ni Boss",
                                                 style: TextStyle(
-                                                  fontFamily: 'Poppins',
                                                   color: Color(0xFF0579CC),
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
@@ -108,8 +103,8 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                               )),
                                           SizedBox(height: 10),
                                           Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20.0),
+                                              padding:
+                                                  EdgeInsets.only(left: 20.0),
                                               child: Text(
                                                 "XII MIPA 1",
                                                 style: TextStyle(
@@ -136,15 +131,15 @@ class _SettingSiswaState extends State<SettingSiswa> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 140,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -158,8 +153,8 @@ class _SettingSiswaState extends State<SettingSiswa> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Pengaturan Akun",
                                   style: TextStyle(
@@ -170,47 +165,49 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 14,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       'Ubah kata sandi',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 128.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UbahPassword()),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.keyboard_double_arrow_right,
-                                          color: Color.fromARGB(
-                                              255, 135, 131, 155),
-                                        ),
-                                      ),
-                                    ),
+                                    GestureDetector(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => UbahPassword(),
+      ),
+    );
+  },
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      Icon(
+        Icons.keyboard_double_arrow_right,
+        color: Color.fromARGB(255, 135, 131, 155),
+      ),
+    ],
+  ),
+),
+
                                   ],
                                 ),
                               ),
                             ],
                           ),
+                          
                         ],
                       ),
                     ),
@@ -222,15 +219,15 @@ class _SettingSiswaState extends State<SettingSiswa> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 230,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -241,11 +238,11 @@ class _SettingSiswaState extends State<SettingSiswa> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
+                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Interaksi Saya",
                                   style: TextStyle(
@@ -256,40 +253,44 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 14,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                     Text(
                                       'Jumlah Interaksi Saya',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 80.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DaftarLaporan()),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.keyboard_double_arrow_right,
-                                          color: Color.fromARGB(
-                                              255, 135, 131, 155),
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const DaftarLaporan(),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                              width:
+                                                  80), // Mengatur jarak antara teks dan ikon
+                                          const Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            color: Color.fromARGB(
+                                                255, 135, 131, 155),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -308,15 +309,15 @@ class _SettingSiswaState extends State<SettingSiswa> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 320,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -330,8 +331,8 @@ class _SettingSiswaState extends State<SettingSiswa> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Aplikasi BiKing",
                                   style: TextStyle(
@@ -342,157 +343,173 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                     Text(
                                       'Tentang Kami',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 146.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    TentangKami()),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.keyboard_double_arrow_right,
-                                          color: Color.fromARGB(
-                                              255, 135, 131, 155),
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AboutUsScreen(),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                              width:
+                                                  80), // Mengatur jarak antara teks dan ikon
+                                          const Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            color: Color.fromARGB(
+                                                255, 135, 131, 155),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 11,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                     Text(
                                       'Privasi',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 205.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PrivacyScreens()),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.keyboard_double_arrow_right,
-                                          color: Color.fromARGB(
-                                              255, 135, 131, 155),
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const PrivacyScreens(),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                              width:
+                                                  80), // Mengatur jarak antara teks dan ikon
+                                          const Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            color: Color.fromARGB(
+                                                255, 135, 131, 155),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 11,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                     Text(
                                       'Bantuan',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 188.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Bantuan()),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.keyboard_double_arrow_right,
-                                          color: Color.fromARGB(
-                                              255, 135, 131, 155),
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Bantuan(),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                              width:
+                                                  80), // Mengatur jarak antara teks dan ikon
+                                          const Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            color: Color.fromARGB(
+                                                255, 135, 131, 155),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 11,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                     Text(
                                       'Hubungi Kami',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 142.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HubungiKami()),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.keyboard_double_arrow_right,
-                                          color: Color.fromARGB(
-                                              255, 135, 131, 155),
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HubungiKami(),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                              width:
+                                                  80), // Mengatur jarak antara teks dan ikon
+                                          const Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            color: Color.fromARGB(
+                                                255, 135, 131, 155),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -511,15 +528,15 @@ class _SettingSiswaState extends State<SettingSiswa> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 518,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
@@ -538,7 +555,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Log Out',
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
@@ -556,20 +573,20 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text(
+                                                title: const Text(
                                                     "Keluar dari aplikasi"),
-                                                content: Text(
+                                                content: const Text(
                                                     "Kamu Yakin Ingin Keluar dari BiKing?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Keluar"),
+                                                    child: const Text("Keluar"),
                                                     onPressed: () {
                                                       // Lakukan proses keluar dari aplikasi di sini
                                                       Navigator.of(context)
@@ -581,7 +598,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                             },
                                           );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.arrow_circle_right_outlined,
                                           color: Color.fromARGB(
                                               255, 135, 131, 155),
@@ -602,25 +619,6 @@ class _SettingSiswaState extends State<SettingSiswa> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:date_time_picker/date_time_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WaliTambahlaporan extends StatefulWidget {
-  const WaliTambahlaporan({super.key});
+  const WaliTambahlaporan({Key? key}) : super(key: key);
+  static String routeName = 'WaliTambahlaporan';
 
   @override
   State<WaliTambahlaporan> createState() => _WaliTambahlaporanState();
@@ -12,50 +12,34 @@ class WaliTambahlaporan extends StatefulWidget {
 
 class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+  
   String? _kelas;
   String? _nama;
   String? _masalah;
   String? _penanganan;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => WaliTambahlaporan()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan Penanganan Wali Kelas'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+        title:  Text('Laporan Penanganan Wali Kelas',
+        style:  GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+      ),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -71,10 +55,10 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                         width: 360,
                         height: 740,
                         decoration: BoxDecoration(
-                          color: Color(0xFFFFFFFF),
+                          color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: Color(0xFF000000).withOpacity(0.1),
+                            color: const Color(0xFF000000).withOpacity(0.1),
                             width: 1.0,
                           ),
                         ),
@@ -83,7 +67,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Nama Siswa",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -92,7 +76,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                   height:
                                       10), // add some spacing between the text and the TextFormField
                               SizedBox(
@@ -103,7 +87,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                       vertical: 16.0,
                                       horizontal: 10.0,
                                     ),
@@ -120,10 +104,10 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                   },
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Kelas",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -143,7 +127,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -161,10 +145,10 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Masalah",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -184,7 +168,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 70.0,
                                         horizontal: 10.0,
                                       ),
@@ -202,10 +186,10 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Penanganan yang Sudah Dilakukan",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -225,7 +209,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 70.0,
                                         horizontal: 10.0,
                                       ),
@@ -244,10 +228,10 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 "Tanggal",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
@@ -259,24 +243,41 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   SizedBox(
                                     width: 330,
                                     child: GestureDetector(
                                       onTap: () {
-                                        DatePicker.showDatePicker(
-                                          context,
-                                          showTitleActions: true,
-                                          minTime: DateTime(2022, 1, 1),
-                                          maxTime: DateTime(2023, 12, 31),
-                                          onConfirm: (date) {
-                                            // tangkap tanggal yang dipilih
+                                        DateTimePicker(
+                                          type: DateTimePickerType
+                                              .dateTimeSeparate,
+                                          dateMask: 'd MMM, yyyy',
+                                          initialValue:
+                                              DateTime.now().toString(),
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2100),
+                                          icon: const Icon(Icons.event),
+                                          dateLabelText: 'Date',
+                                          timeLabelText: "Hour",
+                                          selectableDayPredicate: (date) {
+                                            // Disable weekend days to select from the calendar
+                                            if (date.weekday == 6 ||
+                                                date.weekday == 7) {
+                                              return false;
+                                            }
+
+                                            return true;
                                           },
-                                          currentTime: DateTime.now(),
-                                          locale: LocaleType.id,
+                                          onChanged: (val) => print(val),
+                                          validator: (val) {
+                                            print(val);
+                                            return null;
+                                          },
+                                          onSaved: (val) => print(val),
                                         );
+
                                       },
                                       child: AbsorbPointer(
                                         child: TextFormField(
@@ -286,7 +287,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                                     BorderRadius.circular(
                                                         12.0)),
                                             contentPadding:
-                                                EdgeInsets.symmetric(
+                                                const EdgeInsets.symmetric(
                                               vertical: 16.0,
                                               horizontal: 10.0,
                                             ),
@@ -306,7 +307,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                   ],
@@ -322,7 +323,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Row(
+                            title: const Row(
                               children: [
                                 Icon(
                                   Icons.check_circle,
@@ -334,13 +335,13 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                 Text('Sukses'),
                               ],
                             ),
-                            content: Text('Laporan anda berhasil dikirim'),
+                            content: const Text('Laporan anda berhasil dikirim'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                               ),
                             ],
                           );
@@ -350,12 +351,12 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                          const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Kirim",
                       style: TextStyle(
                         fontFamily: 'Poppins',
@@ -371,25 +372,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

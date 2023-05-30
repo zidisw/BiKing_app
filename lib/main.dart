@@ -1,26 +1,40 @@
+import 'package:biking_app/constants.dart';
+import 'package:biking_app/routes.dart';
+import 'package:biking_app/screens/main_screen.dart';
+import 'package:biking_app/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/log_in/welcome_screen.dart';
-import 'screens/log_in/splash_screen.dart';
-import 'screens/log_in/login_screen.dart';
+import 'package:sizer/sizer.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+  
   @override
-  Widget build(BuildContext context)
-  {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Aplikasi Flutter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => SplashScreen(),
-        '/login': (context) => WelcomeScreen()
-      },
-    );
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Sizer(builder: (context, orientation, device) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: kPrimaryColor),
+        initialRoute: SplashScreen.routeName,
+        routes: routes,
+        home: const MainScreen(),
+      );
+    });
   }
 }
+
+
+
 

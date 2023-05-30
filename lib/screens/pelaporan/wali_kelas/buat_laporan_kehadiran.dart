@@ -1,41 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class BuatKehadiran extends StatefulWidget {
+  const BuatKehadiran({Key? key}) : super(key: key);
+  static String routeName = 'BuatKehadiran';
+
   @override
   _BuatKehadiranState createState() => _BuatKehadiranState();
 }
 
 class _BuatKehadiranState extends State<BuatKehadiran> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  int _selectedIndex = 0;
+
   String? _kelas;
   String? _nama;
   String? _masalah;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState?.validate() == true) {
-      _formKey.currentState?.save();
-      // Proses pengiriman data ke API atau database
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -45,15 +49,15 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
+                        color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: Color(0xFF000000).withOpacity(0.16),
+                          color: const Color(0xFF000000).withOpacity(0.16),
                           width: 1.0,
                         ),
                       ),
@@ -67,8 +71,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas",
                                   style: TextStyle(
@@ -79,14 +83,14 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 7.0, right: 8.0),
                                 child: Column(children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   TextFormField(
@@ -94,7 +98,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0)),
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -112,11 +116,11 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -127,7 +131,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -135,7 +139,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -143,7 +147,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -162,11 +166,11 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "NISN",
                                   style: TextStyle(
@@ -177,7 +181,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -185,7 +189,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -193,7 +197,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -212,11 +216,11 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Jenis Kelamin",
                                   style: TextStyle(
@@ -227,7 +231,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -235,7 +239,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -243,7 +247,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -262,11 +266,11 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Agama",
                                   style: TextStyle(
@@ -277,7 +281,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -285,7 +289,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -293,7 +297,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -312,11 +316,11 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Jumlah",
                                   style: TextStyle(
@@ -327,7 +331,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -335,7 +339,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Row(
@@ -348,7 +352,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                                     BorderRadius.circular(12.0),
                                               ),
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                 vertical: 16.0,
                                                 horizontal: 10.0,
                                               ),
@@ -356,7 +360,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                             width:
                                                 10), // tambahkan jarak antar kolom
                                         Expanded(
@@ -367,7 +371,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                                     BorderRadius.circular(12.0),
                                               ),
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                 vertical: 16.0,
                                                 horizontal: 10.0,
                                               ),
@@ -375,7 +379,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                             width:
                                                 10), // tambahkan jarak antar kolom
                                         Expanded(
@@ -386,7 +390,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                                     BorderRadius.circular(12.0),
                                               ),
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                 vertical: 16.0,
                                                 horizontal: 10.0,
                                               ),
@@ -399,11 +403,11 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Keterangan",
                                   style: TextStyle(
@@ -414,7 +418,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Padding(
@@ -422,7 +426,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     TextFormField(
@@ -430,7 +434,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -454,7 +458,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
@@ -463,7 +467,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Row(
+                                title: const Row(
                                   children: [
                                     Icon(
                                       Icons.check_circle,
@@ -475,13 +479,13 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                     Text('Sukses'),
                                   ],
                                 ),
-                                content: Text('Laporan anda berhasil dikirim'),
+                                content: const Text('Laporan anda berhasil dikirim'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('OK'),
+                                    child: const Text('OK'),
                                   ),
                                 ],
                               );
@@ -490,13 +494,13 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Kirim",
                           style: TextStyle(
                             fontFamily: 'Poppins',
@@ -513,25 +517,6 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }

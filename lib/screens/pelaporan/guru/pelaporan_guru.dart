@@ -1,8 +1,7 @@
+import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
+import 'package:biking_app/screens/pelaporan/guru/tambah_laporan_guru.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
-import 'package:flutter_biking/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
-import 'package:flutter_biking/screens/pelaporan/guru/tambah_laporan_guru.dart';
-import 'package:flutter_biking/screens/pelaporan/siswa/daftar_laporan.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class PelaporanScreen extends StatefulWidget {
@@ -13,40 +12,32 @@ class PelaporanScreen extends StatefulWidget {
 }
 
 class _PelaporanScreenState extends State<PelaporanScreen> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 3) {
-      // Jika item yang diklik adalah "Pelaporan"
-      _nextPage(); // Panggil fungsi _nextPage
-    }
-  }
-
-  void _nextPage() {
-    Navigator.push(
-      // Navigasi ke halaman selanjutnya di sini
-      context,
-      MaterialPageRoute(builder: (context) => PelaporanScreen()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
           child: Stack(
         children: [
@@ -61,10 +52,10 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                     width: 350,
                     height: 170,
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.30),
+                        color: const Color(0xFF000000).withOpacity(0.30),
                         width: 1.0,
                       ),
                     ),
@@ -73,7 +64,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Kartu Komunikasi",
                             style: TextStyle(
                               fontFamily: 'Poppins',
@@ -93,10 +84,10 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                       alignment: Alignment.centerLeft,
                                       width: 80,
                                       height: 80,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(
-                                            "assets/image/lapor.png",
+                                            "assets/images/lapor.png",
                                           ),
                                         ),
                                       ),
@@ -115,19 +106,19 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                     DaftarpelaporanScreen()),
+                                                     const DaftarPelaporanScreen()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF38ACFF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF38ACFF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 80, vertical: 5),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               )),
-                                          child: Text(
+                                          child: const Text(
                                             "Buka",
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -146,19 +137,19 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      BuatLaporan()),
+                                                      const BuatLaporan()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  Color(0xFF9180FF),
-                                              padding: EdgeInsets.symmetric(
+                                                  const Color(0xFF9180FF),
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 36, vertical: 8),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               )),
-                                          child: Text(
+                                          child: const Text(
                                             "Buat Laporan Baru",
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
@@ -194,7 +185,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                        "assets/image/bawah.png",
+                        "assets/images/bawah.png",
                       ),
                     ),
                   ),
@@ -204,25 +195,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
           ),
         ],
       )),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+     
     );
   }
 }

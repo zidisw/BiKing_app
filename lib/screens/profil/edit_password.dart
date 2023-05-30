@@ -1,58 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-Future<void> loadFont() async {
-  await Future.delayed(Duration(milliseconds: 500));
-  final regularFont = await rootBundle.load('fonts/NamaFont-Regular.ttf');
-  final boldFont = await rootBundle.load('fonts/NamaFont-Bold.ttf');
-  // Use the loaded fonts to create TextStyles
-  final regularTextStyle =
-      TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.normal);
-  final boldTextStyle =
-      TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold);
-}
 
 class UbahPassword extends StatefulWidget {
+  const UbahPassword({super.key});
+   static String routeName = 'UbahPassword';
+
   @override
   _UbahPasswordState createState() => _UbahPasswordState();
 }
 
 class _UbahPasswordState extends State<UbahPassword> {
-  int _selectedIndex = 0;
   bool _obscureText = true;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pengaturan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: const Text('Ganti Password',
+            style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Stack(children: [
-            Align(
+            const Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                    padding: EdgeInsets.only(left: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: 20,
                         ),
-                        const Text(
+                        Text(
                           "Ubah Password",
                           style: TextStyle(
                             fontFamily: 'Poppins',
@@ -73,10 +68,10 @@ class _UbahPasswordState extends State<UbahPassword> {
                         alignment: Alignment.topCenter,
                         width: 350,
                         height: 350,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              "assets/ubah_password.png",
+                              "assets/images/ubah_password.png",
                             ),
                           ),
                         ),
@@ -89,11 +84,11 @@ class _UbahPasswordState extends State<UbahPassword> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 26),
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 305,
                           ),
                           const Text(
@@ -111,12 +106,12 @@ class _UbahPasswordState extends State<UbahPassword> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0,
                               ),
                               labelText: "password",
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0xFF677294),
                                 fontSize: 16,
@@ -141,11 +136,11 @@ class _UbahPasswordState extends State<UbahPassword> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 26),
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 387,
                           ),
                           const Text(
@@ -163,12 +158,12 @@ class _UbahPasswordState extends State<UbahPassword> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0,
                               ),
                               labelText: "password",
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0xFF677294),
                                 fontSize: 16,
@@ -193,11 +188,11 @@ class _UbahPasswordState extends State<UbahPassword> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 26),
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 467,
                           ),
                           const Text(
@@ -215,12 +210,12 @@ class _UbahPasswordState extends State<UbahPassword> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0,
                               ),
                               labelText: "password",
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0xFF677294),
                                 fontSize: 16,
@@ -245,11 +240,11 @@ class _UbahPasswordState extends State<UbahPassword> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 26),
+                padding: const EdgeInsets.symmetric(horizontal: 26),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 560,
                     ),
                     ElevatedButton(
@@ -258,7 +253,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Row(
+                              title: const Row(
                                 children: [
                                   Icon(
                                     Icons.check_circle,
@@ -270,13 +265,13 @@ class _UbahPasswordState extends State<UbahPassword> {
                                   Text('Sukses'),
                                 ],
                               ),
-                              content: Text('Berhasil Ubah Kata Sandi'),
+                              content: const Text('Berhasil Ubah Kata Sandi'),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('OK'),
+                                  child: const Text('OK'),
                                 ),
                               ],
                             );
@@ -286,12 +281,12 @@ class _UbahPasswordState extends State<UbahPassword> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                            const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         "Simpan",
                         style: TextStyle(
                           color: Color.fromARGB(255, 255, 255, 255),
@@ -307,25 +302,7 @@ class _UbahPasswordState extends State<UbahPassword> {
           ]),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Pengaturan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

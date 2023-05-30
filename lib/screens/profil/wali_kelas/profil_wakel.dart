@@ -1,58 +1,52 @@
+import 'package:biking_app/screens/profil/wali_kelas/setting_wakel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_biking/screens/pelaporan/wali_kelas/laporan_bulanan_wakel.dart';
-import 'package:flutter_biking/screens/profil/wali_kelas/setting_wakel.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class ProfileWakel  extends StatefulWidget {
+  const ProfileWakel({Key? key}) : super(key: key);
+  static String routeName = 'ProfileWakel';
+
   @override
   _ProfileWakelState createState() => _ProfileWakelState();
 }
 
 class _ProfileWakelState extends State<ProfileWakel> {
-  int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Beranda'),
-    Text('Profil'),
-    Text('Pelaporan'),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    
-     if (index == 2) { // Jika item yang diklik adalah "Pelaporan"
-    _nextPage(); // Panggil fungsi _nextPage
-  }
-}
-void _nextPage() {
-  Navigator.push( // Navigasi ke halaman selanjutnya di sini
-    context,
-    MaterialPageRoute(builder: (context) => LaporanBulanan()),
-  );
-  
-}
-
-      @override
+@override
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: Text('Profil'),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.settings),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SettingWakel()),
-            );
-          },
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
         ),
-      ],
-    ),
+      ),
+        title: Text('Profil',
+        style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w600)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SettingWakel()),
+            );
+            },
+          )
+        ],
+      ),
   
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         
         child: Stack(
@@ -62,7 +56,7 @@ Widget build(BuildContext context) {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Stack(
@@ -71,10 +65,10 @@ Widget build(BuildContext context) {
                         alignment: Alignment.topCenter,
                         width: 130,
                         height: 150,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              "assets/image/wakel.png",
+                              "assets/images/wakel.png",
                             ),
                           ),
                         ),
@@ -96,13 +90,13 @@ Widget build(BuildContext context) {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                child: Column(
+                child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
                         height: 180,
                       ),
-                      const Text(
+                      Text(
                         "Info Profil",
                         style: TextStyle(
                           fontFamily: 'Poppins',
@@ -118,22 +112,22 @@ Widget build(BuildContext context) {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 210,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
                     width: 335,
                     height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -141,7 +135,7 @@ Widget build(BuildContext context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: TextStyle(
@@ -156,7 +150,7 @@ Widget build(BuildContext context) {
                                 height: 5,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Lisa",
                                   style: TextStyle(
@@ -180,7 +174,7 @@ Widget build(BuildContext context) {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 280,
                   ),
                   Container(
@@ -188,14 +182,14 @@ Widget build(BuildContext context) {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
                     width: 335,
                     height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -203,7 +197,7 @@ Widget build(BuildContext context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nomor HP",
                                   style: TextStyle(
@@ -218,7 +212,7 @@ Widget build(BuildContext context) {
                                 height: 5,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "082123456789",
                                   style: TextStyle(
@@ -242,22 +236,22 @@ Widget build(BuildContext context) {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 350,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
                     width: 335,
                     height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -265,7 +259,7 @@ Widget build(BuildContext context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Lahir",
                                   style: TextStyle(
@@ -280,7 +274,7 @@ Widget build(BuildContext context) {
                                 height: 5,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "13 02 1995",
                                   style: TextStyle(
@@ -304,22 +298,22 @@ Widget build(BuildContext context) {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 420,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
                     width: 335,
                     height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -327,7 +321,7 @@ Widget build(BuildContext context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas Perwalian",
                                   style: TextStyle(
@@ -342,7 +336,7 @@ Widget build(BuildContext context) {
                                 height: 5,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "XII MIPA 1",
                                   style: TextStyle(
@@ -366,22 +360,22 @@ Widget build(BuildContext context) {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 490,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Color(0xFF000000).withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
                     width: 335,
                     height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -389,7 +383,7 @@ Widget build(BuildContext context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "NIP",
                                   style: TextStyle(
@@ -404,7 +398,7 @@ Widget build(BuildContext context) {
                                 height: 5,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
+                                padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "6656",
                                   style: TextStyle(
@@ -432,32 +426,13 @@ Widget build(BuildContext context) {
                 width: 105,
                 height: 85,
                 child: Image.asset(
-                  'assets/image/bawah.png',
+                  'assets/images/bawah.png',
                   fit: BoxFit.cover,
                 ),
               ),
-        ),
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_outlined),
-            label: 'Pelaporan',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }
