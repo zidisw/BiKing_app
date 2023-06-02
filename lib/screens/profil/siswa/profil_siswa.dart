@@ -35,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('Profil',
         style: GoogleFonts.poppins(
                 fontSize: 20,
-                fontWeight: FontWeight.w600)),
+                fontWeight: FontWeight.w500)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -52,133 +52,139 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SafeArea(
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.topCenter,
-                        width: 130,
-                        height: 150,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              "assets/images/jid1.png",
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.topCenter,
+                          width: 130,
+                          height: 150,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                "assets/images/jid1.png",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                       Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Ganti Foto"),
-                                  content: Wrap(
-                                    crossAxisAlignment:
-                                        WrapCrossAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 20),
-                                        child: GestureDetector(
-                                          onTap: () async {
-                                            // Mengganti foto dari galeri
-                                            final pickedFile =
-                                                await ImagePicker().pickImage(
-                                                    source:
-                                                        ImageSource.gallery);
-                                            if (pickedFile != null) {
-                                              // Lakukan sesuatu dengan foto yang dipilih dari galeri
-                                            }
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/galery.png",
-                                                width: 50,
-                                                height: 50,
-                                              ),
-                                              SizedBox(height: 8),
-                                              Text("Galeri"),
-                                            ],
+                         Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Ganti Foto"),
+                                    content: Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(horizontal: 20),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari galeri
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source:
+                                                          ImageSource.gallery);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang dipilih dari galeri
+                                              }
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/galery.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                SizedBox(height: 8),
+                                                Text("Galeri"),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                           const EdgeInsets.symmetric(horizontal: 5),
-                                        child: GestureDetector(
-                                          onTap: () async {
-                                            // Mengganti foto dari kamera
-                                            final pickedFile =
-                                                await ImagePicker().pickImage(
-                                                    source: ImageSource.camera);
-                                            if (pickedFile != null) {
-                                              // Lakukan sesuatu dengan foto yang diambil dari kamera
-                                            }
-                                             Navigator.of(context).pop();
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/camera.png",
-                                                width: 50,
-                                                height: 50,
-                                              ),
-                                              const SizedBox(height: 8),
-                                              const Text("Kamera"),
-                                            ],
+                                        Padding(
+                                          padding:
+                                             const EdgeInsets.symmetric(horizontal: 5),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari kamera
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source: ImageSource.camera);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang diambil dari kamera
+                                              }
+                                               Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/camera.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                const Text("Kamera"),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          child: Image.asset(
-                            "assets/images/addphoto.png",
-                            width: 30,
-                            height: 30,
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/images/addphoto.png",
+                              width: 30,
+                              height: 30,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                   const SizedBox(
-                      height: 180,
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 170.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                      Text(
-                      "Info Profil",
-                      style: GoogleFonts.poppins(
-                        color: kSecondaryColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        "Info Profil",
+                        style: GoogleFonts.poppins(
+                          color: kSecondaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                  ]),
+                       const SizedBox(
+                        height: 180,
+                      ),
+                    ]),
+              ),
             ),
             Align(
               alignment: Alignment.topCenter,
@@ -212,7 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "Nama",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -223,7 +229,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "Zid Ni Boss",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -269,7 +275,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "Nomor HP",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -280,7 +286,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "085349313355",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -326,7 +332,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "Tanggal Lahir",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -337,7 +343,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "7 Agustus 2001",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -383,7 +389,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "Kelas",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -394,7 +400,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "XII MIPA 1",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -440,7 +446,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "NIS",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -451,7 +457,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "6566",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -497,7 +503,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "NISN",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -508,7 +514,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "12347658789",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),

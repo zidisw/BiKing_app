@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class UbahPassword extends StatefulWidget {
@@ -28,16 +29,15 @@ class _UbahPasswordState extends State<UbahPassword> {
             ),
           ),
         ),
-        title: const Text('Ganti Password',
-            style: TextStyle(
-                fontFamily: 'Poppins',
+        title:  Text('Ganti Password',
+            style:  GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w700)),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Stack(children: [
-            const Align(
+            Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
                     padding: EdgeInsets.only(left: 15.0),
@@ -49,8 +49,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                         ),
                         Text(
                           "Ubah Password",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
+                          style:  GoogleFonts.poppins(
                             color: Color.fromARGB(255, 64, 173, 251),
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -91,10 +90,9 @@ class _UbahPasswordState extends State<UbahPassword> {
                           const SizedBox(
                             height: 305,
                           ),
-                          const Text(
+                           Text(
                             "Masukkan password lama",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
+                            style:  GoogleFonts.poppins(
                               color: Color(0xFF000000),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -110,9 +108,8 @@ class _UbahPasswordState extends State<UbahPassword> {
                                 vertical: 16.0,
                                 horizontal: 12.0,
                               ),
-                              labelText: "password",
-                              labelStyle: const TextStyle(
-                                fontFamily: 'Poppins',
+                              
+                              labelStyle: GoogleFonts.poppins(
                                 color: Color(0xFF677294),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
@@ -143,10 +140,9 @@ class _UbahPasswordState extends State<UbahPassword> {
                           const SizedBox(
                             height: 387,
                           ),
-                          const Text(
+                           Text(
                             "Masukkan password baru",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
+                            style:  GoogleFonts.poppins(
                               color: Color(0xFF000000),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -162,9 +158,8 @@ class _UbahPasswordState extends State<UbahPassword> {
                                 vertical: 16.0,
                                 horizontal: 12.0,
                               ),
-                              labelText: "password",
-                              labelStyle: const TextStyle(
-                                fontFamily: 'Poppins',
+                              
+                              labelStyle:  GoogleFonts.poppins(
                                 color: Color(0xFF677294),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
@@ -195,10 +190,9 @@ class _UbahPasswordState extends State<UbahPassword> {
                           const SizedBox(
                             height: 467,
                           ),
-                          const Text(
+                           Text(
                             "Konfirmasi password baru",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
+                            style:  GoogleFonts.poppins(
                               color: Color(0xFF000000),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -214,9 +208,8 @@ class _UbahPasswordState extends State<UbahPassword> {
                                 vertical: 16.0,
                                 horizontal: 12.0,
                               ),
-                              labelText: "password",
-                              labelStyle: const TextStyle(
-                                fontFamily: 'Poppins',
+                              
+                              labelStyle: GoogleFonts.poppins(
                                 color: Color(0xFF677294),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
@@ -265,13 +258,13 @@ class _UbahPasswordState extends State<UbahPassword> {
                                   Text('Sukses'),
                                 ],
                               ),
-                              content: const Text('Berhasil Ubah Kata Sandi'),
+                              content:  Text('Berhasil Ubah Kata Sandi'),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text('OK'),
+                                  child:  Text('OK'),
                                 ),
                               ],
                             );
@@ -286,9 +279,9 @@ class _UbahPasswordState extends State<UbahPassword> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text(
+                      child:  Text(
                         "Simpan",
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

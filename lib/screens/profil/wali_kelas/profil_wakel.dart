@@ -1,6 +1,8 @@
 import 'package:biking_app/screens/profil/wali_kelas/setting_wakel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../constants.dart';
 
 
 class ProfileWakel  extends StatefulWidget {
@@ -47,66 +49,140 @@ Widget build(BuildContext context) {
       ),
   
       backgroundColor: const Color(0xFFFFFFFF),
-      body: SafeArea(
-        
+       body: SafeArea(
         child: Stack(
           children: [
-          
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.topCenter,
-                        width: 130,
-                        height: 150,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "assets/images/wakel.png",
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.topCenter,
+                          width: 130,
+                          height: 150,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                "assets/images/jid1.png",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Image.asset(
-                          "assets/icon/addphoto.png",
-                          width: 30,
-                          height: 30,
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Ganti Foto"),
+                                    content: Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari galeri
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source:
+                                                          ImageSource.gallery);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang dipilih dari galeri
+                                              }
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/galery.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                SizedBox(height: 8),
+                                                Text("Galeri"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari kamera
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source:
+                                                          ImageSource.camera);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang diambil dari kamera
+                                              }
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/camera.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                const Text("Kamera"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/images/addphoto.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: Container(
-                child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 180,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 180,
+                    ),
+                    Text(
+                      "Info Profil",
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF0579CC),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        "Info Profil",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF0579CC),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ]),
-              ),
+                    ),
+                  ]),
             ),
             Align(
               alignment: Alignment.topCenter,
@@ -124,10 +200,10 @@ Widget build(BuildContext context) {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -138,26 +214,21 @@ Widget build(BuildContext context) {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Lisa",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  "Zid Ni Boss",
+                                  style: GoogleFonts.poppins(
+                                    color: kContainerColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -179,17 +250,17 @@ Widget build(BuildContext context) {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -200,26 +271,21 @@ Widget build(BuildContext context) {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nomor HP",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "082123456789",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
+                                  "085349313355",
+                                  style: GoogleFonts.poppins(
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -248,10 +314,10 @@ Widget build(BuildContext context) {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -262,26 +328,21 @@ Widget build(BuildContext context) {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Lahir",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "13 02 1995",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
+                                  "7 Agustus 2001",
+                                  style: GoogleFonts.poppins(
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -310,10 +371,10 @@ Widget build(BuildContext context) {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -324,26 +385,21 @@ Widget build(BuildContext context) {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas Perwalian",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 5,
                               ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "XII MIPA 1",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
+                                  style: GoogleFonts.poppins(
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -372,10 +428,10 @@ Widget build(BuildContext context) {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 360,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -385,27 +441,22 @@ Widget build(BuildContext context) {
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "NIP",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  "NIM",
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "6656",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
+                                  "D121201016",
+                                  style: GoogleFonts.poppins(
+                                    color: kContainerColor,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -416,19 +467,6 @@ Widget build(BuildContext context) {
                     ),
                   ),
                 ],
-              ),
-            ),
-          Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: SizedBox(
-                width: 105,
-                height: 85,
-                child: Image.asset(
-                  'assets/images/bawah.png',
-                  fit: BoxFit.cover,
-                ),
               ),
             ),
           ],

@@ -1,6 +1,8 @@
 import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/profil/guru/setting_guru.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfilguruScreen extends StatefulWidget {
   const ProfilguruScreen({Key? key}) : super(key: key);
@@ -11,7 +13,6 @@ class ProfilguruScreen extends StatefulWidget {
 }
 
 class _ProfilguruScreenState extends State<ProfilguruScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +29,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
             ),
           ),
         ),
-        title: const Text('Profil',
-            style: TextStyle(
-                fontFamily: 'Poppins',
+        title: Text('Profil',
+            style: GoogleFonts.poppins(
                 fontSize: 20,
-                fontWeight: FontWeight.w700)),
-        
+                fontWeight: FontWeight.w600)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -50,43 +49,121 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.topCenter,
-                        width: 130,
-                        height: 150,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "assets/images/profilguru.png",
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.topCenter,
+                          width: 130,
+                          height: 150,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                "assets/images/jid1.png",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Image.asset(
-                          "assets/images/addphoto.png",
-                          width: 30,
-                          height: 30,
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Ganti Foto"),
+                                    content: Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari galeri
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source:
+                                                          ImageSource.gallery);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang dipilih dari galeri
+                                              }
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/galery.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                SizedBox(height: 8),
+                                                Text("Galeri"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari kamera
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source:
+                                                          ImageSource.camera);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang diambil dari kamera
+                                              }
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/camera.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                const Text("Kamera"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/images/addphoto.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ),
-            const Align(
+            Align(
               alignment: Alignment.topCenter,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +173,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     ),
                     Text(
                       "Info Profil",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Color(0xFF0579CC),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -122,7 +199,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     ),
                     width: 360,
                     height: 60,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,21 +211,18 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Zid Ni Boss",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -182,7 +256,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     ),
                     width: 360,
                     height: 60,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,21 +268,18 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nomor HP",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "085349313355",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -242,7 +313,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     ),
                     width: 360,
                     height: 60,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,21 +325,18 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Lahir",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "7 Agustus 2001",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -302,7 +370,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     ),
                     width: 360,
                     height: 60,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,21 +382,18 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Jabatan",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Guru BK Ilegal",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -362,7 +427,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     ),
                     width: 360,
                     height: 60,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -374,21 +439,18 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "NIM",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "D121201016",
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: kContainerColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -407,7 +469,6 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
           ],
         ),
       ),
-      
     );
   }
 }

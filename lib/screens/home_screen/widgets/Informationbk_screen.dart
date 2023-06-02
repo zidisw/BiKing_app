@@ -355,12 +355,12 @@ class _IndormasibkScreenState extends State<InformasibkScreen> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 35,
+                        height: 20,
                       ),
                       Text(
                         "Dokumentasi Kegiatan BK",

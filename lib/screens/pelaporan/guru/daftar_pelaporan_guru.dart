@@ -1,9 +1,10 @@
 import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
 import 'package:biking_app/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DaftarPelaporanScreen extends StatefulWidget {
-  const DaftarPelaporanScreen({super.key});
+  const DaftarPelaporanScreen({Key? key}) : super(key: key);
   static String routeName = 'DaftarPelaporanScreen';
 
   @override
@@ -11,6 +12,7 @@ class DaftarPelaporanScreen extends StatefulWidget {
 }
 
 class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +29,17 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
             ),
           ),
         ),
-        title: const Text('Kartu Komunikasi',
-        style: TextStyle(
-                fontFamily: 'Poppins',
+        title:  Text('Kartu Komunikasi',
+        style: GoogleFonts.poppins(
                 fontSize: 20,
-                fontWeight: FontWeight.w700)),
+                fontWeight: FontWeight.w500)),
         
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
           child: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 13, left: 20),
             child: Align(
               alignment: Alignment.centerLeft,
@@ -47,8 +48,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                   Text(
                     "Daftar Kartu Komunikasi",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
+                    style: GoogleFonts.poppins(
                       color: Color(0xFF0579CC),
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -116,10 +116,9 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "7 Maret 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
+                                          style: GoogleFonts.poppins(
                                             color: Color(0xFF000000),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
@@ -130,8 +129,8 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                         ),
                                         Text(
                                           "Diproses",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
+                                          style: GoogleFonts.poppins(
+                                           
                                             color: const Color(0xFF000000)
                                                 .withOpacity(0.5),
                                             fontSize: 14,
@@ -292,10 +291,9 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "2 Maret 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
+                                          style: GoogleFonts.poppins(
                                             color: Color(0xFF000000),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
@@ -306,8 +304,8 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                         ),
                                         Text(
                                           "Diproses",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
+                                          style: GoogleFonts.poppins(
+                                           
                                             color: const Color(0xFF000000)
                                                 .withOpacity(0.5),
                                             fontSize: 14,
@@ -468,9 +466,9 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Text(
+                                      Text(
                                         "14 Februari 2023",
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                           color: Color(0xFF000000),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
@@ -481,8 +479,8 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                       ),
                                       Text(
                                         "Selesai",
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
+                                        style: GoogleFonts.poppins(
+                                         
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),
                                           fontSize: 14,
@@ -642,10 +640,9 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "3 Februari 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
+                                          style: GoogleFonts.poppins(
                                             color: Color(0xFF000000),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
@@ -656,8 +653,8 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                         ),
                                         Text(
                                           "Selesai",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
+                                          style: GoogleFonts.poppins(
+                                           
                                             color: const Color(0xFF000000)
                                                 .withOpacity(0.5),
                                             fontSize: 14,
