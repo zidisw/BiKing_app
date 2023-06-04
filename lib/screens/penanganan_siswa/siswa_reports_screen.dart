@@ -50,7 +50,7 @@ class SiswaReportsScreen extends StatefulWidget {
                   itemBuilder: (context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, 'DetailReportScreenAbsen');
+                        Navigator.pushNamed(context, 'DetailReportScreenSiswa');
                       },
                       child: Container(
                         margin: EdgeInsets.only(bottom: kDefaultPadding),
