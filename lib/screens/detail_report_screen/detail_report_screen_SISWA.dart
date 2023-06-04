@@ -10,7 +10,7 @@ class ReportScreen extends StatefulWidget {
 class _ReportScreenState extends State<ReportScreen> {
   String? selectedDocumentId;
 
-  Future<void> _showAddEditDialog({DocumentSnapshot? report}) async {
+  Future<void> _showEditDialog({DocumentSnapshot? report}) async {
     final TextEditingController masalahController = TextEditingController();
     final TextEditingController namaController = TextEditingController();
     final TextEditingController detailController = TextEditingController();
@@ -93,6 +93,79 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 
+  Future<void> _showAddDialog({DocumentSnapshot? report}) async {
+    final TextEditingController masalahController = TextEditingController();
+    final TextEditingController namaController = TextEditingController();
+    final TextEditingController detailController = TextEditingController();
+
+    if (report != null) {
+      masalahController.text = report['Masalah'] ?? '';
+      namaController.text = report['Nama'] ?? '';
+      detailController.text = report['Detail'] ?? '';
+    }
+
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(report != null ? 'Edit Report' : 'Add Report'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: namaController,
+                decoration: InputDecoration(
+                  labelText: 'Nama',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              TextField(
+                controller: masalahController,
+                decoration: InputDecoration(
+                  labelText: 'Masalah',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              TextField(
+                controller: detailController,
+                decoration: InputDecoration(
+                  labelText: 'Detail',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              child: Text('Save'),
+              onPressed: () {
+                String masalah = masalahController.text.trim();
+                String nama = namaController.text.trim();
+                String detail = detailController.text.trim();
+
+                // Perform necessary validation and submit logic
+                if (report != null) {
+                  // Update existing report logic
+                  _editReport(report.id, masalah, detail, nama);
+                } else {
+                  // Add new report logic
+                  _addReport(masalah, detail, nama);
+                }
+
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Future<void> _addReport(String masalah, String detail, String nama) async {
     try {
@@ -225,7 +298,7 @@ class _ReportScreenState extends State<ReportScreen> {
                   ),
                   onTap: () {
                     selectedDocumentId = report.id;
-                    _showAddEditDialog(report: reports[index]);
+                    _showEditDialog(report: reports[index]);
                   },
                 ),
               );
@@ -234,7 +307,7 @@ class _ReportScreenState extends State<ReportScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddEditDialog(),
+        onPressed: () => _showAddDialog(),
         child: Icon(Icons.add),
       ),
     );

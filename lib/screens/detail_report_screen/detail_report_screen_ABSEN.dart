@@ -12,7 +12,7 @@ class AttendanceScreen extends StatefulWidget {
 class _AttendanceScreenState extends State<AttendanceScreen> {
   String? selectedDocumentId;
 
-  Future<void> _showAddEditDialog({DocumentSnapshot? absen}) async {
+  Future<void> _showEditDialog({DocumentSnapshot? absen}) async {
     final TextEditingController namaController = TextEditingController();
     final TextEditingController kelasController = TextEditingController();
     final TextEditingController alpaController = TextEditingController();
@@ -107,6 +107,99 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showAddDialog({DocumentSnapshot? absen}) async {
+    final TextEditingController namaController = TextEditingController();
+    final TextEditingController kelasController = TextEditingController();
+    final TextEditingController alpaController = TextEditingController();
+    final TextEditingController izinController = TextEditingController();
+    final TextEditingController sakitController = TextEditingController();
+
+    if (absen != null) {
+      namaController.text = absen['Nama'] ?? '';
+      kelasController.text = absen['Kelas'] ?? '';
+      alpaController.text = absen['Alpa'] ?? '';
+      izinController.text = absen['Izin'] ?? '';
+      sakitController.text = absen['Sakit'] ?? '';
+    }
+
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(absen != null ? 'Edit Report' : 'Add Report'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: namaController,
+                decoration: InputDecoration(
+                  labelText: 'Nama',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              TextField(
+                controller: kelasController,
+                decoration: InputDecoration(
+                  labelText: 'Kelas',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              TextField(
+                controller: alpaController,
+                decoration: InputDecoration(
+                  labelText: 'Alpa',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              TextField(
+                controller: izinController,
+                decoration: InputDecoration(
+                  labelText: 'Izin',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+              TextField(
+                controller: sakitController,
+                decoration: InputDecoration(
+                  labelText: 'Sakit',
+                ),
+                style: TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              child: Text('Save'),
+              onPressed: () {
+                String nama = namaController.text.trim();
+                String kelas = kelasController.text.trim();
+                String alpa = alpaController.text.trim();
+                String izin = izinController.text.trim();
+                String sakit = sakitController.text.trim();
+                // Perform necessary validation and submit logic
+                if (absen != null) {
+                  // Update existing report logic
+                  _editAbsen(absen.id, nama, kelas, alpa, izin, sakit);
+                } else {
+                  // Add new report logic
+                  _addAbsen(nama, kelas, alpa, izin, sakit);
+                }
+
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
           ],
         );
@@ -260,7 +353,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ),
                   onTap: () {
                     selectedDocumentId = absen.id;
-                    _showAddEditDialog(absen: attendance[index]);
+                    _showEditDialog(absen: attendance[index]);
                   },
                 ),
               );
@@ -269,7 +362,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddEditDialog(),
+        onPressed: () => _showAddDialog(),
         child: Icon(Icons.add),
       ),
     );
