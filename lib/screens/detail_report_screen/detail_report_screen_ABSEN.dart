@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// untuk screen ini => absen[index]
+
 class AttendanceScreen extends StatefulWidget {
   static String routeName = 'DetailReportScreenAbsen';
   @override
@@ -10,98 +12,102 @@ class AttendanceScreen extends StatefulWidget {
 class _AttendanceScreenState extends State<AttendanceScreen> {
   String? selectedDocumentId;
 
-  void _showAddEditDialog({bool isEditing = false}) {
-    final dialogTitle = isEditing ? 'Edit Absen' : 'Tambah Absen';
-    final namaLabel = isEditing ? 'Nama (Edit)' : 'Nama';
-    final kelasLabel = isEditing ? 'Kelas (Edit)' : 'Kelas';
-    final alpaLabel = isEditing ? 'Alpa (Edit)' : 'Alpa';
-    final izinLabel = isEditing ? 'Izin (Edit)' : 'Izin';
-    final sakitLabel = isEditing ? 'Sakit (Edit)' : 'Sakit';
+  Future<void> _showAddEditDialog({DocumentSnapshot? absen}) async {
+    final TextEditingController namaController = TextEditingController();
+    final TextEditingController kelasController = TextEditingController();
+    final TextEditingController alpaController = TextEditingController();
+    final TextEditingController izinController = TextEditingController();
+    final TextEditingController sakitController = TextEditingController();
 
-    showDialog(
+    if (absen != null) {
+      namaController.text = absen['Nama'] ?? '';
+      kelasController.text = absen['Kelas'] ?? '';
+      alpaController.text = absen['Alpa'] ?? '';
+      izinController.text = absen['Izin'] ?? '';
+      sakitController.text = absen['Sakit'] ?? '';
+    }
+
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController _namaController = TextEditingController();
-        final TextEditingController _kelasController = TextEditingController();
-        final TextEditingController _alpaController = TextEditingController();
-        final TextEditingController _izinController = TextEditingController();
-        final TextEditingController _sakitController = TextEditingController();
-
         return AlertDialog(
-          title: Text(dialogTitle),
+          title: Text(absen != null ? 'Edit Report' : 'Add Report'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
-                controller: _namaController,
-                decoration: InputDecoration(labelText: namaLabel),
+                controller: namaController,
+                decoration: InputDecoration(
+                  labelText: 'Nama',
+                ),
                 style: TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: _kelasController,
-                decoration: InputDecoration(labelText: kelasLabel),
+                controller: kelasController,
+                decoration: InputDecoration(
+                  labelText: 'Kelas',
+                ),
                 style: TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: _alpaController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: alpaLabel),
+                controller: alpaController,
+                decoration: InputDecoration(
+                  labelText: 'Alpa',
+                ),
                 style: TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: _izinController,
-                decoration: InputDecoration(labelText: izinLabel),
+                controller: izinController,
+                decoration: InputDecoration(
+                  labelText: 'Izin',
+                ),
                 style: TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: _sakitController,
-                decoration: InputDecoration(labelText: sakitLabel),
+                controller: sakitController,
+                decoration: InputDecoration(
+                  labelText: 'Sakit',
+                ),
                 style: TextStyle(color: Colors.black),
               ),
             ],
           ),
-
           actions: [
-            TextButton(
+            ElevatedButton(
+              child: Text('Save'),
               onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                if (isEditing) {
-                  _editReport(
-                    selectedDocumentId!,
-                    _namaController.text,
-                    _kelasController.text,
-                    _alpaController.text,
-                    _izinController.text,
-                    _sakitController.text,
-                  );
+                String nama = namaController.text.trim();
+                String kelas = kelasController.text.trim();
+                String alpa = alpaController.text.trim();
+                String izin = izinController.text.trim();
+                String sakit = sakitController.text.trim();
+                // Perform necessary validation and submit logic
+                if (absen != null) {
+                  // Update existing report logic
+                  _editAbsen(absen.id, nama, kelas, alpa, izin, sakit);
                 } else {
-                  _addAbsen(
-                    _namaController.text,
-                    _kelasController.text,
-                    _alpaController.text,
-                    _izinController.text,
-                    _sakitController.text,
-                  );
+                  // Add new report logic
+                  _addAbsen(nama, kelas, alpa, izin, sakit);
                 }
-                Navigator.pop(context);
+
+                Navigator.of(context).pop();
               },
-              child: Text(isEditing ? 'Save Changes' : 'Add Report'),
             ),
-            if (isEditing)
-              ElevatedButton(
-                onPressed: () {
-                  _showDeleteConfirmationDialog(context, selectedDocumentId!);
-                },
-                child: Text('Delete'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                ),
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _showDeleteConfirmationDialog(context, selectedDocumentId!);
+              },
+              child: Text('Delete'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
               ),
+            ),
           ],
         );
       },
@@ -123,7 +129,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     }
   }
 
-  Future<void> _editReport(String documentId, String nama, String kelas, String alpa, String izin, String sakit) async {
+  Future<void> _editAbsen(String documentId, String nama, String kelas, String alpa, String izin, String sakit) async {
     try {
       await FirebaseFirestore.instance.collection('absen').doc(documentId).update({
         'Nama': nama,
@@ -254,7 +260,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ),
                   onTap: () {
                     selectedDocumentId = absen.id;
-                    _showAddEditDialog(isEditing: true);
+                    _showAddEditDialog(absen: attendance[index]);
                   },
                 ),
               );
