@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
   static String routeName = 'AboutUsScreen';
@@ -10,38 +9,35 @@ class AboutUsScreen extends StatefulWidget {
 }
 
 class _AboutUsScreenState extends State<AboutUsScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.blue,
-              Colors.purple,
-            ],
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
           ),
         ),
-      ),
         title: const Text('Tentang Kami',
-        style: TextStyle(
+            style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 20,
                 fontWeight: FontWeight.w700)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
-      body: SafeArea(
-        child: 
-        Column(
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 30, left: 30),
-            child: Align(
-              alignment: Alignment.center,
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: [
                   const SizedBox(
@@ -68,34 +64,25 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const SizedBox(
-                    height: 118,
-                  ),
                 ],
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Transform.scale(
-              scale: 1.3,
-              child: Container(
-                width: double.infinity,
-                height: 79,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/footerberanda.png",
-                    ),
-                  ),
-                ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: SizedBox(
+              width: 400,
+              height: 95,
+              child: Image.asset(
+                'assets/images/footerberanda.png',
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          
         ],
-      )),
-      
+      ),
     );
   }
 }

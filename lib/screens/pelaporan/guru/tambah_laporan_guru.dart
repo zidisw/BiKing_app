@@ -1,8 +1,11 @@
-import 'package:date_time_picker/date_time_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class BuatLaporan extends StatefulWidget {
-  const BuatLaporan({super.key});
+  const BuatLaporan({Key? key}) : super(key: key);
+  static String routeName = 'BuatLaporan';
 
   @override
   _BuatLaporanState createState() => _BuatLaporanState();
@@ -10,485 +13,277 @@ class BuatLaporan extends StatefulWidget {
 
 class _BuatLaporanState extends State<BuatLaporan> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
-  String? _kelas;
-  String? _nama;
-  String? _masalah;
+
+  String kepadaValue = '';
+  String namaValue = '';
+  String siswaNamaValue = '';
+  String siswaKelasValue = '';
+  String deskripsiValue = '';
+  String saranValue = '';
+  static int _laporanCounter = 0;
+
+  @override
+
+
+  Future<void> _addReport(String kepada, String nama, String siswaNama,
+      String siswaKelas, String deskripsi, String saran) async {
+    try {
+      _laporanCounter++; // tambahkan counter saat laporan dikirim
+      String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
+      await FirebaseFirestore.instance
+          .collection('laporan_guru')
+          .doc(namaDokumen)
+          .set({
+        'Kepada': kepada,
+        'Nama': nama,
+        'Nama Siswa': siswaNama,
+        'Kelas Siswa': siswaKelas,
+        'Deskripsi Laporan': deskripsi,
+        'Saran': saran,
+        'Tanggal': Timestamp.fromDate(DateTime.now()),
+      });
+
+      Fluttertoast.showToast(
+        msg: 'Laporan berhasil dikirim',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+      // Reset form
+      _formKey.currentState!.reset();
+
+      // kembali ke halaman sebelumnya
+      Navigator.pop(context);
+    } catch (error) {
+      // Error handling
+      Fluttertoast.showToast(
+        msg: 'Terjadi kesalahan',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+  }
+
+  void _kirimLaporan() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      _addReport(
+        kepadaValue,
+        namaValue,
+        siswaNamaValue,
+        siswaKelasValue,
+        deskripsiValue,
+        saranValue,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pelaporan'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Stack(
+          child: Column(
             children: [
               Align(
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFFFFF),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color(0xFF000000).withOpacity(0.16),
-                          width: 1.0,
-                        ),
-                      ),
-                      width: 345,
-                      height: 940,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Kepada",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(children: [
-                                  const SizedBox(
-                                    height: 3,
-                                  ),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0)),
-                                      contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 16.0,
-                                        horizontal: 10.0,
-                                      ),
-                                      hintText: 'Kesiswaan/Wali Kelas/BK/Guru',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Wajib diisi';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {
-                                      _kelas = value;
-                                    },
-                                  ),
-                                ]
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Nama",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
-                                          vertical: 16.0,
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText:
-                                            'Kesiswaan/Wali Kelas/BK/Guru',
-                                      ),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Nama harus diisi';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        _nama = value;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Siswa di bawah ini perlu ditangani masalahnya",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Nama",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
-                                          vertical: 16.0,
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText: 'Masukkan nama Anda',
-                                      ),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Nama harus diisi';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        _nama = value;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Kelas",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
-                                          vertical: 16.0,
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText: 'Masukkan kelas Anda',
-                                      ),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Kelas harus diisi';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        _nama = value;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Deskripsi Masalah / Penanganan yang Telah dilakukan",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
-                                          vertical: 60.0, // ubah nilai vertical
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText: 'Tambahkan deskripsi',
-                                      ),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Deskripsi harus diisi';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        _masalah = value;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Saran / Tindak Lanjut",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
-                                          vertical: 60.0, // ubah nilai vertical
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText: 'Tambahkan deskripsi',
-                                      ),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Deskripsi harus diisi';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        _masalah = value;
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Tanggal Laporan",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 7.0, right: 8.0),
-                                child: Column(children: [
-                                  const SizedBox(
-                                    height: 3,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      DateTimePicker(
-                                        type:
-                                            DateTimePickerType.dateTimeSeparate,
-                                        dateMask: 'd MMM, yyyy',
-                                        initialValue: DateTime.now().toString(),
-                                        firstDate: DateTime(2000),
-                                        lastDate: DateTime(2100),
-                                        icon: const Icon(Icons.event),
-                                        dateLabelText: 'Date',
-                                        timeLabelText: "Hour",
-                                        selectableDayPredicate: (date) {
-                                          // Disable weekend days to select from the calendar
-                                          if (date.weekday == 6 ||
-                                              date.weekday == 7) {
-                                            return false;
-                                          }
-
-                                          return true;
-                                        },
-                                        onChanged: (val) => print(val),
-                                        validator: (val) {
-                                          print(val);
-                                          return null;
-                                        },
-                                        onSaved: (val) => print(val),
-                                      );
-                                    },
-                                    child: AbsorbPointer(
-                                      child: TextFormField(
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
-                                            vertical: 16.0,
-                                            horizontal: 10.0,
-                                          ),
-                                          hintText: 'Pilih tanggal laporan',
-                                        ),
-                                        onSaved: (value) {
-                                          // simpan tanggal yang dipilih
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                            ],
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFF000000).withOpacity(0.16),
+                            width: 1.0,
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Row(
-                                  children: [
-                                    Icon(
-                                      Icons.check_circle,
-                                      color: Colors.green,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text('Sukses'),
-                                  ],
-                                ),
-                                content: const Text('Laporan anda berhasil dikirim'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 13.0,
+                          horizontal: 10.0,
                         ),
-                        child: const Text(
-                          "Kirim",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Kepada:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    kepadaValue = value!;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan nama penerima',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Nama:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    namaValue = value!;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan nama anda',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Nama Siswa:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    siswaNamaValue = value!;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan nama siswa',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Kelas Siswa:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    siswaKelasValue = value!;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan kelas siswa',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Deskripsi Laporan:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    deskripsiValue = value!;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan deskripsi laporan',
+                                  ),
+                                  maxLines: 3,
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Saran:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    saranValue = value!;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan saran',
+                                  ),
+                                  maxLines: 3,
+                                ),
+                                const SizedBox(height: 15),
+                                ElevatedButton(
+                                  onPressed: _kirimLaporan,
+                                  child: const Text('Kirim'),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -500,7 +295,6 @@ class _BuatLaporanState extends State<BuatLaporan> {
           ),
         ),
       ),
-      
-  );
- }
+    );
+  }
 }

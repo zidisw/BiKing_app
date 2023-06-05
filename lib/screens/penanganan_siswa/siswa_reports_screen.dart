@@ -9,7 +9,6 @@ class SiswaReportsScreen extends StatefulWidget {
   static String routeName = 'SiswaReportsScreen';
   
   @override
-  // ignore: library_private_types_in_public_api
   _SiswaReportsScreenState createState() => _SiswaReportsScreenState();
 }
   class _SiswaReportsScreenState extends State<SiswaReportsScreen> {
@@ -51,7 +50,7 @@ class SiswaReportsScreen extends StatefulWidget {
                   itemBuilder: (context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, 'DetailReportScreen');
+                        Navigator.pushNamed(context, 'DetailReportScreenAbsen');
                       },
                       child: Container(
                         margin: const EdgeInsets.only(bottom: kDefaultPadding),

@@ -1,90 +1,188 @@
 import 'package:biking_app/screens/profil/siswa/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:biking_app/constants.dart';
+
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super(key: key);
+  static String routeName = 'ProfilPage';
 
-  @override
+   @override
+  // ignore: library_private_types_in_public_api
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
 
-   @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      title: const Text('Profil'),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {
-            Navigator.push(
+        flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+        ),
+      ),
+        title: const Text('Profil',
+        style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SettingSiswa()),
             );
-          },
-        ),
-      ],
-    ),
+            },
+          )
+        ],
+      ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-        
         child: Stack(
           children: [
-          
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.topCenter,
-                        width: 130,
-                        height: 150,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "assets/images/siswa.png",
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.topCenter,
+                          width: 130,
+                          height: 150,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                "assets/images/jid1.png",
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Image.asset(
-                          "assets/icons/addphoto.png",
-                          width: 30,
-                          height: 30,
+                         Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text("Ganti Foto"),
+                                    content: Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.symmetric(horizontal: 20),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari galeri
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source:
+                                                          ImageSource.gallery);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang dipilih dari galeri
+                                              }
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/galery.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                const Text("Galeri"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                             const EdgeInsets.symmetric(horizontal: 5),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              // Mengganti foto dari kamera
+                                              final pickedFile =
+                                                  await ImagePicker().pickImage(
+                                                      source: ImageSource.camera);
+                                              if (pickedFile != null) {
+                                                // Lakukan sesuatu dengan foto yang diambil dari kamera
+                                              }
+                                               Navigator.of(context).pop();
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/icons/camera.png",
+                                                  width: 50,
+                                                  height: 50,
+                                                ),
+                                                const SizedBox(height: 8),
+                                                const Text("Kamera"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/images/addphoto.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: Container(
-                child: const Column(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 170.0),
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 180,
-                      ),
-                      Text(
+                     Text(
                         "Info Profil",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF0579CC),
+                        style: GoogleFonts.poppins(
+                          color: kSecondaryColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
+                      ),
+                       const SizedBox(
+                        height: 180,
                       ),
                     ]),
               ),
@@ -105,10 +203,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 350,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child:  Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -116,26 +214,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 5.0, left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Ahmad",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  "Zid Ni Boss",
+                                  style: GoogleFonts.poppins(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -157,17 +253,17 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFFFFFFFF),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Colors.black.withOpacity(0.16),
+                        color: const Color(0xFF000000).withOpacity(0.16),
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 350,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding:const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -175,26 +271,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding:const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nomor HP",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 5.0, left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "082123456789",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  "085349313355",
+                                  style: GoogleFonts.poppins(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -223,10 +317,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 350,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child:  Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -234,26 +328,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Lahir",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 5.0, left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "13 02 2005",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  "7 Agustus 2001",
+                                  style: GoogleFonts.poppins(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -282,10 +374,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 350,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -293,27 +385,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Kelas",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              
                               Padding(
-                                padding: EdgeInsets.only(top: 5.0, left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "XII MIPA 1",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  style: GoogleFonts.poppins(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -342,10 +431,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 350,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 8.0, left: 3.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -353,26 +442,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "NIS",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 5.0, left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "6656",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  "6566",
+                                  style: GoogleFonts.poppins(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -401,10 +488,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 1.0,
                       ),
                     ),
-                    width: 335,
+                    width: 350,
                     height: 60,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 7.0, left: 3.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -412,26 +499,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "NISN",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  style: GoogleFonts.poppins(
+                                    color: kSecondaryColor,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 5.0, left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "1234567890",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
+                                  "12347658789",
+                                  style: GoogleFonts.poppins(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),

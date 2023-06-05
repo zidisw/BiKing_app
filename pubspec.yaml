@@ -40,10 +40,12 @@ dependencies:
   sizer: ^2.0.15
   firebase_core: ^2.13.0
   firebase_auth: ^4.6.1
+  firebase_database: ^10.2.0
   cloud_firestore: ^4.7.1
   fluttertoast: ^8.2.1
   date_time_picker: ^2.1.0
   auth: ^8.2.0+2
+  image_picker: ^0.8.7+5
 
 dev_dependencies:
   flutter_test:

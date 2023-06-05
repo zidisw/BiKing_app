@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddbulanScreen extends StatefulWidget {
-  const AddbulanScreen({super.key});
+  const AddbulanScreen({Key? key}) : super(key: key);
+  static String routeName = 'AddbulanScreen';
 
   @override
   State<AddbulanScreen> createState() => _AddbulanScreenState();
 }
 
 class _AddbulanScreenState extends State<AddbulanScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String? _kelas;
-  String? _bulan;
   String? _tahun;
-  final List<String> _tahunList = ['2020', '2021', '2022', '2023', '2024', '2025'];
-
-  
+  final List<String> _tahunList = [
+    '2020',
+    '2021',
+    '2022',
+    '2023',
+    '2024',
+    '2025'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Laporan Kehadiran Bulanan'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
         ),
+        title: Text('Laporan Kehadiran Bulanan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SingleChildScrollView(
@@ -57,10 +68,9 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 "Kelas",
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
+                                style: GoogleFonts.poppins(
                                   color: Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
@@ -73,9 +83,11 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                   child: DropdownButtonFormField<String>(
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -104,22 +116,17 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                       }
                                       return null;
                                     },
-                                    onChanged: (value) {
-                                      _kelas = value!;
-                                    },
-                                    onSaved: (value) {
-                                      _kelas = value!;
-                                    },
+                                    onChanged: (value) {},
+                                    onSaved: (value) {},
                                   ),
                                 ),
                               ),
                               const SizedBox(
                                 height: 15,
                               ),
-                              const Text(
+                              Text(
                                 "Bulan",
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
+                                style: GoogleFonts.poppins(
                                   color: Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
@@ -132,9 +139,11 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                   child: DropdownButtonFormField<String>(
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -165,22 +174,17 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                       }
                                       return null;
                                     },
-                                    onChanged: (value) {
-                                      _bulan = value!;
-                                    },
-                                    onSaved: (value) {
-                                      _bulan = value!;
-                                    },
+                                    onChanged: (value) {},
+                                    onSaved: (value) {},
                                   ),
                                 ),
                               ),
                               const SizedBox(
                                 height: 15,
                               ),
-                              const Text(
+                              Text(
                                 "Tahun",
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
+                                style: GoogleFonts.poppins(
                                   color: Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
@@ -193,9 +197,11 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                   child: DropdownButtonFormField<String>(
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
                                       ),
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -225,7 +231,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:10),
+                padding: const EdgeInsets.only(top: 10),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
@@ -246,13 +252,13 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                 Text('Sukses'),
                               ],
                             ),
-                            content: const Text('Laporan anda berhasil disimpan'),
+                            content: Text('Laporan anda berhasil disimpan'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: const Text('OK'),
+                                child: Text('OK'),
                               ),
                             ],
                           );
@@ -261,14 +267,15 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       "Simpan",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Color.fromARGB(255, 255, 255, 255),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -302,7 +309,6 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
           ),
         ),
       ),
-      
     );
   }
 }

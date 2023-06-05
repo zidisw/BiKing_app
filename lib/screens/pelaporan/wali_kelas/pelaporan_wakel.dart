@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/daftar_laporan_kehadiran.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/isi_pelaporan_wakel.dart';
+import 'package:biking_app/screens/pelaporan/wali_kelas/daftar_laporan_penanganan.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/tambah_laporan_wakel.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class PelaporanWali extends StatefulWidget {
-  const PelaporanWali({super.key});
+  const PelaporanWali({Key? key}) : super(key: key);
+  static String routeName = 'PelaporanWali';
 
   @override
   State<PelaporanWali> createState() => _PelaporanWaliState();
 }
 
 class _PelaporanWaliState extends State<PelaporanWali> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pelaporan'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
+          ),
         ),
+        title: Text('Pelaporan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
@@ -54,17 +62,16 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Laporan Penanganan Wali Kelas",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
+                            style: GoogleFonts.poppins(
                               color: Color(0xFF7369FF),
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 14),
+                            padding: const EdgeInsets.only(top: 14, right: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -84,44 +91,50 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 20.0),
-                                      child: ElevatedButton(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 230, // Atur lebar tombol "Buka"
+                                        height: 40, // Atur tinggi tombol "Buka"
+                                        child: ElevatedButton(
                                           onPressed: () {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const WaliIsiPelaporan()),
+                                                      const DaftarLaporanPenangananWakel()),
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  const Color(0xFF38ACFF),
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 80, vertical: 5),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                              )),
-                                          child: const Text(
+                                            backgroundColor:
+                                                const Color(0xFF38ACFF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                          child: Text(
                                             "Buka",
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFFFFFFF),
-                                              fontSize: 13,
+                                            style: GoogleFonts.poppins(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                             ),
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 20.0),
-                                      child: ElevatedButton(
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 15),
+                                      Container(
+                                        width:
+                                            230, // Atur lebar tombol "Buat Laporan Baru"
+                                        height:
+                                            40, // Atur tinggi tombol "Buat Laporan Baru"
+                                        child: ElevatedButton(
                                           onPressed: () {
                                             Navigator.push(
                                               context,
@@ -131,25 +144,26 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  const Color(0xFF9180FF),
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 36, vertical: 8),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                              )),
-                                          child: const Text(
+                                            backgroundColor:
+                                                const Color(0xFF9180FF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                          child: Text(
                                             "Buat Laporan Baru",
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFFFFFFF),
-                                              fontSize: 13,
+                                            style: GoogleFonts.poppins(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                             ),
-                                          )),
-                                    ),
-                                  ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
@@ -185,10 +199,9 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Laporan Kehadiran Bulanan",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
+                            style: GoogleFonts.poppins(
                               color: Color(0xFF7369FF),
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
@@ -215,13 +228,17 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 20.0),
-                                      child: ElevatedButton(
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 10.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 230, // Atur lebar tombol "Buka"
+                                        height: 40, // Atur tinggi tombol "Buka"
+                                        child: ElevatedButton(
                                           onPressed: () {
                                             Navigator.push(
                                               context,
@@ -231,28 +248,31 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  const Color(0xFF38ACFF),
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 80, vertical: 5),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                              )),
-                                          child: const Text(
+                                            backgroundColor:
+                                                const Color(0xFF38ACFF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                          child: Text(
                                             "Buka",
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFFFFFFF),
-                                              fontSize: 13,
+                                            style: GoogleFonts.poppins(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                             ),
-                                          )),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 20.0),
-                                      child: ElevatedButton(
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 15),
+                                      Container(
+                                        width:
+                                            230, // Atur lebar tombol "Buat Laporan Baru"
+                                        height:
+                                            40, // Atur tinggi tombol "Buat Laporan Baru"
+                                        child: ElevatedButton(
                                           onPressed: () {
                                             Navigator.push(
                                               context,
@@ -262,26 +282,27 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                             );
                                           },
                                           style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  const Color(0xFF9180FF),
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 36, vertical: 8),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                              )),
-                                          child: const Text(
+                                            backgroundColor:
+                                                const Color(0xFF9180FF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                          child: Text(
                                             "Buat Laporan Baru",
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFFFFFFF),
-                                              fontSize: 13,
+                                            style: GoogleFonts.poppins(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                             ),
-                                          )),
-                                    ),
-                                  ],
-                                )
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -307,15 +328,15 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                         color: const Color(0xFF38ACFF),
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 5.5, left: 10.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(top: 3.0, bottom: 3.0, left: 10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Catatan",
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
+                              style: GoogleFonts.poppins(
                                 color: Color(0xFFFFFFFF),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -343,13 +364,13 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                         Column(
                           children: [
                             Container(
-                              alignment: Alignment.centerLeft,
+                              alignment: Alignment.topLeft,
                               width: 5,
                               height: 40,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                    "assets/icon/dot.png",
+                                    "assets/icons/dot.png",
                                   ),
                                 ),
                               ),
@@ -359,60 +380,14 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Column(
                             children: [
                               Text.rich(
                                 TextSpan(
                                   text:
-                                      'Dilampirkan bersama dengan laporan bulanan absen kehadiaran siswa',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                textAlign: TextAlign.justify,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              width: 5,
-                              height: 60,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/icon/dot.png",
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Expanded(
-                          child: Column(
-                            children: [
-                              Text.rich(
-                                TextSpan(
-                                  text:
-                                      'Siswa yang tidak pernah hadir wajib ditindaklanjuti wali kelas, untuk mendapatkan informasi langsung atau ada pernyataan tertulis orang tua bahwa siswa pindah atau DO',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
+                                      'Dilampirkan bersama dengan laporan bulanan absen kehadiaran siswa.',
+                                  style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
                                   ),
@@ -439,7 +414,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                    "assets/icon/dot.png",
+                                    "assets/icons/dot.png",
                                   ),
                                 ),
                               ),
@@ -449,15 +424,58 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Expanded(
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text.rich(
+                                TextSpan(
+                                  text:
+                                      'Siswa yang tidak pernah hadir wajib ditindaklanjuti wali kelas, untuk mendapatkan informasi langsung atau ada pernyataan tertulis orang tua bahwa siswa pindah atau DO.',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              width: 5,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/icons/dot.png",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
                           child: Column(
                             children: [
                               Text.rich(
                                 TextSpan(
                                   text:
                                       'Wali kelas koordinasi ke guru BK bagi siswa yang butuh konseling.',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
+                                  style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
                                   ),
@@ -471,27 +489,6 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                     ),
                   ),
                 ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Transform.scale(
-                scale: 1.1,
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  width: double.infinity,
-                  height: 79,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "assets/images/bawah.png",
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ),
           ),

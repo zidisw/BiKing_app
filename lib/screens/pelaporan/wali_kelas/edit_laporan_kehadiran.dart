@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-class BuatKehadiran extends StatefulWidget {
-  const BuatKehadiran({Key? key}) : super(key: key);
-  static String routeName = 'BuatKehadiran';
+class EditKehadiran extends StatefulWidget {
+  const EditKehadiran({Key? key}) : super(key: key);
+  static String routeName = 'EditKehadiran';
 
   @override
-  _BuatKehadiranState createState() => _BuatKehadiranState();
+  _EditKehadiranState createState() => _EditKehadiranState();
 }
 
-class _BuatKehadiranState extends State<BuatKehadiran> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+class _EditKehadiranState extends State<EditKehadiran> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
           ),
         ),
         title: Text(
-          'Pelaporan',
+          'Laporan Kehadiran Bulanan',
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.w500,
@@ -40,7 +38,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Stack(
+          child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -58,7 +56,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(
-                                    vertical: 13.0, horizontal: 10.0),
+                            vertical: 13.0, horizontal: 10.0),
                         child: Padding(
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, bottom: 10, top: 5),
@@ -85,7 +83,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -97,8 +96,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
                                   ],
                                 ),
@@ -122,7 +120,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0)),
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
                                         vertical: 16.0,
                                         horizontal: 10.0,
                                       ),
@@ -134,8 +133,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                       }
                                       return null;
                                     },
-                                    onSaved: (value) {
-                                    },
+                                    onSaved: (value) {},
                                   ),
                                 ]),
                                 const SizedBox(
@@ -159,7 +157,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -171,8 +170,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
                                   ],
                                 ),
@@ -197,7 +195,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -209,8 +208,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
                                   ],
                                 ),
@@ -235,7 +233,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -247,8 +246,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
                                   ],
                                 ),
@@ -349,7 +347,8 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -361,8 +360,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
                                   ],
                                 ),
@@ -371,62 +369,62 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.check_circle,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text('Sukses'),
-                                    ],
-                                  ),
-                                  content: const Text('Laporan anda berhasil dikirim'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('OK'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Text(
-                            "Kirim",
-                            style: GoogleFonts.poppins(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // kode untuk tombol Batal
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Text(
+                          'Batal',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 40),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // kode untuk tombol Simpan
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          'Simpan',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

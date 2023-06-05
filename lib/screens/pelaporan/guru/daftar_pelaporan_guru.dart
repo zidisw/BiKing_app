@@ -1,9 +1,11 @@
 import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
 import 'package:biking_app/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DaftarPelaporanScreen extends StatefulWidget {
-  const DaftarPelaporanScreen({super.key});
+  const DaftarPelaporanScreen({Key? key}) : super(key: key);
   static String routeName = 'DaftarPelaporanScreen';
 
   @override
@@ -11,6 +13,17 @@ class DaftarPelaporanScreen extends StatefulWidget {
 }
 
 class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
+  late Stream<QuerySnapshot> _laporanStream;
+
+  @override
+  void initState() {
+    super.initState();
+    _laporanStream = FirebaseFirestore.instance
+        .collection('laporan_guru')
+        .orderBy('Tanggal', descending: true)
+        .snapshots();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,741 +40,107 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
             ),
           ),
         ),
-        title: const Text('Kartu Komunikasi',
-        style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
-        
+        title: Text(
+          'Kartu Komunikasi',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-          child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 13, left: 20),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                children: [
-                  Text(
-                    "Daftar Kartu Komunikasi",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFF0579CC),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const IsikartuScreen()),
-                        );
-                      },
-                      child: Container(
-                        width: 360,
-                        height: 86,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: const Color(0xFF000000).withOpacity(0.10),
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10, left: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.centerLeft,
-                                        width: 50,
-                                        height: 50,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              "assets/icons/kartuu.png",
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "7 Maret 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF000000),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Diproses",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: const Color(0xFF000000)
-                                                .withOpacity(0.5),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 15.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const EditkartuScreen()),
-                                              );
-                                            },
-                                            child: Container(
-                                              alignment: Alignment.centerRight,
-                                              width: 20,
-                                              height: 20,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/icons/edit.png",
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 23,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        "Hapus Laporan"),
-                                                    content: const Text(
-                                                        "Anda yakin ingin menghapus laporan ini?"),
-                                                    actions: [
-                                                      TextButton(
-                                                        child:
-                                                            const Text("Batal"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        child:
-                                                            const Text("Hapus"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              alignment: Alignment.centerRight,
-                                              width: 20,
-                                              height: 20,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/icons/delete.png",
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const IsikartuScreen()),
-                        );
-                      },
-                      child: Container(
-                        width: 360,
-                        height: 86,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: const Color(0xFF000000).withOpacity(0.10),
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10, left: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.centerLeft,
-                                        width: 50,
-                                        height: 50,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              "assets/icons/kartuu.png",
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "2 Maret 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF000000),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Diproses",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: const Color(0xFF000000)
-                                                .withOpacity(0.5),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 15.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const EditkartuScreen()),
-                                              );
-                                            },
-                                            child: Container(
-                                              alignment: Alignment.centerRight,
-                                              width: 20,
-                                              height: 20,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/icons/edit.png",
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 23,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        "Hapus Laporan"),
-                                                    content: const Text(
-                                                        "Anda yakin ingin menghapus laporan ini?"),
-                                                    actions: [
-                                                      TextButton(
-                                                        child:
-                                                            const Text("Batal"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        child:
-                                                            const Text("Hapus"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              alignment: Alignment.centerRight,
-                                              width: 20,
-                                              height: 20,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/icons/delete.png",
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 360,
-                    height: 86,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.10),
-                        width: 1.0,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 13, left: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  children: [
+                    Text(
+                      "Daftar Kartu Komunikasi",
+                      textAlign: TextAlign.left,
+                      style: GoogleFonts.poppins(
+                        color: const Color(0xFF0579CC),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
+                  ],
+                ),
+              ),
+            ),
+            StreamBuilder<QuerySnapshot>(
+              stream: _laporanStream,
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+
+                final List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: documents.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final Map<String, dynamic> data =
+                        documents[index].data() as Map<String, dynamic>;
+                    final Timestamp timestamp = data['Tanggal'] as Timestamp;
+                    final DateTime tanggal = timestamp.toDate();
+
+                    return Card(
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const IsiKartuScreen(),
+                            ),
+                          );
+                        },
+                        title: Text(
+                          tanggal.toString(),
+                          style: GoogleFonts.poppins(
+                            color: const Color(0xFF000000),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        subtitle: Text(
+                          "Diproses",
+                          style: GoogleFonts.poppins(
+                            color: const Color(0xFF000000).withOpacity(0.5),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.edit),
+                          onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const IsikartuScreen()),
+                                builder: (context) => const EditKartuScreen(),
+                              ),
                             );
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      width: 50,
-                                      height: 50,
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                            "assets/icons/kartuu.png",
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "14 Februari 2023",
-                                        style: TextStyle(
-                                          color: Color(0xFF000000),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Selesai",
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: const Color(0xFF000000)
-                                              .withOpacity(0.5),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 15.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const EditkartuScreen()),
-                                            );
-                                          },
-                                          child: Container(
-                                            alignment: Alignment.centerRight,
-                                            width: 20,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                  "assets/icons/edit.png",
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 23,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  title: const Text(
-                                                      "Hapus Laporan"),
-                                                  content: const Text(
-                                                      "Anda yakin ingin menghapus laporan ini?"),
-                                                  actions: [
-                                                    TextButton(
-                                                      child:
-                                                          const Text("Batal"),
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                    ),
-                                                    TextButton(
-                                                      child:
-                                                          const Text("Hapus"),
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          },
-                                          child: Container(
-                                            alignment: Alignment.centerRight,
-                                            width: 20,
-                                            height: 20,
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                  "assets/icons/delete.png",
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const IsikartuScreen()),
-                        );
-                      },
-                      child: Container(
-                        width: 360,
-                        height: 86,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: const Color(0xFF000000).withOpacity(0.10),
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10, left: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.centerLeft,
-                                        width: 50,
-                                        height: 50,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              "assets/icons/kartuu.png",
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "3 Februari 2023",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF000000),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Selesai",
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: const Color(0xFF000000)
-                                                .withOpacity(0.5),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 15.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const EditkartuScreen()),
-                                              );
-                                            },
-                                            child: Container(
-                                              alignment: Alignment.centerRight,
-                                              width: 20,
-                                              height: 20,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/icons/edit.png",
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 23,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        "Hapus Laporan"),
-                                                    content: const Text(
-                                                        "Anda yakin ingin menghapus laporan ini?"),
-                                                    actions: [
-                                                      TextButton(
-                                                        child:
-                                                            const Text("Batal"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        child:
-                                                            const Text("Hapus"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              alignment: Alignment.centerRight,
-                                              width: 20,
-                                              height: 20,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                    "assets/icons/delete.png",
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            ),
-          ),
-        ],
-      )),
+          ],
+        ),
+      ),
     );
   }
 }
