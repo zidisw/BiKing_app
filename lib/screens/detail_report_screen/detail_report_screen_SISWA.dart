@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ReportScreen extends StatefulWidget {
   static String routeName = 'DetailReportScreenSiswa';
-
   const ReportScreen({super.key});
   @override
   _ReportScreenState createState() => _ReportScreenState();
@@ -11,6 +11,7 @@ class ReportScreen extends StatefulWidget {
 
 class _ReportScreenState extends State<ReportScreen> {
   String? selectedDocumentId;
+  String userId = FirebaseAuth.instance.currentUser!.uid; // TODO: Jadi disini di deklarasikan dulu userID (Pake todo biar emas tulisannya :v)
 
   void _showAddEditDialog({bool isEditing = false}) {
     final dialogTitle = isEditing ? 'Edit Report' : 'Add Report';
@@ -93,10 +94,13 @@ class _ReportScreenState extends State<ReportScreen> {
 
   Future<void> _addReport(String masalah, String detail, String nama) async {
     try {
+      String userId = FirebaseAuth.instance.currentUser!.uid;
+
       await FirebaseFirestore.instance.collection('report_siswa').add({
         'Masalah': masalah,
         'Detail': detail,
         'Nama': nama,
+        'UserId': userId, // TODO: Terus untuk method pengiriman, kasi masuk userId yang sudah dideklarasikan tadi
       });
       // Success message or further processing
     } catch (error) {
@@ -122,7 +126,7 @@ class _ReportScreenState extends State<ReportScreen> {
       await FirebaseFirestore.instance.collection('report_siswa').doc(documentId).delete();
     } catch (e) {
       // Handle any errors that occur during deletion
-      print('Error deleting report: $e');
+      Text('Error deleting report: $e');
     }
   }
 
@@ -179,8 +183,12 @@ class _ReportScreenState extends State<ReportScreen> {
               letterSpacing: 0.5)),
       ),
 
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('report_siswa').snapshots(),
+
+      body: StreamBuilder<QuerySnapshot>( //TODO: Terakhir, di tambah line di stream nya
+        stream: FirebaseFirestore.instance
+            .collection('report_siswa')
+            .where('UserId', isEqualTo: userId) //TODO: Line ini dikasikan biar dia kueri berdasarkan userId
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');

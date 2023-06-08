@@ -1,3 +1,4 @@
+import 'package:biking_app/screens/detail_report_screen/detail_report_screen_SISWA.dart';
 import 'package:biking_app/screens/pelaporan/siswa/buat_laporan.dart';
 import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
 import 'package:flutter/material.dart';
@@ -147,7 +148,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const BuatLaporanSiswa()),
+                                                              const ReportScreen()),
                                                     );
                                                   },
                                                   style:
@@ -162,7 +163,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                     ),
                                                   ),
                                                   child: Text(
-                                                    "Buat Laporan Baru",
+                                                    "Ke Workshop Rehan",
                                                     style: GoogleFonts.poppins(
                                                       color: Color.fromARGB(
                                                           255, 255, 255, 255),
