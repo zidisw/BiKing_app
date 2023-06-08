@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class BuatLaporan extends StatefulWidget {
   const BuatLaporan({super.key});
@@ -11,7 +12,29 @@ class BuatLaporan extends StatefulWidget {
 
 class _BuatLaporanState extends State<BuatLaporan> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
+  final TextEditingController _dateController = TextEditingController();
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy');
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _dateController.text = _dateFormat.format(pickedDate);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +68,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 20, left:20, right:20),
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 20, right: 20),
                       child: Container(
                         decoration: BoxDecoration(
                           color: const Color(0xFFFFFFFF),
@@ -56,7 +80,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(
-                                    vertical: 13.0, horizontal: 10.0),
+                            vertical: 13.0, horizontal: 10.0),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Form(
@@ -65,7 +89,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Kepada",
                                     style: GoogleFonts.poppins(
@@ -90,11 +114,13 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
-                                        hintText: 'Kesiswaan/Wali Kelas/BK/Guru',
+                                        hintText:
+                                            'Kesiswaan/Wali Kelas/BK/Guru',
                                       ),
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -102,17 +128,15 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
-                                  ]
-                                  ),
+                                  ]),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Nama",
                                     style: GoogleFonts.poppins(
@@ -138,7 +162,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -151,8 +176,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -161,7 +185,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   height: 15,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Siswa di bawah ini perlu ditangani masalahnya",
                                     style: GoogleFonts.poppins(
@@ -175,7 +199,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Nama",
                                     style: GoogleFonts.poppins(
@@ -201,7 +225,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -213,8 +238,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -223,7 +247,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Kelas",
                                     style: GoogleFonts.poppins(
@@ -249,7 +273,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -261,8 +286,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -271,7 +295,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Deskripsi Masalah / Penanganan yang Telah dilakukan",
                                     style: GoogleFonts.poppins(
@@ -297,8 +321,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
-                                            vertical: 60.0, // ubah nilai vertical
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            vertical:
+                                                60.0, // ubah nilai vertical
                                             horizontal: 10.0,
                                           ),
                                           hintText: 'Tambahkan deskripsi',
@@ -309,8 +335,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -319,7 +344,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Saran / Tindak Lanjut",
                                     style: GoogleFonts.poppins(
@@ -345,8 +370,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
-                                            vertical: 60.0, // ubah nilai vertical
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            vertical:
+                                                60.0, // ubah nilai vertical
                                             horizontal: 10.0,
                                           ),
                                           hintText: 'Tambahkan deskripsi',
@@ -357,8 +384,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -367,7 +393,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Tanggal Laporan",
                                     style: GoogleFonts.poppins(
@@ -388,22 +414,15 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                       height: 3,
                                     ),
                                     GestureDetector(
-                                      onTap: () async {
-                                        DateTime? pickedDate =
-                                            await showDatePicker(
-                                                context: context,
-                                                initialDate: DateTime
-                                                    .now(), //get today's date
-                                                firstDate: DateTime(
-                                                    2000), //DateTime.now() - not to allow to choose before today.
-                                                lastDate: DateTime(2101));
-                                      },
+                                      onTap: () => _selectDate(context),
                                       child: AbsorbPointer(
                                         child: TextFormField(
+                                          controller: _dateController,
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0)),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
                                             contentPadding:
                                                 const EdgeInsets.symmetric(
                                               vertical: 16.0,
@@ -447,13 +466,14 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                       Text('Sukses'),
                                     ],
                                   ),
-                                  content: Text('Laporan anda berhasil dikirim'),
+                                  content: const Text(
+                                      'Laporan anda berhasil dikirim'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('OK'),
+                                      child: const Text('OK'),
                                     ),
                                   ],
                                 );
@@ -471,7 +491,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
                           child: Text(
                             "Kirim",
                             style: GoogleFonts.poppins(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
@@ -486,7 +506,6 @@ class _BuatLaporanState extends State<BuatLaporan> {
           ),
         ),
       ),
-      
-  );
- }
+    );
+  }
 }

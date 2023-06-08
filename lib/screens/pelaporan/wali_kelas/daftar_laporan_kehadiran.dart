@@ -1,5 +1,4 @@
 import 'package:biking_app/screens/pelaporan/wali_kelas/laporan_bulanan_wakel.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/tambah_laporan_kehadiran.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,7 +44,7 @@ class _DaftarlaporankehadiranScreenState
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: 15),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Column(
@@ -54,7 +53,7 @@ class _DaftarlaporankehadiranScreenState
                       "Daftar Laporan Kehadiran Bulanan",
                       textAlign: TextAlign.left,
                       style: GoogleFonts.poppins(
-                        color: Color(0xFF0579CC),
+                        color: const Color(0xFF0579CC),
                         fontSize: 17,
                         fontWeight: FontWeight.w600,
                       ),
@@ -120,7 +119,7 @@ class _DaftarlaporankehadiranScreenState
                                     Text(
                                       "Maret 2023",
                                       style: GoogleFonts.poppins(
-                                        color: Color(0xFF000000),
+                                        color: const Color(0xFF000000),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -197,7 +196,7 @@ class _DaftarlaporankehadiranScreenState
                                       Text(
                                         "Februari 2023",
                                         style: GoogleFonts.poppins(
-                                          color: Color(0xFF000000),
+                                          color: const Color(0xFF000000),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -275,7 +274,7 @@ class _DaftarlaporankehadiranScreenState
                                       Text(
                                         "Januari 2023",
                                         style: GoogleFonts.poppins(
-                                          color: Color(0xFF000000),
+                                          color: const Color(0xFF000000),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -353,7 +352,7 @@ class _DaftarlaporankehadiranScreenState
                                       Text(
                                         "Desember 2022",
                                         style: GoogleFonts.poppins(
-                                          color: Color(0xFF000000),
+                                          color: const Color(0xFF000000),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),

@@ -80,13 +80,13 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text("Ganti Foto"),
+                                    title: const Text("Ganti Foto"),
                                     content: Wrap(
                                       crossAxisAlignment:
                                           WrapCrossAlignment.center,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 20),
                                           child: GestureDetector(
                                             onTap: () async {
@@ -107,8 +107,8 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                                   width: 50,
                                                   height: 50,
                                                 ),
-                                                SizedBox(height: 8),
-                                                Text("Galeri"),
+                                                const SizedBox(height: 8),
+                                                const Text("Galeri"),
                                               ],
                                             ),
                                           ),
@@ -168,13 +168,13 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 180,
                     ),
                     Text(
                       "Info Profil",
                       style: GoogleFonts.poppins(
-                        color: Color(0xFF0579CC),
+                        color: const Color(0xFF0579CC),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -200,7 +200,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     width: 360,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -208,7 +208,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: GoogleFonts.poppins(
@@ -219,7 +219,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Zid Ni Boss",
                                   style: GoogleFonts.poppins(
@@ -257,7 +257,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     width: 360,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -265,7 +265,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nomor HP",
                                   style: GoogleFonts.poppins(
@@ -276,7 +276,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "085349313355",
                                   style: GoogleFonts.poppins(
@@ -314,7 +314,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     width: 360,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -322,7 +322,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal Lahir",
                                   style: GoogleFonts.poppins(
@@ -333,7 +333,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "7 Agustus 2001",
                                   style: GoogleFonts.poppins(
@@ -371,7 +371,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     width: 360,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -379,7 +379,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Jabatan",
                                   style: GoogleFonts.poppins(
@@ -390,7 +390,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Guru BK Ilegal",
                                   style: GoogleFonts.poppins(
@@ -428,7 +428,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                     width: 360,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -436,7 +436,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "NIM",
                                   style: GoogleFonts.poppins(
@@ -447,7 +447,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "D121201016",
                                   style: GoogleFonts.poppins(

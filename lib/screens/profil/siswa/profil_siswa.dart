@@ -52,116 +52,118 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SafeArea(
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          alignment: Alignment.topCenter,
-                          width: 130,
-                          height: 150,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                "assets/images/jid1.png",
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            alignment: Alignment.topCenter,
+                            width: 130,
+                            height: 150,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  "assets/images/jid1.png",
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                         Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: GestureDetector(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text("Ganti Foto"),
-                                    content: Wrap(
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(horizontal: 20),
-                                          child: GestureDetector(
-                                            onTap: () async {
-                                              // Mengganti foto dari galeri
-                                              final pickedFile =
-                                                  await ImagePicker().pickImage(
-                                                      source:
-                                                          ImageSource.gallery);
-                                              if (pickedFile != null) {
-                                                // Lakukan sesuatu dengan foto yang dipilih dari galeri
-                                              }
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Column(
-                                              children: [
-                                                Image.asset(
-                                                  "assets/icons/galery.png",
-                                                  width: 50,
-                                                  height: 50,
-                                                ),
-                                                SizedBox(height: 8),
-                                                Text("Galeri"),
-                                              ],
+                           Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("Ganti Foto"),
+                                      content: Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.symmetric(horizontal: 20),
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                // Mengganti foto dari galeri
+                                                final pickedFile =
+                                                    await ImagePicker().pickImage(
+                                                        source:
+                                                            ImageSource.gallery);
+                                                if (pickedFile != null) {
+                                                  // Lakukan sesuatu dengan foto yang dipilih dari galeri
+                                                }
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/icons/galery.png",
+                                                    width: 50,
+                                                    height: 50,
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  const Text("Galeri"),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                             const EdgeInsets.symmetric(horizontal: 5),
-                                          child: GestureDetector(
-                                            onTap: () async {
-                                              // Mengganti foto dari kamera
-                                              final pickedFile =
-                                                  await ImagePicker().pickImage(
-                                                      source: ImageSource.camera);
-                                              if (pickedFile != null) {
-                                                // Lakukan sesuatu dengan foto yang diambil dari kamera
-                                              }
-                                               Navigator.of(context).pop();
-                                            },
-                                            child: Column(
-                                              children: [
-                                                Image.asset(
-                                                  "assets/icons/camera.png",
-                                                  width: 50,
-                                                  height: 50,
-                                                ),
-                                                const SizedBox(height: 8),
-                                                const Text("Kamera"),
-                                              ],
+                                          Padding(
+                                            padding:
+                                               const EdgeInsets.symmetric(horizontal: 5),
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                // Mengganti foto dari kamera
+                                                final pickedFile =
+                                                    await ImagePicker().pickImage(
+                                                        source: ImageSource.camera);
+                                                if (pickedFile != null) {
+                                                  // Lakukan sesuatu dengan foto yang diambil dari kamera
+                                                }
+                                                 Navigator.of(context).pop();
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/icons/camera.png",
+                                                    width: 50,
+                                                    height: 50,
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  const Text("Kamera"),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            child: Image.asset(
-                              "assets/images/addphoto.png",
-                              width: 30,
-                              height: 30,
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Image.asset(
+                                "assets/images/addphoto.png",
+                                width: 30,
+                                height: 30,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -205,36 +207,31 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: 350,
                     height: 60,
                     child:  Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: Row(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Nama",
-                                  style: GoogleFonts.poppins(
-                                    color: kSecondaryColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6.0),
+                            child: Text(
+                              "Nama",
+                              style: GoogleFonts.poppins(
+                                color: kSecondaryColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Zid Ni Boss",
-                                  style: GoogleFonts.poppins(
-                                    color: kPrimaryColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 6.0),
+                            child: Text(
+                              "Zid Ni Boss",
+                              style: GoogleFonts.poppins(
+                                color: kPrimaryColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),

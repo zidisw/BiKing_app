@@ -71,7 +71,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                               Text(
                                 "Kelas",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -127,7 +127,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                               Text(
                                 "Bulan",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -185,7 +185,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                               Text(
                                 "Tahun",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -252,13 +252,13 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                                 Text('Sukses'),
                               ],
                             ),
-                            content: Text('Laporan anda berhasil disimpan'),
+                            content: const Text('Laporan anda berhasil disimpan'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                               ),
                             ],
                           );
@@ -276,7 +276,7 @@ class _AddbulanScreenState extends State<AddbulanScreen> {
                     child: Text(
                       "Simpan",
                       style: GoogleFonts.poppins(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

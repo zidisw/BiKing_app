@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class BuatLaporanSiswa extends StatefulWidget {
   const BuatLaporanSiswa({Key? key}) : super(key: key);
   static String routeName = 'BuatLaporanSiswa';
-
 
   @override
   _BuatLaporanSiswaState createState() => _BuatLaporanSiswaState();
@@ -12,6 +12,28 @@ class BuatLaporanSiswa extends StatefulWidget {
 
 class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _dateController = TextEditingController();
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy');
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _dateController.text = _dateFormat.format(pickedDate);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +64,7 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: Align(
                   child: Column(
                     children: [
@@ -56,7 +78,7 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(
-                                    vertical: 13.0, horizontal: 10.0),
+                            vertical: 13.0, horizontal: 10.0),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Form(
@@ -90,7 +112,8 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(12.0)),
-                                        contentPadding: const EdgeInsets.symmetric(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
                                           vertical: 16.0,
                                           horizontal: 10.0,
                                         ),
@@ -102,8 +125,7 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-                                      },
+                                      onSaved: (value) {},
                                     ),
                                   ]),
                                 ),
@@ -137,7 +159,8 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
                                             vertical: 16.0,
                                             horizontal: 10.0,
                                           ),
@@ -149,8 +172,7 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -185,8 +207,10 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                           border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
-                                          contentPadding: const EdgeInsets.symmetric(
-                                            vertical: 60.0, // ubah nilai vertical
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            vertical:
+                                                60.0, // ubah nilai vertical
                                             horizontal: 10.0,
                                           ),
                                           hintText: 'Masukkan masalah',
@@ -197,8 +221,7 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                           }
                                           return null;
                                         },
-                                        onSaved: (value) {
-                                        },
+                                        onSaved: (value) {},
                                       ),
                                     ],
                                   ),
@@ -228,22 +251,15 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                       height: 3,
                                     ),
                                     GestureDetector(
-                                      onTap: () async {
-                                        DateTime? pickedDate =
-                                            await showDatePicker(
-                                                context: context,
-                                                initialDate: DateTime
-                                                    .now(), //get today's date
-                                                firstDate: DateTime(
-                                                    2000), //DateTime.now() - not to allow to choose before today.
-                                                lastDate: DateTime(2101));
-                                      },
+                                      onTap: () => _selectDate(context),
                                       child: AbsorbPointer(
                                         child: TextFormField(
+                                          controller: _dateController,
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0)),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
                                             contentPadding:
                                                 const EdgeInsets.symmetric(
                                               vertical: 16.0,
@@ -264,7 +280,7 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: ElevatedButton(
@@ -285,7 +301,8 @@ class _BuatLaporanSiswaState extends State<BuatLaporanSiswa> {
                                       Text('Sukses'),
                                     ],
                                   ),
-                                  content: const Text('Laporan anda berhasil dikirim'),
+                                  content: const Text(
+                                      'Laporan anda berhasil dikirim'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {

@@ -106,7 +106,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                       Text(
                                         "Zid Irsyadin S.W.",
                                         style: GoogleFonts.poppins(
-                                          color: Color(0xFF4A92FF),
+                                          color: const Color(0xFF4A92FF),
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -160,13 +160,13 @@ class _SettingWakelState extends State<SettingWakel> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               top: 5.0, left: 10.0),
                                           child: Text(
                                             "Pengaturan Akun",
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.poppins(
-                                              color: Color(0xFF000000),
+                                              color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -189,7 +189,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Ubah Password Akun",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -245,13 +245,13 @@ class _SettingWakelState extends State<SettingWakel> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               top: 5.0, left: 10.0),
                                           child: Text(
                                             "Laporan Saya",
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.poppins(
-                                              color: Color(0xFF000000),
+                                              color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -274,7 +274,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Jumlah Laporan Saya",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -331,13 +331,13 @@ class _SettingWakelState extends State<SettingWakel> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               top: 5.0, left: 10.0),
                                           child: Text(
                                             "Aplikasi BiKing",
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.poppins(
-                                              color: Color(0xFF000000),
+                                              color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -360,7 +360,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Tentang Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -395,7 +395,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Privasi",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -430,7 +430,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Bantuan",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -465,7 +465,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Hubungi Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -532,7 +532,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Keluar",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w500,
                                                   ),

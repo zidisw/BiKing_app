@@ -53,12 +53,12 @@ class _RegisterState extends State<Register> {
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           if (value!.isEmpty) {
-            return ("Please Enter Your Email");
+            return ("Masukkan email anda");
           }
           // reg expression for email validation
           if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
               .hasMatch(value)) {
-            return ("Please Enter a valid email");
+            return ("Masukkan email yang benar");
           }
           return null;
         },
@@ -83,10 +83,10 @@ class _RegisterState extends State<Register> {
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return ("Password is required for login");
+            return ("Kata sandi diperlukan untuk masuk");
           }
           if (!regex.hasMatch(value)) {
-            return ("Enter Valid Password(Min. 6 Character)");
+            return ("Masukkan kata sandi (Min. 6 Karakter)");
           }
           return null;
         },
@@ -104,7 +104,7 @@ class _RegisterState extends State<Register> {
                 });
               }),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Password",
+          hintText: "Kata Sandi",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -118,7 +118,7 @@ class _RegisterState extends State<Register> {
         validator: (value) {
           if (confirmpassController.text !=
               passwordController.text) {
-            return "Password don't match";
+            return "Kata Sandi tidak sesuai";
           }
           return null;
         },
@@ -136,7 +136,7 @@ class _RegisterState extends State<Register> {
                 });
               }),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Confirm Password",
+          hintText: "Konfirmasi Kata sandi",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -148,7 +148,7 @@ class _RegisterState extends State<Register> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.redAccent,
       child: DefaultButton(
-          title: "Sign Up",
+          title: "Daftar",
           onPress: () {
             signUp(emailController.text, passwordController.text, role);
           },
@@ -156,7 +156,7 @@ class _RegisterState extends State<Register> {
     );
     return Scaffold(
 
-      body: Container(
+      body:  Container(
         child: Column(
           children: [
             Positioned(
@@ -212,7 +212,7 @@ class _RegisterState extends State<Register> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               const Text(
-                                "Role: ",
+                                "Peran: ",
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: kContainerColor,
@@ -260,7 +260,7 @@ class _RegisterState extends State<Register> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text("Have an account? "),
+                    const Text("Punya akun? "),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -271,7 +271,7 @@ class _RegisterState extends State<Register> {
                         );
                       },
                       child: const Text(
-                        "Sign In",
+                        "Masuk",
                         style: TextStyle(
                           color: kSecondaryColor,
                           fontWeight: FontWeight.bold,

@@ -38,9 +38,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-        child: 
-        
-        Stack(
+        child: Stack(
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -48,7 +46,6 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                 alignment: Alignment.topCenter,
                 child: Column(
                   children: [
-                    
                     Container(
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFFFFF),
@@ -58,10 +55,10 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                           width: 1.0,
                         ),
                       ),
-                      
                       height: 160,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 10.0, left: 3.0, bottom: 10.0),
+                        padding: const EdgeInsets.only(
+                            top: 10.0, left: 3.0, bottom: 10.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -74,7 +71,8 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                   child: Text(
                                     'Kartu Komunikasi',
                                     style: GoogleFonts.poppins(
-                                      color: const Color.fromARGB(255, 81, 154, 232),
+                                      color: const Color.fromARGB(
+                                          255, 81, 154, 232),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -93,61 +91,88 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                         const SizedBox(
                                           height: 30,
                                         ),
-                                        
                                         Padding(
-                                          padding: const EdgeInsets.only(left:5.0,  right: 10.0),
+                                          padding: const EdgeInsets.only(
+                                              left: 5.0, right: 10.0),
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                width: 230, // Atur lebar tombol "Buka"
-                                                height: 40, // Atur tinggi tombol "Buka"
+                                              SizedBox(
+                                                width:
+                                                    230, // Atur lebar tombol "Buka"
+                                                height:
+                                                    40, // Atur tinggi tombol "Buka"
                                                 child: ElevatedButton(
                                                   onPressed: () {
                                                     Navigator.push(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => const DaftarPelaporanScreen()),
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const DaftarPelaporanScreen()),
                                                     );
                                                   },
-                                                  style: ElevatedButton.styleFrom(
-                                                    backgroundColor: const Color(0xFF38ACFF),
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(15),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        const Color(0xFF38ACFF),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
                                                     ),
                                                   ),
                                                   child: Text(
                                                     "Buka",
                                                     style: GoogleFonts.poppins(
-                                                      color: Color.fromARGB(255, 255, 255, 255),
+                                                      color: const Color.fromARGB(
+                                                          255, 255, 255, 255),
                                                       fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
-                                              Container(
-                                                width: 230, // Atur lebar tombol "Buat Laporan Baru"
-                                                height: 40, // Atur tinggi tombol "Buat Laporan Baru"
+                                              SizedBox(
+                                                width:
+                                                    230, // Atur lebar tombol "Buat Laporan Baru"
+                                                height:
+                                                    40, // Atur tinggi tombol "Buat Laporan Baru"
                                                 child: ElevatedButton(
                                                   onPressed: () {
                                                     Navigator.push(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => const BuatLaporan()),
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const BuatLaporan()),
                                                     );
                                                   },
-                                                  style: ElevatedButton.styleFrom(
-                                                    backgroundColor: const Color(0xFF9180FF),
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(15),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        const Color(0xFF9180FF),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
                                                     ),
                                                   ),
                                                   child: Text(
                                                     "Buat Laporan Baru",
                                                     style: GoogleFonts.poppins(
-                                                      color: Color.fromARGB(255, 255, 255, 255),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
                                                       fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                 ),
@@ -156,7 +181,8 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                           ),
                                         )
                                       ],
-                                    )),
+                                    )
+                                  ),
                               ],
                             ),
                           ],
@@ -167,7 +193,6 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                 ),
               ),
             ),
-            
           ],
         ),
       ),

@@ -61,7 +61,7 @@ class _Bantuan extends State<Bantuan> {
                               "Apa saja masalah yang dapat dibahas dalam sesi konseling menggunakan aplikasi ini?",
                               textAlign: TextAlign.left,
                               style: GoogleFonts.poppins(
-                                color: Color(0xFF000000),
+                                color: const Color(0xFF000000),
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -73,7 +73,7 @@ class _Bantuan extends State<Bantuan> {
                               "Siswa dapat membahas berbagai macam masalah dalam sesi konseling menggunakan aplikasi ini, termasuk masalah akademik seperti kesulitan memahami materi pelajaran atau masalah pribadi seperti masalah keluarga, persahabatan, atau kesehatan mental.",
                               textAlign: TextAlign.left,
                               style: GoogleFonts.poppins(
-                                color: Color(0xFF000000),
+                                color: const Color(0xFF000000),
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               ),

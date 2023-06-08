@@ -108,7 +108,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                       Text(
                                         "Zid Irsyadin S.W.",
                                         style:  GoogleFonts.poppins(
-                                          color: Color(0xFF4A92FF),
+                                          color: const Color(0xFF4A92FF),
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -163,12 +163,12 @@ class _SettingScreenState extends State<SettingScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
                                           child: Text(
                                             "Pengaturan Akun",
                                             textAlign: TextAlign.left,
                                             style:  GoogleFonts.poppins(
-                                              color: Color(0xFF000000),
+                                              color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -191,7 +191,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Ubah Password Akun",
                                                   textAlign: TextAlign.left,
                                                   style:  GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400,
@@ -248,12 +248,12 @@ class _SettingScreenState extends State<SettingScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
                                           child: Text(
                                             "Laporan Saya",
                                             textAlign: TextAlign.left,
                                             style:  GoogleFonts.poppins(
-                                              color: Color(0xFF000000),
+                                              color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -276,7 +276,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Jumlah Laporan Saya",
                                                   textAlign: TextAlign.left,
                                                   style:  GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400,
@@ -333,12 +333,12 @@ class _SettingScreenState extends State<SettingScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                          Padding(
-                                          padding: EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
                                           child: Text(
                                             "Aplikasi BiKing",
                                             textAlign: TextAlign.left,
                                             style: GoogleFonts.poppins(
-                                              color: Color(0xFF000000),
+                                              color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -361,7 +361,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Tentang Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400,
@@ -399,7 +399,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Privasi",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400,
@@ -437,7 +437,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Bantuan",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400,
@@ -475,7 +475,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Hubungi Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400,
@@ -543,7 +543,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Keluar",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: Color(0xFF000000),
+                                                    color: const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w500,

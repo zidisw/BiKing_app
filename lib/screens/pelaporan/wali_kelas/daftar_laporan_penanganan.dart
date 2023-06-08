@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/edit_laporan_penanganan.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -40,7 +39,7 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
           child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 13, left: 20),
+            padding: const EdgeInsets.only(top: 13, left: 20),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Column(
@@ -49,7 +48,7 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                     "Daftar Laporan Penanganan Wali Kelas",
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                      color: Color(0xFF0579CC),
+                      color: const Color(0xFF0579CC),
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
@@ -110,7 +109,7 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                     Text(
                                       "20 Maret 2023",
                                       style: GoogleFonts.poppins(
-                                        color: Color(0xFF000000),
+                                        color: const Color(0xFF000000),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -167,19 +166,19 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -269,7 +268,7 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                     Text(
                                       "5 Maret 2023",
                                       style: GoogleFonts.poppins(
-                                        color: Color(0xFF000000),
+                                        color: const Color(0xFF000000),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -326,19 +325,19 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -428,7 +427,7 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                     Text(
                                       "8 Februari 2023",
                                       style: GoogleFonts.poppins(
-                                        color: Color(0xFF000000),
+                                        color: const Color(0xFF000000),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -485,19 +484,19 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
@@ -587,7 +586,7 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                     Text(
                                       "30 Januari 2023",
                                       style: GoogleFonts.poppins(
-                                        color: Color(0xFF000000),
+                                        color: const Color(0xFF000000),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -644,19 +643,19 @@ class _DaftarLaporanPenangananWakelState extends State<DaftarLaporanPenangananWa
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
-                                                title: Text("Hapus Laporan"),
-                                                content: Text(
+                                                title: const Text("Hapus Laporan"),
+                                                content: const Text(
                                                     "Anda yakin ingin menghapus laporan ini?"),
                                                 actions: [
                                                   TextButton(
-                                                    child: Text("Batal"),
+                                                    child: const Text("Batal"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
                                                   ),
                                                   TextButton(
-                                                    child: Text("Hapus"),
+                                                    child: const Text("Hapus"),
                                                     onPressed: () {
                                                       Navigator.of(context)
                                                           .pop();

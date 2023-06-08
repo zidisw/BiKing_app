@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class EditLaporan extends StatefulWidget {
   const EditLaporan({Key? key}) : super(key: key);
@@ -11,6 +12,28 @@ class EditLaporan extends StatefulWidget {
 
 class _EditLaporanState extends State<EditLaporan> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _dateController = TextEditingController();
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy');
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _dateController.text = _dateFormat.format(pickedDate);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +64,7 @@ class _EditLaporanState extends State<EditLaporan> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20.0, left:20, right: 20),
+                padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Column(
@@ -56,7 +79,7 @@ class _EditLaporanState extends State<EditLaporan> {
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(
-                                    vertical: 13.0, horizontal: 10.0),
+                            vertical: 13.0, horizontal: 10.0),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Form(
@@ -111,7 +134,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
+                                  padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
                                     "Nama",
                                     style: GoogleFonts.poppins(
@@ -187,7 +210,8 @@ class _EditLaporanState extends State<EditLaporan> {
                                                   BorderRadius.circular(12.0)),
                                           contentPadding:
                                               const EdgeInsets.symmetric(
-                                            vertical: 60.0, // ubah nilai vertical
+                                            vertical:
+                                                60.0, // ubah nilai vertical
                                             horizontal: 10.0,
                                           ),
                                           hintText: 'Masukkan masalah',
@@ -210,7 +234,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Tanggal Laporan",
                                     style: GoogleFonts.poppins(
@@ -231,22 +255,15 @@ class _EditLaporanState extends State<EditLaporan> {
                                       height: 3,
                                     ),
                                     GestureDetector(
-                                      onTap: () async {
-                                        DateTime? pickedDate =
-                                            await showDatePicker(
-                                                context: context,
-                                                initialDate: DateTime
-                                                    .now(), //get today's date
-                                                firstDate: DateTime(
-                                                    2000), //DateTime.now() - not to allow to choose before today.
-                                                lastDate: DateTime(2101));
-                                      },
+                                      onTap: () => _selectDate(context),
                                       child: AbsorbPointer(
                                         child: TextFormField(
+                                          controller: _dateController,
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0)),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
                                             contentPadding:
                                                 const EdgeInsets.symmetric(
                                               vertical: 16.0,
@@ -262,69 +279,95 @@ class _EditLaporanState extends State<EditLaporan> {
                                     ),
                                   ]),
                                 ),
-                                
                               ],
                             ),
                           ),
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
               ),
               Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  // kode untuk tombol Batal
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: Text(
-                                  'Batal',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 40),
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  // kode untuk tombol Simpan
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: Text(
-                                  'Simpan',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // kode untuk tombol Batal
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          'Batal',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
+                    ),
+                    const SizedBox(width: 40),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Row(
+                                  children: [
+                                    Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('Sukses'),
+                                  ],
+                                ),
+                                content:
+                                    const Text('Perubahan berhasil disimpan'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          'Simpan',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

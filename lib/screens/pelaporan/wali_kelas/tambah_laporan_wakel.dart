@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class WaliTambahlaporan extends StatefulWidget {
   const WaliTambahlaporan({Key? key}) : super(key: key);
@@ -10,6 +11,29 @@ class WaliTambahlaporan extends StatefulWidget {
 }
 
 class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
+  final TextEditingController _dateController = TextEditingController();
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy');
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _dateController.text = _dateFormat.format(pickedDate);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +86,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Nama Siswa",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -95,7 +119,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Kelas",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -130,7 +154,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Masalah",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -168,7 +192,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Penanganan yang Sudah dilakukan",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -207,7 +231,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Tanggal",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -217,31 +241,24 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                   height: 3,
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    DateTime? pickedDate =
-                                        await showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime
-                                                .now(), //get today's date
-                                            firstDate: DateTime(
-                                                2000), //DateTime.now() - not to allow to choose before today.
-                                            lastDate: DateTime(2101));
-                                  },
-                                  child: AbsorbPointer(
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                          vertical: 16.0,
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText: 'Pilih tanggal laporan',
-                                      ),
-                                      onSaved: (value) {
-                                        // simpan tanggal yang dipilih
+                                      onTap: () => _selectDate(context),
+                                      child: AbsorbPointer(
+                                        child: TextFormField(
+                                          controller: _dateController,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                              vertical: 16.0,
+                                              horizontal: 10.0,
+                                            ),
+                                            hintText: 'Pilih tanggal laporan',
+                                          ),
+                                          onSaved: (value) {
+                                            // simpan tanggal yang dipilih
                                       },
                                     ),
                                   ),
@@ -279,13 +296,13 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                 Text('Sukses'),
                               ],
                             ),
-                            content: Text('Laporan anda berhasil dikirim'),
+                            content: const Text('Laporan anda berhasil dikirim'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                               ),
                             ],
                           );
@@ -303,7 +320,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                     child: Text(
                       "Kirim",
                       style: GoogleFonts.poppins(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

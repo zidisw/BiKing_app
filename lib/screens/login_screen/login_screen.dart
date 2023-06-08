@@ -45,12 +45,12 @@ class _LoginScreenState extends State<LoginScreen> {
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           if (value!.isEmpty) {
-            return ("Please Enter Your Email");
+            return ("Masukkan email anda");
           }
           // reg expression for email validation
           if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
               .hasMatch(value)) {
-            return ("Please Enter a valid email");
+            return ("Masukkkan email yang benar");
           }
           return null;
         },
@@ -75,10 +75,10 @@ class _LoginScreenState extends State<LoginScreen> {
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return ("Password is required for login");
+            return ("Kata sandi diperlukan untuk masuk");
           }
           if (!regex.hasMatch(value)) {
-            return ("Enter Valid Password(Min. 6 Character)");
+            return ("Masukkan kata sandi yang benar(Min. 6 Karakter)");
           }
           return null;
         },
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
               });
             }),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Password",
+          hintText: "Kata Sandi",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.redAccent,
       child: DefaultButton(
-          title: "Login",
+          title: "Masuk",
           onPress: () {
             signIn(emailController.text, passwordController.text);
           },
@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Forgot Password',
+                            'Lupa Sandi',
                             textAlign: TextAlign.end,
                             style: Theme.of(context)
                                 .textTheme
@@ -209,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text("Don't have an account? "),
+                    const Text("Tidak punya akun? "),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -220,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: const Text(
-                        "Sign Up",
+                        "Buat Akun",
                         style: TextStyle(
                           color: kSecondaryColor,
                           fontWeight: FontWeight.bold,
@@ -272,31 +272,31 @@ class _LoginScreenState extends State<LoginScreen> {
           email: email,
           password: password,
         );
-        Fluttertoast.showToast(msg: "Login Successful");
+        Fluttertoast.showToast(msg: "Berhasil Masuk");
         route();
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
+            errorMessage = "Format email anda tidak sesuai.";
 
             break;
           case "wrong-password":
-            errorMessage = "Your password is wrong.";
+            errorMessage = "Kata sandi anda salah.";
             break;
           case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
+            errorMessage = "Pengguna dengan email ini tidak ditemukan.";
             break;
           case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
+            errorMessage = "Pengguna dengan email ini telah dinonaktifkan.";
             break;
           case "too-many-requests":
-            errorMessage = "Too many requests";
+            errorMessage = "Terlalu banyak permintaan";
             break;
           case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
+            errorMessage = "Email dan kata sandi tidak diaktifkan.";
             break;
           default:
-            errorMessage = "An undefined Error happened.";
+            errorMessage = "Terjadi kesalahan yang tidak terdefinisi.";
         }
         Fluttertoast.showToast(msg: errorMessage!);
         print(error.code);

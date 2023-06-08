@@ -98,7 +98,7 @@ class _PelaporanState extends State<Pelaporan> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width:
                                                     230, // Atur lebar tombol "Buka"
                                                 height:
@@ -126,7 +126,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                   child: Text(
                                                     "Buka",
                                                     style: GoogleFonts.poppins(
-                                                      color: Color.fromARGB(
+                                                      color: const Color.fromARGB(
                                                           255, 255, 255, 255),
                                                       fontSize: 14,
                                                       fontWeight:
@@ -136,7 +136,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
-                                              Container(
+                                              SizedBox(
                                                 width:
                                                     230, // Atur lebar tombol "Buat Laporan Baru"
                                                 height:
@@ -164,7 +164,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                   child: Text(
                                                     "Buat Laporan Baru",
                                                     style: GoogleFonts.poppins(
-                                                      color: Color.fromARGB(
+                                                      color: const Color.fromARGB(
                                                           255, 255, 255, 255),
                                                       fontSize: 14,
                                                       fontWeight:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class EditlaporanpenangananScreen extends StatefulWidget {
   const EditlaporanpenangananScreen({Key? key}) : super(key: key);
@@ -12,6 +13,29 @@ class EditlaporanpenangananScreen extends StatefulWidget {
 
 class _EditlaporanpenangananScreenState
     extends State<EditlaporanpenangananScreen> {
+  final TextEditingController _dateController = TextEditingController();
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy');
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _dateController.text = _dateFormat.format(pickedDate);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,14 +80,15 @@ class _EditlaporanpenangananScreenState
                         padding: const EdgeInsets.symmetric(
                             vertical: 13.0, horizontal: 10.0),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, bottom: 10, top: 5),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "Nama Siswa",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -71,8 +96,8 @@ class _EditlaporanpenangananScreenState
                               const Column(
                                 children: [
                                   SizedBox(
-                                      height: 3,
-                                    ),
+                                    height: 3,
+                                  ),
                                 ],
                               ), // add some spacing between the text and the TextFormField
                               TextFormField(
@@ -100,14 +125,14 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Kelas",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
                               const SizedBox(
-                                  height: 3,
-                                ), // add some spacing between the text and the TextFormField
+                                height: 3,
+                              ), // add some spacing between the text and the TextFormField
                               TextFormField(
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
@@ -133,14 +158,14 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Masalah",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
                               const SizedBox(
-                                    height: 3,
-                                  ), // add some spacing between the text and the TextFormField
+                                height: 3,
+                              ), // add some spacing between the text and the TextFormField
                               TextFormField(
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
@@ -166,13 +191,14 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Penanganan yang Sudah Dilakukan",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 ),
-                              ),const SizedBox(
-                                    height: 3,
-                                  ), // add some spacing between the text and the TextFormField
+                              ),
+                              const SizedBox(
+                                height: 3,
+                              ), // add some spacing between the text and the TextFormField
                               TextFormField(
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
@@ -199,7 +225,7 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Tanggal",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -209,22 +235,15 @@ class _EditlaporanpenangananScreenState
                                   height: 3,
                                 ),
                                 GestureDetector(
-                                  onTap: () async {
-                                    DateTime? pickedDate =
-                                        await showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime
-                                                .now(), //get today's date
-                                            firstDate: DateTime(
-                                                2000), //DateTime.now() - not to allow to choose before today.
-                                            lastDate: DateTime(2101));
-                                  },
+                                  onTap: () => _selectDate(context),
                                   child: AbsorbPointer(
                                     child: TextFormField(
+                                      controller: _dateController,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
                                         contentPadding:
                                             const EdgeInsets.symmetric(
                                           vertical: 16.0,

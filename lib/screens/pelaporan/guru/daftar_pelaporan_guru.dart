@@ -40,7 +40,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
           child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 13, left: 20),
+            padding: const EdgeInsets.only(top: 13, left: 20),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Column(
@@ -49,7 +49,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                     "Daftar Kartu Komunikasi",
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
-                      color: Color(0xFF0579CC),
+                      color: const Color(0xFF0579CC),
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -119,7 +119,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                         Text(
                                           "7 Maret 2023",
                                           style: GoogleFonts.poppins(
-                                            color: Color(0xFF000000),
+                                            color: const Color(0xFF000000),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -294,7 +294,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                         Text(
                                           "2 Maret 2023",
                                           style: GoogleFonts.poppins(
-                                            color: Color(0xFF000000),
+                                            color:  const Color(0xFF000000),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -469,7 +469,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                       Text(
                                         "14 Februari 2023",
                                         style: GoogleFonts.poppins(
-                                          color: Color(0xFF000000),
+                                          color: const Color(0xFF000000),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -643,7 +643,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                                         Text(
                                           "3 Februari 2023",
                                           style: GoogleFonts.poppins(
-                                            color: Color(0xFF000000),
+                                            color: const Color(0xFF000000),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
                                           ),

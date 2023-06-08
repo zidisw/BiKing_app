@@ -93,7 +93,7 @@ class _IndormasibkScreenState extends State<InformasibkScreen> {
                         "Koordinator BK",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.poppins(
-                          color: Color(0xFF0579CC),
+                          color: const Color(0xFF0579CC),
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),

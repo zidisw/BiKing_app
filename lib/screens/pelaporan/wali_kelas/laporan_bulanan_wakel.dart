@@ -48,7 +48,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                           Text(
                             "Daftar Laporan Kehadiran Bulanan Siswa",
                             style: GoogleFonts.poppins(
-                              color: Color(0xFF0579CC),
+                              color: const Color(0xFF0579CC),
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
@@ -91,9 +91,9 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(height: 3),
+                                                const SizedBox(height: 3),
                                                 Padding(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       left: 10.0),
                                                   child: Column(
                                                     crossAxisAlignment:
@@ -120,7 +120,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(height: 15),
+                                                      const SizedBox(height: 15),
                                                       Text(
                                                         'Perempuan - Islam',
                                                         style:
@@ -178,7 +178,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -224,7 +224,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -242,7 +242,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -284,7 +284,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -302,7 +302,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -356,7 +356,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                         height: 30,
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.only(
+                                                             const EdgeInsets.only(
                                                                   top: 5,
                                                                   left: 10),
                                                           child: Column(
@@ -489,9 +489,9 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(height: 3),
+                                                const SizedBox(height: 3),
                                                 Padding(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       left: 10.0),
                                                   child: Column(
                                                     crossAxisAlignment:
@@ -518,7 +518,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(height: 5),
+                                                      const SizedBox(height: 5),
                                                       Text(
                                                         'Laki-laki - Islam',
                                                         style:
@@ -576,7 +576,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -622,7 +622,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -640,7 +640,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -682,7 +682,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -700,7 +700,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -754,7 +754,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                         height: 30,
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.only(
+                                                              const EdgeInsets.only(
                                                                   top: 5,
                                                                   left: 10),
                                                           child: Column(
@@ -887,9 +887,9 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(height: 3),
+                                                const SizedBox(height: 3),
                                                 Padding(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       left: 10.0),
                                                   child: Column(
                                                     crossAxisAlignment:
@@ -916,7 +916,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(height: 5),
+                                                      const SizedBox(height: 5),
                                                       Text(
                                                         'Perempuan - Islam',
                                                         style:
@@ -956,7 +956,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -974,7 +974,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -1020,7 +1020,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -1038,7 +1038,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -1080,7 +1080,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -1098,7 +1098,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -1152,7 +1152,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                         height: 30,
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.only(
+                                                              const EdgeInsets.only(
                                                                   top: 5,
                                                                   left: 10),
                                                           child: Column(
@@ -1285,9 +1285,9 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(height: 3),
+                                                const SizedBox(height: 3),
                                                 Padding(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       left: 10.0),
                                                   child: Column(
                                                     crossAxisAlignment:
@@ -1314,7 +1314,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(height: 5),
+                                                      const SizedBox(height: 5),
                                                       Text(
                                                         'Laki-laki - Islam',
                                                         style:
@@ -1354,7 +1354,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -1372,7 +1372,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -1418,7 +1418,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -1436,7 +1436,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -1478,7 +1478,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                   width: 55,
                                                   height: 55,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 5.0),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -1496,7 +1496,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 3,
                                                         ),
                                                         Text(
@@ -1550,7 +1550,7 @@ class _LaporanBulananState extends State<LaporanBulanan> {
                                                         height: 30,
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.only(
+                                                              const EdgeInsets.only(
                                                                   top: 5,
                                                                   left: 10),
                                                           child: Column(
