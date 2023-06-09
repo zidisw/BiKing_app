@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ReportScreen extends StatefulWidget {
-  static String routeName = 'DetailReportScreenSiswa';
+  static String routeName = 'KelasReportScreenSiswa';
   const ReportScreen({super.key});
   @override
   _ReportScreenState createState() => _ReportScreenState();
@@ -16,14 +16,14 @@ class _ReportScreenState extends State<ReportScreen> {
   void _showAddEditDialog({bool isEditing = false}) {
     final dialogTitle = isEditing ? 'Edit Report' : 'Add Report';
     final masalahLabel = isEditing ? 'Masalah (Edit)' : 'Masalah';
-    final detailLabel = isEditing ? 'Detail (Edit)' : 'Detail';
+    final KelasLabel = isEditing ? 'Kelas (Edit)' : 'Kelas';
     final namaLabel = isEditing ? 'Nama (Edit)' : 'Nama';
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController masalahController = TextEditingController();
-        final TextEditingController detailController = TextEditingController();
+        final TextEditingController KelasController = TextEditingController();
         final TextEditingController namaController = TextEditingController();
 
         return AlertDialog(
@@ -42,8 +42,8 @@ class _ReportScreenState extends State<ReportScreen> {
                 style: const TextStyle(color: Colors.black),
               ),
               TextField(
-                controller: detailController,
-                decoration: InputDecoration(labelText: detailLabel),
+                controller: KelasController,
+                decoration: InputDecoration(labelText: KelasLabel),
                 style: const TextStyle(color: Colors.black),
               ),
             ],
@@ -62,13 +62,13 @@ class _ReportScreenState extends State<ReportScreen> {
                   _editReport(
                     selectedDocumentId!,
                     masalahController.text,
-                    detailController.text,
+                    KelasController.text,
                     namaController.text,
                   );
                 } else {
                   _addReport(
                     masalahController.text,
-                    detailController.text,
+                    KelasController.text,
                     namaController.text,
                   );
                 }
@@ -92,15 +92,16 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 
-  Future<void> _addReport(String masalah, String detail, String nama) async {
+  Future<void> _addReport(String masalah, String Kelas, String nama) async {
     try {
       String userId = FirebaseAuth.instance.currentUser!.uid;
 
-      await FirebaseFirestore.instance.collection('report_siswa').add({
+      await FirebaseFirestore.instance.collection('laporan_siswa').add({
         'Masalah': masalah,
-        'Detail': detail,
+        'Kelas': Kelas,
         'Nama': nama,
         'UserId': userId, // TODO: Terus untuk method pengiriman, kasi masuk userId yang sudah dideklarasikan tadi
+        'Date': FieldValue.serverTimestamp(),
       });
       // Success message or further processing
     } catch (error) {
@@ -108,11 +109,11 @@ class _ReportScreenState extends State<ReportScreen> {
     }
   }
 
-  Future<void> _editReport(String documentId, String masalah, String detail, String nama) async {
+  Future<void> _editReport(String documentId, String masalah, String Kelas, String nama) async {
     try {
-      await FirebaseFirestore.instance.collection('report_siswa').doc(documentId).update({
+      await FirebaseFirestore.instance.collection('laporan_siswa').doc(documentId).update({
         'Masalah': masalah,
-        'Detail': detail,
+        'Kelas': Kelas,
         'Nama': nama,
       });
       // Success message or further processing
@@ -123,7 +124,7 @@ class _ReportScreenState extends State<ReportScreen> {
 
   Future<void> _deleteReport(String documentId) async {
     try {
-      await FirebaseFirestore.instance.collection('report_siswa').doc(documentId).delete();
+      await FirebaseFirestore.instance.collection('laporan_siswa').doc(documentId).delete();
     } catch (e) {
       // Handle any errors that occur during deletion
       Text('Error deleting report: $e');
@@ -176,18 +177,19 @@ class _ReportScreenState extends State<ReportScreen> {
           ),
         ),
         title: const Text('Reports',
-          style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.5)),
+            style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5)),
       ),
 
 
       body: StreamBuilder<QuerySnapshot>( //TODO: Terakhir, di tambah line di stream nya
         stream: FirebaseFirestore.instance
-            .collection('report_siswa')
+            .collection('laporan_siswa')
             .where('UserId', isEqualTo: userId) //TODO: Line ini dikasikan biar dia kueri berdasarkan userId
+            .orderBy('Date', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -223,7 +225,7 @@ class _ReportScreenState extends State<ReportScreen> {
                         style: const TextStyle(color: Colors.black),
                       ),
                       Text(
-                        data['Detail'],
+                        data['Kelas'],
                         style: const TextStyle(color: Colors.black),
                       ),
                     ],
