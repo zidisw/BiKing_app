@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:uuid/uuid.dart';
 
 class BuatLaporan extends StatefulWidget {
   const BuatLaporan({Key? key}) : super(key: key);
@@ -244,8 +245,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
       ),
     );
   }
-  Future<void> _addReport(String kepada, String nama, String siswaNama,
-      String siswaKelas, String deskripsi, String saran, String userID) async {
+  Future<void> _addReport(String userID, String laporanID, String kepada, String nama, String siswaNama,
+      String siswaKelas, String deskripsi, String saran) async {
     try {
       _laporanCounter++; // tambahkan counter saat laporan dikirim
       String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
@@ -254,6 +255,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
           .doc(namaDokumen)
           .set({
         'UserID': userID,
+        'LaporanID': laporanID,
         'Kepada': kepada,
         'Nama': nama,
         'Nama Siswa': siswaNama,
@@ -289,6 +291,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
       form.save();
       FirebaseAuth auth = FirebaseAuth.instance;
       String userID = auth.currentUser!.uid;
+      String laporanID = Uuid().v4();
 
       // Memastikan koleksi "laporan_guru" ada
       await FirebaseFirestore.instance
@@ -303,13 +306,14 @@ class _BuatLaporanState extends State<BuatLaporan> {
           .delete();
           
       _addReport(
+        userID,
+        laporanID,
         kepadaValue,
         namaValue,
         siswaNamaValue,
         siswaKelasValue,
         deskripsiValue,
         saranValue,
-        userID,
       );
     }
   }

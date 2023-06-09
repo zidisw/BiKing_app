@@ -58,7 +58,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 13, left: 20),
+                padding: const EdgeInsets.only(top: 13, left: 15),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Column(
@@ -105,7 +105,8 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const IsiKartuScreen(),
+                                builder: (context) => IsiKartuScreen(
+                                    laporanID: documents[index].id),
                               ),
                             );
                           },
