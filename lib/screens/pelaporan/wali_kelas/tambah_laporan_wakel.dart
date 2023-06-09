@@ -62,7 +62,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Nama Siswa",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -95,7 +95,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Kelas",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -130,7 +130,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Masalah",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -168,7 +168,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Penanganan yang Sudah dilakukan",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -207,7 +207,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                               Text(
                                 "Tanggal",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -279,13 +279,13 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                                 Text('Sukses'),
                               ],
                             ),
-                            content: Text('Laporan anda berhasil dikirim'),
+                            content: const Text('Laporan anda berhasil dikirim'),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                               ),
                             ],
                           );
@@ -303,7 +303,7 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
                     child: Text(
                       "Kirim",
                       style: GoogleFonts.poppins(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

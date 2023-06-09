@@ -99,7 +99,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width: 230, // Atur lebar tombol "Buka"
                                                 height: 40, // Atur tinggi tombol "Buka"
                                                 child: ElevatedButton(
@@ -118,7 +118,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                                   child: Text(
                                                     "Buka",
                                                     style: GoogleFonts.poppins(
-                                                      color: Color.fromARGB(255, 255, 255, 255),
+                                                      color: const Color.fromARGB(255, 255, 255, 255),
                                                       fontSize: 14,
                                                       fontWeight: FontWeight.w600,
                                                     ),
@@ -126,7 +126,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
-                                              Container(
+                                              SizedBox(
                                                 width: 230, // Atur lebar tombol "Buat Laporan Baru"
                                                 height: 40, // Atur tinggi tombol "Buat Laporan Baru"
                                                 child: ElevatedButton(
@@ -145,7 +145,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                                   child: Text(
                                                     "Buat Laporan Baru",
                                                     style: GoogleFonts.poppins(
-                                                      color: Color.fromARGB(255, 255, 255, 255),
+                                                      color: const Color.fromARGB(255, 255, 255, 255),
                                                       fontSize: 14,
                                                       fontWeight: FontWeight.w600,
                                                     ),

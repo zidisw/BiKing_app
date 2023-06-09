@@ -8,6 +8,7 @@ import 'package:biking_app/screens/main_screen_wali.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -17,23 +18,109 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //validate our form now
   final _formkey = GlobalKey<FormState>();
-
-  // editing controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _isObscure = true;
-  // firebase
   final _auth = FirebaseAuth.instance;
-
-  // string for displaying the error Message
   String? errorMessage;
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    checkUserLoggedIn();
+  }
+
+  void checkUserLoggedIn() async {
+    prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+
+    if (token != null) {
+      route();
+    }
+  }
+
+  void route() {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get()
+          .then((DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          if (documentSnapshot.get('role') == "Siswa") {
+            Navigator.pushNamedAndRemoveUntil(
+                context, MainScreenSiswa.routeName, (route) => false);
+          } else if (documentSnapshot.get('role') == "Guru") {
+            Navigator.pushNamedAndRemoveUntil(
+                context, MainScreenGuru.routeName, (route) => false);
+          } else if (documentSnapshot.get('role') == "Wali Kelas") {
+            Navigator.pushNamedAndRemoveUntil(
+                context, MainScreenWali.routeName, (route) => false);
+          } else if (documentSnapshot.get('role') == "Admin") {
+            Navigator.pushNamedAndRemoveUntil(
+                context, MainScreenAdmin.routeName, (route) => false);
+          } else {
+            logOut();
+          }
+        } else {
+          logOut();
+        }
+      });
+    }
+  }
+
+  void signIn(String email, String password) async {
+    if (_formkey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        prefs.setString('token', userCredential.user!.uid);
+        Fluttertoast.showToast(msg: "Login Successful");
+        route();
+      } on FirebaseAuthException catch (error) {
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = "Your email address appears to be malformed.";
+            break;
+          case "wrong-password":
+            errorMessage = "Your password is wrong.";
+            break;
+          case "user-not-found":
+            errorMessage = "User with this email doesn't exist.";
+            break;
+          case "user-disabled":
+            errorMessage = "User with this email has been disabled.";
+            break;
+          case "too-many-requests":
+            errorMessage = "Too many requests";
+            break;
+          case "operation-not-allowed":
+            errorMessage = "Signing in with Email and Password is not enabled.";
+            break;
+          default:
+            errorMessage = "An undefined Error happened.";
+        }
+        Fluttertoast.showToast(msg: errorMessage!);
+        print(error.code);
+      }
+    }
+  }
+
+  void logOut() async {
+    await FirebaseAuth.instance.signOut();
+    prefs.remove('token');
+    Fluttertoast.showToast(msg: "Logged out successfully");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,32 +176,29 @@ class _LoginScreenState extends State<LoginScreen> {
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.vpn_key),
           suffixIcon: IconButton(
-            icon: Icon(_isObscure
-                ? Icons.visibility_off
-                : Icons.visibility),
-            onPressed: () {
-              setState(() {
-                _isObscure = !_isObscure;
-              });
-            }),
+              icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  _isObscure = !_isObscure;
+                });
+              }),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-        )
-      );
+        ));
 
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
       color: Colors.redAccent,
       child: DefaultButton(
-          title: "Login",
-          onPress: () {
-            signIn(emailController.text, passwordController.text);
-          },
-      ),  
+        title: "Login",
+        onPress: () {
+          signIn(emailController.text, passwordController.text);
+        },
+      ),
     );
     return Scaffold(
       body: Container(
@@ -171,8 +255,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Form(
                   key: _formkey,
                   child: SingleChildScrollView(
-                    child: 
-                    Column(
+                    child: Column(
                       children: [
                         const SizedBox(height: 45),
                         emailField,
@@ -238,69 +321,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
-  void route() {
-    User? user = FirebaseAuth.instance.currentUser;
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        if (documentSnapshot.get('role') == "Siswa") {
-          Navigator.pushNamedAndRemoveUntil(
-              context, MainScreenSiswa.routeName, (route) => false);
-        } if (documentSnapshot.get('role') == "Guru") {
-          Navigator.pushNamedAndRemoveUntil(
-              context, MainScreenGuru.routeName, (route) => false);
-        } if (documentSnapshot.get('role') == "Wali Kelas") {
-          Navigator.pushNamedAndRemoveUntil(
-              context, MainScreenWali.routeName, (route) => false);
-        } if (documentSnapshot.get('role') == "Admin") {
-          Navigator.pushNamedAndRemoveUntil(
-              context, MainScreenAdmin.routeName, (route) => false);
-        } 
-        
-      } 
-    });
-  }
-
-  void signIn(String email, String password) async {
-    if (_formkey.currentState!.validate()) {
-      try {
-        await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        Fluttertoast.showToast(msg: "Login Successful");
-        route();
-      } on FirebaseAuthException catch (error) {
-        switch (error.code) {
-          case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
-
-            break;
-          case "wrong-password":
-            errorMessage = "Your password is wrong.";
-            break;
-          case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
-            break;
-          case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
-            break;
-          case "too-many-requests":
-            errorMessage = "Too many requests";
-            break;
-          case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
-            break;
-          default:
-            errorMessage = "An undefined Error happened.";
-        }
-        Fluttertoast.showToast(msg: errorMessage!);
-        print(error.code);
-      }
-    }
-  }
 }

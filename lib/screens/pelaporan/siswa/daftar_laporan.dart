@@ -43,11 +43,11 @@ class _DaftarLaporanState extends State<DaftarLaporan> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 20, left: 20),
+                        padding: const EdgeInsets.only(top: 20, left: 20),
                         child: Text(
                           "Daftar Laporan Masalah",
                           style: GoogleFonts.poppins(
-                            color: Color(0xFF0579CC),
+                            color: const Color(0xFF0579CC),
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),

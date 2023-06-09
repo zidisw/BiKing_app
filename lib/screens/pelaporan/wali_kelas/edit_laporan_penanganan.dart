@@ -63,7 +63,7 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Nama Siswa",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -100,7 +100,7 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Kelas",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -133,7 +133,7 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Masalah",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -166,7 +166,7 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Penanganan yang Sudah Dilakukan",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -199,7 +199,7 @@ class _EditlaporanpenangananScreenState
                               Text(
                                 "Tanggal",
                                 style: GoogleFonts.poppins(
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),

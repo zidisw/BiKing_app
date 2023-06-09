@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,62 +21,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
   String siswaKelasValue = '';
   String deskripsiValue = '';
   String saranValue = '';
+  String tanggal = Timestamp.now().toDate().toString();
   static int _laporanCounter = 0;
-
-  @override
-
-
-  Future<void> _addReport(String kepada, String nama, String siswaNama,
-      String siswaKelas, String deskripsi, String saran) async {
-    try {
-      _laporanCounter++; // tambahkan counter saat laporan dikirim
-      String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
-      await FirebaseFirestore.instance
-          .collection('laporan_guru')
-          .doc(namaDokumen)
-          .set({
-        'Kepada': kepada,
-        'Nama': nama,
-        'Nama Siswa': siswaNama,
-        'Kelas Siswa': siswaKelas,
-        'Deskripsi Laporan': deskripsi,
-        'Saran': saran,
-        'Tanggal': Timestamp.fromDate(DateTime.now()),
-      });
-
-      Fluttertoast.showToast(
-        msg: 'Laporan berhasil dikirim',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-      );
-      // Reset form
-      _formKey.currentState!.reset();
-
-      // kembali ke halaman sebelumnya
-      Navigator.pop(context);
-    } catch (error) {
-      // Error handling
-      Fluttertoast.showToast(
-        msg: 'Terjadi kesalahan',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-      );
-    }
-  }
-
-  void _kirimLaporan() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      _addReport(
-        kepadaValue,
-        namaValue,
-        siswaNamaValue,
-        siswaKelasValue,
-        deskripsiValue,
-        saranValue,
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -296,5 +243,74 @@ class _BuatLaporanState extends State<BuatLaporan> {
         ),
       ),
     );
+  }
+  Future<void> _addReport(String kepada, String nama, String siswaNama,
+      String siswaKelas, String deskripsi, String saran, String userID) async {
+    try {
+      _laporanCounter++; // tambahkan counter saat laporan dikirim
+      String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
+      await FirebaseFirestore.instance
+          .collection('laporan_guru')
+          .doc(namaDokumen)
+          .set({
+        'UserID': userID,
+        'Kepada': kepada,
+        'Nama': nama,
+        'Nama Siswa': siswaNama,
+        'Kelas Siswa': siswaKelas,
+        'Deskripsi Laporan': deskripsi,
+        'Saran': saran,
+        'Tanggal': tanggal,
+      });
+
+      Fluttertoast.showToast(
+        msg: 'Laporan berhasil dikirim',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+      // Reset form
+      _formKey.currentState!.reset();
+
+      // kembali ke halaman sebelumnya
+      Navigator.pop(context, true);
+    } catch (error) {
+      // Error handling
+      Fluttertoast.showToast(
+        msg: 'Terjadi kesalahan',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+  }
+
+  Future<void> _kirimLaporan() async {
+    final FormState? form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      FirebaseAuth auth = FirebaseAuth.instance;
+      String userID = auth.currentUser!.uid;
+
+      // Memastikan koleksi "laporan_guru" ada
+      await FirebaseFirestore.instance
+          .collection('laporan_guru')
+          .doc('dummy_document')
+          .set({});
+
+      // Menghapus dokumen dummy jika diperlukan
+      await FirebaseFirestore.instance
+          .collection('laporan_guru')
+          .doc('dummy_document')
+          .delete();
+          
+      _addReport(
+        kepadaValue,
+        namaValue,
+        siswaNamaValue,
+        siswaKelasValue,
+        deskripsiValue,
+        saranValue,
+        userID,
+      );
+    }
   }
 }

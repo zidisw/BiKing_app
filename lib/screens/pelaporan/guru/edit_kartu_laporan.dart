@@ -61,7 +61,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Kepada",
                                     style: GoogleFonts.poppins(
@@ -108,7 +108,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 10,
                                 ),
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Nama",
                                     style: GoogleFonts.poppins(
@@ -158,7 +158,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 15,
                                 ),
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Siswa di bawah ini perlu ditangani masalahnya",
                                     style: GoogleFonts.poppins(
@@ -173,7 +173,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 10,
                                 ),
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Nama",
                                     style: GoogleFonts.poppins(
@@ -222,7 +222,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 10,
                                 ),
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Kelas",
                                     style: GoogleFonts.poppins(
@@ -271,7 +271,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Deskripsi Masalah / Penanganan yang Telah dilakukan",
                                     style: GoogleFonts.poppins(
@@ -319,7 +319,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 10,
                                 ),
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Saran / Tindak Lanjut",
                                     style: GoogleFonts.poppins(
@@ -368,7 +368,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   height: 10,
                                 ),
                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Tanggal Laporan",
                                     style: GoogleFonts.poppins(

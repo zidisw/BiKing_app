@@ -62,7 +62,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Kelas",
                                     style: GoogleFonts.poppins(
@@ -89,7 +89,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                       width: 330,
                                       height: 50,
                                       child: Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -146,7 +146,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                         width: 330,
                                         height: 50,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 11.0, top: 12.0),
                                           child: Column(
                                             crossAxisAlignment:
@@ -173,7 +173,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "NISN",
                                     style: GoogleFonts.poppins(
@@ -207,7 +207,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                         width: 330,
                                         height: 50,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 11.0, top: 12.0),
                                           child: Column(
                                             crossAxisAlignment:
@@ -234,7 +234,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Jenis Kelamin",
                                     style: GoogleFonts.poppins(
@@ -268,7 +268,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                         width: 330,
                                         height: 50,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 11.0, top: 12.0),
                                           child: Column(
                                             crossAxisAlignment:
@@ -295,7 +295,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Agama",
                                     style: GoogleFonts.poppins(
@@ -329,7 +329,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                         width: 330,
                                         height: 50,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 11.0, top: 12.0),
                                           child: Column(
                                             crossAxisAlignment:
@@ -356,7 +356,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Jumlah",
                                     style: GoogleFonts.poppins(
@@ -445,7 +445,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Keterangan",
                                     style: GoogleFonts.poppins(
@@ -479,7 +479,7 @@ class _IsiKehadiranState extends State<IsiKehadiran> {
                                         width: 330,
                                         height: 50,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 11.0, top: 12.0),
                                           child: Column(
                                             crossAxisAlignment:

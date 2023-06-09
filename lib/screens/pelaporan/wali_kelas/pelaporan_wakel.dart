@@ -65,7 +65,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                           Text(
                             "Laporan Penanganan Wali Kelas",
                             style: GoogleFonts.poppins(
-                              color: Color(0xFF7369FF),
+                              color: const Color(0xFF7369FF),
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                             ),
@@ -97,7 +97,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: 230, // Atur lebar tombol "Buka"
                                         height: 40, // Atur tinggi tombol "Buka"
                                         child: ElevatedButton(
@@ -120,7 +120,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                           child: Text(
                                             "Buka",
                                             style: GoogleFonts.poppins(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
@@ -129,7 +129,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                         ),
                                       ),
                                       const SizedBox(height: 15),
-                                      Container(
+                                      SizedBox(
                                         width:
                                             230, // Atur lebar tombol "Buat Laporan Baru"
                                         height:
@@ -154,7 +154,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                           child: Text(
                                             "Buat Laporan Baru",
                                             style: GoogleFonts.poppins(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
@@ -202,7 +202,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                           Text(
                             "Laporan Kehadiran Bulanan",
                             style: GoogleFonts.poppins(
-                              color: Color(0xFF7369FF),
+                              color: const Color(0xFF7369FF),
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                             ),
@@ -235,7 +235,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: 230, // Atur lebar tombol "Buka"
                                         height: 40, // Atur tinggi tombol "Buka"
                                         child: ElevatedButton(
@@ -258,7 +258,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                           child: Text(
                                             "Buka",
                                             style: GoogleFonts.poppins(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
@@ -267,7 +267,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                         ),
                                       ),
                                       const SizedBox(height: 15),
-                                      Container(
+                                      SizedBox(
                                         width:
                                             230, // Atur lebar tombol "Buat Laporan Baru"
                                         height:
@@ -292,7 +292,7 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                                           child: Text(
                                             "Buat Laporan Baru",
                                             style: GoogleFonts.poppins(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
@@ -330,14 +330,14 @@ class _PelaporanWaliState extends State<PelaporanWali> {
                       ),
                       child: Padding(
                         padding:
-                            EdgeInsets.only(top: 3.0, bottom: 3.0, left: 10.0),
+                            const EdgeInsets.only(top: 3.0, bottom: 3.0, left: 10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Catatan",
                               style: GoogleFonts.poppins(
-                                color: Color(0xFFFFFFFF),
+                                color: const Color(0xFFFFFFFF),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),

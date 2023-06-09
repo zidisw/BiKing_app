@@ -1,5 +1,6 @@
 import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
 import 'package:biking_app/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,12 +15,15 @@ class DaftarPelaporanScreen extends StatefulWidget {
 
 class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
   late Stream<QuerySnapshot> _laporanStream;
+  late String _currentUserId;
 
   @override
   void initState() {
     super.initState();
+    _currentUserId = FirebaseAuth.instance.currentUser!.uid;
     _laporanStream = FirebaseFirestore.instance
         .collection('laporan_guru')
+        .where('UserID', isEqualTo: _currentUserId)
         .orderBy('Tanggal', descending: true)
         .snapshots();
   }

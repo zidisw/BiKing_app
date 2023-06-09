@@ -416,7 +416,7 @@ class _BuatKehadiranState extends State<BuatKehadiran> {
                           child: Text(
                             "Kirim",
                             style: GoogleFonts.poppins(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),

@@ -46,6 +46,9 @@ dependencies:
   date_time_picker: ^2.1.0
   auth: ^8.2.0+2
   image_picker: ^0.8.7+5
+  shared_preferences: ^2.1.2
+  uuid: ^3.0.7
+  
 
 dev_dependencies:
   flutter_test:

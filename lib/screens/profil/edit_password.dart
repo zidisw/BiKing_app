@@ -40,17 +40,17 @@ class _UbahPasswordState extends State<UbahPassword> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                    padding: EdgeInsets.only(left: 15.0),
+                    padding: const EdgeInsets.only(left: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
                           "Ubah Password",
                           style:  GoogleFonts.poppins(
-                            color: Color.fromARGB(255, 64, 173, 251),
+                            color: const Color.fromARGB(255, 64, 173, 251),
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                           ),
@@ -93,7 +93,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                            Text(
                             "Masukkan password lama",
                             style:  GoogleFonts.poppins(
-                              color: Color(0xFF000000),
+                              color: const Color(0xFF000000),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
@@ -110,7 +110,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                               ),
                               
                               labelStyle: GoogleFonts.poppins(
-                                color: Color(0xFF677294),
+                                color: const Color(0xFF677294),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -143,7 +143,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                            Text(
                             "Masukkan password baru",
                             style:  GoogleFonts.poppins(
-                              color: Color(0xFF000000),
+                              color: const Color(0xFF000000),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
@@ -160,7 +160,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                               ),
                               
                               labelStyle:  GoogleFonts.poppins(
-                                color: Color(0xFF677294),
+                                color: const Color(0xFF677294),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -193,7 +193,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                            Text(
                             "Konfirmasi password baru",
                             style:  GoogleFonts.poppins(
-                              color: Color(0xFF000000),
+                              color: const Color(0xFF000000),
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
@@ -210,7 +210,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                               ),
                               
                               labelStyle: GoogleFonts.poppins(
-                                color: Color(0xFF677294),
+                                color: const Color(0xFF677294),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -258,13 +258,13 @@ class _UbahPasswordState extends State<UbahPassword> {
                                   Text('Sukses'),
                                 ],
                               ),
-                              content:  Text('Berhasil Ubah Kata Sandi'),
+                              content:  const Text('Berhasil Ubah Kata Sandi'),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child:  Text('OK'),
+                                  child:  const Text('OK'),
                                 ),
                               ],
                             );
@@ -282,7 +282,7 @@ class _UbahPasswordState extends State<UbahPassword> {
                       child:  Text(
                         "Simpan",
                         style:  GoogleFonts.poppins(
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
