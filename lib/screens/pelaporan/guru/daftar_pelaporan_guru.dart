@@ -97,8 +97,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       final Map<String, dynamic> data =
                           documents[index].data() as Map<String, dynamic>;
-                      final Timestamp timestamp = data['Tanggal'] as Timestamp;
-                      final DateTime tanggal = timestamp.toDate();
+                      final String tanggal = data['Tanggal'] as String;
       
                       return Card(
                         child: ListTile(

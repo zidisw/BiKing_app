@@ -78,8 +78,7 @@ class _IsiKartuScreenState extends State<IsiKartuScreen> {
                   final String siswaKelas = data['Kelas Siswa'] as String;
                   final String deskripsi = data['Deskripsi Laporan'] as String;
                   final String saran = data['Saran'] as String;
-                  final Timestamp timestamp = data['Tanggal'] as Timestamp;
-                  final DateTime tanggal = timestamp.toDate();
+                  final String tanggal = data['Tanggal'] as String;
       
                   return Container(
                     margin:
@@ -500,7 +499,7 @@ class _IsiKartuScreenState extends State<IsiKartuScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        tanggal.toString(),
+                                        tanggal,
                                         style: GoogleFonts.poppins(
                                           color: Colors.black,
                                           fontSize: 16,
