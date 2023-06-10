@@ -1,5 +1,6 @@
 import 'package:biking_app/screens/detail_report_screen/detail_report_screen_ABSEN.dart';
 import 'package:biking_app/screens/detail_report_screen/report_screen_SISWA_ADD.dart';
+import 'package:biking_app/screens/detail_report_screen/report_screen_SISWA_LIST.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/home_screen/widgets/Informationbk_screen.dart';
 import 'package:biking_app/screens/main_screen_admin.dart';
@@ -16,6 +17,7 @@ import 'package:biking_app/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:biking_app/screens/my_profile/my_profile.dart';
 import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
+import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
 
 Map<String, WidgetBuilder> routes = {
   //all screens will be registered here like manifest in android
@@ -36,5 +38,6 @@ Map<String, WidgetBuilder> routes = {
   SiswaReportsScreen.routeName: (context) => const SiswaReportsScreen(),
   SiswaReportsScreen.routeName: (context) => const SiswaReportsScreen(),
   AttendanceScreen.routeName: (context) => const AttendanceScreen(),
-  AddReportScreen.routeName: (context) => const AddReportScreen()
+  AddReportScreen.routeName: (context) => const AddReportScreen(),
+  DaftarPelaporanSiswaScreen.routeName: (context) => const DaftarPelaporanSiswaScreen(),
 };

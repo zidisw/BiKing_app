@@ -203,6 +203,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                     hintText: 'Masukkan nama siswa',
                                   ),
                                 ),
+
+
                                 const SizedBox(height: 15),
                                 Text(
                                   'Kelas Siswa:',
@@ -227,6 +229,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                     hintText: 'Masukkan kelas siswa',
                                   ),
                                 ),
+
+
                                 const SizedBox(height: 15),
                                 Text(
                                   'Deskripsi Laporan:',
@@ -252,6 +256,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                   maxLines: 3,
                                 ),
+
+
                                 const SizedBox(height: 15),
                                 Text(
                                   'Saran:',
@@ -277,6 +283,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   ),
                                   maxLines: 3,
                                 ),
+
+
                                 const SizedBox(height: 15),
                                 ElevatedButton(
                                   onPressed: _kirimLaporan,

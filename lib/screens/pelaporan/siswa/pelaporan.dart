@@ -1,5 +1,7 @@
 import 'package:biking_app/screens/detail_report_screen/report_screen_SISWA_ADD.dart';
+import 'package:biking_app/screens/detail_report_screen/report_screen_SISWA_LIST.dart';
 import 'package:biking_app/screens/detail_report_screen/report_screen_SISWA_VIEW.dart';
+import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
 import 'package:biking_app/screens/pelaporan/siswa/buat_laporan.dart';
 import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +113,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const DaftarLaporan()),
+                                                              const DaftarPelaporanSiswaScreen()),
                                                     );
                                                   },
                                                   style:

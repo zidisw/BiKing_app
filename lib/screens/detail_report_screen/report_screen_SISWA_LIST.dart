@@ -1,30 +1,33 @@
-import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
-import 'package:biking_app/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
+// Screen yang tampil ketika user meng-tap tombol "Buka" di pelaporan
+
+import 'report_screen_SISWA_EDIT.dart';
+import 'report_screen_SISWA_VIEW.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DaftarPelaporanScreen extends StatefulWidget {
-  const DaftarPelaporanScreen({Key? key}) : super(key: key);
-  static String routeName = 'DaftarPelaporanScreen';
+class DaftarPelaporanSiswaScreen extends StatefulWidget {
+  const DaftarPelaporanSiswaScreen({Key? key}) : super(key: key);
+  static String routeName = 'DaftarPelaporanSiswaScreen';
 
   @override
-  State<DaftarPelaporanScreen> createState() => _DaftarPelaporanScreenState();
+  State<DaftarPelaporanSiswaScreen> createState() => _DaftarPelaporanSiswaScreenState();
 }
 
-class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
+class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen> {
   late Stream<QuerySnapshot> _laporanStream;
   late String _currentUserId;
+  String? selectedReportId;
 
   @override
   void initState() {
     super.initState();
     _currentUserId = FirebaseAuth.instance.currentUser!.uid;
     _laporanStream = FirebaseFirestore.instance
-        .collection('laporan_guru')
-        .where('UserID', isEqualTo: _currentUserId)
-        .orderBy('Tanggal', descending: true)
+        .collection('laporan_siswa')
+        .where('UserId', isEqualTo: _currentUserId)
+        .orderBy('Date', descending: true)
         .snapshots();
   }
 
@@ -45,7 +48,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
           ),
         ),
         title: Text(
-          'Kartu Komunikasi',
+          'Laporan Masalah',
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.w500,
@@ -64,7 +67,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                   child: Column(
                     children: [
                       Text(
-                        "Daftar Kartu Komunikasi",
+                        "Laporan-Ku",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.poppins(
                           color: const Color(0xFF0579CC),
@@ -76,6 +79,7 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                   ),
                 ),
               ),
+
               StreamBuilder<QuerySnapshot>(
                 stream: _laporanStream,
                 builder: (BuildContext context,
@@ -97,21 +101,23 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       final Map<String, dynamic> data =
                       documents[index].data() as Map<String, dynamic>;
-                      final String tanggal = data['Tanggal'] as String;
+                      final String Date = data['Date'];
+                      final laporan = documents[index];
 
                       return Card(
                         child: ListTile(
                           onTap: () {
+                            String laporanID = laporan.id;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => IsiKartuScreen(
-                                    laporanID: documents[index].id),
+                                builder: (context) => IsiLaporanSiswaScreen(
+                                    laporanID: laporanID),
                               ),
                             );
                           },
                           title: Text(
-                            tanggal.toString(),
+                            Date,
                             style: GoogleFonts.poppins(
                               color: const Color(0xFF000000),
                               fontSize: 16,
