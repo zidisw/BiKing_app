@@ -17,7 +17,7 @@ class _MainScreenWaliState extends State<MainScreenWali> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfileWakel(),
+    const ProfileWakel(nama: '', email: '',nomorTelepon: '',perwalian: '',),
     const HomeScreen(),
     const PelaporanWali(),
   ];

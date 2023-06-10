@@ -8,17 +8,55 @@ import 'package:biking_app/screens/profil/privacy_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingSiswa extends StatefulWidget {
-  const SettingSiswa({super.key});
+  final String nama;
+  final String kelas;
+
+  const SettingSiswa({Key? key,
+    required this.nama,
+    required this.kelas,
+    }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'mapel': kelas,
+    };
+   }
+   static String routeName = "SettingSiswa";
 
   @override
-  _SettingSiswaState createState() => _SettingSiswaState();
-  static String routeName = "SettingSiswa";
+  _SettingSiswaState createState() => _SettingSiswaState(); 
 }
 
 class _SettingSiswaState extends State<SettingSiswa> {
   
+  String? nama;
+  String? kelas;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+  DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+    nama = snapshot.get('nama');
+    kelas = snapshot.get('kelas');
+      });
+    }
+  }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
@@ -28,6 +66,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
               const LoginScreen()), // Ganti dengan halaman log in Anda
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,11 +83,9 @@ class _SettingSiswaState extends State<SettingSiswa> {
             ),
           ),
         ),
-        title: const Text('Pengaturan',
-          style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
+        title: Text('Pengaturan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
@@ -108,7 +145,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zid Nih Bos",
+                                        '${nama ?? ""}',
                                         style:  GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
@@ -119,7 +156,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "XII MIPA 1",
+                                        '${kelas ?? ""}',
                                         style:  GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),

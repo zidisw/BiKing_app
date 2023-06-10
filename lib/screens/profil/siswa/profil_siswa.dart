@@ -3,18 +3,68 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:biking_app/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-  static String routeName = 'ProfilPage';
+  final String nama;
+  final String email;
+  final String nomorTelepon;
+  final String kelas;
 
+  const ProfilePage({
+    Key? key,
+    required this.nama,
+    required this.email,
+    required this.nomorTelepon,
+    required this.kelas,
+  }) : super(key: key);
+  
+   Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'email': email,
+      'nomorTelepon': nomorTelepon,
+      'kelas': kelas,
+    };
+   }
+
+  static String routeName = 'ProfilPage';
    @override
   // ignore: library_private_types_in_public_api
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+ String? email;
+ String? nama;
+ String? nomorTelepon;
+ String? kelas;
+
+   @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+  DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+    email = snapshot.get('email');
+    nama = snapshot.get('nama');
+    nomorTelepon = snapshot.get('nomorTelepon');
+    kelas = snapshot.get('kelas');
+      });
+    }
+  }
+
 
     @override
   Widget build(BuildContext context) {
@@ -43,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: () {
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SettingSiswa()),
+              MaterialPageRoute(builder: (context) => const SettingSiswa(kelas: '', nama: '',)),
             );
             },
           )
@@ -227,7 +277,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Zid Ni Boss",
+                                  '${nama ?? ""}',
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -273,7 +323,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding:const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Nomor HP",
+                                  "Email",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 14,
@@ -284,7 +334,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "085349313355",
+                                  '${email ?? ""}',
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -330,7 +380,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Tanggal Lahir",
+                                  "Nomor HP",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
                                     fontSize: 14,
@@ -341,7 +391,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "7 Agustus 2001",
+                                 '${nomorTelepon ?? ""}',
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -376,7 +426,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     width: 350,
                     height: 60,
-                    child: Padding(
+                    child:  Padding(
                       padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -398,121 +448,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "XII MIPA 1",
-                                  style: GoogleFonts.poppins(
-                                    color: kPrimaryColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 490,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 350,
-                    height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "NIS",
-                                  style: GoogleFonts.poppins(
-                                    color: kSecondaryColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "6566",
-                                  style: GoogleFonts.poppins(
-                                    color: kPrimaryColor,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 560,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 350,
-                    height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "NISN",
-                                  style: GoogleFonts.poppins(
-                                    color: kSecondaryColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "12347658789",
+                                 '${kelas ?? ""}',
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,

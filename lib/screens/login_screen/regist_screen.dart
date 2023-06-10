@@ -27,9 +27,13 @@ class _RegisterState extends State<Register> {
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmpassController = TextEditingController();
-  final TextEditingController name = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController mobile = TextEditingController();
+  final TextEditingController mobileController = TextEditingController();
+  final TextEditingController kelasController = TextEditingController();
+  final TextEditingController perwalianController = TextEditingController();
+  final TextEditingController mapelController = TextEditingController();
+
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
@@ -53,12 +57,12 @@ class _RegisterState extends State<Register> {
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           if (value!.isEmpty) {
-            return ("Please Enter Your Email");
+            return ("Masukkan email anda");
           }
           // reg expression for email validation
           if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
               .hasMatch(value)) {
-            return ("Please Enter a valid email");
+            return ("Masukkan email yang benar");
           }
           return null;
         },
@@ -74,6 +78,112 @@ class _RegisterState extends State<Register> {
             borderRadius: BorderRadius.circular(10),
           ),
         ));
+      
+      //nama
+      final nameField = TextFormField(
+          autofocus: false,
+          controller: nameController,
+          keyboardType: TextInputType.text,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Masukkan nama anda";
+            }
+            return null;
+          },
+          onSaved: (value) {
+            nameController.text = value!;
+          },
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.person),
+            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+            hintText: "Nama",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        );
+
+      final phoneField = TextFormField(
+      autofocus: false,
+      controller: mobileController,
+      keyboardType: TextInputType.phone,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Masukkan nomor telepon anda";
+        }
+        return null;
+      },
+      onSaved: (value) {
+        mobileController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.phone),
+        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Nomor Telepon",
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+
+    //kelas siswa
+    final siswaField = TextFormField(
+          autofocus: false,
+          controller: kelasController,
+          keyboardType: TextInputType.text,
+          onSaved: (value) {
+            nameController.text = value!;
+          },
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.class_),
+            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+            hintText: "Kelas (Siswa)",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        );
+
+    //kelas walikelas
+    final walikelasField = TextFormField(
+          autofocus: false,
+          controller: perwalianController,
+          keyboardType: TextInputType.text,
+          onSaved: (value) {
+            nameController.text = value!;
+          },
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.class_),
+            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+            hintText: "Kelas Perwalian (Wali Kelas)",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        );
+
+        //mapel guru
+        final guruField = TextFormField(
+          autofocus: false,
+          controller: mapelController,
+          keyboardType: TextInputType.text,
+          onSaved: (value) {
+            mapelController.text = value!;
+          },
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.class_),
+            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+            hintText: "Mata Pelajaran yang diajarkan (Guru Mata Pelajaran)",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        );
 
     //password field
     final passwordField = TextFormField(
@@ -83,10 +193,10 @@ class _RegisterState extends State<Register> {
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return ("Password is required for login");
+            return ("Kata sandi diperlukan untuk masuk");
           }
           if (!regex.hasMatch(value)) {
-            return ("Enter Valid Password(Min. 6 Character)");
+            return ("Masukkan kata sandi (Min. 6 Karakter)");
           }
           return null;
         },
@@ -104,7 +214,7 @@ class _RegisterState extends State<Register> {
                 });
               }),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Password",
+          hintText: "Kata Sandi",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -118,7 +228,7 @@ class _RegisterState extends State<Register> {
         validator: (value) {
           if (confirmpassController.text !=
               passwordController.text) {
-            return "Password don't match";
+            return "Kata Sandi tidak sesuai";
           }
           return null;
         },
@@ -136,7 +246,7 @@ class _RegisterState extends State<Register> {
                 });
               }),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Confirm Password",
+          hintText: "Konfirmasi Kata sandi",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -148,7 +258,7 @@ class _RegisterState extends State<Register> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.redAccent,
       child: DefaultButton(
-          title: "Sign Up",
+          title: "Daftar",
           onPress: () {
             signUp(emailController.text, passwordController.text, role);
           },
@@ -156,7 +266,7 @@ class _RegisterState extends State<Register> {
     );
     return Scaffold(
 
-      body: Container(
+      body:  Container(
         child: Column(
           children: [
             Positioned(
@@ -202,6 +312,16 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 20),
                       emailField,
                       const SizedBox(height: 20),
+                      nameField,
+                      const SizedBox(height: 20),
+                      phoneField,
+                      const SizedBox(height: 20),
+                      siswaField,
+                      const SizedBox(height: 20),
+                      walikelasField,
+                      const SizedBox(height: 20),
+                      guruField,
+                      const SizedBox(height: 20),
                       passwordField,
                       const SizedBox(height: 20),
                       confirmPasswordField,
@@ -212,7 +332,7 @@ class _RegisterState extends State<Register> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               const Text(
-                                "Role: ",
+                                "Peran: ",
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: kContainerColor,
@@ -260,7 +380,7 @@ class _RegisterState extends State<Register> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text("Have an account? "),
+                    const Text("Punya akun? "),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -271,7 +391,7 @@ class _RegisterState extends State<Register> {
                         );
                       },
                       child: const Text(
-                        "Sign In",
+                        "Masuk",
                         style: TextStyle(
                           color: kSecondaryColor,
                           fontWeight: FontWeight.bold,
@@ -300,13 +420,26 @@ class _RegisterState extends State<Register> {
           });
     }
   }
+  
 
-  postDetailsToFirestore(String email, String role) async {
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    var user = _auth.currentUser;
-    CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+  postDetailsToFirestore(String email, String name) async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  var user = _auth.currentUser;
+
+  // Simpan data pengguna ke dalam Firestore
+  await firestore.collection('users').doc(user!.uid).set({
+    'email': emailController.text,
+    'role': role,
+    'nama': nameController.text,
+    'nomorTelepon': mobileController.text,
+    'kelas': kelasController.text,
+    'perwalian' : perwalianController.text,
+    'gurumapel': mapelController.text
+  });
+  Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+  );
   }
 }
