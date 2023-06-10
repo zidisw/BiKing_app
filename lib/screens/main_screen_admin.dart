@@ -17,7 +17,7 @@ class _MainScreenAdminState extends State<MainScreenAdmin> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfilguruScreen(),
+    const ProfilguruScreen(nama: '', email: '',nomorTelepon: '', gurumapel: '',),
     const HomeScreen(),
     const DaftarPelaporanScreen(),
   ];

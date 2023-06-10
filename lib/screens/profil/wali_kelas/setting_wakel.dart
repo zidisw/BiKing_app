@@ -8,16 +8,54 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/profil/privacy_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingWakel extends StatefulWidget {
-  const SettingWakel({Key? key}) : super(key: key);
+  final String nama;
+  final String perwalian;
+
+  const SettingWakel({Key? key,
+  required this.nama,
+  required this.perwalian,
+  }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'perwalian': perwalian,
+    };
+   }
   static String routeName = 'SettingWakel';
+  
 
   @override
   _SettingWakelState createState() => _SettingWakelState();
 }
 
 class _SettingWakelState extends State<SettingWakel> {
+  String? nama;
+  String? perwalian;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+  DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+    nama = snapshot.get('nama');
+    perwalian = snapshot.get('perwalian');
+      });
+    }
+  }
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
@@ -104,7 +142,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zid Irsyadin S.W.",
+                                        '${nama ?? ""}',
                                         style: GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
@@ -115,7 +153,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Wali Kelas XII MIPA 1",
+                                        '${perwalian ?? ""}',
                                         style: GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),

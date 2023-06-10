@@ -8,9 +8,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  final String nama;
+  final String gurumapel;
+
+  const SettingScreen({
+    Key? key,
+    required this.nama,
+    required this.gurumapel,
+    }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'mapel': gurumapel,
+    };
+   }
   static String routeName = 'SettingScreen';
 
   @override
@@ -18,6 +33,31 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+ 
+ String? nama;
+ String? gurumapel;
+
+ @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+  DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+    nama = snapshot.get('nama');
+    gurumapel = snapshot.get('gurumapel');
+      });
+    }
+  }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
@@ -106,7 +146,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zid Irsyadin S.W.",
+                                        '${nama ?? ""}',
                                         style:  GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
@@ -117,7 +157,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Guru Pendidikan Agama Islam",
+                                        '${gurumapel ?? ""}',
                                         style:  GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),

@@ -17,7 +17,7 @@ class _MainScreenSiswaState extends State<MainScreenSiswa> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfilePage(),
+    const ProfilePage( nama: '', email: '',nomorTelepon: '', kelas: '',),
     const HomeScreen(),
     const Pelaporan(),
   ];
