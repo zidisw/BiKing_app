@@ -245,13 +245,6 @@ class _AddReportScreenState extends State<AddReportScreen> {
               },
               child: const Text('Submit'),
             ),
-
-
-
-
-
-
-
             ]
             ),
         ),

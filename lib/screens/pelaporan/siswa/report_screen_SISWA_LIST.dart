@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class DaftarPelaporanSiswaScreen extends StatefulWidget {
   const DaftarPelaporanSiswaScreen({Key? key}) : super(key: key);
@@ -82,8 +83,7 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
 
               StreamBuilder<QuerySnapshot>(
                 stream: _laporanStream,
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   }
@@ -99,9 +99,11 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: documents.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final Map<String, dynamic> data =
-                      documents[index].data() as Map<String, dynamic>;
-                      final String Date = data['Date'];
+                      final Map<String, dynamic> data = documents[index].data() as Map<String, dynamic>;
+                      final Timestamp timestamp = data['Date'] as Timestamp;
+                      final DateTime dateTime = timestamp.toDate();
+                      final String formattedDateTime = DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
+
                       final laporan = documents[index];
 
                       return Card(
@@ -111,13 +113,12 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => IsiLaporanSiswaScreen(
-                                    laporanID: laporanID),
+                                builder: (context) => IsiLaporanSiswaScreen(laporanID: laporanID),
                               ),
                             );
                           },
                           title: Text(
-                            Date,
+                            formattedDateTime,
                             style: GoogleFonts.poppins(
                               color: const Color(0xFF000000),
                               fontSize: 16,
@@ -135,10 +136,19 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
                           trailing: IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {
+                              String laporanID = laporan.id;
+                              final Map<String, dynamic> data = documents[index].data() as Map<String, dynamic>;
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const EditKartuScreen(),
+                                  builder: (context) => editReportScreen(
+                                    laporanID: laporanID,
+                                    initialNama: data['Nama'], // Retrieve the initial values from the 'data' map
+                                    initialKelas: data['Kelas'],
+                                    initialMasalah: data['Masalah'],
+                                    initialNomor: data['Nomor'],
+                                  ),
                                 ),
                               );
                             },
@@ -156,3 +166,4 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
     );
   }
 }
+

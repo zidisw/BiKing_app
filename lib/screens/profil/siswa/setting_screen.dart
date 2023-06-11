@@ -1,7 +1,7 @@
 import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
 import 'package:biking_app/screens/profil/bantuan.dart';
 import 'package:flutter/material.dart';
-import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
+import 'package:biking_app/screens/pelaporan/siswa/report_screen_SISWA_LIST.dart';
 import 'package:biking_app/screens/profil/edit_password.dart';
 import 'package:biking_app/screens/profil/hubungi_kami.dart';
 import 'package:biking_app/screens/profil/privacy_screen.dart';
@@ -291,7 +291,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const DaftarLaporan()),
+                                                            const DaftarPelaporanSiswaScreen()),
                                                   );
                                                 },
                                                 child: const Icon(
