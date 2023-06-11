@@ -291,7 +291,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
       form.save();
       FirebaseAuth auth = FirebaseAuth.instance;
       String userID = auth.currentUser!.uid;
-      String laporanID = Uuid().v4();
+      String laporanID = const Uuid().v4();
 
       // Memastikan koleksi "laporan_guru" ada
       await FirebaseFirestore.instance

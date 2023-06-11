@@ -1,3 +1,4 @@
+import 'package:biking_app/screens/pelaporan/guru/pelaporan_guru.dart';
 import 'package:flutter/material.dart';
 import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
@@ -134,7 +135,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const EditKartuScreen()),
+                                                    const PelaporanScreen()),
                                           );
                                         },
                                         child: Container(
@@ -295,7 +296,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const EditKartuScreen()),
+                                                    const PelaporanScreen()),
                                           );
                                         },
                                         child: Container(
@@ -456,7 +457,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const EditKartuScreen()),
+                                                    const PelaporanScreen()),
                                           );
                                         },
                                         child: Container(
@@ -617,7 +618,7 @@ class _WaliIsiPelaporanState extends State<WaliIsiPelaporan> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const EditKartuScreen()),
+                                                    const PelaporanScreen()),
                                           );
                                         },
                                         child: Container(

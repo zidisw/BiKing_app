@@ -106,7 +106,7 @@ class _PelaporanScreenState extends State<PelaporanScreen> {
                                                   onPressed: () {
                                                     Navigator.push(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => const DaftarPelaporanScreen()),
+                                                      MaterialPageRoute(builder: (context) => const DaftarPelaporanGuruScreen()),
                                                     );
                                                   },
                                                   style: ElevatedButton.styleFrom(

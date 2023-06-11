@@ -16,7 +16,12 @@ class _MainScreenState extends State<MainScreenGuru> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfilguruScreen(),
+    const ProfilGuruScreen(
+      nama: '',
+      email: '',
+      nomorTelepon: '',
+      gurumapel: '',
+    ),
     const HomeScreen(),
     const PelaporanScreen(),
   ];

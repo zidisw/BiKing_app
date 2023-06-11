@@ -8,9 +8,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  final String nama;
+  final String gurumapel;
+
+  const SettingScreen({
+    Key? key,
+    required this.nama,
+    required this.gurumapel,
+  }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'mapel': gurumapel,
+    };
+  }
+
   static String routeName = 'SettingScreen';
 
   @override
@@ -18,6 +34,30 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  String? nama;
+  String? gurumapel;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+    DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+        nama = snapshot.get('nama');
+        gurumapel = snapshot.get('gurumapel');
+      });
+    }
+  }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
@@ -44,11 +84,9 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
           ),
         ),
-        title: const Text('Pengaturan',
-          style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
+        title: Text('Pengaturan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
@@ -60,8 +98,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -83,20 +120,19 @@ class _SettingScreenState extends State<SettingScreen> {
                                 Column(
                                   children: [
                                     Container(
-                                        alignment: Alignment.topCenter,
-                                        width: 80,
-                                        height: 80,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: AssetImage(
-                                              "assets/images/jid1.png",
-                                            ),
+                                      alignment: Alignment.topCenter,
+                                      width: 80,
+                                      height: 80,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                            "assets/images/jid1.png",
                                           ),
                                         ),
                                       ),
-            
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
@@ -108,8 +144,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zid Irsyadin S.W.",
-                                        style:  GoogleFonts.poppins(
+                                        '${nama ?? ""}',
+                                        style: GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
@@ -119,8 +155,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Guru Pendidikan Agama Islam",
-                                        style:  GoogleFonts.poppins(
+                                        '${gurumapel ?? ""}',
+                                        style: GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),
                                           fontSize: 17,
@@ -137,8 +173,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Divider(
                               thickness: 1.0,
-                              color:
-                                  const Color(0xFF000000).withOpacity(0.10),
+                              color: const Color(0xFF000000).withOpacity(0.10),
                             ),
                           ),
                           Padding(
@@ -165,11 +200,12 @@ class _SettingScreenState extends State<SettingScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
                                           child: Text(
                                             "Pengaturan Akun",
                                             textAlign: TextAlign.left,
-                                            style:  GoogleFonts.poppins(
+                                            style: GoogleFonts.poppins(
                                               color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -192,11 +228,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                                 child: Text(
                                                   "Ubah Password Akun",
                                                   textAlign: TextAlign.left,
-                                                  style:  GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -250,11 +286,12 @@ class _SettingScreenState extends State<SettingScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
                                           child: Text(
                                             "Laporan Saya",
                                             textAlign: TextAlign.left,
-                                            style:  GoogleFonts.poppins(
+                                            style: GoogleFonts.poppins(
                                               color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -277,11 +314,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                                 child: Text(
                                                   "Jumlah Laporan Saya",
                                                   textAlign: TextAlign.left,
-                                                  style:  GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -291,7 +328,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const DaftarPelaporanScreen()),
+                                                            const DaftarPelaporanGuruScreen()),
                                                   );
                                                 },
                                                 child: const Icon(
@@ -334,8 +371,9 @@ class _SettingScreenState extends State<SettingScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
                                           child: Text(
                                             "Aplikasi BiKing",
                                             textAlign: TextAlign.left,
@@ -363,10 +401,10 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Tentang Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -391,9 +429,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 7.0,
-                                              left: 10.0,
-                                              right: 8.0),
+                                              top: 7.0, left: 10.0, right: 8.0),
                                           child: Row(
                                             children: [
                                               Expanded(
@@ -401,10 +437,10 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Privasi",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -429,20 +465,18 @@ class _SettingScreenState extends State<SettingScreen> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 7.0,
-                                              left: 10.0,
-                                              right: 8.0),
+                                              top: 7.0, left: 10.0, right: 8.0),
                                           child: Row(
                                             children: [
-                                               Expanded(
+                                              Expanded(
                                                 child: Text(
                                                   "Bantuan",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -467,9 +501,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 7.0,
-                                              left: 10.0,
-                                              right: 8.0),
+                                              top: 7.0, left: 10.0, right: 8.0),
                                           child: Row(
                                             children: [
                                               Expanded(
@@ -477,10 +509,10 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Hubungi Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -545,17 +577,16 @@ class _SettingScreenState extends State<SettingScreen> {
                                                   "Keluar",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w500,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.only(
-                                                        left: 194.0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 194.0),
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     showDialog(
@@ -569,9 +600,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                                               "Kamu yakin ingin keluar dari akun ini?"),
                                                           actions: [
                                                             TextButton(
-                                                              child:
-                                                                  const Text(
-                                                                      "Batal"),
+                                                              child: const Text(
+                                                                  "Batal"),
                                                               onPressed: () {
                                                                 Navigator.of(
                                                                         context)
@@ -617,21 +647,21 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ),
             Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: double.infinity,
-              height: 90,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/footerprofil.png'),
-                  fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                height: 90,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/footerprofil.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
           ],
         ),
-     ),
-  );
+      ),
+    );
   }
-  }
+}

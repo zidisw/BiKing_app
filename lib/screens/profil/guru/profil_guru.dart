@@ -1,18 +1,68 @@
-import 'package:biking_app/constants.dart';
 import 'package:biking_app/screens/profil/guru/setting_guru.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:biking_app/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class ProfilguruScreen extends StatefulWidget {
-  const ProfilguruScreen({Key? key}) : super(key: key);
-  static String routeName = 'ProfilguruScreen';
+class ProfilGuruScreen extends StatefulWidget {
+  final String nama;
+  final String email;
+  final String nomorTelepon;
+  final String gurumapel;
 
+  const ProfilGuruScreen({
+    Key? key,
+    required this.nama,
+    required this.email,
+    required this.nomorTelepon,
+    required this.gurumapel,
+  }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'email': email,
+      'nomorTelepon': nomorTelepon,
+      'mapel': gurumapel,
+    };
+  }
+
+  static String routeName = 'ProfilGuruScreen';
   @override
-  State<ProfilguruScreen> createState() => _ProfilguruScreenState();
+  State<ProfilGuruScreen> createState() => _ProfilGuruScreenState();
 }
 
-class _ProfilguruScreenState extends State<ProfilguruScreen> {
+class _ProfilGuruScreenState extends State<ProfilGuruScreen> {
+  String? email;
+  String? nama;
+  String? nomorTelepon;
+  String? gurumapel;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+    DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+        email = snapshot.get('email');
+        nama = snapshot.get('nama');
+        nomorTelepon = snapshot.get('nomorTelepon');
+        gurumapel = snapshot.get('gurumapel');
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,18 +79,20 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
             ),
           ),
         ),
-        title: const Text('Profil',
-          style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
+        title: Text('Profil',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SettingScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const SettingScreen(
+                          gurumapel: '',
+                          nama: '',
+                        )),
               );
             },
           )
@@ -198,10 +250,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 360,
+                    width: 350,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -214,7 +266,7 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                                   "Nama",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -222,10 +274,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Zid Ni Boss",
+                                  '${nama ?? ""}',
                                   style: GoogleFonts.poppins(
-                                    color: kContainerColor,
-                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -255,10 +307,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 360,
+                    width: 350,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -268,10 +320,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Nomor HP",
+                                  "Email",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -279,10 +331,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "085349313355",
+                                  '${email ?? ""}',
                                   style: GoogleFonts.poppins(
-                                    color: kContainerColor,
-                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -312,10 +364,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 360,
+                    width: 350,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -325,10 +377,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Tanggal Lahir",
+                                  "Nomor HP",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -336,10 +388,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "7 Agustus 2001",
+                                  '${nomorTelepon ?? ""}',
                                   style: GoogleFonts.poppins(
-                                    color: kContainerColor,
-                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -369,10 +421,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                         width: 1.0,
                       ),
                     ),
-                    width: 360,
+                    width: 350,
                     height: 60,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -382,10 +434,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Jabatan",
+                                  "Guru Mata Pelajaran",
                                   style: GoogleFonts.poppins(
                                     color: kSecondaryColor,
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -393,67 +445,10 @@ class _ProfilguruScreenState extends State<ProfilguruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  "Guru BK Ilegal",
+                                  '${gurumapel ?? ""}',
                                   style: GoogleFonts.poppins(
-                                    color: kContainerColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 490,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 360,
-                    height: 60,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "NIM",
-                                  style: GoogleFonts.poppins(
-                                    color: kSecondaryColor,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "D121201016",
-                                  style: GoogleFonts.poppins(
-                                    color: kContainerColor,
-                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),

@@ -1,21 +1,25 @@
 import 'package:biking_app/screens/pelaporan/guru/edit_kartu_laporan.dart';
-import 'package:biking_app/screens/pelaporan/guru/isi_kartu_komunikasi.dart';
+import 'isi_kartu_komunikasi.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
-class DaftarPelaporanScreen extends StatefulWidget {
-  const DaftarPelaporanScreen({Key? key}) : super(key: key);
-  static String routeName = 'DaftarPelaporanScreen';
+class DaftarPelaporanGuruScreen extends StatefulWidget {
+  const DaftarPelaporanGuruScreen({Key? key}) : super(key: key);
+  static String routeName = 'DaftarPelaporanGuruScreen';
 
   @override
-  State<DaftarPelaporanScreen> createState() => _DaftarPelaporanScreenState();
+  State<DaftarPelaporanGuruScreen> createState() =>
+      _DaftarPelaporanGuruScreenState();
 }
 
-class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
+class _DaftarPelaporanGuruScreenState
+    extends State<DaftarPelaporanGuruScreen> {
   late Stream<QuerySnapshot> _laporanStream;
   late String _currentUserId;
+  String? selectedReportId;
 
   @override
   void initState() {
@@ -83,13 +87,13 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   }
-      
+
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
                   }
-      
+
                   final List<DocumentSnapshot> documents = snapshot.data!.docs;
-      
+
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -98,15 +102,19 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                       final Map<String, dynamic> data =
                           documents[index].data() as Map<String, dynamic>;
                       final String tanggal = data['Tanggal'] as String;
-      
+                      
+
+                      final laporan = documents[index];
+
                       return Card(
                         child: ListTile(
                           onTap: () {
+                            String laporanID = laporan.id;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => IsiKartuScreen(
-                                    laporanID: documents[index].id),
+                                builder: (context) =>
+                                    IsiKartuScreen(laporanID: laporanID),
                               ),
                             );
                           },
@@ -129,10 +137,21 @@ class _DaftarPelaporanScreenState extends State<DaftarPelaporanScreen> {
                           trailing: IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {
+                              String laporanID = laporan.id;
+                              final Map<String, dynamic> data = documents[index]
+                                  .data() as Map<String, dynamic>;
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const EditKartuScreen(),
+                                  builder: (context) => EditKartuScreen(
+                                    laporanID: laporanID,
+                                    initialNama: data[
+                                        'Nama'], // Retrieve the initial values from the 'data' map
+                                    initialKelas: data['Kelas Siswa'],
+                                    initialMasalah: data['Deskripsi'],
+                                    initialNomor: data['Nomor'],
+                                  ),
                                 ),
                               );
                             },
