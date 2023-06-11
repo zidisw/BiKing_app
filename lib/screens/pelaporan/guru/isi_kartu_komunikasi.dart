@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class IsiKartuScreen extends StatefulWidget {
   final String laporanID;
@@ -84,7 +85,9 @@ class _IsiKartuScreenState extends State<IsiKartuScreen> {
           final String siswaKelas = data['Kelas Siswa'] as String? ?? '';
           final String deskripsi = data['Deskripsi Laporan'] as String? ?? '';
           final String saran = data['Saran'] as String? ?? '';
-          final String tanggal = data['Tanggal'] as String;
+          final Timestamp timestamp = data['Tanggal'] as Timestamp;
+          final DateTime dateTime = timestamp.toDate();
+          final String formattedDateTime = DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
@@ -525,7 +528,7 @@ class _IsiKartuScreenState extends State<IsiKartuScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            tanggal,
+                                            formattedDateTime,
                                             style: GoogleFonts.poppins(
                                               color: Colors.black,
                                               fontSize: 16,

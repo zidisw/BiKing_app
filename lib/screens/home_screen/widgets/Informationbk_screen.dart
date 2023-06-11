@@ -26,11 +26,13 @@ class _IndormasibkScreenState extends State<InformasibkScreen> {
             ),
           ),
         ),
-        title: const Text('Informasi Seputar BK',
-        style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
+        title: Text(
+          'Informasi Seputar BK',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(

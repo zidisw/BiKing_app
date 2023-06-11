@@ -81,7 +81,6 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
     String deskripsi,
     String saran,
   ) async {
-    final currentContext = context;
     try {
       String? nomorTelepon = await _getUserPhoneNumber(userID);
       await reportCollection.doc(widget.initialLaporanID).set({
