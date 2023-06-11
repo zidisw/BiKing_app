@@ -60,6 +60,17 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
   final CollectionReference reportCollection =
       FirebaseFirestore.instance.collection('laporan_guru');
 
+  Future<String?> _getUserPhoneNumber(String userID) async {
+    DocumentSnapshot userSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['nomorTelepon'];
+    } else {
+      return null;
+    }
+  }
+
   Future<void> _editReport(
     String userID,
     String laporanID,
@@ -72,6 +83,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
   ) async {
     final currentContext = context;
     try {
+      String? nomorTelepon = await _getUserPhoneNumber(userID);
       await reportCollection.doc(widget.initialLaporanID).set({
         'UserID': userID,
         'LaporanID': laporanID,
@@ -82,6 +94,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
         'Deskripsi Laporan': deskripsi,
         'Saran': saran,
         'Tanggal': FieldValue.serverTimestamp(),
+        'Nomor Telepon': nomorTelepon,
       });
       Fluttertoast.showToast(
         msg: 'Report Successfully Updated!',

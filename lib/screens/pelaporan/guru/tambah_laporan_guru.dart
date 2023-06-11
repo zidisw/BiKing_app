@@ -22,7 +22,6 @@ class _BuatLaporanState extends State<BuatLaporan> {
   String siswaKelasValue = '';
   String deskripsiValue = '';
   String saranValue = '';
-  String tanggal = Timestamp.now().toDate().toString();
   static int _laporanCounter = 0;
 
   @override
@@ -245,11 +244,25 @@ class _BuatLaporanState extends State<BuatLaporan> {
       ),
     );
   }
+
+  Future<String?> _getUserPhoneNumber(String userID) async {
+    DocumentSnapshot userSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['nomorTelepon'];
+    } else {
+      return null;
+    }
+  }
+
+  
   Future<void> _addReport(String userID, String laporanID, String kepada, String nama, String siswaNama,
       String siswaKelas, String deskripsi, String saran) async {
     try {
       _laporanCounter++; // tambahkan counter saat laporan dikirim
       String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
+      String? nomorTelepon = await _getUserPhoneNumber(userID);
       await FirebaseFirestore.instance
           .collection('laporan_guru')
           .doc(namaDokumen)
@@ -262,7 +275,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
         'Kelas Siswa': siswaKelas,
         'Deskripsi Laporan': deskripsi,
         'Saran': saran,
-        'Tanggal': tanggal,
+        'Tanggal': FieldValue.serverTimestamp(),
+        'Nomor Telepon': nomorTelepon,
       });
 
       Fluttertoast.showToast(
