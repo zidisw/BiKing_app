@@ -128,7 +128,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: AssetImage(
-                                            "assets/images/jid1.png",
+                                            "assets/images/orang.png",
                                           ),
                                         ),
                                       ),

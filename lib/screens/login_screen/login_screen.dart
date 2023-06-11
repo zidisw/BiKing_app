@@ -85,7 +85,14 @@ class _LoginScreenState extends State<LoginScreen> {
           password: password,
         );
         prefs.setString('token', userCredential.user!.uid);
-        Fluttertoast.showToast(msg: "Login Successful");
+        Fluttertoast.showToast(
+          msg: "Login Successful",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          );
         route();
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

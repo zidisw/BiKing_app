@@ -119,7 +119,7 @@ class _ProfilGuruScreenState extends State<ProfilGuruScreen> {
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(
-                                "assets/images/jid1.png",
+                                "assets/images/orang.png",
                               ),
                             ),
                           ),
