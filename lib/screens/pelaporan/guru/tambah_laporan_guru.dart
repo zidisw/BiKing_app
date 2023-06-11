@@ -269,6 +269,9 @@ class _BuatLaporanState extends State<BuatLaporan> {
         msg: 'Laporan berhasil dikirim',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
       );
       // Reset form
       _formKey.currentState!.reset();
@@ -281,6 +284,9 @@ class _BuatLaporanState extends State<BuatLaporan> {
         msg: 'Terjadi kesalahan',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
       );
     }
   }

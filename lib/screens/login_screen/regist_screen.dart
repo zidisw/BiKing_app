@@ -404,9 +404,23 @@ class _RegisterState extends State<Register> {
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, role), Fluttertoast.showToast(msg: "Register Successful")})
+          .then((value) => {postDetailsToFirestore(email, role), Fluttertoast.showToast(
+            msg: "Register Successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+          )})
           .catchError((e) {
-        Fluttertoast.showToast(msg: "Email already exists");
+        Fluttertoast.showToast(
+          msg: "Email already exists",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
       });
     }
   }

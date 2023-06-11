@@ -110,7 +110,14 @@ class _LoginScreenState extends State<LoginScreen> {
           default:
             errorMessage = "An undefined Error happened.";
         }
-        Fluttertoast.showToast(msg: errorMessage!);
+        Fluttertoast.showToast(
+          msg: errorMessage!,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
         print(error.code);
       }
     }
@@ -119,7 +126,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void logOut() async {
     await FirebaseAuth.instance.signOut();
     prefs.remove('token');
-    Fluttertoast.showToast(msg: "Logged out successfully");
+    Fluttertoast.showToast(
+      msg: "Logged out successfully",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+    );
   }
 
   @override

@@ -101,9 +101,11 @@ class _DaftarPelaporanGuruScreenState
                     itemBuilder: (BuildContext context, int index) {
                       final Map<String, dynamic> data =
                           documents[index].data() as Map<String, dynamic>;
-                      final String tanggal = data['Tanggal'] as String;
+                      final Timestamp timestamp = data['Tanggal'] as Timestamp;
+                      final DateTime dateTime = timestamp.toDate();
+                      final String formattedDateTime =
+                          DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
                       
-
                       final laporan = documents[index];
 
                       return Card(
@@ -119,7 +121,7 @@ class _DaftarPelaporanGuruScreenState
                             );
                           },
                           title: Text(
-                            tanggal.toString(),
+                            formattedDateTime.toString(),
                             style: GoogleFonts.poppins(
                               color: const Color(0xFF000000),
                               fontSize: 16,
@@ -145,12 +147,14 @@ class _DaftarPelaporanGuruScreenState
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EditKartuScreen(
-                                    laporanID: laporanID,
-                                    initialNama: data[
-                                        'Nama'], // Retrieve the initial values from the 'data' map
-                                    initialKelas: data['Kelas Siswa'],
-                                    initialMasalah: data['Deskripsi'],
-                                    initialNomor: data['Nomor'],
+                                    initialUserID: data['UserID'],
+                                    initialLaporanID: laporanID,
+                                    initialKepada: data['Kepada'],
+                                    initialNama: data['Nama'],
+                                    initialSiswaNama: data['Nama Siswa'],
+                                    initialSiswaKelas: data['Kelas Siswa'],
+                                    initialDeskripsi: data['Deskripsi Laporan'],
+                                    initialSaran: data['Saran'],
                                   ),
                                 ),
                               );

@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditKartuScreen extends StatefulWidget {
   static String routeName = 'EditKartuScreen';
-  final String laporanID;
+  final String initialUserID;
+  final String initialLaporanID;
+  final String initialKepada;
   final String initialNama;
-  final String initialKelas;
-  final String initialMasalah;
-  final String initialNomor;
+  final String initialSiswaNama;
+  final String initialSiswaKelas;
+  final String initialDeskripsi;
+  final String initialSaran;
 
   const EditKartuScreen({
     Key? key,
-    required this.laporanID,
+    required this.initialUserID,
+    required this.initialLaporanID,
+    required this.initialKepada,
     required this.initialNama,
-    required this.initialKelas,
-    required this.initialMasalah,
-    required this.initialNomor,
+    required this.initialSiswaNama,
+    required this.initialSiswaKelas,
+    required this.initialDeskripsi,
+    required this.initialSaran,
   }) : super(key: key);
 
   @override
@@ -26,18 +33,27 @@ class EditKartuScreen extends StatefulWidget {
 
 class _EditKartuScreenState extends State<EditKartuScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late TextEditingController userIDController;
+  late TextEditingController laporanIDController;
+  late TextEditingController kepadaController;
   late TextEditingController namaController;
-  late TextEditingController kelasController;
-  late TextEditingController masalahController;
-  late TextEditingController nomorController;
+  late TextEditingController siswanamaController;
+  late TextEditingController siswakelasController;
+  late TextEditingController deskripsiController;
+  late TextEditingController saranController;
 
   @override
   void initState() {
     super.initState();
+    userIDController = TextEditingController(text: widget.initialUserID);
+    laporanIDController = TextEditingController(text: widget.initialLaporanID);
+    kepadaController = TextEditingController(text: widget.initialKepada);
     namaController = TextEditingController(text: widget.initialNama);
-    kelasController = TextEditingController(text: widget.initialKelas);
-    masalahController = TextEditingController(text: widget.initialMasalah);
-    nomorController = TextEditingController(text: widget.initialNomor);
+    siswanamaController = TextEditingController(text: widget.initialSiswaNama);
+    siswakelasController =
+        TextEditingController(text: widget.initialSiswaKelas);
+    deskripsiController = TextEditingController(text: widget.initialDeskripsi);
+    saranController = TextEditingController(text: widget.initialSaran);
   }
 
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -45,43 +61,49 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
       FirebaseFirestore.instance.collection('laporan_guru');
 
   Future<void> _editReport(
-    String masalah,
-    String kelas,
+    String userID,
+    String laporanID,
+    String kepada,
     String nama,
-    String nomor,
+    String siswaNama,
+    String siswaKelas,
+    String deskripsi,
+    String saran,
   ) async {
+    final currentContext = context;
     try {
-      await reportCollection.doc(widget.laporanID).update({
-        'Masalah': masalah,
-        'Kelas': kelas,
+      await reportCollection.doc(widget.initialLaporanID).set({
+        'UserID': userID,
+        'LaporanID': laporanID,
+        'Kepada': kepada,
         'Nama': nama,
-        'Nomor': nomor,
-        'Date': FieldValue.serverTimestamp(), // Update the timestamp
+        'Nama Siswa': siswaNama,
+        'Kelas Siswa': siswaKelas,
+        'Deskripsi Laporan': deskripsi,
+        'Saran': saran,
+        'Tanggal': FieldValue.serverTimestamp(),
       });
+      Fluttertoast.showToast(
+        msg: 'Report Successfully Updated!',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+      Navigator.pop(context, true);
 
       // Success message or further processing
     } catch (error) {
-      // Error handling
+     Fluttertoast.showToast(
+        msg: 'Failed to update report.',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
     }
-
-    // Clear the text fields and show a success message or navigate to another screen
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Report Successfully Updated!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   TextStyle labelStyle = GoogleFonts.poppins(
@@ -97,164 +119,223 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.blue,
-                  Colors.purple,
-                ],
-              ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
             ),
           ),
-          title: const Text('Tambah Laporan (Siswa)',
-              style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.5)),
         ),
-        body: SingleChildScrollView(
-            child: SafeArea(
-                child: Column(children: [
-          Align(
-              alignment: Alignment.topCenter,
-              child: Column(children: [
-                Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 20, right: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFFFFF),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color(0xFF000000).withOpacity(0.16),
-                          width: 1.0,
+        title: const Text('Update Kartu Laporan',
+            style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5)),
+      ),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFF000000).withOpacity(0.16),
+                            width: 1.0,
+                          ),
                         ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 13.0,
-                        horizontal: 10.0,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 13.0,
+                          horizontal: 10.0,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Nama',
-                                  style: labelStyle,
+                                  'Kepada:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                                const SizedBox(height: 10.0),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: kepadaController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan nama penerima',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Nama:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
                                 TextFormField(
                                   controller: namaController,
-                                  style: inputTextStyle,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
                                   decoration: const InputDecoration(
-                                    hintText: 'Masukkan Nama Anda',
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(10.0),
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan nama anda',
                                   ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Nama Siswa:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: siswanamaController,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Field ini harus diisi';
                                     }
                                     return null;
                                   },
-                                ),
-                                const SizedBox(height: 15.0),
-                                Text(
-                                  'Kelas',
-                                  style: labelStyle,
-                                ),
-                                const SizedBox(height: 8.0),
-                                TextFormField(
-                                  controller: kelasController,
-                                  style: inputTextStyle,
                                   decoration: const InputDecoration(
-                                    hintText: 'Masukkan Kelas Anda',
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(10.0),
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan nama siswa',
                                   ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Field ini harus diisi';
-                                    }
-                                    return null;
-                                  },
                                 ),
-                                const SizedBox(height: 15.0),
+                                const SizedBox(height: 15),
                                 Text(
-                                  'Masalah',
-                                  style: labelStyle,
-                                ),
-                                const SizedBox(height: 8.0),
-                                TextFormField(
-                                  controller: masalahController,
-                                  style: inputTextStyle,
-                                  maxLines:
-                                      null, // Allow multiple lines of input
-                                  decoration: InputDecoration(
-                                    hintText: 'Masalah apa yang anda alami?',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
+                                  'Kelas Siswa:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
                                   ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: siswakelasController,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Field ini harus diisi';
                                     }
                                     return null;
                                   },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan kelas siswa',
+                                  ),
                                 ),
-                                const SizedBox(height: 15.0),
+                                const SizedBox(height: 15),
                                 Text(
-                                  'Nomor WA yang akan dihubungi',
-                                  style: labelStyle,
-                                ),
-                                const SizedBox(height: 8.0),
-                                TextFormField(
-                                  controller: nomorController,
-                                  style: inputTextStyle,
-                                  maxLines:
-                                      null, // Allow multiple lines of input
-                                  decoration: InputDecoration(
-                                    hintText: 'Masukkan nomor WA anda',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
+                                  'Deskripsi Laporan:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
                                   ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: deskripsiController,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Field ini harus diisi';
                                     }
                                     return null;
                                   },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan deskripsi laporan',
+                                  ),
+                                  maxLines: 3,
                                 ),
-                                const SizedBox(height: 15.0),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Saran:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: saranController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Masukkan saran',
+                                  ),
+                                  maxLines: 3,
+                                ),
+                                const SizedBox(height: 15),
                                 ElevatedButton(
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       _editReport(
-                                        masalahController.text,
-                                        kelasController.text,
+                                        userIDController.text,
+                                        laporanIDController.text,
+                                        kepadaController.text,
                                         namaController.text,
-                                        nomorController.text,
+                                        siswanamaController.text,
+                                        siswakelasController.text,
+                                        deskripsiController.text,
+                                        saranController.text,
                                       );
+                                      Navigator.pop(context, true);
                                     }
                                   },
-                                  child: const Text('Submit'),
+                                  child: const Text('Kirim'),
                                 ),
-                              ]),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ))
-              ]))
-        ]))));
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
