@@ -27,7 +27,7 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
     _currentUserId = FirebaseAuth.instance.currentUser!.uid;
     _laporanStream = FirebaseFirestore.instance
         .collection('laporan_siswa')
-        .where('UserId', isEqualTo: _currentUserId)
+        .where('UserID', isEqualTo: _currentUserId)
         .orderBy('Date', descending: true)
         .snapshots();
   }
@@ -68,7 +68,7 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
                   child: Column(
                     children: [
                       Text(
-                        "Daftar Kartu Komunikasi",
+                        "Daftar Laporan-Ku",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.poppins(
                           color: const Color(0xFF0579CC),
@@ -136,18 +136,17 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
                           trailing: IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {
-                              String laporanID = laporan.id;
                               final Map<String, dynamic> data = documents[index].data() as Map<String, dynamic>;
 
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => editReportScreen(
-                                    laporanID: laporanID,
+                                    laporanID: data['LaporanID'],
                                     initialNama: data['Nama'], // Retrieve the initial values from the 'data' map
                                     initialKelas: data['Kelas'],
                                     initialMasalah: data['Masalah'],
-                                    initialNomor: data['Nomor'],
+                                    initialNomor: data['Nomor Telepon'],
                                   ),
                                 ),
                               );

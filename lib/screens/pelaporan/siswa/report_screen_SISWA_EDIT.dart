@@ -51,15 +51,29 @@ class _editReportScreenState extends State<editReportScreen> {
       String nomor,
       ) async {
     try {
-      await reportCollection.doc(widget.laporanID).update({
-        'Masalah': masalah,
-        'Kelas': kelas,
-        'Nama': nama,
-        'Nomor': nomor,
-        'Date': FieldValue.serverTimestamp(), // Update the timestamp
-      });
+      QuerySnapshot querySnapshot = await reportCollection
+          .where('LaporanID', isEqualTo: widget.laporanID)
+          .limit(1)
+          .get();
 
-      // Success message or further processing
+      if (querySnapshot.size > 0) {
+        // Get the document reference of the first (and only) matching document
+        DocumentReference documentRef = querySnapshot.docs[0].reference;
+
+        // Update the document fields
+        await documentRef.update({
+          'Masalah': masalah,
+          'Kelas': kelas,
+          'Nama': nama,
+          'Nomor Telepon': nomor,
+          'Date': FieldValue.serverTimestamp(),
+        });
+
+        // Success message or further processing
+      } else {
+        // Document with the specified LaporanID not found
+        // Handle this case accordingly
+      }
     } catch (error) {
       // Error handling
     }
@@ -111,7 +125,7 @@ class _editReportScreenState extends State<editReportScreen> {
               ),
             ),
           ),
-          title: const Text('Tambah Laporan (Siswa)',
+          title: const Text('Ubah Laporan (Siswa)',
               style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 20,
