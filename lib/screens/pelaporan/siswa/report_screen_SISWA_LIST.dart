@@ -106,51 +106,55 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
 
                       final laporan = documents[index];
 
-                      return Card(
-                        child: ListTile(
-                          onTap: () {
-                            String laporanID = laporan.id;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => IsiLaporanSiswaScreen(laporanID: laporanID),
-                              ),
-                            );
-                          },
-                          title: Text(
-                            formattedDateTime,
-                            style: GoogleFonts.poppins(
-                              color: const Color(0xFF000000),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          subtitle: Text(
-                            "Diproses",
-                            style: GoogleFonts.poppins(
-                              color: const Color(0xFF000000).withOpacity(0.5),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              final Map<String, dynamic> data = documents[index].data() as Map<String, dynamic>;
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => editReportScreen(
-                                    laporanID: data['LaporanID'],
-                                    initialNama: data['Nama'], // Retrieve the initial values from the 'data' map
-                                    initialKelas: data['Kelas'],
-                                    initialMasalah: data['Masalah'],
-                                    initialNomor: data['Nomor Telepon'],
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            child: ListTile(
+                              onTap: () {
+                                String laporanID = laporan.id;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => IsiLaporanSiswaScreen(laporanID: laporanID),
                                   ),
+                                );
+                              },
+                              leading: const Icon(Icons.description,
+                                  size: 40, color: Colors.blue),
+                              title: Text(
+                                formattedDateTime,
+                                style: GoogleFonts.poppins(
+                                  color: const Color(0xFF000000),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
                                 ),
-                              );
-                            },
+                              ),
+                              
+                              trailing: IconButton(
+                                icon: const Icon(Icons.edit),
+                                onPressed: () {
+                                  final Map<String, dynamic> data = documents[index].data() as Map<String, dynamic>;
+                                                
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => editReportScreen(
+                                        laporanID: data['LaporanID'],
+                                        initialNama: data['Nama'], // Retrieve the initial values from the 'data' map
+                                        initialKelas: data['Kelas'],
+                                        initialMasalah: data['Masalah'],
+                                        initialNomor: data['Nomor Telepon'],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                           ),
                         ),
                       );
