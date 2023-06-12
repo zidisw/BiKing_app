@@ -1,4 +1,5 @@
 import 'package:biking_app/screens/home_screen/home_screen.dart';
+import 'package:biking_app/screens/pelaporan/admin/pelaporan_admin.dart';
 import 'package:biking_app/screens/pelaporan/guru/pelaporan_guru.dart';
 import 'package:biking_app/screens/profil/guru/profil_guru.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -24,7 +25,7 @@ class _MainScreenAdminState extends State<MainScreenAdmin> {
       gurumapel: '',
     ),
     const HomeScreen(),
-    const PelaporanScreen(),
+    const PelaporanAdminScreen(),
   ];
   @override
   Widget build(BuildContext context) {
