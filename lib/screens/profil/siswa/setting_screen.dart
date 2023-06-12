@@ -8,17 +8,56 @@ import 'package:biking_app/screens/profil/privacy_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingSiswa extends StatefulWidget {
-  const SettingSiswa({super.key});
+  final String nama;
+  final String kelas;
+
+  const SettingSiswa({
+    Key? key,
+    required this.nama,
+    required this.kelas,
+  }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'mapel': kelas,
+    };
+  }
+
+  static String routeName = "SettingSiswa";
 
   @override
   _SettingSiswaState createState() => _SettingSiswaState();
-  static String routeName = "SettingSiswa";
 }
 
 class _SettingSiswaState extends State<SettingSiswa> {
-  
+  String? nama;
+  String? kelas;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+    DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+        nama = snapshot.get('nama');
+        kelas = snapshot.get('kelas');
+      });
+    }
+  }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
@@ -28,6 +67,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
               const LoginScreen()), // Ganti dengan halaman log in Anda
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,11 +84,9 @@ class _SettingSiswaState extends State<SettingSiswa> {
             ),
           ),
         ),
-        title: const Text('Pengaturan',
-          style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
+        title: Text('Pengaturan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
@@ -60,8 +98,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -83,20 +120,19 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                 Column(
                                   children: [
                                     Container(
-                                        alignment: Alignment.topCenter,
-                                        width: 80,
-                                        height: 80,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: AssetImage(
-                                              "assets/images/jid1.png",
-                                            ),
+                                      alignment: Alignment.topCenter,
+                                      width: 80,
+                                      height: 80,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                            "assets/images/orang.png",
                                           ),
                                         ),
                                       ),
-
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
@@ -108,8 +144,8 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zid Nih Bos",
-                                        style:  GoogleFonts.poppins(
+                                        '${nama ?? ""}',
+                                        style: GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
@@ -119,8 +155,8 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "XII MIPA 1",
-                                        style:  GoogleFonts.poppins(
+                                        '${kelas ?? ""}',
+                                        style: GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),
                                           fontSize: 17,
@@ -137,8 +173,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Divider(
                               thickness: 1.0,
-                              color:
-                                  const Color(0xFF000000).withOpacity(0.10),
+                              color: const Color(0xFF000000).withOpacity(0.10),
                             ),
                           ),
                           Padding(
@@ -165,11 +200,12 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
                                           child: Text(
                                             "Pengaturan Akun",
                                             textAlign: TextAlign.left,
-                                            style:  GoogleFonts.poppins(
+                                            style: GoogleFonts.poppins(
                                               color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -192,11 +228,11 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                 child: Text(
                                                   "Ubah Password Akun",
                                                   textAlign: TextAlign.left,
-                                                  style:  GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -250,11 +286,12 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
                                           child: Text(
                                             "Laporan Saya",
                                             textAlign: TextAlign.left,
-                                            style:  GoogleFonts.poppins(
+                                            style: GoogleFonts.poppins(
                                               color: const Color(0xFF000000),
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -277,11 +314,11 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                 child: Text(
                                                   "Jumlah Laporan Saya",
                                                   textAlign: TextAlign.left,
-                                                  style:  GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -334,8 +371,9 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
                                           child: Text(
                                             "Aplikasi BiKing",
                                             textAlign: TextAlign.left,
@@ -363,10 +401,10 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                   "Tentang Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -391,9 +429,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 7.0,
-                                              left: 10.0,
-                                              right: 8.0),
+                                              top: 7.0, left: 10.0, right: 8.0),
                                           child: Row(
                                             children: [
                                               Expanded(
@@ -401,10 +437,10 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                   "Privasi",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -429,20 +465,18 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 7.0,
-                                              left: 10.0,
-                                              right: 8.0),
+                                              top: 7.0, left: 10.0, right: 8.0),
                                           child: Row(
                                             children: [
-                                               Expanded(
+                                              Expanded(
                                                 child: Text(
                                                   "Bantuan",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -467,9 +501,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 7.0,
-                                              left: 10.0,
-                                              right: 8.0),
+                                              top: 7.0, left: 10.0, right: 8.0),
                                           child: Row(
                                             children: [
                                               Expanded(
@@ -477,10 +509,10 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                   "Hubungi Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400,
+                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ),
@@ -545,17 +577,16 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                   "Keluar",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w500,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.only(
-                                                        left: 194.0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 194.0),
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     showDialog(
@@ -569,9 +600,8 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                               "Kamu yakin ingin keluar dari akun ini?"),
                                                           actions: [
                                                             TextButton(
-                                                              child:
-                                                                  const Text(
-                                                                      "Batal"),
+                                                              child: const Text(
+                                                                  "Batal"),
                                                               onPressed: () {
                                                                 Navigator.of(
                                                                         context)
@@ -617,21 +647,21 @@ class _SettingSiswaState extends State<SettingSiswa> {
               ),
             ),
             Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: double.infinity,
-              height: 90,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/footerprofil.png'),
-                  fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                height: 90,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/footerprofil.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
           ],
         ),
-     ),
-  );
+      ),
+    );
   }
-  }
+}

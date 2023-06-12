@@ -1,5 +1,5 @@
-import 'package:biking_app/screens/pelaporan/siswa/buat_laporan.dart';
-import 'package:biking_app/screens/pelaporan/siswa/daftar_laporan.dart';
+import 'package:biking_app/screens/pelaporan/siswa/report_screen_SISWA_ADD.dart';
+import 'package:biking_app/screens/pelaporan/siswa/report_screen_SISWA_LIST.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -98,7 +98,7 @@ class _PelaporanState extends State<Pelaporan> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              SizedBox(
+                                              Container(
                                                 width:
                                                     230, // Atur lebar tombol "Buka"
                                                 height:
@@ -109,7 +109,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const DaftarLaporan()),
+                                                              const DaftarPelaporanSiswaScreen()),
                                                     );
                                                   },
                                                   style:
@@ -126,7 +126,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                   child: Text(
                                                     "Buka",
                                                     style: GoogleFonts.poppins(
-                                                      color: const Color.fromARGB(
+                                                      color: Color.fromARGB(
                                                           255, 255, 255, 255),
                                                       fontSize: 14,
                                                       fontWeight:
@@ -136,7 +136,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                 ),
                                               ),
                                               const SizedBox(height: 15),
-                                              SizedBox(
+                                              Container(
                                                 width:
                                                     230, // Atur lebar tombol "Buat Laporan Baru"
                                                 height:
@@ -147,7 +147,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const BuatLaporanSiswa()),
+                                                              const AddReportScreen()),
                                                     );
                                                   },
                                                   style:
@@ -164,7 +164,7 @@ class _PelaporanState extends State<Pelaporan> {
                                                   child: Text(
                                                     "Buat Laporan Baru",
                                                     style: GoogleFonts.poppins(
-                                                      color: const Color.fromARGB(
+                                                      color: Color.fromARGB(
                                                           255, 255, 255, 255),
                                                       fontSize: 14,
                                                       fontWeight:

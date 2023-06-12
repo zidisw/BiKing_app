@@ -83,7 +83,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
   ) async {
     try {
       String? nomorTelepon = await _getUserPhoneNumber(userID);
-      await reportCollection.doc(widget.initialLaporanID).set({
+      await reportCollection.doc(widget.initialLaporanID).update({
         'UserID': userID,
         'LaporanID': laporanID,
         'Kepada': kepada,
@@ -92,7 +92,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
         'Kelas Siswa': siswaKelas,
         'Deskripsi Laporan': deskripsi,
         'Saran': saran,
-        'Tanggal': FieldValue.serverTimestamp(),
+        'Tanggal': Timestamp.now(),
         'Nomor Telepon': nomorTelepon,
       });
       Fluttertoast.showToast(
@@ -103,11 +103,11 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
         backgroundColor: Colors.green,
         textColor: Colors.white,
       );
+      setState(
+          () {}); // Memperbarui tampilan setelah berhasil memperbarui laporan
       Navigator.pop(context, true);
-
-      // Success message or further processing
     } catch (error) {
-     Fluttertoast.showToast(
+      Fluttertoast.showToast(
         msg: 'Failed to update report.',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
@@ -145,12 +145,9 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
             ),
           ),
         ),
-        title: const Text('Update Kartu Laporan',
-            style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.5)),
+        title: Text('Update Kartu Laporan',
+            style: GoogleFonts.poppins(
+                fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -199,8 +196,10 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan nama penerima',
                                   ),
                                 ),
@@ -221,8 +220,10 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan nama anda',
                                   ),
                                 ),
@@ -243,8 +244,10 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan nama siswa',
                                   ),
                                 ),
@@ -265,8 +268,10 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan kelas siswa',
                                   ),
                                 ),
@@ -287,8 +292,10 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan deskripsi laporan',
                                   ),
                                   maxLines: 3,
@@ -310,30 +317,46 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                     }
                                     return null;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan saran',
                                   ),
                                   maxLines: 3,
                                 ),
                                 const SizedBox(height: 15),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      _editReport(
-                                        userIDController.text,
-                                        laporanIDController.text,
-                                        kepadaController.text,
-                                        namaController.text,
-                                        siswanamaController.text,
-                                        siswakelasController.text,
-                                        deskripsiController.text,
-                                        saranController.text,
-                                      );
-                                      Navigator.pop(context, true);
-                                    }
-                                  },
-                                  child: const Text('Kirim'),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        _editReport(
+                                          userIDController.text,
+                                          laporanIDController.text,
+                                          kepadaController.text,
+                                          namaController.text,
+                                          siswanamaController.text,
+                                          siswakelasController.text,
+                                          deskripsiController.text,
+                                          saranController.text,
+                                        );
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 10),
+                                    ),
+                                    child: Text(
+                                      'Kirim',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

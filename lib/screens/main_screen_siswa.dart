@@ -4,7 +4,6 @@ import 'package:biking_app/screens/profil/siswa/profil_siswa.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-
 class MainScreenSiswa extends StatefulWidget {
   const MainScreenSiswa({super.key});
   static String routeName = 'MainScreenSiswa';
@@ -17,7 +16,12 @@ class _MainScreenSiswaState extends State<MainScreenSiswa> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfilePage(),
+    const ProfilSiswaScreen(
+      nama: '',
+      email: '',
+      nomorTelepon: '',
+      kelas: '',
+    ),
     const HomeScreen(),
     const Pelaporan(),
   ];

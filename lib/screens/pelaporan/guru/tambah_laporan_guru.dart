@@ -97,8 +97,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   onSaved: (value) {
                                     kepadaValue = value!;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan nama penerima',
                                   ),
                                 ),
@@ -121,8 +123,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   onSaved: (value) {
                                     namaValue = value!;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan nama anda',
                                   ),
                                 ),
@@ -145,8 +149,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   onSaved: (value) {
                                     siswaNamaValue = value!;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan nama siswa',
                                   ),
                                 ),
@@ -169,8 +175,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   onSaved: (value) {
                                     siswaKelasValue = value!;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan kelas siswa',
                                   ),
                                 ),
@@ -193,8 +201,10 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   onSaved: (value) {
                                     deskripsiValue = value!;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan deskripsi laporan',
                                   ),
                                   maxLines: 3,
@@ -218,16 +228,33 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                   onSaved: (value) {
                                     saranValue = value!;
                                   },
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     hintText: 'Masukkan saran',
                                   ),
                                   maxLines: 3,
                                 ),
                                 const SizedBox(height: 15),
-                                ElevatedButton(
-                                  onPressed: _kirimLaporan,
-                                  child: const Text('Kirim'),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: _kirimLaporan,
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 10),
+                                    ),
+                                    child: Text(
+                                      'Kirim',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -256,9 +283,15 @@ class _BuatLaporanState extends State<BuatLaporan> {
     }
   }
 
-  
-  Future<void> _addReport(String userID, String laporanID, String kepada, String nama, String siswaNama,
-      String siswaKelas, String deskripsi, String saran) async {
+  Future<void> _addReport(
+      String userID,
+      String laporanID,
+      String kepada,
+      String nama,
+      String siswaNama,
+      String siswaKelas,
+      String deskripsi,
+      String saran) async {
     try {
       _laporanCounter++; // tambahkan counter saat laporan dikirim
       String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
@@ -324,7 +357,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
           .collection('laporan_guru')
           .doc('dummy_document')
           .delete();
-          
+
       _addReport(
         userID,
         laporanID,
