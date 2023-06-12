@@ -147,9 +147,6 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
         title: Text('Update Kartu Laporan',
             style: GoogleFonts.poppins(
                 fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
-        title: Text('Update Kartu Laporan',
-            style: GoogleFonts.poppins(
-                fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
