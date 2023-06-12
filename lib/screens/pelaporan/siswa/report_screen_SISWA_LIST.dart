@@ -68,7 +68,7 @@ class _DaftarPelaporanSiswaScreenState extends State<DaftarPelaporanSiswaScreen>
                   child: Column(
                     children: [
                       Text(
-                        "Laporan-Ku",
+                        "Daftar Kartu Komunikasi",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.poppins(
                           color: const Color(0xFF0579CC),

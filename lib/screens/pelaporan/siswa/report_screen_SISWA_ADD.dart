@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddReportScreen extends StatefulWidget {
@@ -38,34 +39,31 @@ class _AddReportScreenState extends State<AddReportScreen> {
         'UserId': userId,
         'Date': FieldValue.serverTimestamp(),
       });
+      Fluttertoast.showToast(
+        msg: 'Laporan berhasil dikirim',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+      Navigator.pop(context, true);
       // Success message or further processing
     } catch (error) {
-      // Error handling
+      Fluttertoast.showToast(
+        msg: 'Terjadi kesalahan',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
     }
     // Clear the text fields
     namaController.clear();
     kelasController.clear();
     masalahController.clear();
     nomorController.clear();
-
-    // Show a success message or navigate to another screen
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Success'),
-        content: const Text('Report Successfully Sent!'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-            },
-            child: const Text('OK'),
-          ),
-        ],
-      );
-    },
-    );
   }
 
   TextStyle labelStyle = GoogleFonts.poppins(

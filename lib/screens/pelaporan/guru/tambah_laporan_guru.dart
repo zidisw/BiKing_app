@@ -247,14 +247,11 @@ class _BuatLaporanState extends State<BuatLaporan> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 30, vertical: 10),
                                     ),
-                                    
                                     child: Text(
                                       'Kirim',
                                       style: GoogleFonts.poppins(
-                                        fontSize:
-                                            15,
-                                        fontWeight: FontWeight
-                                            .w600,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),

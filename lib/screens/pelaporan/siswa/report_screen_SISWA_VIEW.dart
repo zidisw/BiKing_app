@@ -330,7 +330,7 @@ class _IsiLaporanSiswaScreenState extends State<IsiLaporanSiswaScreen> {
                                       ),
                                     ),
                                     width: 330,
-                                    height: 150,
+                                    height: 50,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 11.0, top: 12.0),
