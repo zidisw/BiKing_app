@@ -242,7 +242,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const UbahPassword()),
+                                                            const HubungiKami()),
                                                   );
                                                 },
                                                 child: const Icon(

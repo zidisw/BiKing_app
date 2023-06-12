@@ -242,7 +242,7 @@ class _SettingSiswaState extends State<SettingSiswa> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const UbahPassword()),
+                                                            const HubungiKami()),
                                                   );
                                                 },
                                                 child: const Icon(

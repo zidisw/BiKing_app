@@ -10,8 +10,6 @@ class HubungiKami extends StatefulWidget {
 }
 
 class _HubungiKami extends State<HubungiKami> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +27,10 @@ class _HubungiKami extends State<HubungiKami> {
           ),
         ),
         title: Text('Hubungi Kami',
-        style: GoogleFonts.poppins (fontSize: 20,
-            fontWeight: FontWeight.w500,)),
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            )),
       ),
       body: SafeArea(
           child: Column(
@@ -52,11 +52,11 @@ class _HubungiKami extends State<HubungiKami> {
                       ),
                     ),
                     padding: const EdgeInsets.symmetric(
-                          vertical: 13.0, horizontal: 10.0),
+                        vertical: 13.0, horizontal: 10.0),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             alignment: Alignment.topCenter,
@@ -70,44 +70,13 @@ class _HubungiKami extends State<HubungiKami> {
                               ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFFFFFFF),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: const Color(0xFF000000).withOpacity(0.16),
-                                width: 1.0,
-                              ),
-                            ),
-                            width: 300,
-                            height: 60,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 40,
-                                    height: 40,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image:
-                                            AssetImage("assets/images/gmail.png"),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 75),
-                                 Text(
-                                  "Gmail",
-                                  style: GoogleFonts.poppins(
-                                    color:  const Color(0xFF000000),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            "Kontak Person",
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.poppins(
+                              color: const Color(0xFF000000),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           Padding(
@@ -117,55 +86,13 @@ class _HubungiKami extends State<HubungiKami> {
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: const Color(0xFF000000).withOpacity(0.16),
+                                  color:
+                                      const Color(0xFF000000).withOpacity(0.16),
                                   width: 1.0,
                                 ),
                               ),
                               width: 300,
-                              height: 60,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: Container(
-                                      alignment: Alignment.centerLeft,
-                                      width: 40,
-                                      height: 40,
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                              "assets/images/instagram.png"),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 60),
-                                  Text(
-                                    "Instagram",
-                                    style:GoogleFonts.poppins(
-                                      color: const Color(0xFF000000),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: const Color(0xFF000000).withOpacity(0.16),
-                                  width: 1.0,
-                                ),
-                              ),
-                              width: 300,
-                              height: 60,
+                              height: 70,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -183,13 +110,17 @@ class _HubungiKami extends State<HubungiKami> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 55),
-                                 Text(
-                                    "Whatsapp",
-                                    style:GoogleFonts.poppins(
-                                      color: const Color(0xFF000000),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                                  // const SizedBox(width: 55),
+                                  Padding(
+                                    padding: const EdgeInsets.all(13.0),
+                                    child: Text(
+                                      "0853-4931-3355 (Zid)",
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.poppins(
+                                        color: const Color(0xFF000000),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -197,43 +128,47 @@ class _HubungiKami extends State<HubungiKami> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(top: 15.0, bottom: 5),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: const Color(0xFF000000).withOpacity(0.16),
+                                  color:
+                                      const Color(0xFF000000).withOpacity(0.16),
                                   width: 1.0,
                                 ),
                               ),
                               width: 300,
-                              height: 60,
+                              height: 70,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
+                                    padding: const EdgeInsets.only(left: 5.0),
                                     child: Container(
                                       alignment: Alignment.centerLeft,
-                                      width: 40,
-                                      height: 40,
+                                      width: 47,
+                                      height: 47,
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(
-                                              "assets/images/twitter.png"),
+                                              "assets/images/whatsapp.png"),
                                         ),
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 70),
-                                  const Text(
-                                    "Twitter",
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      color: Color(0xFF000000),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                                  // const SizedBox(width: 55),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "0822-9332-0943 (Nabila)",
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.poppins(
+                                        color: const Color(0xFF000000),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -249,10 +184,7 @@ class _HubungiKami extends State<HubungiKami> {
             ),
           ),
         ],
-      )
-    ),
-
-     
+      )),
     );
   }
 }
