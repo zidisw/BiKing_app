@@ -80,24 +80,22 @@ class _HubungiKami extends State<HubungiKami> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 5.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color:
-                                      const Color(0xFF000000).withOpacity(0.16),
-                                  width: 1.0,
+                                  color: Colors.grey.withOpacity(0.5),
+                                  width: 1,
                                 ),
+                                borderRadius: BorderRadius.circular(12),
                               ),
                               width: 300,
-                              height: 70,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 5.0),
+                                    padding: const EdgeInsets.only(left: 8.0),
                                     child: Container(
                                       alignment: Alignment.centerLeft,
                                       width: 47,
@@ -112,13 +110,13 @@ class _HubungiKami extends State<HubungiKami> {
                                   ),
                                   // const SizedBox(width: 55),
                                   Padding(
-                                    padding: const EdgeInsets.all(13.0),
+                                    padding: const EdgeInsets.all(10.0),
                                     child: Text(
                                       "0853-4931-3355 (Zid)",
                                       textAlign: TextAlign.left,
                                       style: GoogleFonts.poppins(
                                         color: const Color(0xFF000000),
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -128,19 +126,17 @@ class _HubungiKami extends State<HubungiKami> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 15.0, bottom: 5),
+                        padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 5.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color:
-                                      const Color(0xFF000000).withOpacity(0.16),
-                                  width: 1.0,
+                                  color: Colors.grey.withOpacity(0.5),
+                                  width: 1,
                                 ),
+                                borderRadius: BorderRadius.circular(12),
                               ),
                               width: 300,
-                              height: 70,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -160,13 +156,13 @@ class _HubungiKami extends State<HubungiKami> {
                                   ),
                                   // const SizedBox(width: 55),
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(10.0),
                                     child: Text(
                                       "0822-9332-0943 (Nabila)",
                                       textAlign: TextAlign.left,
                                       style: GoogleFonts.poppins(
                                         color: const Color(0xFF000000),
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
