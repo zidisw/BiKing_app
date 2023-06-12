@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uuid/uuid.dart';
 
 class AddReportScreen extends StatefulWidget {
   static String routeName = 'TambahReportSiswa';
@@ -13,6 +14,8 @@ class AddReportScreen extends StatefulWidget {
 
 class _AddReportScreenState extends State<AddReportScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController userIDController = TextEditingController();
+  final TextEditingController laporanIDController = TextEditingController();
   final TextEditingController namaController = TextEditingController();
   final TextEditingController kelasController = TextEditingController();
   final TextEditingController masalahController = TextEditingController();
@@ -21,23 +24,37 @@ class _AddReportScreenState extends State<AddReportScreen> {
   final CollectionReference reportCollection =
   FirebaseFirestore.instance.collection('laporan_siswa');
 
-  Future<void> _addReport(String masalah, String kelas, String nama, String nomor) async {
+  Future<String?> _getUserPhoneNumber(String userID) async {
+    DocumentSnapshot userSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['nomorTelepon'];
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> _addReport(String userID, String laporanID, String nama, String kelas, String masalah) async {
     try {
-      String userId = FirebaseAuth.instance.currentUser!.uid;
+      String userID = FirebaseAuth.instance.currentUser!.uid;
       String userName = nama;
+      String laporanID = const Uuid().v4();
 
       QuerySnapshot snapshot = await reportCollection.where('Nama', isEqualTo: userName).get();
       int numberOfReports = snapshot.docs.length;
 
       String documentId = 'Laporan ke ${numberOfReports + 1}_$userName';
+      String? nomorTelepon = await _getUserPhoneNumber(userID);
 
       await reportCollection.doc(documentId).set({
-        'Masalah': masalah,
-        'Kelas': kelas,
+        'UserID': userID,
+        'LaporanID' : laporanID,
         'Nama': nama,
-        'Nomor': nomor,
-        'UserId': userId,
+        'Kelas': kelas,
+        'Masalah': masalah,
         'Date': FieldValue.serverTimestamp(),
+        'Nomor Telepon': nomorTelepon,
       });
       Fluttertoast.showToast(
         msg: 'Laporan berhasil dikirim',
@@ -130,8 +147,6 @@ class _AddReportScreenState extends State<AddReportScreen> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                
-                                const SizedBox(height: 15),
                                 Text(
                                   'Nama:',
                                   style: GoogleFonts.poppins(
@@ -178,7 +193,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    hintText: 'Masukkan kelas siswa',
+                                    hintText: 'Masukkan kelas anda',
                                   ),
                                 ),
                                 const SizedBox(height: 15),
@@ -214,10 +229,11 @@ class _AddReportScreenState extends State<AddReportScreen> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                 _addReport(
-                    masalahController.text,
-                    kelasController.text,
+                    userIDController.text,
+                    laporanIDController.text,
                     namaController.text,
-                    nomorController.text,
+                    kelasController.text,
+                    masalahController.text,
                 );
                 }
               },
