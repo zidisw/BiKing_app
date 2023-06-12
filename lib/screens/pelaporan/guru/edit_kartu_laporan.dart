@@ -103,8 +103,7 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
         backgroundColor: Colors.green,
         textColor: Colors.white,
       );
-      setState(
-          () {}); // Memperbarui tampilan setelah berhasil memperbarui laporan
+      setState(() {}); // Memperbarui tampilan setelah berhasil memperbarui laporan
       Navigator.pop(context, true);
     } catch (error) {
       Fluttertoast.showToast(
@@ -145,6 +144,9 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
             ),
           ),
         ),
+        title: Text('Update Kartu Laporan',
+            style: GoogleFonts.poppins(
+                fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
         title: Text('Update Kartu Laporan',
             style: GoogleFonts.poppins(
                 fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 0.5)),
@@ -326,37 +328,23 @@ class _EditKartuScreenState extends State<EditKartuScreen> {
                                   maxLines: 3,
                                 ),
                                 const SizedBox(height: 15),
-                                Center(
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        _editReport(
-                                          userIDController.text,
-                                          laporanIDController.text,
-                                          kepadaController.text,
-                                          namaController.text,
-                                          siswanamaController.text,
-                                          siswakelasController.text,
-                                          deskripsiController.text,
-                                          saranController.text,
-                                        );
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30, vertical: 10),
-                                    ),
-                                    child: Text(
-                                      'Kirim',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      _editReport(
+                                        userIDController.text,
+                                        laporanIDController.text,
+                                        kepadaController.text,
+                                        namaController.text,
+                                        siswanamaController.text,
+                                        siswakelasController.text,
+                                        deskripsiController.text,
+                                        saranController.text,
+                                      );
+                                      Navigator.pop(context, true);
+                                    }
+                                  },
+                                  child: const Text('Kirim'),
                                 ),
                               ],
                             ),

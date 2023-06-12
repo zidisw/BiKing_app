@@ -106,64 +106,57 @@ class _DaftarPelaporanGuruScreenState extends State<DaftarPelaporanGuruScreen> {
                           DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
                       final laporan = documents[index];
 
-                      return Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 10),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                            child: ListTile(
-                              onTap: () {
-                                String laporanID = laporan.id;
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        IsiKartuScreen(laporanID: laporanID),
-                                  ),
-                                );
-                              },
-                              leading: const Icon(Icons.description,
-                                  size: 40, color: Colors.blue),
-                              title: Text(
-                                formattedDateTime.toString(),
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF000000),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                      return Card(
+                        child: ListTile(
+                          onTap: () {
+                            String laporanID = laporan.id;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    IsiKartuScreen(laporanID: laporanID),
                               ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.edit),
-                                onPressed: () {
-                                  String laporanID = laporan.id;
-                                  final Map<String, dynamic> data =
-                                      documents[index].data()
-                                          as Map<String, dynamic>;
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => EditKartuScreen(
-                                        initialUserID: data['UserID'],
-                                        initialLaporanID: laporanID,
-                                        initialKepada: data['Kepada'],
-                                        initialNama: data['Nama'],
-                                        initialSiswaNama: data['Nama Siswa'],
-                                        initialSiswaKelas: data['Kelas Siswa'],
-                                        initialDeskripsi:
-                                            data['Deskripsi Laporan'],
-                                        initialSaran: data['Saran'],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                            );
+                          },
+                          title: Text(
+                            formattedDateTime.toString(),
+                            style: GoogleFonts.poppins(
+                              color: const Color(0xFF000000),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                             ),
+                          ),
+                          subtitle: Text(
+                            "Diproses",
+                            style: GoogleFonts.poppins(
+                              color: const Color(0xFF000000).withOpacity(0.5),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {
+                              String laporanID = laporan.id;
+                              final Map<String, dynamic> data = documents[index]
+                                  .data() as Map<String, dynamic>;
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditKartuScreen(
+                                    initialUserID: data['UserID'],
+                                    initialLaporanID: laporanID,
+                                    initialKepada: data['Kepada'],
+                                    initialNama: data['Nama'],
+                                    initialSiswaNama: data['Nama Siswa'],
+                                    initialSiswaKelas: data['Kelas Siswa'],
+                                    initialDeskripsi: data['Deskripsi Laporan'],
+                                    initialSaran: data['Saran'],
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       );
