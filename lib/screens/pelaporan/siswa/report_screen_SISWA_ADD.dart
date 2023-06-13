@@ -35,24 +35,47 @@ class _AddReportScreenState extends State<AddReportScreen> {
     }
   }
 
+  Future<String?> _getUserName(String userID) async {
+    DocumentSnapshot userSnapshot =
+    await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['nama'];
+    } else {
+      return null;
+    }
+  }
+
+  Future<String?> _getUserClass(String userID) async {
+    DocumentSnapshot userSnapshot =
+    await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['kelas'];
+    } else {
+      return null;
+    }
+  }
+
   Future<void> _addReport(String userID, String laporanID, String nama,
       String kelas, String masalah) async {
     try {
       String userID = FirebaseAuth.instance.currentUser!.uid;
-      String userName = nama;
+      String? userName = await _getUserName(userID);
+      String? kelas = await _getUserClass(userID);
       String laporanID = const Uuid().v4();
 
       QuerySnapshot snapshot =
           await reportCollection.where('Nama', isEqualTo: userName).get();
       int numberOfReports = snapshot.docs.length;
 
-      String documentId = 'Laporan ke ${numberOfReports + 1}  userName';
+      String documentId = 'Laporan ke ${numberOfReports + 1}_SISWA_$userName';
       String? nomorTelepon = await _getUserPhoneNumber(userID);
 
       await reportCollection.doc(documentId).set({
         'UserID': userID,
         'LaporanID': laporanID,
-        'Nama': nama,
+        'Nama': userName,
         'Kelas': kelas,
         'Masalah': masalah,
         'Date': FieldValue.serverTimestamp(),
@@ -147,54 +170,6 @@ class _AddReportScreenState extends State<AddReportScreen> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Nama:',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                TextFormField(
-                                  controller: namaController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Field ini harus diisi';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    hintText: 'Masukkan nama anda',
-                                  ),
-                                ),
-                                const SizedBox(height: 15),
-                                Text(
-                                  'Kelas Siswa:',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                TextFormField(
-                                  controller: kelasController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Field ini harus diisi';
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    hintText: 'Masukkan kelas anda',
-                                  ),
-                                ),
-                                const SizedBox(height: 15),
                                 Text(
                                   'Deskripsi Laporan:',
                                   style: GoogleFonts.poppins(

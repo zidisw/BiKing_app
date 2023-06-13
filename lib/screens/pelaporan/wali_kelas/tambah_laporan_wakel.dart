@@ -113,24 +113,6 @@ class _BuatLaporanState extends State<BuatLaporanWali> {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                TextFormField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Field ini harus diisi';
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {
-                                    namaValue = value!;
-                                  },
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    hintText: 'Masukkan nama anda',
-                                  ),
-                                ),
-                                const SizedBox(height: 15),
                                 Text(
                                   'Nama Siswa:',
                                   style: GoogleFonts.poppins(
@@ -283,6 +265,17 @@ class _BuatLaporanState extends State<BuatLaporanWali> {
     }
   }
 
+  Future<String?> _getUserName(String userID) async {
+    DocumentSnapshot userSnapshot =
+    await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['nama'];
+    } else {
+      return null;
+    }
+  }
+
   Future<void> _addReport(
       String userID,
       String laporanID,
@@ -294,7 +287,8 @@ class _BuatLaporanState extends State<BuatLaporanWali> {
       String penanganan) async {
     try {
       _laporanCounter_++; // tambahkan counter saat laporan dikirim
-      String namaDokumen = 'Laporan $_laporanCounter_ $nama';
+      String? nama = await _getUserName(userID);
+      String namaDokumen = 'Laporan_$_laporanCounter_ WALI_$nama';
       String? nomorTelepon = await _getUserPhoneNumber(userID);
       await FirebaseFirestore.instance
           .collection('laporan_wali')
