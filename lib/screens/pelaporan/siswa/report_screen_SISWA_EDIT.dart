@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class editReportScreen extends StatefulWidget {
@@ -68,6 +69,14 @@ class _editReportScreenState extends State<editReportScreen> {
           'Nomor Telepon': nomor,
           'Date': FieldValue.serverTimestamp(),
         });
+        Fluttertoast.showToast(
+          msg: 'Report Successfully Updated!',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
 
         // Success message or further processing
       } else {
@@ -75,27 +84,16 @@ class _editReportScreenState extends State<editReportScreen> {
         // Handle this case accordingly
       }
     } catch (error) {
-      // Error handling
+      Fluttertoast.showToast(
+        msg: 'Failed to update report.',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
     }
 
-    // Clear the text fields and show a success message or navigate to another screen
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Report Successfully Updated!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   TextStyle labelStyle = GoogleFonts.poppins(
@@ -162,20 +160,22 @@ class _editReportScreenState extends State<editReportScreen> {
                                           child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-
-
                                                 Text(
                                                   'Nama',
-                                                  style: labelStyle,
+                                                  style: GoogleFonts.poppins(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                                 ),
                                                 const SizedBox(height: 10.0),
                                                 TextFormField(
                                                   controller: namaController,
                                                   style: inputTextStyle,
-                                                  decoration: const InputDecoration(
+                                                  decoration: InputDecoration(
                                                     hintText: 'Masukkan Nama Anda',
-                                                    border: InputBorder.none,
-                                                    contentPadding: EdgeInsets.all(10.0),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                    ),
                                                   ),
                                                   validator: (value) {
                                                     if (value == null || value.isEmpty) {
@@ -195,11 +195,12 @@ class _editReportScreenState extends State<editReportScreen> {
                                                 TextFormField(
                                                   controller: kelasController,
                                                   style: inputTextStyle,
-                                                  decoration: const InputDecoration(
-                                                    hintText: 'Masukkan Kelas Anda',
-                                                    border: InputBorder.none,
-                                                    contentPadding: EdgeInsets.all(10.0),
+                                                  decoration: InputDecoration(
+                                                  hintText: 'Masukkan Kelas Anda',
+                                                  border: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(10),
                                                   ),
+                                                ),
                                                   validator: (value) {
                                                     if (value == null || value.isEmpty) {
                                                       return 'Field ini harus diisi';
@@ -221,9 +222,9 @@ class _editReportScreenState extends State<editReportScreen> {
                                                   style: inputTextStyle,
                                                   maxLines: null, // Allow multiple lines of input
                                                   decoration: InputDecoration(
-                                                    hintText: 'Masalah apa yang anda alami?',
+                                                    hintText: 'Masalah yang anda alami',
                                                     border: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.circular(10.0),
+                                                      borderRadius: BorderRadius.circular(10),
                                                     ),
                                                   ),
                                                   validator: (value) {
@@ -233,33 +234,6 @@ class _editReportScreenState extends State<editReportScreen> {
                                                     return null;
                                                   },
                                                 ),
-
-
-                                                const SizedBox(height: 15.0),
-                                                Text(
-                                                  'Nomor WA yang akan dihubungi',
-                                                  style: labelStyle,
-                                                ),
-                                                const SizedBox(height: 8.0),
-                                                TextFormField(
-                                                  controller: nomorController,
-                                                  style: inputTextStyle,
-                                                  maxLines: null, // Allow multiple lines of input
-                                                  decoration: InputDecoration(
-                                                    hintText: 'Masukkan nomor WA anda',
-                                                    border: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.circular(10.0),
-                                                    ),
-                                                  ),
-                                                  validator: (value) {
-                                                    if (value == null || value.isEmpty) {
-                                                      return 'Field ini harus diisi';
-                                                    }
-                                                    return null;
-                                                  },
-                                                ),
-
-
 
                                                 const SizedBox(height: 15.0),
                                                 ElevatedButton(
