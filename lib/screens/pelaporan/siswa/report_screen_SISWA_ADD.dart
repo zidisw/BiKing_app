@@ -46,7 +46,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
           await reportCollection.where('Nama', isEqualTo: userName).get();
       int numberOfReports = snapshot.docs.length;
 
-      String documentId = 'Laporan ke ${numberOfReports + 1}_$userName';
+      String documentId = 'Laporan ke ${numberOfReports + 1}  userName';
       String? nomorTelepon = await _getUserPhoneNumber(userID);
 
       await reportCollection.doc(documentId).set({

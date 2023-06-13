@@ -294,7 +294,7 @@ class _BuatLaporanState extends State<BuatLaporanWali> {
       String penanganan) async {
     try {
       _laporanCounter_++; // tambahkan counter saat laporan dikirim
-      String namaDokumen = 'Laporan $_laporanCounter_$nama';
+      String namaDokumen = 'Laporan $_laporanCounter_ $nama';
       String? nomorTelepon = await _getUserPhoneNumber(userID);
       await FirebaseFirestore.instance
           .collection('laporan_wali')
