@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
@@ -25,11 +26,10 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
             ),
           ),
         ),
-        title: const Text('Tentang Kami',
-            style: TextStyle(
-                fontFamily: 'Poppins',
+        title: Text('Tentang Kami',
+            style: GoogleFonts.poppins(
                 fontSize: 20,
-                fontWeight: FontWeight.w700)),
+                fontWeight: FontWeight.w500)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: Stack(
@@ -55,11 +55,11 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       ),
                     ),
                   ),
-                  const Text(
+                  Text(
                     "BiKing adalah aplikasi bimbingan konseling untuk siswa SMA. Aplikasi ini memungkinkan membuat pelaporan yang dibuat oleh guru mata pelajaran, guru wali kelas, atau siswa yang dipilih dan diteruskan kepada guru BK yang dipilih. Dalam BiKing, tim kami berkomitmen untuk memberikan layanan bimbingan konseling yang berkualitas tinggi dan ramah siswa, serta menjaga kerahasiaan informasi dari setiap siswa yang menggunakan layanan kami. ",
                     textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Color(0xFF000000),
+                    style: GoogleFonts.poppins(
+                      color: const Color(0xFF000000),
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),

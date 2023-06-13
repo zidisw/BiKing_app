@@ -2,6 +2,7 @@ import 'package:biking_app/constants.dart';
 import 'package:flutter/material.dart';
 import '../../components/custom_buttons2.dart';
 import 'package:sizer/sizer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -57,8 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 30 * fem,
                               child: Text(
                                 'Haii, Semangat Pagi!',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
+                                  style: GoogleFonts.poppins(
                                   fontSize: 20 * fem,
                                   color: kPrimaryColor,
                                   fontWeight: FontWeight.w600,
@@ -88,8 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 40 * fem,
                                 child: Text(
                                   'Lakukan konsultasi dengan Guru BK kapan saja dan dimana saja melalui aplikasi ini.',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
+                                  style: GoogleFonts.poppins(
                                     fontSize: 12 * ffem,
                                     color: kTextBlackColor,
                                     fontWeight: FontWeight.w500,
@@ -103,29 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8.5.w),
-                        decoration: BoxDecoration(
-                          color: kOtherColor,
-                          borderRadius: kTopBorderRadius,
-                        ),
-                        child: Column(
-                          children: [
-                            MyCustomButton(
-                              width: 500,
-                              height: 80,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, 'InformasibkScreen');
-                              },
-                              text: 'Informasi Seputar BK',
-                              image: const AssetImage('assets/images/ele2.png'),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 8.5.w),

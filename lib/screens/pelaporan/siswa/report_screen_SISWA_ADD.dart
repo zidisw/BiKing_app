@@ -22,7 +22,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
   final TextEditingController nomorController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference reportCollection =
-  FirebaseFirestore.instance.collection('laporan_siswa');
+      FirebaseFirestore.instance.collection('laporan_siswa');
 
   Future<String?> _getUserPhoneNumber(String userID) async {
     DocumentSnapshot userSnapshot =
@@ -35,13 +35,15 @@ class _AddReportScreenState extends State<AddReportScreen> {
     }
   }
 
-  Future<void> _addReport(String userID, String laporanID, String nama, String kelas, String masalah) async {
+  Future<void> _addReport(String userID, String laporanID, String nama,
+      String kelas, String masalah) async {
     try {
       String userID = FirebaseAuth.instance.currentUser!.uid;
       String userName = nama;
       String laporanID = const Uuid().v4();
 
-      QuerySnapshot snapshot = await reportCollection.where('Nama', isEqualTo: userName).get();
+      QuerySnapshot snapshot =
+          await reportCollection.where('Nama', isEqualTo: userName).get();
       int numberOfReports = snapshot.docs.length;
 
       String documentId = 'Laporan ke ${numberOfReports + 1}_$userName';
@@ -49,7 +51,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
 
       await reportCollection.doc(documentId).set({
         'UserID': userID,
-        'LaporanID' : laporanID,
+        'LaporanID': laporanID,
         'Nama': nama,
         'Kelas': kelas,
         'Masalah': masalah,
@@ -96,29 +98,27 @@ class _AddReportScreenState extends State<AddReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.blue,
-                Colors.purple,
-              ],
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue,
+                  Colors.purple,
+                ],
+              ),
             ),
           ),
+          title: Text('Buat Laporan',
+              style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5)),
         ),
-        title: const Text('Buat Laporan',
-            style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.5)),
-      ),
-
-      body: SingleChildScrollView(
+        body: SingleChildScrollView(
             child: SafeArea(
                 child: Column(children: [
           Align(
@@ -170,7 +170,6 @@ class _AddReportScreenState extends State<AddReportScreen> {
                                     hintText: 'Masukkan nama anda',
                                   ),
                                 ),
-                                
                                 const SizedBox(height: 15),
                                 Text(
                                   'Kelas Siswa:',
@@ -188,7 +187,6 @@ class _AddReportScreenState extends State<AddReportScreen> {
                                     }
                                     return null;
                                   },
-
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -213,7 +211,6 @@ class _AddReportScreenState extends State<AddReportScreen> {
                                     }
                                     return null;
                                   },
-
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -222,36 +219,41 @@ class _AddReportScreenState extends State<AddReportScreen> {
                                   ),
                                   maxLines: 3,
                                 ),
-                                
-
-            const SizedBox(height: 15.0),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                _addReport(
-                    userIDController.text,
-                    laporanIDController.text,
-                    namaController.text,
-                    kelasController.text,
-                    masalahController.text,
-                );
-                }
-              },
-              child: const Text('Submit'),
-            ),
-            ]
-            ),
-        ),
-      ),
-        )
-    )
-          ]
-        )
-          )
-          ]
-          )
-    )
-    )
-    );
+                                const SizedBox(height: 15.0),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        _addReport(
+                                          userIDController.text,
+                                          laporanIDController.text,
+                                          namaController.text,
+                                          kelasController.text,
+                                          masalahController.text,
+                                        );
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 10),
+                                    ),
+                                    child: Text(
+                                      'Kirim',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                    ))
+              ]))
+        ]))));
   }
 }
