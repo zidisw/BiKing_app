@@ -1,3 +1,4 @@
+import 'package:biking_app/screens/pelaporan/admin/report_screen_ADMIN_WALI__LIST.dart';
 import 'package:biking_app/screens/pelaporan/guru/tambah_laporan_guru.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -162,7 +163,7 @@ class _PelaporanAdminScreenState extends State<PelaporanAdminScreen> {
                                                   onPressed: () {
                                                     Navigator.push(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => const BuatLaporan()),
+                                                      MaterialPageRoute(builder: (context) => const DaftarPelaporanWaliAdminScreen()),
                                                     );
                                                   },
                                                   style: ElevatedButton.styleFrom(
