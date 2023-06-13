@@ -104,14 +104,6 @@ class _BuatLaporanState extends State<BuatLaporanWali> {
                                     hintText: 'Masukkan nama penerima',
                                   ),
                                 ),
-                                const SizedBox(height: 15),
-                                Text(
-                                  'Nama:',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
                                 const SizedBox(height: 10),
                                 Text(
                                   'Nama Siswa:',
