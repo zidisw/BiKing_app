@@ -133,32 +133,6 @@ class _DaftarPelaporanGuruAdminScreenState extends State<DaftarPelaporanGuruAdmi
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.edit),
-                                onPressed: () {
-                                  String laporanID = laporan.id;
-                                  final Map<String, dynamic> data =
-                                  documents[index].data()
-                                  as Map<String, dynamic>;
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => EditKartuScreen(
-                                        initialUserID: data['UserID'],
-                                        initialLaporanID: laporanID,
-                                        initialKepada: data['Kepada'],
-                                        initialNama: data['Nama'],
-                                        initialSiswaNama: data['Nama Siswa'],
-                                        initialSiswaKelas: data['Kelas Siswa'],
-                                        initialDeskripsi:
-                                        data['Deskripsi Laporan'],
-                                        initialSaran: data['Saran'],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
                             ),
                           ),
                         ),
