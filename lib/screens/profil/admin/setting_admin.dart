@@ -1,119 +1,643 @@
+import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
+import 'package:biking_app/screens/login_screen/login_screen.dart';
+import 'package:biking_app/screens/profil/bantuan.dart';
+import 'package:biking_app/screens/profil/edit_password.dart';
+import 'package:biking_app/screens/profil/hubungi_kami.dart';
+import 'package:biking_app/screens/profil/privacy_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ProfileLong extends StatefulWidget {
-  const ProfileLong({super.key});
+class SettingAdminScreen extends StatefulWidget {
+  final String nama;
+  final String role;
+
+  const SettingAdminScreen({
+    Key? key,
+    required this.nama,
+    required this.role,
+  }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'role': role,
+    };
+  }
+
+  static String routeName = 'SettingAdminScreen';
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ProfileLongState createState() => _ProfileLongState();
-  static String routeName = "ProfileLong";
+  State<SettingAdminScreen> createState() => _SettingAdminScreenState();
 }
-class _ProfileLongState extends State<ProfileLong> {
+
+class _SettingAdminScreenState extends State<SettingAdminScreen> {
+  String? nama;
+  String? role;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+    DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+        nama = snapshot.get('nama');
+        role = snapshot.get('role');
+      });
+    }
+  }
+
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              const LoginScreen()), // Ganti dengan halaman log in Anda
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.blue,
-              Colors.purple,
-            ],
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            ),
           ),
         ),
-      ),
-        title: const Text('Pengaturan',
-        style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
+        title: Text('Pengaturan',
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey.withOpacity(0.5),
+                          width: 1,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: const Color(0xFF000000).withOpacity(0.16),
-                              width: 1.0,
-                            ),
-                          ),
-                          width: 330,
-                          height: 582,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 5.0, left: 3.0),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Column(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 15, top: 10),
-                                      child: 
-                                      Row(
-                                        children: [
-                                          Container(
-                                            alignment: Alignment.topCenter,
-                                            width: 80,
-                                            height: 80,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                  "assets/images/jid1.png",
+                                    Container(
+                                      alignment: Alignment.topCenter,
+                                      width: 80,
+                                      height: 80,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                            "assets/images/orang.png",
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${nama ?? ""}',
+                                        style: GoogleFonts.poppins(
+                                          color: const Color(0xFF4A92FF),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        '${role ?? ""}',
+                                        style: GoogleFonts.poppins(
+                                          color: const Color(0xFF000000)
+                                              .withOpacity(0.5),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Divider(
+                              thickness: 1.0,
+                              color: const Color(0xFF000000).withOpacity(0.10),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    width: 320,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFFFFFFF),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: const Color(0xFF000000)
+                                            .withOpacity(0.15),
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
+                                          child: Text(
+                                            "Pengaturan Akun",
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.poppins(
+                                              color: const Color(0xFF000000),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Divider(
+                                          thickness: 1.0,
+                                          color: const Color(0xFF000000)
+                                              .withOpacity(0.10),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              // top: 7.0,
+                                              left: 10.0,
+                                              right: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Ubah Password Akun",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
                                               ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const HubungiKami()),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_right,
+                                                  color: Color.fromARGB(
+                                                      255, 135, 131, 155),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    width: 320,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFFFFFFF),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: const Color(0xFF000000)
+                                            .withOpacity(0.15),
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
+                                          child: Text(
+                                            "Laporan Saya",
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.poppins(
+                                              color: const Color(0xFF000000),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 30,
-                                          ),
-                                          const Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                        ),
+                                        Divider(
+                                          thickness: 1.0,
+                                          color: const Color(0xFF000000)
+                                              .withOpacity(0.10),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              // top: 7.0,
+                                              left: 10.0,
+                                              right: 8.0),
+                                          child: Row(
                                             children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Jumlah Laporan Saya",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const DaftarPelaporanGuruScreen()),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_right,
+                                                  color: Color.fromARGB(
+                                                      255, 135, 131, 155),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    width: 320,
+                                    height: 166,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFFFFFFF),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: const Color(0xFF000000)
+                                            .withOpacity(0.15),
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 5.0, left: 10.0),
+                                          child: Text(
+                                            "Aplikasi BiKing",
+                                            textAlign: TextAlign.left,
+                                            style: GoogleFonts.poppins(
+                                              color: const Color(0xFF000000),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Divider(
+                                          thickness: 1.0,
+                                          color: const Color(0xFF000000)
+                                              .withOpacity(0.10),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              // top: 7.0,
+                                              left: 10.0,
+                                              right: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Tentang Kami",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const AboutUsScreen()),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_right,
+                                                  color: Color.fromARGB(
+                                                      255, 135, 131, 155),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 7.0, left: 10.0, right: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Privasi",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const PrivacyScreens()),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_right,
+                                                  color: Color.fromARGB(
+                                                      255, 135, 131, 155),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 7.0, left: 10.0, right: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Bantuan",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Bantuan()),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_right,
+                                                  color: Color.fromARGB(
+                                                      255, 135, 131, 155),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 7.0, left: 10.0, right: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Hubungi Kami",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const HubungiKami()),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_right,
+                                                  color: Color.fromARGB(
+                                                      255, 135, 131, 155),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    width: 320,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFFFFFFF),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: const Color(0xFF000000)
+                                            .withOpacity(0.15),
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              // top: 7.0,
+                                              left: 10.0,
+                                              right: 8.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Keluar",
+                                                  textAlign: TextAlign.left,
+                                                  style: GoogleFonts.poppins(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
                                               Padding(
-                                              padding: EdgeInsets.only(left: 20.0),
-                                              child: Text(
-                                                "Zid Ni Boss",
-                                                style: TextStyle(
-                                                  color: Color(0xFF0579CC),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
+                                                padding: const EdgeInsets.only(
+                                                    left: 194.0),
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return AlertDialog(
+                                                          title: const Text(
+                                                              "Keluar dari Akun"),
+                                                          content: const Text(
+                                                              "Kamu yakin ingin keluar dari akun ini?"),
+                                                          actions: [
+                                                            TextButton(
+                                                              child: const Text(
+                                                                  "Batal"),
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                            ),
+                                                            TextButton(
+                                                              child: const Text(
+                                                                  "Keluar"),
+                                                              onPressed: () {
+                                                                // Lakukan proses keluar dari aplikasi di sini
+                                                                logOut();
+                                                              },
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  child: const Icon(
+                                                    Icons
+                                                        .arrow_circle_right_outlined,
+                                                    color: Color.fromARGB(
+                                                        255, 135, 131, 155),
+                                                  ),
                                                 ),
-                                              )
-                                            ),
-                                          SizedBox(height: 10),
-                                          Padding(
-                                              padding: EdgeInsets.only(left: 20.0),
-                                              child: Text(
-                                                "Guru BK Ilegal",
-                                                style: TextStyle(
-                                                  color: Color(0xFF584D99),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                              )
-                                            ),
-                                        ],
-                                      )
-                                    ],
-                                  )
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -123,277 +647,21 @@ class _ProfileLongState extends State<ProfileLong> {
               ),
             ),
             Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 140,
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                height: 90,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/footerprofil.png'),
+                    fit: BoxFit.cover,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 300,
-                    height: 80,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 11.0, left: 3.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Pengaturan Akun",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 18,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Ubah kata sandi",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 135, 131, 155),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 230,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 300,
-                    height: 80,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 11.0, left: 3.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Interaksi Saya",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 18,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Jumlah Interaksi Saya",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 320,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 300,
-                    height: 180,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 11.0, left: 3.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Aplikasi BiKing",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Tentang Kami",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 11,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Privasi",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 11,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Bantuan",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 11,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 6.0),
-                                child: Text(
-                                  "Hubungi Kami",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 510,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.16),
-                        width: 1.0,
-                      ),
-                    ),
-                    width: 300,
-                    height: 50,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 11.0, left: 3.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                  "Log Out",
-                                  style: TextStyle(
-                                    color: Color(0xFF584D99),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
         ),
       ),
-      
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:biking_app/screens/home_screen/home_screen.dart';
 import 'package:biking_app/screens/pelaporan/admin/pelaporan_admin.dart';
-import 'package:biking_app/screens/pelaporan/guru/pelaporan_guru.dart';
+import 'package:biking_app/screens/profil/admin/profil_admin.dart';
 import 'package:biking_app/screens/profil/guru/profil_guru.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +18,11 @@ class _MainScreenAdminState extends State<MainScreenAdmin> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfilGuruScreen(
+    const ProfilAdminScreen(
       nama: '',
       email: '',
       nomorTelepon: '',
-      gurumapel: '',
+      role: '',
     ),
     const HomeScreen(),
     const PelaporanAdminScreen(),

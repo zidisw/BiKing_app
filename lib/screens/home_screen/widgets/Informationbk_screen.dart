@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InformasibkScreen extends StatefulWidget {
-  const InformasibkScreen({super.key});
+  const InformasibkScreen({Key? key}) : super(key: key);
   static String routeName = 'InformasibkScreen';
 
   @override
-  State<InformasibkScreen> createState() => _IndormasibkScreenState();
+  State<InformasibkScreen> createState() => _InformasibkScreenState();
 }
 
-class _IndormasibkScreenState extends State<InformasibkScreen> {
+class _InformasibkScreenState extends State<InformasibkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,14 +61,10 @@ class _IndormasibkScreenState extends State<InformasibkScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Image.asset(
-                          "assets/images/video.png",
-                          width: double.infinity,
-                          height: 188.28,
-                        ),
+                      Image.asset(
+                        "assets/images/video.png",
+                        width: double.infinity,
+                        height: 188.28,
                       ),
                       Text(
                         "BK SMA 16 Makassar adalah sebuah unit kerja yang bertanggung jawab untuk memberikan layanan bimbingan dan konseling bagi siswa SMA 16 Makassar agar dapat memperoleh dukungan dan bantuan dalam mengatasi berbagai masalah yang dihadapi, baik masalah akademik maupun non-akademik.",

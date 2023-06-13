@@ -10,7 +10,7 @@ import 'package:sizer/sizer.dart';
 // import 'model.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  const Register({super.key});
 
   static String routeName = 'Register';
 
@@ -431,6 +431,7 @@ class _RegisterState extends State<Register> {
           backgroundColor: Colors.red,
           textColor: Colors.white,
         );
+        return <dynamic>{};
       });
     }
   }

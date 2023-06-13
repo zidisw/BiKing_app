@@ -257,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20.h,
                     width: 40.w,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                 ],
               ),
             ),
@@ -274,13 +274,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(height: 45),
+                        const SizedBox(height: 45),
                         emailField,
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         passwordField,
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         loginButton,
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Align(
                           alignment: Alignment.center,
                           child: Text(
