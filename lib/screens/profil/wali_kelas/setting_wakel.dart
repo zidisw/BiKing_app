@@ -1,23 +1,63 @@
 import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/daftar_laporan_kehadiran.dart';
+import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/profil/bantuan.dart';
-import 'package:biking_app/screens/profil/edit_password.dart';
 import 'package:biking_app/screens/profil/hubungi_kami.dart';
+import 'package:biking_app/screens/profil/privacy_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:biking_app/screens/login_screen/login_screen.dart';
-import 'package:biking_app/screens/profil/privacy_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class SettingWakel extends StatefulWidget {
-  const SettingWakel({Key? key}) : super(key: key);
-  static String routeName = 'SettingWakel';
+import '../../pelaporan/wali_kelas/daftar_laporan_penanganan.dart';
+
+class SettingWaliScreen extends StatefulWidget {
+  final String nama;
+  final String perwalian;
+
+  const SettingWaliScreen({
+    Key? key,
+    required this.nama,
+    required this.perwalian,
+  }) : super(key: key);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nama': nama,
+      'mapel': perwalian,
+    };
+  }
+
+  static String routeName = 'SettingWaliScreen';
 
   @override
-  _SettingWakelState createState() => _SettingWakelState();
+  State<SettingWaliScreen> createState() => _SettingWaliScreenState();
 }
 
-class _SettingWakelState extends State<SettingWakel> {
+class _SettingWaliScreenState extends State<SettingWaliScreen> {
+  String? nama;
+  String? perwalian;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+
+    DocumentSnapshot snapshot =
+        await firestore.collection('users').doc(user!.uid).get();
+
+    if (snapshot.exists) {
+      setState(() {
+        nama = snapshot.get('nama');
+        perwalian = snapshot.get('perwalian');
+      });
+    }
+  }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
@@ -88,7 +128,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: AssetImage(
-                                            "assets/images/jid1.png",
+                                            "assets/images/orang.png",
                                           ),
                                         ),
                                       ),
@@ -104,7 +144,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Zid Irsyadin S.W.",
+                                        nama ?? "",
                                         style: GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
@@ -115,7 +155,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Wali Kelas XII MIPA 1",
+                                        perwalian ?? "",
                                         style: GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),
@@ -189,7 +229,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Ubah Password Akun",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -201,7 +242,7 @@ class _SettingWakelState extends State<SettingWakel> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const UbahPassword()),
+                                                            const HubungiKami()),
                                                   );
                                                 },
                                                 child: const Icon(
@@ -274,7 +315,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Jumlah Laporan Saya",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -285,9 +327,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const DaftarlaporankehadiranScreen(),
-                                                    ),
+                                                        builder: (context) =>
+                                                            const DaftarPelaporanWaliScreen()),
                                                   );
                                                 },
                                                 child: const Icon(
@@ -360,7 +401,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Tentang Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -395,7 +437,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Privasi",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -430,7 +473,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Bantuan",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -465,7 +509,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Hubungi Kami",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -532,7 +577,8 @@ class _SettingWakelState extends State<SettingWakel> {
                                                   "Keluar",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
-                                                    color: const Color(0xFF000000),
+                                                    color:
+                                                        const Color(0xFF000000),
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w500,
                                                   ),

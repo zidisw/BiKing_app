@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context, 'InformasibkScreen');
                               },
                               text: 'Informasi Seputar BK',
-                              image: AssetImage('assets/images/ele2.png'),
+                              image: const AssetImage('assets/images/ele2.png'),
                             ),
                           ],
                         ),
@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Navigator.pushNamed(context, 'AboutUsScreen');
                               },
                               text: 'Tentang Kami',
-                              image: AssetImage('assets/images/ele3.png'),
+                              image: const AssetImage('assets/images/ele3.png'),
                             ),
                           ],
                         ),

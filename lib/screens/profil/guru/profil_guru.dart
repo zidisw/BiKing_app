@@ -274,7 +274,7 @@ class _ProfilGuruScreenState extends State<ProfilGuruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${nama ?? ""}',
+                                  nama ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -331,7 +331,7 @@ class _ProfilGuruScreenState extends State<ProfilGuruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${email ?? ""}',
+                                  email ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -388,7 +388,7 @@ class _ProfilGuruScreenState extends State<ProfilGuruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${nomorTelepon ?? ""}',
+                                  nomorTelepon ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -445,7 +445,7 @@ class _ProfilGuruScreenState extends State<ProfilGuruScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${gurumapel ?? ""}',
+                                  gurumapel ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,

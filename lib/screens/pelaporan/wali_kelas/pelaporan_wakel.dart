@@ -1,19 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/buat_laporan_kehadiran.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/daftar_laporan_kehadiran.dart';
-import 'package:biking_app/screens/pelaporan/wali_kelas/daftar_laporan_penanganan.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/tambah_laporan_wakel.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PelaporanWali extends StatefulWidget {
-  const PelaporanWali({Key? key}) : super(key: key);
-  static String routeName = 'PelaporanWali';
+import 'daftar_laporan_penanganan.dart';
+
+class PelaporanWaliScreen extends StatefulWidget {
+  const PelaporanWaliScreen({super.key});
+  static String routeName = 'PelaporanWaliScreen';
 
   @override
-  State<PelaporanWali> createState() => _PelaporanWaliState();
+  State<PelaporanWaliScreen> createState() => _PelaporanScreenState();
 }
 
-class _PelaporanWaliState extends State<PelaporanWali> {
+class _PelaporanScreenState extends State<PelaporanWaliScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,470 +29,177 @@ class _PelaporanWaliState extends State<PelaporanWali> {
             ),
           ),
         ),
-        title: Text('Pelaporan',
-            style:
-                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600)),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
-          child: SingleChildScrollView(
-              child: Column(
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Container(
-                    width: 350,
-                    height: 170,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.20),
-                        width: 1.0,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0, left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Laporan Penanganan Wali Kelas",
-                            style: GoogleFonts.poppins(
-                              color: const Color(0xFF7369FF),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 14, right: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      width: 80,
-                                      height: 80,
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                            "assets/images/lapor.png",
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 230, // Atur lebar tombol "Buka"
-                                        height: 40, // Atur tinggi tombol "Buka"
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const DaftarLaporanPenangananWakel()),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFF38ACFF),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Buka",
-                                            style: GoogleFonts.poppins(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 15),
-                                      SizedBox(
-                                        width:
-                                            230, // Atur lebar tombol "Buat Laporan Baru"
-                                        height:
-                                            40, // Atur tinggi tombol "Buat Laporan Baru"
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const WaliTambahlaporan()),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFF9180FF),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Buat Laporan Baru",
-                                            style: GoogleFonts.poppins(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Container(
-                    width: 350,
-                    height: 170,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: const Color(0xFF000000).withOpacity(0.20),
-                        width: 1.0,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0, left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Laporan Kehadiran Bulanan",
-                            style: GoogleFonts.poppins(
-                              color: const Color(0xFF7369FF),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 14),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      width: 80,
-                                      height: 80,
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                            "assets/images/bulanan.png",
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 230, // Atur lebar tombol "Buka"
-                                        height: 40, // Atur tinggi tombol "Buka"
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const DaftarlaporankehadiranScreen()),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFF38ACFF),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Buka",
-                                            style: GoogleFonts.poppins(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 15),
-                                      SizedBox(
-                                        width:
-                                            230, // Atur lebar tombol "Buat Laporan Baru"
-                                        height:
-                                            40, // Atur tinggi tombol "Buat Laporan Baru"
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const BuatKehadiran()),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color(0xFF9180FF),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            "Buat Laporan Baru",
-                                            style: GoogleFonts.poppins(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Container(
-                      width: 350,
-                      height: 30,
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Container(
                       decoration: BoxDecoration(
-                        color: const Color(0xFF38ACFF),
-                        borderRadius: BorderRadius.circular(5),
+                        color: const Color(0xFFFFFFFF),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFF000000).withOpacity(0.16),
+                          width: 1.0,
+                        ),
                       ),
+                      height: 160,
                       child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 3.0, bottom: 3.0, left: 10.0),
-                        child: Column(
+                        padding: const EdgeInsets.only(
+                            top: 10.0, left: 3.0, bottom: 10.0),
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Catatan",
-                              style: GoogleFonts.poppins(
-                                color: const Color(0xFFFFFFFF),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 3),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15.0),
+                                  child: Text(
+                                    'Kartu Komunikasi',
+                                    style: GoogleFonts.poppins(
+                                      color: const Color.fromARGB(
+                                          255, 81, 154, 232),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/lapor.png',
+                                          width: 90,
+                                          height: 90,
+                                        ),
+                                        const SizedBox(
+                                          height: 30,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5.0, right: 10.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width:
+                                                    230, // Atur lebar tombol "Buka"
+                                                height:
+                                                    40, // Atur tinggi tombol "Buka"
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const DaftarPelaporanWaliScreen()),
+                                                    );
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        const Color(0xFF38ACFF),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    "Buka",
+                                                    style: GoogleFonts.poppins(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 15),
+                                              SizedBox(
+                                                width:
+                                                    230, // Atur lebar tombol "Buat Laporan Baru"
+                                                height:
+                                                    40, // Atur tinggi tombol "Buat Laporan Baru"
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const BuatLaporanWali()),
+                                                    );
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        const Color(0xFF9180FF),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    "Buat Laporan Baru",
+                                                    style: GoogleFonts.poppins(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    )),
+                              ],
                             ),
                           ],
                         ),
                       ),
-                    ))
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              alignment: Alignment.topLeft,
-                              width: 5,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/icons/dot.png",
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text.rich(
-                                TextSpan(
-                                  text:
-                                      'Dilampirkan bersama dengan laporan bulanan absen kehadiaran siswa.',
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                textAlign: TextAlign.justify,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              width: 5,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/icons/dot.png",
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text.rich(
-                                TextSpan(
-                                  text:
-                                      'Siswa yang tidak pernah hadir wajib ditindaklanjuti wali kelas, untuk mendapatkan informasi langsung atau ada pernyataan tertulis orang tua bahwa siswa pindah atau DO.',
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                textAlign: TextAlign.justify,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              width: 5,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/icons/dot.png",
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text.rich(
-                                TextSpan(
-                                  text:
-                                      'Wali kelas koordinasi ke guru BK bagi siswa yang butuh konseling.',
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                textAlign: TextAlign.justify,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ))),
+          ],
+        ),
+      ),
     );
   }
 }

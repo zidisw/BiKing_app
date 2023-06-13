@@ -61,7 +61,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 8.0),
+                                padding: const EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   "Kelas",
                                   style: GoogleFonts.poppins(
@@ -75,7 +75,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 5,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                                 child: Column(
                                   children: [
                                     Container(
@@ -90,7 +90,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                       width: 330,
                                       height: 50,
                                       child: Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -117,7 +117,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 20,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Nama",
                                   style: GoogleFonts.poppins(
@@ -131,7 +131,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 5,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 7.0, right: 8.0),
+                                padding: const EdgeInsets.only(left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
                                     const SizedBox(
@@ -149,7 +149,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                       width: 330,
                                       height: 50,
                                       child: Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 11.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -176,7 +176,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 20,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Masalah yang dialami/dirasakan",
                                   style: GoogleFonts.poppins(
@@ -190,7 +190,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 5,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 7.0, right: 8.0),
+                                padding: const EdgeInsets.only(left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
                                     const SizedBox(
@@ -208,7 +208,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                       width: 330,
                                       height: 100,
                                       child: Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 10.0, top: 12.0),
                                         child: Column(
                                           crossAxisAlignment:
@@ -235,7 +235,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 20,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6.0),
+                                padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
                                   "Tanggal",
                                   style: GoogleFonts.poppins(
@@ -249,7 +249,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                 height: 5,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 7.0, right: 8.0),
+                                padding: const EdgeInsets.only(left: 7.0, right: 8.0),
                                 child: Column(
                                   children: [
                                     const SizedBox(
@@ -271,7 +271,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                               vertical: 16.0,
                                               horizontal: 10.0,
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               '7',
                                               style: TextStyle(
                                                 fontSize: 16.0,
@@ -298,7 +298,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                               vertical: 16.0,
                                               horizontal: 10.0,
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               'Mei',
                                               style: TextStyle(
                                                 fontSize: 16.0,
@@ -324,7 +324,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                               vertical: 16.0,
                                               horizontal: 10.0,
                                             ),
-                                            child: Text(
+                                            child: const Text(
                                               '2023',
                                               style: TextStyle(
                                                 fontSize: 16.0,
@@ -361,7 +361,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: const EdgeInsets.only(left: 10.0),
                           child: Text(
                             "1 Tanggapan",
                             style: GoogleFonts.poppins(
@@ -388,7 +388,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                     CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: 6.0),
+                                    padding: const EdgeInsets.only(left: 6.0),
                                     child: Text(
                                       "Guru BK 1",
                                       style: GoogleFonts.poppins(
@@ -402,7 +402,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                     height: 10,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 6.0),
+                                    padding: const EdgeInsets.only(left: 6.0),
                                     child: Text(
                                       "Laporan telah ditangani oleh saya, untuk siswa bernama Andhini tolong untuk bersabar dalam menghadapi masalah yang ada.",
                                       style: GoogleFonts.poppins(
@@ -416,7 +416,7 @@ class _IsiLaporanState extends State<IsiLaporan> {
                                     height: 10,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 6.0),
+                                    padding: const EdgeInsets.only(left: 6.0),
                                     child: Text(
                                       "15 Mei 2023",
                                       style: GoogleFonts.poppins(

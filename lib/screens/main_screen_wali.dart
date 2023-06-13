@@ -4,22 +4,26 @@ import 'package:biking_app/screens/profil/wali_kelas/profil_wakel.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-
 class MainScreenWali extends StatefulWidget {
   const MainScreenWali({super.key});
   static String routeName = 'MainScreenWali';
 
   @override
-  State<MainScreenWali> createState() => _MainScreenWaliState();
+  State<MainScreenWali> createState() => _MainScreenState();
 }
 
-class _MainScreenWaliState extends State<MainScreenWali> {
+class _MainScreenState extends State<MainScreenWali> {
   int _pageIndex = 1;
 
   final List<Widget> _pageList = [
-    const ProfileWakel(),
+    const ProfilWaliScreen(
+      nama: '',
+      email: '',
+      nomorTelepon: '',
+      perwalian: '',
+    ),
     const HomeScreen(),
-    const PelaporanWali(),
+    const PelaporanWaliScreen(),
   ];
   @override
   Widget build(BuildContext context) {
