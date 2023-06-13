@@ -77,6 +77,9 @@ class _editReportScreenState extends State<editReportScreen> {
           backgroundColor: Colors.green,
           textColor: Colors.white,
         );
+        setState(
+            () {}); // Memperbarui tampilan setelah berhasil memperbarui laporan
+        Navigator.pop(context, true);
 
         // Success message or further processing
       } else {
