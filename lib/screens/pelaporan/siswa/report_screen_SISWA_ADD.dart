@@ -115,7 +115,7 @@ class _AddReportScreenState extends State<AddReportScreen> {
           title: Text('Buat Laporan',
               style: GoogleFonts.poppins(
                   fontSize: 20,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 0.5)),
         ),
         body: SingleChildScrollView(
