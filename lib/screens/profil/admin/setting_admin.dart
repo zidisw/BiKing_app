@@ -10,6 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../pelaporan/admin/pelaporan_admin.dart';
+
 class SettingAdminScreen extends StatefulWidget {
   final String nama;
   final String role;
@@ -312,7 +314,7 @@ class _SettingAdminScreenState extends State<SettingAdminScreen> {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  "Jumlah Laporan Saya",
+                                                  "Laporan Masuk",
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.poppins(
                                                     color:
@@ -328,7 +330,7 @@ class _SettingAdminScreenState extends State<SettingAdminScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const DaftarPelaporanGuruScreen()),
+                                                            const PelaporanAdminScreen()),
                                                   );
                                                 },
                                                 child: const Icon(

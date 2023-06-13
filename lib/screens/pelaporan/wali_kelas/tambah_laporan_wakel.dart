@@ -1,15 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:uuid/uuid.dart';
 
-class WaliTambahlaporan extends StatefulWidget {
-  const WaliTambahlaporan({Key? key}) : super(key: key);
-  static String routeName = 'WaliTambahlaporan';
+class BuatLaporanWali extends StatefulWidget {
+  const BuatLaporanWali({Key? key}) : super(key: key);
+  static String routeName = 'BuatLaporanWali';
 
   @override
-  State<WaliTambahlaporan> createState() => _WaliTambahlaporanState();
+  _BuatLaporanState createState() => _BuatLaporanState();
 }
 
-class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
+class _BuatLaporanState extends State<BuatLaporanWali> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String kepadaValue = '';
+  String namaValue = '';
+  String siswaNamaValue = '';
+  String siswaKelasValue = '';
+  String deskripsiValue = '';
+  String penangananValue = '';
+  static int _laporanCounter = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,289 +40,229 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
             ),
           ),
         ),
-        title: Text('Laporan Penanganan Wali Kelas',
-            style:
-                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500)),
+        title: Text(
+          'Pelaporan',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      backgroundColor: const Color(0xFFFFFFFF),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
+              Align(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                      child: Container(
                         decoration: BoxDecoration(
                           color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: const Color(0xFF000000).withOpacity(0.1),
+                            color: const Color(0xFF000000).withOpacity(0.16),
                             width: 1.0,
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(
-                            vertical: 13.0, horizontal: 10.0),
+                          vertical: 13.0,
+                          horizontal: 10.0,
+                        ),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, bottom: 10, top: 5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Nama Siswa",
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF000000),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(
-                                  height:
-                                      3), // add some spacing between the text and the TextFormField
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                          padding: const EdgeInsets.all(10),
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Kepada:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    vertical: 16.0,
-                                    horizontal: 10.0,
-                                  ),
-                                  hintText: 'Masukkan Nama Anda',
                                 ),
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Wajib diisi';
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {},
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "Kelas",
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF000000),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ), // add some spacing between the text and the TextFormField
-                              Column(children: [
-                                const SizedBox(
-                                  height: 3,
-                                ),
+                                const SizedBox(height: 10),
                                 TextFormField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0)),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      vertical: 16.0,
-                                      horizontal: 10.0,
-                                    ),
-                                    hintText: 'Masukkan kelas',
-                                  ),
                                   validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Kelas harus diisi';
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
                                     }
                                     return null;
                                   },
-                                  onSaved: (value) {},
-                                ),
-                              ]),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "Masalah",
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF000000),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ), // add some spacing between the text and the TextFormField
-                              Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 3,
-                                  ),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0)),
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                        vertical: 70.0,
-                                        horizontal: 16.0,
-                                      ),
-                                      hintText: 'Masukkan Masalah Anda',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'wajib diisi';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {},
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "Penanganan yang Sudah dilakukan",
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF000000),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ), // add some spacing between the text and the TextFormField
-                              Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 3,
-                                  ),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0)),
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                        vertical: 70.0,
-                                        horizontal: 16.0,
-                                      ),
-                                      hintText:
-                                          'Masukkan Penanganan yang dilakukan',
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'wajib diisi';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {},
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "Tanggal",
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF000000),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Column(children: [
-                                const SizedBox(
-                                  height: 3,
-                                ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    DateTime? pickedDate =
-                                        await showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime
-                                                .now(), //get today's date
-                                            firstDate: DateTime(
-                                                2000), //DateTime.now() - not to allow to choose before today.
-                                            lastDate: DateTime(2101));
+                                  onSaved: (value) {
+                                    kepadaValue = value!;
                                   },
-                                  child: AbsorbPointer(
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0)),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                          vertical: 16.0,
-                                          horizontal: 10.0,
-                                        ),
-                                        hintText: 'Pilih tanggal laporan',
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Masukkan nama penerima',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Nama:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    namaValue = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Masukkan nama anda',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Nama Siswa:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    siswaNamaValue = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Masukkan nama siswa',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Kelas Siswa:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    siswaKelasValue = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Masukkan kelas siswa',
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Deskripsi Laporan:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    deskripsiValue = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Masukkan deskripsi laporan',
+                                  ),
+                                  maxLines: 3,
+                                ),
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Penanganan Yang Sudah Dilakukan:',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field ini harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    penangananValue = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'deskripsikan penanganan',
+                                  ),
+                                  maxLines: 3,
+                                ),
+                                const SizedBox(height: 15),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: _kirimLaporan,
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
-                                      onSaved: (value) {
-                                        // simpan tanggal yang dipilih
-                                      },
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 10),
+                                    ),
+                                    child: Text(
+                                      'Kirim',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ]),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      
-                    ],
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only (bottom: 20),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Row(
-                              children: [
-                                Icon(
-                                  Icons.check_circle,
-                                  color: Colors.green,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text('Sukses'),
-                              ],
-                            ),
-                            content: const Text('Laporan anda berhasil dikirim'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('OK'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
                     ),
-                    child: Text(
-                      "Kirim",
-                      style: GoogleFonts.poppins(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ),
             ],
@@ -316,5 +270,104 @@ class _WaliTambahlaporanState extends State<WaliTambahlaporan> {
         ),
       ),
     );
+  }
+
+  Future<String?> _getUserPhoneNumber(String userID) async {
+    DocumentSnapshot userSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userID).get();
+
+    if (userSnapshot.exists) {
+      return userSnapshot['nomorTelepon'];
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> _addReport(
+      String userID,
+      String laporanID,
+      String kepada,
+      String nama,
+      String siswaNama,
+      String siswaKelas,
+      String deskripsi,
+      String penanganan) async {
+    try {
+      _laporanCounter++; // tambahkan counter saat laporan dikirim
+      String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
+      String? nomorTelepon = await _getUserPhoneNumber(userID);
+      await FirebaseFirestore.instance
+          .collection('laporan_wali')
+          .doc(namaDokumen)
+          .set({
+        'UserID': userID,
+        'LaporanID': laporanID,
+        'Kepada': kepada,
+        'Nama': nama,
+        'Nama Siswa': siswaNama,
+        'Kelas Siswa': siswaKelas,
+        'Deskripsi Laporan': deskripsi,
+        'Penanganan': penanganan,
+        'Tanggal': FieldValue.serverTimestamp(),
+        'Nomor Telepon': nomorTelepon,
+      });
+
+      Fluttertoast.showToast(
+        msg: 'Laporan berhasil dikirim',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+      // Reset form
+      _formKey.currentState!.reset();
+
+      // kembali ke halaman sebelumnya
+      Navigator.pop(context, true);
+    } catch (error) {
+      // Error handling
+      Fluttertoast.showToast(
+        msg: 'Terjadi kesalahan',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
+    }
+  }
+
+  Future<void> _kirimLaporan() async {
+    final FormState? form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      FirebaseAuth auth = FirebaseAuth.instance;
+      String userID = auth.currentUser!.uid;
+      String laporanID = const Uuid().v4();
+
+      // Memastikan koleksi "laporan_wali" ada
+      await FirebaseFirestore.instance
+          .collection('laporan_wali')
+          .doc('dummy_document')
+          .set({});
+
+      // Menghapus dokumen dummy jika diperlukan
+      await FirebaseFirestore.instance
+          .collection('laporan_wali')
+          .doc('dummy_document')
+          .delete();
+
+      _addReport(
+        userID,
+        laporanID,
+        kepadaValue,
+        namaValue,
+        siswaNamaValue,
+        siswaKelasValue,
+        deskripsiValue,
+        penangananValue,
+      );
+    }
   }
 }
