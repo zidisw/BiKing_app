@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(primaryColor: kPrimaryColor),
         initialRoute: SplashScreen.routeName,
         routes: routes,
-        home: const MainScreen(),
       );
     });
   }

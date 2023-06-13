@@ -10,7 +10,9 @@ import 'package:sizer/sizer.dart';
 // import 'model.dart';
 
 class Register extends StatefulWidget {
-  const Register({super.key});
+  const Register({Key? key}) : super(key: key);
+
+  static String routeName = 'Register';
 
   @override
   _RegisterState createState() => _RegisterState();
@@ -90,8 +92,8 @@ class _RegisterState extends State<Register> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.person),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.person),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Nama",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -114,8 +116,8 @@ class _RegisterState extends State<Register> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.phone),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.phone),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Nomor Telepon",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -133,8 +135,8 @@ class _RegisterState extends State<Register> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.class_),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.class_),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Kelas (Siswa)",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -152,8 +154,8 @@ class _RegisterState extends State<Register> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.class_),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.class_),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Kelas Perwalian (Wali Kelas)",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -171,8 +173,8 @@ class _RegisterState extends State<Register> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.class_),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        prefixIcon: const Icon(Icons.class_),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Mata Pelajaran yang diajarkan (Guru Mata Pelajaran)",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -259,144 +261,152 @@ class _RegisterState extends State<Register> {
       ),
     );
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Positioned(
-              left: 0,
-              top: 0,
-              child: SizedBox(
-                width: 391 * fem,
-                height: 100 * fem,
-                child: Image.asset(
-                  'assets/images/headertrans.png',
-                  fit: BoxFit.fill,
-                ),
+      body: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            top: 0,
+            child: SizedBox(
+              width: 391 * fem,
+              height: 100 * fem,
+              child: Image.asset(
+                'assets/images/headertrans.png',
+                fit: BoxFit.fill,
               ),
             ),
-            SizedBox(
-              width: 100.w,
-              height: 10.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                  ),
-                  Image.asset(
-                    'assets/images/Vector-2.png',
-                    height: 20.h,
-                    width: 40.w,
-                  ),
-                  sizedBox,
-                ],
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                width: 50,
+                height: 100,
               ),
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                child: Form(
-                  key: _formkey,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
-                        emailField,
-                        const SizedBox(height: 20),
-                        nameField,
-                        const SizedBox(height: 20),
-                        phoneField,
-                        const SizedBox(height: 20),
-                        siswaField,
-                        const SizedBox(height: 20),
-                        walikelasField,
-                        const SizedBox(height: 20),
-                        guruField,
-                        const SizedBox(height: 20),
-                        passwordField,
-                        const SizedBox(height: 20),
-                        confirmPasswordField,
-                        const SizedBox(height: 15),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Text(
-                                "Peran: ",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: kContainerColor,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              DropdownButton<String>(
-                                dropdownColor: Colors.white,
-                                iconEnabledColor: kSecondaryColor,
-                                style: const TextStyle(
-                                  color: kPrimaryColor,
-                                  fontSize: 15,
-                                ),
-                                items: options.map((String dropDownStringItem) {
-                                  return DropdownMenuItem<String>(
-                                    value: dropDownStringItem,
-                                    child: Text(dropDownStringItem),
-                                  );
-                                }).toList(),
-                                onChanged: (newValueSelected) {
-                                  setState(() {
-                                    _currentItemSelected = newValueSelected!;
-                                    role = newValueSelected;
-                                  });
-                                },
-                                value: _currentItemSelected,
-                              ),
-                            ],
-                          ),
-                        ),
-                        signUpButton,
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              width: double.infinity,
-              padding: const EdgeInsets.only(bottom: 15.0, top: 15.0),
-              child: Align(
-                alignment: Alignment.bottomCenter,
+              SizedBox(
+                width: 100.w,
+                height: 10.h,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text("Punya akun? "),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "Masuk",
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                     ),
+                    Image.asset(
+                      'assets/images/Vector-2.png',
+                      height: 20.h,
+                      width: 40.w,
+                    ),
+                    sizedBox,
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                  child: Form(
+                    key: _formkey,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          emailField,
+                          const SizedBox(height: 20),
+                          nameField,
+                          const SizedBox(height: 20),
+                          phoneField,
+                          const SizedBox(height: 20),
+                          siswaField,
+                          const SizedBox(height: 20),
+                          walikelasField,
+                          const SizedBox(height: 20),
+                          guruField,
+                          const SizedBox(height: 20),
+                          passwordField,
+                          const SizedBox(height: 20),
+                          confirmPasswordField,
+                          const SizedBox(height: 15),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const Text(
+                                  "Peran: ",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: kContainerColor,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                DropdownButton<String>(
+                                  dropdownColor: Colors.white,
+                                  iconEnabledColor: kSecondaryColor,
+                                  style: const TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: 15,
+                                  ),
+                                  items:
+                                      options.map((String dropDownStringItem) {
+                                    return DropdownMenuItem<String>(
+                                      value: dropDownStringItem,
+                                      child: Text(dropDownStringItem),
+                                    );
+                                  }).toList(),
+                                  onChanged: (newValueSelected) {
+                                    setState(() {
+                                      _currentItemSelected = newValueSelected!;
+                                      role = newValueSelected;
+                                    });
+                                  },
+                                  value: _currentItemSelected,
+                                ),
+                              ],
+                            ),
+                          ),
+                          signUpButton,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.white,
+                width: double.infinity,
+                padding: const EdgeInsets.only(bottom: 15.0, top: 15.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text("Punya akun? "),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "Masuk",
+                          style: TextStyle(
+                            color: kSecondaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
+
   }
 
   void signUp(String email, String password, String role) async {
@@ -441,7 +451,7 @@ class _RegisterState extends State<Register> {
     });
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => LoginScreen(),
+        builder: (context) => const LoginScreen(),
       ),
     );
   }

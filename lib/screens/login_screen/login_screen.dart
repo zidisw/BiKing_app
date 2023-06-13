@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.green,
           textColor: Colors.white,
-          );
+        );
         route();
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
@@ -235,16 +235,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         child: Column(
           children: [
-            Positioned(
-              left: 0,
-              top: 0,
-              child: SizedBox(
-                width: 391 * fem,
-                height: 150.76 * fem,
-                child: Image.asset(
-                  'assets/images/atas.png',
-                  fit: BoxFit.cover,
-                ),
+            SizedBox(
+              width: 391 * fem,
+              height: 150.76 * fem,
+              child: Image.asset(
+                'assets/images/atas.png',
+                fit: BoxFit.cover,
               ),
             ),
             SizedBox(
@@ -261,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20.h,
                     width: 40.w,
                   ),
-                  sizedBox,
+                  SizedBox(width: 10),
                 ],
               ),
             ),
@@ -278,13 +274,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        const SizedBox(height: 45),
+                        SizedBox(height: 45),
                         emailField,
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20),
                         passwordField,
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20),
                         loginButton,
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15),
                         Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -294,8 +290,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 .textTheme
                                 .labelMedium!
                                 .copyWith(
-                                    color: kContainerColor,
-                                    fontWeight: FontWeight.w400),
+                                  color: kContainerColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
                           ),
                         ),
                       ],
@@ -341,5 +338,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 }
