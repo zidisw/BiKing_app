@@ -1,4 +1,3 @@
-import 'package:biking_app/screens/profil/guru/setting_guru.dart';
 import 'package:biking_app/screens/profil/wali_kelas/setting_wakel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -275,7 +274,7 @@ class _ProfilWaliScreenState extends State<ProfilWaliScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${nama ?? ""}',
+                                  nama ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -332,7 +331,7 @@ class _ProfilWaliScreenState extends State<ProfilWaliScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${email ?? ""}',
+                                  email ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -389,7 +388,7 @@ class _ProfilWaliScreenState extends State<ProfilWaliScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${nomorTelepon ?? ""}',
+                                  nomorTelepon ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,
@@ -446,7 +445,7 @@ class _ProfilWaliScreenState extends State<ProfilWaliScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 6.0),
                                 child: Text(
-                                  '${perwalian ?? ""}',
+                                  perwalian ?? "",
                                   style: GoogleFonts.poppins(
                                     color: kPrimaryColor,
                                     fontSize: 15,

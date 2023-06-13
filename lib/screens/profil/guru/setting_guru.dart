@@ -1,7 +1,6 @@
 import 'package:biking_app/screens/home_screen/widgets/aboutus_screen.dart';
 import 'package:biking_app/screens/login_screen/login_screen.dart';
 import 'package:biking_app/screens/profil/bantuan.dart';
-import 'package:biking_app/screens/profil/edit_password.dart';
 import 'package:biking_app/screens/profil/hubungi_kami.dart';
 import 'package:biking_app/screens/profil/privacy_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -144,7 +143,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${nama ?? ""}',
+                                        nama ?? "",
                                         style: GoogleFonts.poppins(
                                           color: const Color(0xFF4A92FF),
                                           fontSize: 18,
@@ -155,7 +154,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                         height: 5,
                                       ),
                                       Text(
-                                        '${gurumapel ?? ""}',
+                                        gurumapel ?? "",
                                         style: GoogleFonts.poppins(
                                           color: const Color(0xFF000000)
                                               .withOpacity(0.5),

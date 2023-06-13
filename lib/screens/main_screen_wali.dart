@@ -1,5 +1,4 @@
 import 'package:biking_app/screens/home_screen/home_screen.dart';
-import 'package:biking_app/screens/pelaporan/guru/pelaporan_guru.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/pelaporan_wakel.dart';
 import 'package:biking_app/screens/profil/wali_kelas/profil_wakel.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';

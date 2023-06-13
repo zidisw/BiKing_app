@@ -22,7 +22,7 @@ class _BuatLaporanState extends State<BuatLaporan> {
   String siswaKelasValue = '';
   String deskripsiValue = '';
   String saranValue = '';
-  static int _laporanCounter = 0;
+  static int _laporanCounter_ = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -293,8 +293,8 @@ class _BuatLaporanState extends State<BuatLaporan> {
       String deskripsi,
       String saran) async {
     try {
-      _laporanCounter++; // tambahkan counter saat laporan dikirim
-      String namaDokumen = 'Laporan $_laporanCounter' + '_' + nama;
+      _laporanCounter_++; // tambahkan counter saat laporan dikirim
+      String namaDokumen = 'Laporan $_laporanCounter_$nama';
       String? nomorTelepon = await _getUserPhoneNumber(userID);
       await FirebaseFirestore.instance
           .collection('laporan_guru')

@@ -111,7 +111,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
+                                  padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
                                     "Nama",
                                     style: GoogleFonts.poppins(
@@ -210,7 +210,7 @@ class _EditLaporanState extends State<EditLaporan> {
                                   height: 20,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
+                                  padding: const EdgeInsets.only(left: 6.0),
                                   child: Text(
                                     "Tanggal Laporan",
                                     style: GoogleFonts.poppins(

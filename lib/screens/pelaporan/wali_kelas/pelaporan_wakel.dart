@@ -1,5 +1,3 @@
-import 'package:biking_app/screens/pelaporan/guru/daftar_pelaporan_guru.dart';
-import 'package:biking_app/screens/pelaporan/guru/tambah_laporan_guru.dart';
 import 'package:biking_app/screens/pelaporan/wali_kelas/tambah_laporan_wakel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
