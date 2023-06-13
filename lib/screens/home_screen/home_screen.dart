@@ -102,7 +102,29 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8.5.w),
+                        decoration: BoxDecoration(
+                          color: kOtherColor,
+                          borderRadius: kTopBorderRadius,
+                        ),
+                        child: Column(
+                          children: [
+                            MyCustomButton(
+                              width: 500,
+                              height: 80,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, 'InformasibkScreen');
+                              },
+                              text: 'Informasi Seputar BK',
+                              image: const AssetImage('assets/images/ele2.png'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 8.5.w),
